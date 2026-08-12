@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>KNATT</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef3f0;color:#12251d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{max-width:520px;margin:auto;min-height:100vh;background:#fff}
+header{background:#103c2b;color:#fff;padding:20px 18px 16px;border-radius:0 0 24px 24px}.brand{font-size:26px;font-weight:800}.role{opacity:.82;font-size:13px;margin-top:3px}
+main{padding:18px 15px 96px}.title{font-size:22px;font-weight:800;margin:3px 0 15px}
+.card{border:1px solid #e2e9e4;border-radius:18px;padding:15px;margin-bottom:12px;box-shadow:0 3px 12px #00000008}.muted{color:#6b7771}.big{font-size:22px;font-weight:800}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#f4f7f5;border-radius:15px;padding:14px}.stat b{font-size:23px;display:block}.pill{font-size:12px;font-weight:700;border-radius:999px;padding:6px 9px;background:#e7f5ed;color:#167043}.danger{background:#faecec;color:#aa3535}.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:13px}.tab{border:0;border-radius:999px;padding:9px 13px;background:#eef3f0;font-weight:700;white-space:nowrap}.tab.active{background:#103c2b;color:#fff}
+.item{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid #edf0ee}.item:last-child{border-bottom:0}.avatar{width:44px;height:44px;border-radius:50%;background:#e8f2ed;display:grid;place-items:center;font-size:20px}.grow{flex:1}.btn{border:0;border-radius:12px;padding:11px 13px;background:#103c2b;color:#fff;font-weight:800}.btn.light{background:#edf3ef;color:#173d2d}.choice{display:flex;gap:8px}.choice button{flex:1}
+select{width:100%;padding:12px;border:1px solid #d8e0db;border-radius:12px;background:white;font-size:16px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;background:#fff;border-top:1px solid #ddd;padding:8px 4px calc(8px + env(safe-area-inset-bottom));z-index:5}
+nav button{background:none;border:0;color:#6b7771;font-size:11px;font-weight:700;padding:5px}.active{color:#103c2b!important}
+.rolebar{display:flex;gap:7px;margin-bottom:15px}.rolebar button{flex:1}.notice{background:#f4f8f5;border-radius:14px;padding:12px}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">⚽ TeamHub</div><div class="role" id="roleText"></div></header>
+<main id="content"></main>
+<nav id="nav"></nav>
+</div>
+<script>
+const KEY='teamhub-v2';
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||{
+players:[
+{id:1,name:'Montiimontys',num:9,pos:'DC',available:true,reason:'',min:1126,g:12,a:6,train:18,total:20},
+{id:2,name:'Marc',num:7,pos:'MC',available:true,reason:'',min:1030,g:5,a:8,train:18,total:20},
+{id:3,name:'Juan',num:4,pos:'DFC',available:false,reason:'Trabajo',min:980,g:4,a:3,train:17,total:20},
+{id:4,name:'Alex',num:1,pos:'POR',available:true,reason:'',min:1260,g:0,a:1,train:19,total:20},
+{id:5,name:'Pedro',num:3,pos:'LI',available:false,reason:'Lesión',min:640,g:1,a:2,train:14,total:20}
+],
+next:{opponent:'CD Rival',date:'Domingo 23 de agosto',time:'12:00',place:'Campo Municipal'},
+trainings:[{date:'Jueves 20 de agosto',time:'21:15',place:'Campo Municipal'}]
+};
+let role=localStorage.getItem('teamhub-role')||'trainer', section='home', filter='all';
+
+function save(){localStorage.setItem(KEY,JSON.stringify(data))}
+function setRole(r){role=r;localStorage.setItem('teamhub-role',r);section='home';render()}
+function roleName(){return role==='trainer'?'Entrenador':'Jugador'}
+function navItems(){return role==='trainer'
+? [['home','🏠','Inicio'],['team','👥','Plantilla'],['training','🏋️','Entrenos'],['matches','🏆','Partidos'],['stats','📊','Stats']]
+: [['home','🏠','Inicio'],['profile','⚽','Mi perfil'],['training','🏋️','Entrenos'],['matches','🏆','Partidos'],['stats','📊','Mi temporada']]}
+function render(){
+ document.getElementById('roleText').textContent=roleName()+' · Primer Equipo';
+ document.getElementById('nav').innerHTML=navItems().map(x=>`<button class="${section===x[0]?'active':''}" onclick="go('${x[0]}')">${x[1]}<br>${x[2]}</button>`).join('');
+ let c=document.getElementById('content');
+ c.innerHTML=`<div class="rolebar"><button class="btn ${role==='trainer'?'':'light'}" onclick="setRole('trainer')">🧑‍🏫 Entrenador</button><button class="btn ${role==='player'?'':'light'}" onclick="setRole('player')">⚽ Jugador</button></div>`;
+ if(section==='home')c.innerHTML+=home();
+ if(section==='team')c.innerHTML+=team();
+ if(section==='training')c.innerHTML+=training();
+ if(section==='matches')c.innerHTML+=matches();
+ if(section==='stats')c.innerHTML+=stats();
+ if(section==='profile')c.innerHTML+=profile();
+}
+function go(s){section=s;render()}
+function home(){
+ if(role==='trainer')return `<div class="title">Panel del equipo</div>
+ <div class="card"><div class="muted">Próximo rival</div><div class="big">TeamHub FC 🆚 ${data.next.opponent}</div><div>${data.next.date} · ${data.next.time}</div><div class="muted">${data.next.place}</div></div>
+ <div class="card"><div class="muted">Próximo entrenamiento</div><div class="big">${data.trainings[0].date}</div><div>${data.trainings[0].time} · ${data.trainings[0].place}</div></div>
+ <div class="grid"><div class="stat"><b>${data.players.length}</b><span class="muted">Jugadores</span></div><div class="stat"><b>${data.players.filter(p=>p.available).length}</b><span class="muted">Disponibles</span></div><div class="stat"><b>${data.players.filter(p=>!p.available).length}</b><span class="muted">Ausentes</span></div><div class="stat"><b>${data.players.reduce((s,p)=>s+p.g,0)}</b><span class="muted">Goles</span></div></div>
+ <div class="card"><h3>Ausencias</h3>${data.players.filter(p=>!p.available).map(p=>`<div class="item"><div class="avatar">⚽</div><div class="grow"><b>${p.num} · ${p.name}</b><div class="muted">${p.pos}</div></div><span class="pill danger">${p.reason}</span></div>`).join('')||'<div class="muted">Ninguna</div>'}</div>`;
+ let p=data.players[0]; return `<div class="title">Hola, ${p.name} 👋</div>
+ <div class="card"><div class="muted">Próximo rival</div><div class="big">TeamHub FC 🆚 ${data.next.opponent}</div><div>${data.next.date} · ${data.next.time}</div><div class="muted">${data.next.place}</div></div>
+ <div class="card"><div class="muted">Próximo entrenamiento</div><div class="big">${data.trainings[0].date}</div><div>${data.trainings[0].time} · ${data.trainings[0].place}</div><br><div class="choice"><button class="btn" onclick="alert('Asistencia confirmada')">✅ Voy</button><button class="btn light" onclick="alert('Ausencia comunicada')">❌ No voy</button></div></div>
+ <div class="grid"><div class="stat"><b>${p.min}</b><span class="muted">Minutos</span></div><div class="stat"><b>${p.g}</b><span class="muted">Goles</span></div><div class="stat"><b>${p.a}</b><span class="muted">Asistencias</span></div><div class="stat"><b>${Math.round(p.train/p.total*100)}%</b><span class="muted">Entrenos</span></div></div>`;
+}
+function team(){
+ let list=data.players.filter(p=>filter==='all'||(filter==='available'?p.available:!p.available));
+ return `<div class="title">Plantilla</div><div class="tabs">
+ <button class="tab ${filter==='all'?'active':''}" onclick="filter='all';render()">Todos</button>
+ <button class="tab ${filter==='available'?'active':''}" onclick="filter='available';render()">🟢 Disponibles</button>
+ <button class="tab ${filter==='absent'?'active':''}" onclick="filter='absent';render()">🔴 Ausentes</button></div>
+ <div class="card">${list.map(p=>`<div class="item"><div class="avatar">${p.pos==='POR'?'🧤':'⚽'}</div><div class="grow"><b>${p.num} · ${p.name}</b><div class="muted">${p.pos} · ${p.available?'🟢 Disponible':'🔴 '+p.reason}</div><div class="muted">${p.g} ⚽ · ${p.a} 🎯 · ${p.min} min</div></div></div>`).join('')}</div>`;
+}
+function training(){
+ return `<div class="title">Entrenamientos</div><div class="card"><div class="muted">Próximo</div><div class="big">${data.trainings[0].date}</div><div>${data.trainings[0].time} · ${data.trainings[0].place}</div></div>
+ <div class="card"><h3>${role==='trainer'?'Control de asistencia':'Mi asistencia'}</h3>
+ ${role==='trainer'?data.players.map(p=>`<div class="item"><div class="avatar">⚽</div><div class="grow"><b>${p.num} · ${p.name}</b><div class="muted">${p.train}/${p.total} entrenamientos</div></div><span class="pill">${Math.round(p.train/p.total*100)}%</span></div>`).join(''):
+ `<div class="grid"><div class="stat"><b>${data.players[0].train}</b><span class="muted">Asistencias</span></div><div class="stat"><b>${Math.round(data.players[0].train/data.players[0].total*100)}%</b><span class="muted">Asistencia</span></div></div>`}</div>`;
+}
+function matches(){
+ return `<div class="title">Partidos</div><div class="card"><div class="muted">Próximo rival</div><div class="big">TeamHub FC 🆚 ${data.next.opponent}</div><div>${data.next.date} · ${data.next.time}</div><div class="muted">${data.next.place}</div><br>${role==='trainer'?'<button class="btn" onclick="alert(\\'Aquí gestionaremos convocatoria y alineación\\')">Gestionar convocatoria</button>':'<span class="pill">Convocatoria pendiente</span>'}</div>`;
+}
+function stats(){
+ let sorted=[...data.players].sort((a,b)=>b.g-a.g);
+ return `<div class="title">${role==='trainer'?'Estadísticas del equipo':'Mi temporada'}</div>
+ <div class="grid"><div class="stat"><b>${data.players.reduce((s,p)=>s+p.g,0)}</b><span class="muted">Goles</span></div><div class="stat"><b>${data.players.reduce((s,p)=>s+p.a,0)}</b><span class="muted">Asistencias</span></div><div class="stat"><b>${data.players.reduce((s,p)=>s+p.min,0)}</b><span class="muted">Minutos</span></div><div class="stat"><b>${data.players.length}</b><span class="muted">Jugadores</span></div></div>
+ <div class="card"><h3>${role==='trainer'?'Rendimiento de plantilla':'Mis estadísticas'}</h3>${(role==='trainer'?sorted:[data.players[0]]).map(p=>`<div class="item"><div class="avatar">⚽</div><div class="grow"><b>${p.num} · ${p.name}</b><div class="muted">${p.pos}</div></div><div><b>${p.min}</b> min<br><span class="muted">${p.g} ⚽ · ${p.a} 🎯</span></div></div>`).join('')}</div>`;
+}
+function profile(){let p=data.players[0];return `<div class="title">Mi perfil</div><div class="card"><div class="row"><div><div class="big">${p.num} · ${p.name}</div><div class="muted">${p.pos}</div></div><div class="avatar">⚽</div></div></div><div class="grid"><div class="stat"><b>${p.min}</b><span class="muted">Minutos jugados</span></div><div class="stat"><b>${p.g}</b><span class="muted">Goles</span></div><div class="stat"><b>${p.a}</b><span class="muted">Asistencias</span></div><div class="stat"><b>${Math.round(p.train/p.total*100)}%</b><span class="muted">Entrenamientos</span></div></div>`}
+render();
+</script>
+</body>
+</html>
