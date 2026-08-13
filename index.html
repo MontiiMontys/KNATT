@@ -8,7 +8,7 @@
 <style>
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+  -webkit-tap-highlight-color:transparent
 }
 
 :root{
@@ -99,15 +99,6 @@ main{
   margin:2px 0 16px;
 }
 
-.section-label{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  font-weight:900;
-  color:var(--muted);
-  margin-bottom:7px;
-}
-
 /* ROLE SELECTOR */
 
 .rolebar{
@@ -150,6 +141,15 @@ main{
   color:white;
 }
 
+.section-label{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:900;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+
 .big{
   font-size:22px;
   font-weight:900;
@@ -163,8 +163,6 @@ main{
 .small{
   font-size:13px;
 }
-
-/* MATCH */
 
 .match-meta{
   display:flex;
@@ -320,12 +318,6 @@ main{
   color:#19331f;
 }
 
-.btn.danger{
-  background:#fae9e9;
-  color:#b44343;
-  box-shadow:none;
-}
-
 .btn.full{
   width:100%;
 }
@@ -337,6 +329,29 @@ main{
 
 .choice button{
   flex:1;
+}
+
+/* ADD PLAYER */
+
+.add-player{
+  margin-bottom:14px;
+}
+
+.add-player .btn{
+  width:100%;
+}
+
+.delete-btn{
+  border:0;
+  background:#fae9e9;
+  color:#b44343;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+  flex:0 0 38px;
 }
 
 /* TABS */
@@ -379,19 +394,6 @@ main{
   font-weight:700;
 }
 
-/* EMPTY */
-
-.empty{
-  text-align:center;
-  padding:28px 12px;
-  color:var(--muted);
-}
-
-.empty-icon{
-  font-size:38px;
-  margin-bottom:8px;
-}
-
 /* NAVIGATION */
 
 nav{
@@ -428,10 +430,13 @@ nav button.active{
   background:#edf4ef;
 }
 
+nav button:first-line{
+  font-size:18px;
+}
+
 /* MOBILE */
 
 @media(max-width:380px){
-
   main{
     padding-left:12px;
     padding-right:12px;
@@ -465,88 +470,22 @@ nav button.active{
 
 <script>
 
-/* =========================================================
-   DATOS
-========================================================= */
-
 const KEY='teamhub-v2';
 
-const DEFAULT_DATA={
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||{
   players:[
-    {
-      id:1,
-      name:'Montiimontys',
-      num:9,
-      pos:'DC',
-      available:true,
-      reason:'',
-      min:1126,
-      g:12,
-      a:6,
-      train:18,
-      total:20
-    },
-    {
-      id:2,
-      name:'Marc',
-      num:7,
-      pos:'MC',
-      available:true,
-      reason:'',
-      min:1030,
-      g:5,
-      a:8,
-      train:18,
-      total:20
-    },
-    {
-      id:3,
-      name:'Juan',
-      num:4,
-      pos:'DFC',
-      available:false,
-      reason:'Trabajo',
-      min:980,
-      g:4,
-      a:3,
-      train:17,
-      total:20
-    },
-    {
-      id:4,
-      name:'Alex',
-      num:1,
-      pos:'POR',
-      available:true,
-      reason:'',
-      min:1260,
-      g:0,
-      a:1,
-      train:19,
-      total:20
-    },
-    {
-      id:5,
-      name:'Pedro',
-      num:3,
-      pos:'LI',
-      available:false,
-      reason:'Lesión',
-      min:640,
-      g:1,
-      a:2,
-      train:14,
-      total:20
-    }
+    {id:1,name:'Montiimontys',num:9,pos:'DC',available:true,reason:'',min:1126,g:12,a:6,train:18,total:20},
+    {id:2,name:'Marc',num:7,pos:'MC',available:true,reason:'',min:1030,g:5,a:8,train:18,total:20},
+    {id:3,name:'Juan',num:4,pos:'DFC',available:false,reason:'Trabajo',min:980,g:4,a:3,train:17,total:20},
+    {id:4,name:'Alex',num:1,pos:'POR',available:true,reason:'',min:1260,g:0,a:1,train:19,total:20},
+    {id:5,name:'Pedro',num:3,pos:'LI',available:false,reason:'Lesión',min:640,g:1,a:2,train:14,total:20}
   ],
-
   next:{
     opponent:'CD Rival',
     date:'Domingo 23 de agosto',
     time:'12:00',
     place:'Campo Municipal'
   },
-
   trainings:[
     {
       date:'Jueves 20 de agosto',
@@ -556,585 +495,329 @@ const DEFAULT_DATA={
   ]
 };
 
-
-/* =========================================================
-   CARGA SEGURA DE DATOS
-========================================================= */
-
-function safeNumber(value, fallback=0){
-  const n=Number(value);
-  return Number.isFinite(n)?n:fallback;
-}
-
-function normalizePlayer(p,index){
-
-  p=p||{};
-
-  return {
-    id:p.id!=null?p.id:Date.now()+index,
-    name:String(p.name||'Jugador'),
-    num:safeNumber(p.num,index+1),
-    pos:String(p.pos||''),
-    available:p.available!==false,
-    reason:String(p.reason||''),
-    min:safeNumber(p.min,0),
-    g:safeNumber(p.g,0),
-    a:safeNumber(p.a,0),
-    train:safeNumber(p.train,0),
-    total:safeNumber(p.total,0)
-  };
-}
-
-function normalizeData(raw){
-
-  if(!raw || typeof raw!=='object'){
-    raw={};
-  }
-
-  const players=Array.isArray(raw.players)
-    ?raw.players.map(normalizePlayer)
-    :[];
-
-  const next=raw.next||{};
-
-  const trainings=Array.isArray(raw.trainings)
-    ?raw.trainings
-    :[];
-
-  return {
-
-    players,
-
-    next:{
-      opponent:String(next.opponent||'CD Rival'),
-      date:String(next.date||'Próximo partido'),
-      time:String(next.time||'12:00'),
-      place:String(next.place||'Campo Municipal')
-    },
-
-    trainings:trainings.length
-      ?trainings.map(t=>({
-          date:String(t?.date||'Próximo entrenamiento'),
-          time:String(t?.time||'21:15'),
-          place:String(t?.place||'Campo Municipal')
-        }))
-      :[
-        {
-          date:'Próximo entrenamiento',
-          time:'21:15',
-          place:'Campo Municipal'
-        }
-      ]
-  };
-}
-
-function loadData(){
-
-  try{
-
-    const saved=localStorage.getItem(KEY);
-
-    if(!saved){
-      return normalizeData(DEFAULT_DATA);
-    }
-
-    return normalizeData(JSON.parse(saved));
-
-  }catch(error){
-
-    console.error('Error cargando datos:',error);
-
-    return normalizeData(DEFAULT_DATA);
-  }
-}
-
-let data=loadData();
-
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
 let role=localStorage.getItem('teamhub-role')||'trainer';
-
 let section='home';
-
 let filter='all';
 
-
-/* =========================================================
-   GUARDAR
-========================================================= */
-
 function save(){
-
-  try{
-    localStorage.setItem(KEY,JSON.stringify(data));
-  }catch(error){
-    console.error('Error guardando datos:',error);
-  }
+  localStorage.setItem(KEY,JSON.stringify(data));
 }
 
-
-/* =========================================================
-   ROLES
-========================================================= */
-
 function setRole(r){
-
   role=r;
-
   localStorage.setItem('teamhub-role',r);
-
   section='home';
-
   render();
 }
 
 function roleName(){
-
-  return role==='trainer'
-    ?'Entrenador'
-    :'Jugador';
+  return role==='trainer'?'Entrenador':'Jugador';
 }
-
-
-/* =========================================================
-   JUGADOR ACTUAL
-========================================================= */
-
-function currentPlayer(){
-
-  if(!data.players.length){
-    return null;
-  }
-
-  const savedId=localStorage.getItem('teamhub-player-id');
-
-  if(savedId){
-
-    const found=data.players.find(
-      p=>String(p.id)===String(savedId)
-    );
-
-    if(found){
-      return found;
-    }
-  }
-
-  const first=data.players[0];
-
-  localStorage.setItem(
-    'teamhub-player-id',
-    String(first.id)
-  );
-
-  return first;
-}
-
-
-/* =========================================================
-   NAVEGACIÓN
-========================================================= */
 
 function navItems(){
-
   return role==='trainer'
+  ? [
+      ['home','🏠','Inicio'],
+      ['team','👥','Plantilla'],
+      ['training','🏋️','Entrenos'],
+      ['matches','🏆','Partidos'],
+      ['stats','📊','Stats']
+    ]
+  : [
+      ['home','🏠','Inicio'],
+      ['profile','⚽','Mi perfil'],
+      ['training','🏋️','Entrenos'],
+      ['matches','🏆','Partidos'],
+      ['stats','📊','Mi temporada']
+    ];
+}
 
-  ?[
-    ['home','🏠','Inicio'],
-    ['team','👥','Plantilla'],
-    ['training','🏋️','Entrenos'],
-    ['matches','🏆','Partidos'],
-    ['stats','📊','Stats']
-  ]
+function render(){
 
-  :[
-    ['home','🏠','Inicio'],
-    ['profile','⚽','Mi perfil'],
-    ['training','🏋️','Entrenos'],
-    ['matches','🏆','Partidos'],
-    ['stats','📊','Mi temporada']
-  ];
+  document.getElementById('roleText').textContent=
+    roleName()+' · Primer Equipo';
+
+  document.getElementById('nav').innerHTML=
+    navItems()
+    .map(x=>`
+      <button class="${section===x[0]?'active':''}"
+      onclick="go('${x[0]}')">
+      ${x[1]}<br>${x[2]}
+      </button>
+    `)
+    .join('');
+
+  let c=document.getElementById('content');
+
+  c.innerHTML=`
+    <div class="rolebar">
+
+      <button
+        class="btn ${role==='trainer'?'':'light'}"
+        onclick="setRole('trainer')">
+        🧑‍🏫 Entrenador
+      </button>
+
+      <button
+        class="btn ${role==='player'?'':'light'}"
+        onclick="setRole('player')">
+        ⚽ Jugador
+      </button>
+
+    </div>
+  `;
+
+  if(section==='home')c.innerHTML+=home();
+  if(section==='team')c.innerHTML+=team();
+  if(section==='training')c.innerHTML+=training();
+  if(section==='matches')c.innerHTML+=matches();
+  if(section==='stats')c.innerHTML+=stats();
+  if(section==='profile')c.innerHTML+=profile();
 }
 
 function go(s){
-
   section=s;
+  render();
+}
+
+/* AÑADIR JUGADOR */
+
+function addPlayer(){
+
+  if(role!=='trainer') return;
+
+  const name=prompt('Nombre del jugador:');
+
+  if(!name || !name.trim()){
+    return;
+  }
+
+  const num=prompt('Número de camiseta:','');
+
+  if(num===null){
+    return;
+  }
+
+  const pos=prompt('Posición:','');
+
+  if(pos===null){
+    return;
+  }
+
+  const newPlayer={
+    id:Date.now(),
+    name:name.trim(),
+    num:num.trim()||'-',
+    pos:pos.trim()||'Jugador',
+    available:true,
+    reason:'',
+    min:0,
+    g:0,
+    a:0,
+    train:0,
+    total:0
+  };
+
+  data.players.push(newPlayer);
+
+  save();
+
+  section='team';
 
   render();
 }
 
+/* ELIMINAR JUGADOR */
 
-/* =========================================================
-   RENDER PRINCIPAL
-========================================================= */
+function deletePlayer(id){
 
-function render(){
+  if(role!=='trainer') return;
 
-  try{
+  const player=data.players.find(p=>p.id===id);
 
-    document.getElementById('roleText').textContent=
-      roleName()+' · Primer Equipo';
+  if(!player) return;
 
-    document.getElementById('nav').innerHTML=
-      navItems()
-      .map(x=>`
-        <button
-          class="${section===x[0]?'active':''}"
-          onclick="go('${x[0]}')">
-          ${x[1]}<br>${x[2]}
-        </button>
-      `)
-      .join('');
+  const confirmDelete=confirm(
+    '¿Seguro que quieres eliminar a '+player.name+' de la plantilla?'
+  );
 
-    const c=document.getElementById('content');
-
-    c.innerHTML=`
-
-      <div class="rolebar">
-
-        <button
-          class="btn ${role==='trainer'?'':'light'}"
-          onclick="setRole('trainer')">
-          🧑‍🏫 Entrenador
-        </button>
-
-        <button
-          class="btn ${role==='player'?'':'light'}"
-          onclick="setRole('player')">
-          ⚽ Jugador
-        </button>
-
-      </div>
-
-    `;
-
-    if(section==='home'){
-      c.innerHTML+=home();
-    }
-
-    if(section==='team'){
-      c.innerHTML+=team();
-    }
-
-    if(section==='training'){
-      c.innerHTML+=training();
-    }
-
-    if(section==='matches'){
-      c.innerHTML+=matches();
-    }
-
-    if(section==='stats'){
-      c.innerHTML+=stats();
-    }
-
-    if(section==='profile'){
-      c.innerHTML+=profile();
-    }
-
-  }catch(error){
-
-    console.error('KNATT render error:',error);
-
-    document.getElementById('content').innerHTML+=`
-
-      <div class="card">
-
-        <div class="section-label">
-          KNATT
-        </div>
-
-        <div class="big">
-          No se ha podido cargar esta sección
-        </div>
-
-        <br>
-
-        <button
-          class="btn full"
-          onclick="location.reload()">
-          Recargar KNATT
-        </button>
-
-      </div>
-
-    `;
+  if(!confirmDelete){
+    return;
   }
+
+  data.players=data.players.filter(p=>p.id!==id);
+
+  save();
+
+  render();
 }
-
-
-/* =========================================================
-   INICIO
-========================================================= */
 
 function home(){
 
-  /* -----------------------------------------
-     ENTRENADOR
-  ----------------------------------------- */
-
   if(role==='trainer'){
 
-    const players=Array.isArray(data.players)
-      ?data.players
-      :[];
-
-    const available=players.filter(
-      p=>p && p.available
-    ).length;
-
-    const absent=players.filter(
-      p=>p && !p.available
-    ).length;
-
-    const goals=players.reduce(
-      (s,p)=>s+safeNumber(p.g,0),
-      0
-    );
-
-    const next=data.next||{
-      opponent:'CD Rival',
-      date:'Próximo partido',
-      time:'12:00',
-      place:'Campo Municipal'
-    };
-
-    const nextTraining=
-      data.trainings &&
-      data.trainings.length
-      ?data.trainings[0]
-      :{
-        date:'Próximo entrenamiento',
-        time:'21:15',
-        place:'Campo Municipal'
-      };
-
-    const absences=players.filter(
-      p=>p && !p.available
-    );
+    let available=data.players.filter(p=>p.available).length;
+    let absent=data.players.filter(p=>!p.available).length;
+    let goals=data.players.reduce((s,p)=>s+p.g,0);
 
     return `
 
-      <div class="title">
-        Panel del equipo
+    <div class="title">
+      Panel del equipo
+    </div>
+
+    <div class="card hero">
+
+      <div class="section-label" style="color:#b9e86c">
+        PRÓXIMO PARTIDO
       </div>
 
-      <div class="card hero">
+      <div class="big">
+        TeamHub FC 🆚 ${data.next.opponent}
+      </div>
 
-        <div
-          class="section-label"
-          style="color:#b9e86c">
-          PRÓXIMO PARTIDO
-        </div>
+      <div class="match-meta">
 
-        <div class="big">
-          KNATT 🆚 ${next.opponent}
-        </div>
+        <div class="team-ball">⚽</div>
 
-        <div class="match-meta">
+        <div class="match-info">
 
-          <div class="team-ball">
-            ⚽
+          <div class="match-date">
+            ${data.next.date} · ${data.next.time}
           </div>
 
-          <div class="match-info">
-
-            <div class="match-date">
-              ${next.date} · ${next.time}
-            </div>
-
-            <div class="match-place">
-              📍 ${next.place}
-            </div>
-
+          <div class="match-place">
+            📍 ${data.next.place}
           </div>
 
         </div>
 
-        <button
-          class="btn lime full"
-          onclick="go('matches')">
-          Ver partido →
-        </button>
+      </div>
+
+      <button class="btn lime full"
+        onclick="go('matches')">
+        Ver partido →
+      </button>
+
+    </div>
+
+    <div class="section-label">
+      RESUMEN DEL EQUIPO
+    </div>
+
+    <div class="grid">
+
+      <div class="stat accent">
+        <b>${data.players.length}</b>
+        <span>Jugadores</span>
+      </div>
+
+      <div class="stat">
+        <b>${available}</b>
+        <span>Disponibles</span>
+      </div>
+
+      <div class="stat">
+        <b>${absent}</b>
+        <span>Ausentes</span>
+      </div>
+
+      <div class="stat">
+        <b>${goals}</b>
+        <span>Goles</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="row">
+
+        <div>
+
+          <div class="section-label">
+            PRÓXIMO ENTRENAMIENTO
+          </div>
+
+          <div class="big">
+            ${data.trainings[0].date}
+          </div>
+
+          <div class="muted small">
+            ${data.trainings[0].time} ·
+            ${data.trainings[0].place}
+          </div>
+
+        </div>
+
+        <div class="avatar">
+          🏋️
+        </div>
 
       </div>
+
+    </div>
+
+    <div class="card">
 
       <div class="section-label">
-        RESUMEN DEL EQUIPO
+        AUSENCIAS
       </div>
 
-      <div class="grid">
+      ${
+        data.players.filter(p=>!p.available).map(p=>`
 
-        <div class="stat accent">
-          <b>${players.length}</b>
-          <span>Jugadores</span>
-        </div>
+          <div class="item">
 
-        <div class="stat">
-          <b>${available}</b>
-          <span>Disponibles</span>
-        </div>
-
-        <div class="stat">
-          <b>${absent}</b>
-          <span>Ausentes</span>
-        </div>
-
-        <div class="stat">
-          <b>${goals}</b>
-          <span>Goles</span>
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <div class="row">
-
-          <div>
-
-            <div class="section-label">
-              PRÓXIMO ENTRENAMIENTO
+            <div class="avatar">
+              ⚽
             </div>
 
-            <div class="big">
-              ${nextTraining.date}
+            <div class="grow">
+
+              <b>${p.num} · ${p.name}</b>
+
+              <div class="muted small">
+                ${p.pos}
+              </div>
+
             </div>
 
-            <div class="muted small">
-              ${nextTraining.time} ·
-              ${nextTraining.place}
-            </div>
+            <span class="pill danger">
+              ${p.reason}
+            </span>
 
           </div>
 
-          <div class="avatar">
-            🏋️
-          </div>
+        `).join('')
+        || '<div class="muted">Ninguna</div>'
+      }
 
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <div class="section-label">
-          AUSENCIAS
-        </div>
-
-        ${
-          absences.length
-
-          ?absences.map(p=>`
-
-            <div class="item">
-
-              <div class="avatar">
-                ⚽
-              </div>
-
-              <div class="grow">
-
-                <b>
-                  ${p.num} · ${p.name}
-                </b>
-
-                <div class="muted small">
-                  ${p.pos||'Jugador'}
-                </div>
-
-              </div>
-
-              <span class="pill danger">
-                ${p.reason||'No disponible'}
-              </span>
-
-            </div>
-
-          `).join('')
-
-          :`
-
-            <div class="empty">
-
-              <div class="empty-icon">
-                ✅
-              </div>
-
-              <b>No hay ausencias</b>
-
-              <div class="small">
-                Todos los jugadores están disponibles.
-              </div>
-
-            </div>
-
-          `
-        }
-
-      </div>
+    </div>
 
     `;
   }
 
-
-  /* -----------------------------------------
-     JUGADOR
-  ----------------------------------------- */
-
-  const p=currentPlayer();
-
-  const next=data.next||{
-    opponent:'CD Rival',
-    date:'Próximo partido',
-    time:'12:00',
-    place:'Campo Municipal'
-  };
-
-  const nextTraining=
-    data.trainings &&
-    data.trainings.length
-    ?data.trainings[0]
-    :{
-      date:'Próximo entrenamiento',
-      time:'21:15',
-      place:'Campo Municipal'
-    };
-
-
-  /* Si no quedan jugadores */
+  let p=data.players[0];
 
   if(!p){
 
     return `
 
-      <div class="title">
-        Mi área
-      </div>
-
       <div class="card">
 
-        <div class="empty">
+        <div class="title">
+          No hay jugadores
+        </div>
 
-          <div class="empty-icon">
-            ⚽
-          </div>
-
-          <b>No hay jugadores registrados</b>
-
-          <div class="small">
-            El entrenador todavía no ha añadido jugadores.
-          </div>
-
+        <div class="muted">
+          El entrenador todavía no ha añadido jugadores.
         </div>
 
       </div>
 
     `;
   }
-
 
   return `
 
@@ -1144,30 +827,26 @@ function home(){
 
     <div class="card hero">
 
-      <div
-        class="section-label"
-        style="color:#b9e86c">
+      <div class="section-label" style="color:#b9e86c">
         PRÓXIMO PARTIDO
       </div>
 
       <div class="big">
-        KNATT 🆚 ${next.opponent}
+        TeamHub FC 🆚 ${data.next.opponent}
       </div>
 
       <div class="match-meta">
 
-        <div class="team-ball">
-          ⚽
-        </div>
+        <div class="team-ball">⚽</div>
 
         <div class="match-info">
 
           <div class="match-date">
-            ${next.date} · ${next.time}
+            ${data.next.date} · ${data.next.time}
           </div>
 
           <div class="match-place">
-            📍 ${next.place}
+            📍 ${data.next.place}
           </div>
 
         </div>
@@ -1183,12 +862,12 @@ function home(){
       </div>
 
       <div class="big">
-        ${nextTraining.date}
+        ${data.trainings[0].date}
       </div>
 
       <div class="muted small">
-        ${nextTraining.time} ·
-        ${nextTraining.place}
+        ${data.trainings[0].time} ·
+        ${data.trainings[0].place}
       </div>
 
       <br>
@@ -1218,28 +897,22 @@ function home(){
     <div class="grid">
 
       <div class="stat">
-        <b>${safeNumber(p.min)}</b>
+        <b>${p.min}</b>
         <span>Minutos</span>
       </div>
 
       <div class="stat accent">
-        <b>${safeNumber(p.g)}</b>
+        <b>${p.g}</b>
         <span>Goles</span>
       </div>
 
       <div class="stat">
-        <b>${safeNumber(p.a)}</b>
+        <b>${p.a}</b>
         <span>Asistencias</span>
       </div>
 
       <div class="stat">
-        <b>
-          ${
-            p.total>0
-            ?Math.round(p.train/p.total*100)
-            :0
-          }%
-        </b>
+        <b>${p.total ? Math.round(p.train/p.total*100) : 0}%</b>
         <span>Entrenos</span>
       </div>
 
@@ -1248,21 +921,11 @@ function home(){
   `;
 }
 
-
-/* =========================================================
-   PLANTILLA
-========================================================= */
-
 function team(){
 
-  const players=Array.isArray(data.players)
-    ?data.players
-    :[];
-
-  const list=players.filter(p=>
-    filter==='all' ||
-    (filter==='available' && p.available) ||
-    (filter==='absent' && !p.available)
+  let list=data.players.filter(
+    p=>filter==='all'||
+    (filter==='available'?p.available:!p.available)
   );
 
   return `
@@ -1270,6 +933,24 @@ function team(){
     <div class="title">
       Plantilla
     </div>
+
+    ${
+      role==='trainer'
+      ?
+      `
+      <div class="add-player">
+
+        <button
+          class="btn lime full"
+          onclick="addPlayer()">
+          ➕ Añadir jugador
+        </button>
+
+      </div>
+      `
+      :
+      ''
+    }
 
     <div class="tabs">
 
@@ -1297,8 +978,8 @@ function team(){
 
       ${
         list.length
-
-        ?list.map(p=>`
+        ?
+        list.map(p=>`
 
           <div class="item">
 
@@ -1313,50 +994,47 @@ function team(){
               </b>
 
               <div class="muted small">
-                ${p.pos||'Jugador'} ·
-                ${
-                  p.available
+                ${p.pos} ·
+                ${p.available
                   ?'🟢 Disponible'
-                  :'🔴 '+(p.reason||'Ausente')
-                }
+                  :'🔴 '+p.reason}
               </div>
 
               <div class="muted small">
-                ${safeNumber(p.g)} ⚽ ·
-                ${safeNumber(p.a)} 🎯 ·
-                ${safeNumber(p.min)} min
+                ${p.g} ⚽ ·
+                ${p.a} 🎯 ·
+                ${p.min} min
               </div>
 
             </div>
 
             <span class="pill">
-              ${
-                p.total>0
-                ?Math.round(p.train/p.total*100)
-                :0
-              }%
+              ${p.total ? Math.round(p.train/p.total*100) : 0}%
             </span>
+
+            ${
+              role==='trainer'
+              ?
+              `
+              <button
+                class="delete-btn"
+                onclick="deletePlayer(${p.id})"
+                title="Eliminar jugador">
+                🗑️
+              </button>
+              `
+              :
+              ''
+            }
 
           </div>
 
         `).join('')
-
-        :`
-
-          <div class="empty">
-
-            <div class="empty-icon">
-              👥
-            </div>
-
-            <b>No hay jugadores</b>
-
-            <div class="small">
-              Añade jugadores para comenzar.
-            </div>
-
-          </div>
-
+        :
+        `
+        <div class="muted" style="text-align:center;padding:20px 0">
+          No hay jugadores en este filtro.
+        </div>
         `
       }
 
@@ -1365,26 +1043,9 @@ function team(){
   `;
 }
 
-
-/* =========================================================
-   ENTRENAMIENTOS
-========================================================= */
-
 function training(){
 
-  const t=
-    data.trainings &&
-    data.trainings.length
-    ?data.trainings[0]
-    :{
-      date:'Próximo entrenamiento',
-      time:'21:15',
-      place:'Campo Municipal'
-    };
-
-  const players=Array.isArray(data.players)
-    ?data.players
-    :[];
+  let first=data.trainings[0];
 
   return `
 
@@ -1394,14 +1055,12 @@ function training(){
 
     <div class="card hero">
 
-      <div
-        class="section-label"
-        style="color:#b9e86c">
+      <div class="section-label" style="color:#b9e86c">
         PRÓXIMO
       </div>
 
       <div class="big">
-        ${t.date}
+        ${first.date}
       </div>
 
       <div class="match-meta">
@@ -1413,11 +1072,11 @@ function training(){
         <div class="match-info">
 
           <div class="match-date">
-            ${t.time}
+            ${first.time}
           </div>
 
           <div class="match-place">
-            📍 ${t.place}
+            📍 ${first.place}
           </div>
 
         </div>
@@ -1429,23 +1088,15 @@ function training(){
     <div class="card">
 
       <div class="section-label">
-
-        ${
-          role==='trainer'
+        ${role==='trainer'
           ?'CONTROL DE ASISTENCIA'
-          :'MI ASISTENCIA'
-        }
-
+          :'MI ASISTENCIA'}
       </div>
 
       ${
         role==='trainer'
-
         ?
-
-        players.length
-
-        ?players.map(p=>`
+        data.players.map(p=>`
 
           <div class="item">
 
@@ -1460,74 +1111,40 @@ function training(){
               </b>
 
               <div class="muted small">
-                ${safeNumber(p.train)}/${safeNumber(p.total)}
-                entrenamientos
+                ${p.train}/${p.total} entrenamientos
               </div>
 
             </div>
 
             <span class="pill">
-              ${
-                p.total>0
-                ?Math.round(p.train/p.total*100)
-                :0
-              }%
+              ${p.total ? Math.round(p.train/p.total*100) : 0}%
             </span>
 
           </div>
 
         `).join('')
-
-        :`
-
-          <div class="empty">
-            <div class="empty-icon">👥</div>
-            No hay jugadores registrados.
-          </div>
-
+        :
+        data.players[0]
+        ?
         `
 
+        <div class="grid">
+
+          <div class="stat">
+            <b>${data.players[0].train}</b>
+            <span>Asistencias</span>
+          </div>
+
+          <div class="stat accent">
+            <b>${data.players[0].total ? Math.round(data.players[0].train/data.players[0].total*100) : 0}%</b>
+            <span>Asistencia</span>
+          </div>
+
+        </div>
+
+        `
         :
-
-        (()=>{
-
-          const p=currentPlayer();
-
-          if(!p){
-
-            return `
-              <div class="empty">
-                No hay jugador seleccionado.
-              </div>
-            `;
-
-          }
-
-          return `
-
-            <div class="grid">
-
-              <div class="stat">
-                <b>${safeNumber(p.train)}</b>
-                <span>Asistencias</span>
-              </div>
-
-              <div class="stat accent">
-                <b>
-                  ${
-                    p.total>0
-                    ?Math.round(p.train/p.total*100)
-                    :0
-                  }%
-                </b>
-                <span>Asistencia</span>
-              </div>
-
-            </div>
-
-          `;
-
-        })()
+        `<div class="muted">No hay datos.</div>`
       }
 
     </div>
@@ -1535,19 +1152,7 @@ function training(){
   `;
 }
 
-
-/* =========================================================
-   PARTIDOS
-========================================================= */
-
 function matches(){
-
-  const next=data.next||{
-    opponent:'CD Rival',
-    date:'Próximo partido',
-    time:'12:00',
-    place:'Campo Municipal'
-  };
 
   return `
 
@@ -1557,14 +1162,12 @@ function matches(){
 
     <div class="card hero">
 
-      <div
-        class="section-label"
-        style="color:#b9e86c">
+      <div class="section-label" style="color:#b9e86c">
         PRÓXIMO PARTIDO
       </div>
 
       <div class="big">
-        KNATT 🆚 ${next.opponent}
+        TeamHub FC 🆚 ${data.next.opponent}
       </div>
 
       <div class="match-meta">
@@ -1576,12 +1179,12 @@ function matches(){
         <div class="match-info">
 
           <div class="match-date">
-            ${next.date}
+            ${data.next.date}
           </div>
 
           <div class="match-place">
-            ${next.time} ·
-            ${next.place}
+            ${data.next.time} ·
+            ${data.next.place}
           </div>
 
         </div>
@@ -1590,17 +1193,13 @@ function matches(){
 
       ${
         role==='trainer'
-
         ?
-
         `<button
           class="btn lime full"
           onclick="alert('Aquí gestionaremos convocatoria y alineación')">
           Gestionar convocatoria
         </button>`
-
         :
-
         `<span class="pill">
           Convocatoria pendiente
         </span>`
@@ -1611,74 +1210,44 @@ function matches(){
   `;
 }
 
-
-/* =========================================================
-   ESTADÍSTICAS
-========================================================= */
-
 function stats(){
 
-  const players=Array.isArray(data.players)
-    ?data.players
-    :[];
-
-  const sorted=[...players]
-    .sort((a,b)=>safeNumber(b.g)-safeNumber(a.g));
-
-  const goals=players.reduce(
-    (s,p)=>s+safeNumber(p.g),
-    0
-  );
-
-  const assists=players.reduce(
-    (s,p)=>s+safeNumber(p.a),
-    0
-  );
-
-  const minutes=players.reduce(
-    (s,p)=>s+safeNumber(p.min),
-    0
-  );
-
-  const visible=
-    role==='trainer'
-    ?sorted
-    :(()=>{
-        const p=currentPlayer();
-        return p?[p]:[];
-      })();
+  let sorted=[...data.players]
+    .sort((a,b)=>b.g-a.g);
 
   return `
 
     <div class="title">
-
-      ${
-        role==='trainer'
+      ${role==='trainer'
         ?'Estadísticas del equipo'
-        :'Mi temporada'
-      }
-
+        :'Mi temporada'}
     </div>
 
     <div class="grid">
 
       <div class="stat accent">
-        <b>${goals}</b>
+        <b>
+          ${data.players.reduce((s,p)=>s+p.g,0)}
+        </b>
         <span>Goles</span>
       </div>
 
       <div class="stat">
-        <b>${assists}</b>
+        <b>
+          ${data.players.reduce((s,p)=>s+p.a,0)}
+        </b>
         <span>Asistencias</span>
       </div>
 
       <div class="stat">
-        <b>${minutes}</b>
+        <b>
+          ${data.players.reduce((s,p)=>s+p.min,0)}
+        </b>
         <span>Minutos</span>
       </div>
 
       <div class="stat">
-        <b>${players.length}</b>
+        <b>${data.players.length}</b>
         <span>Jugadores</span>
       </div>
 
@@ -1687,19 +1256,16 @@ function stats(){
     <div class="card">
 
       <div class="section-label">
-
-        ${
-          role==='trainer'
+        ${role==='trainer'
           ?'RENDIMIENTO DE PLANTILLA'
-          :'MIS ESTADÍSTICAS'
-        }
-
+          :'MIS ESTADÍSTICAS'}
       </div>
 
       ${
-        visible.length
-
-        ?visible.map(p=>`
+        (role==='trainer'
+          ?sorted
+          :data.players.length ? [data.players[0]] : []
+        ).map(p=>`
 
           <div class="item">
 
@@ -1714,7 +1280,7 @@ function stats(){
               </b>
 
               <div class="muted small">
-                ${p.pos||'Jugador'}
+                ${p.pos}
               </div>
 
             </div>
@@ -1722,12 +1288,12 @@ function stats(){
             <div style="text-align:right">
 
               <b>
-                ${safeNumber(p.min)}
+                ${p.min}
               </b>
 
               <div class="muted small">
-                ${safeNumber(p.g)} ⚽ ·
-                ${safeNumber(p.a)} 🎯
+                ${p.g} ⚽ ·
+                ${p.a} 🎯
               </div>
 
             </div>
@@ -1735,20 +1301,8 @@ function stats(){
           </div>
 
         `).join('')
-
-        :`
-
-          <div class="empty">
-
-            <div class="empty-icon">
-              📊
-            </div>
-
-            No hay estadísticas todavía.
-
-          </div>
-
-        `
+        ||
+        `<div class="muted">No hay jugadores.</div>`
       }
 
     </div>
@@ -1756,38 +1310,28 @@ function stats(){
   `;
 }
 
-
-/* =========================================================
-   PERFIL
-========================================================= */
-
 function profile(){
 
-  const p=currentPlayer();
+  let p=data.players[0];
 
   if(!p){
 
     return `
 
-      <div class="title">
-        Mi perfil
-      </div>
-
       <div class="card">
 
-        <div class="empty">
+        <div class="title">
+          Mi perfil
+        </div>
 
-          <div class="empty-icon">
-            ⚽
-          </div>
-
-          No hay jugador seleccionado.
-
+        <div class="muted">
+          No hay ningún jugador registrado.
         </div>
 
       </div>
 
     `;
+
   }
 
   return `
@@ -1802,9 +1346,7 @@ function profile(){
 
         <div>
 
-          <div
-            class="section-label"
-            style="color:#b9e86c">
+          <div class="section-label" style="color:#b9e86c">
             JUGADOR
           </div>
 
@@ -1813,7 +1355,7 @@ function profile(){
           </div>
 
           <div class="muted">
-            ${p.pos||'Jugador'}
+            ${p.pos}
           </div>
 
         </div>
@@ -1829,28 +1371,22 @@ function profile(){
     <div class="grid">
 
       <div class="stat">
-        <b>${safeNumber(p.min)}</b>
+        <b>${p.min}</b>
         <span>Minutos jugados</span>
       </div>
 
       <div class="stat accent">
-        <b>${safeNumber(p.g)}</b>
+        <b>${p.g}</b>
         <span>Goles</span>
       </div>
 
       <div class="stat">
-        <b>${safeNumber(p.a)}</b>
+        <b>${p.a}</b>
         <span>Asistencias</span>
       </div>
 
       <div class="stat">
-        <b>
-          ${
-            p.total>0
-            ?Math.round(p.train/p.total*100)
-            :0
-          }%
-        </b>
+        <b>${p.total ? Math.round(p.train/p.total*100) : 0}%</b>
         <span>Entrenamientos</span>
       </div>
 
@@ -1858,11 +1394,6 @@ function profile(){
 
   `;
 }
-
-
-/* =========================================================
-   INICIO
-========================================================= */
 
 render();
 
