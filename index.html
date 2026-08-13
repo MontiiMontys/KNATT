@@ -1,18 +1,11 @@
 <!doctype html>
 <html lang="es">
-
 <head>
-
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>KNATT</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -20,211 +13,209 @@
 
 :root{
   --green:#123c2d;
-  --green2:#19553f;
+  --green-2:#19553f;
   --lime:#b9e86c;
   --bg:#f3f6f4;
   --card:#ffffff;
   --text:#10221b;
   --muted:#718078;
-  --line:#e3ebe7;
-  --red:#d95c5c;
+  --line:#e4ebe7;
+  --danger:#d95c5c;
+  --warning:#d89b32;
 }
 
-html,
 body{
   margin:0;
-  padding:0;
   background:var(--bg);
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-body{
-  min-height:100vh;
+button,
+input,
+select{
+  font:inherit;
 }
 
 button{
-  font-family:inherit;
-  border:0;
   cursor:pointer;
 }
 
 .app{
-  width:100%;
   max-width:520px;
+  margin:auto;
   min-height:100vh;
-  margin:0 auto;
-  padding-bottom:105px;
   background:var(--bg);
+  padding-bottom:96px;
 }
 
-/* ================= HEADER ================= */
+/* =========================
+   HEADER
+========================= */
 
 header{
   position:relative;
   overflow:hidden;
-  padding:30px 22px 28px;
+  background:linear-gradient(145deg,var(--green),#0d2d22);
   color:white;
-  background:
-    linear-gradient(
-      145deg,
-      var(--green),
-      #0d2d22
-    );
-  border-radius:0 0 34px 34px;
-  box-shadow:0 10px 30px rgba(18,60,45,.15);
+  padding:26px 20px 24px;
+  border-radius:0 0 30px 30px;
+  box-shadow:0 8px 25px #0c2d2225;
 }
 
 header:after{
   content:"";
   position:absolute;
-  width:220px;
-  height:220px;
-  right:-100px;
-  top:-110px;
+  width:180px;
+  height:180px;
   border-radius:50%;
-  background:rgba(185,232,108,.07);
+  right:-75px;
+  top:-90px;
+  background:#b9e86c12;
 }
 
 .brand{
   position:relative;
   z-index:2;
-  font-size:30px;
-  line-height:1;
+  font-size:29px;
   font-weight:900;
-  letter-spacing:-1px;
+  letter-spacing:-.8px;
 }
 
 .brand span{
   color:var(--lime);
 }
 
-.role-text{
+.role{
   position:relative;
   z-index:2;
-  margin-top:10px;
-  color:#d8e5df;
-  font-size:14px;
-  font-weight:700;
+  opacity:.78;
+  font-size:13px;
+  margin-top:5px;
+  font-weight:600;
 }
 
-/* ================= MAIN ================= */
+/* =========================
+   MAIN
+========================= */
 
 main{
   padding:20px 16px 30px;
 }
 
-.title{
-  margin:3px 0 17px;
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:-.7px;
+.title-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:2px 0 16px;
 }
 
-/* ================= ROLE ================= */
+.title{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-.5px;
+  margin:2px 0 16px;
+}
+
+.title-row .title{
+  margin:0;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:-8px;
+  margin-bottom:16px;
+}
+
+/* =========================
+   ROLE SELECTOR
+========================= */
 
 .rolebar{
   display:flex;
   gap:8px;
-  padding:5px;
-  margin-bottom:20px;
-  border-radius:18px;
+  margin-bottom:18px;
   background:#e6ece8;
-}
-
-.role-button{
-  flex:1;
-  min-height:54px;
-  padding:12px;
+  padding:5px;
   border-radius:15px;
-  background:#eef2f0;
-  color:var(--green);
-  font-size:15px;
-  font-weight:900;
 }
 
-.role-button.active{
-  background:var(--green);
-  color:white;
-  box-shadow:0 7px 18px rgba(18,60,45,.16);
+.rolebar button{
+  flex:1;
 }
 
-/* ================= CARDS ================= */
+/* =========================
+   CARDS
+========================= */
 
 .card{
-  padding:19px;
-  margin-bottom:14px;
   background:var(--card);
   border:1px solid var(--line);
   border-radius:22px;
-  box-shadow:0 8px 25px rgba(16,34,27,.06);
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 7px 25px #10221b0b;
 }
 
 .hero{
+  background:linear-gradient(145deg,var(--green),var(--green-2));
   color:white;
   border:0;
-  background:
-    linear-gradient(
-      145deg,
-      var(--green),
-      var(--green2)
-    );
-  box-shadow:0 12px 30px rgba(18,60,45,.16);
-}
-
-.section-label{
-  margin-bottom:7px;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1.1px;
-  text-transform:uppercase;
-}
-
-.hero .section-label{
-  color:var(--lime);
-}
-
-.big{
-  color:var(--text);
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:-.5px;
-}
-
-.hero .big{
-  color:white;
-}
-
-.muted{
-  color:var(--muted);
+  padding:20px;
+  box-shadow:0 12px 30px #123c2d22;
 }
 
 .hero .muted{
   color:#c8d8d1;
 }
 
+.hero .big{
+  color:white;
+}
+
+.section-label{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-weight:900;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+
+.big{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.4px;
+}
+
+.muted{
+  color:var(--muted);
+}
+
 .small{
   font-size:13px;
 }
 
-/* ================= MATCH ================= */
+/* =========================
+   MATCH
+========================= */
 
 .match-meta{
   display:flex;
   align-items:center;
   gap:12px;
-  margin:17px 0;
+  margin:16px 0;
 }
 
 .team-ball{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  background:#ffffff18;
   display:grid;
   place-items:center;
-  width:52px;
-  height:52px;
-  flex:0 0 52px;
-  border-radius:17px;
-  background:rgba(255,255,255,.10);
   font-size:25px;
 }
 
@@ -233,52 +224,19 @@ main{
 }
 
 .match-date{
-  font-size:14px;
   font-weight:800;
+  font-size:14px;
 }
 
 .match-place{
-  margin-top:4px;
   color:#c8d8d1;
   font-size:13px;
+  margin-top:3px;
 }
 
-/* ================= BUTTONS ================= */
-
-.btn{
-  width:auto;
-  padding:13px 16px;
-  border-radius:15px;
-  background:var(--green);
-  color:white;
-  font-size:14px;
-  font-weight:900;
-}
-
-.btn.full{
-  width:100%;
-}
-
-.btn.lime{
-  background:var(--lime);
-  color:#19331f;
-}
-
-.btn.light{
-  background:#e9efec;
-  color:var(--green);
-}
-
-.choice{
-  display:flex;
-  gap:8px;
-}
-
-.choice .btn{
-  flex:1;
-}
-
-/* ================= STATS ================= */
+/* =========================
+   STATS
+========================= */
 
 .grid{
   display:grid;
@@ -288,24 +246,26 @@ main{
 }
 
 .stat{
-  padding:16px;
   background:white;
   border:1px solid var(--line);
   border-radius:19px;
+  padding:16px;
+  box-shadow:0 6px 20px #10221b08;
 }
 
 .stat b{
   display:block;
   font-size:27px;
   font-weight:900;
+  letter-spacing:-1px;
 }
 
 .stat span{
   display:block;
-  margin-top:3px;
   color:var(--muted);
   font-size:12px;
   font-weight:700;
+  margin-top:3px;
 }
 
 .stat.accent{
@@ -317,7 +277,9 @@ main{
   color:#315d18;
 }
 
-/* ================= ROWS ================= */
+/* =========================
+   ROWS / PLAYERS
+========================= */
 
 .row{
   display:flex;
@@ -338,15 +300,30 @@ main{
   border-bottom:0;
 }
 
+.player-row{
+  cursor:pointer;
+  transition:.15s ease;
+}
+
+.player-row:active{
+  transform:scale(.985);
+  opacity:.8;
+}
+
 .avatar{
-  display:grid;
-  place-items:center;
   width:46px;
   height:46px;
   flex:0 0 46px;
   border-radius:15px;
   background:#e8f0ec;
+  display:grid;
+  place-items:center;
   font-size:21px;
+}
+
+.player-avatar{
+  background:linear-gradient(145deg,#eaf4ee,#dceae3);
+  font-size:22px;
 }
 
 .grow{
@@ -354,30 +331,115 @@ main{
   min-width:0;
 }
 
-/* ================= PILLS ================= */
+.player-name{
+  font-size:15px;
+  font-weight:900;
+}
+
+.player-number{
+  color:var(--muted);
+  font-weight:700;
+  font-size:13px;
+}
+
+.player-arrow{
+  color:#a0aaa5;
+  font-size:20px;
+  font-weight:700;
+}
+
+/* =========================
+   PILLS
+========================= */
 
 .pill{
   display:inline-flex;
   align-items:center;
-  padding:6px 9px;
-  border-radius:999px;
-  background:#e9f7d8;
-  color:#426c20;
+  gap:5px;
   font-size:11px;
   font-weight:900;
+  border-radius:999px;
+  padding:6px 9px;
+  background:#e9f7d8;
+  color:#426c20;
 }
 
-.pill.red{
+.pill.danger{
   background:#fae9e9;
   color:#b44343;
 }
 
-/* ================= TABS ================= */
+.pill.warning{
+  background:#fff2d9;
+  color:#9b6717;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 15px;
+  background:var(--green);
+  color:white;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  box-shadow:0 5px 12px #123c2d20;
+}
+
+.btn.light{
+  background:#e9efec;
+  color:var(--green);
+  box-shadow:none;
+}
+
+.btn.lime{
+  background:var(--lime);
+  color:#19331f;
+}
+
+.btn.full{
+  width:100%;
+}
+
+.btn.small-btn{
+  padding:10px 12px;
+  font-size:12px;
+}
+
+.btn.add{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+
+.btn.danger{
+  background:#fae9e9;
+  color:#b44343;
+  box-shadow:none;
+}
+
+.choice{
+  display:flex;
+  gap:8px;
+}
+
+.choice button{
+  flex:1;
+}
+
+/* =========================
+   TABS
+========================= */
 
 .tabs{
   display:flex;
   gap:7px;
-  overflow-x:auto;
+  overflow:auto;
   margin-bottom:14px;
   scrollbar-width:none;
 }
@@ -387,13 +449,13 @@ main{
 }
 
 .tab{
-  flex:0 0 auto;
-  padding:10px 14px;
+  border:0;
   border-radius:999px;
+  padding:10px 14px;
   background:#e8eeeb;
   color:#526159;
-  font-size:13px;
   font-weight:800;
+  white-space:nowrap;
 }
 
 .tab.active{
@@ -401,92 +463,196 @@ main{
   color:white;
 }
 
-/* ================= PLAYER ================= */
+/* =========================
+   NOTICE
+========================= */
 
-.player-card{
-  padding:22px;
-  margin-bottom:14px;
-  color:white;
-  background:
-    linear-gradient(
-      145deg,
-      var(--green),
-      var(--green2)
-    );
-  border-radius:24px;
-  box-shadow:0 12px 30px rgba(18,60,45,.16);
-}
-
-.player-number{
-  display:grid;
-  place-items:center;
-  width:64px;
-  height:64px;
-  margin-bottom:15px;
-  border-radius:20px;
-  background:rgba(185,232,108,.14);
-  color:var(--lime);
-  font-size:26px;
-  font-weight:900;
-}
-
-.player-name{
-  font-size:27px;
-  font-weight:900;
-  letter-spacing:-.6px;
-}
-
-.player-position{
-  margin-top:4px;
-  color:#c8d8d1;
-  font-size:14px;
+.notice{
+  background:#edf6df;
+  color:#36561f;
+  border-radius:17px;
+  padding:14px;
+  font-size:13px;
   font-weight:700;
 }
 
-/* ================= NAV ================= */
-
-nav{
-  position:fixed;
-  z-index:50;
-  right:0;
-  bottom:0;
-  left:0;
-  display:flex;
-  justify-content:space-around;
-  width:min(520px,100%);
-  margin:auto;
-  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
-  background:rgba(255,255,255,.95);
-  border-top:1px solid #dfe7e3;
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  box-shadow:0 -8px 30px rgba(16,34,27,.08);
-}
-
-nav button{
-  min-width:58px;
-  padding:7px 6px;
-  border-radius:14px;
-  background:transparent;
-  color:#7a8781;
-  font-size:11px;
-  font-weight:800;
-}
-
-nav button.active{
-  background:#edf4ef;
-  color:var(--green);
-}
-
-/* ================= EMPTY ================= */
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
-  padding:30px 15px;
   text-align:center;
+  padding:30px 15px;
   color:var(--muted);
 }
 
-/* ================= MOBILE ================= */
+.empty-icon{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.empty-title{
+  font-size:17px;
+  font-weight:900;
+  color:var(--text);
+  margin-bottom:5px;
+}
+
+/* =========================
+   PLAYER MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#07140fcc;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  z-index:100;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0;
+}
+
+.modal.hidden{
+  display:none;
+}
+
+.modal-box{
+  width:min(520px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:28px 28px 0 0;
+  padding:22px 18px calc(24px + env(safe-area-inset-bottom));
+  box-shadow:0 -20px 60px #00000030;
+}
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.modal-title{
+  font-size:22px;
+  font-weight:900;
+}
+
+.close-btn{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:#edf1ef;
+  color:var(--green);
+  font-size:22px;
+  font-weight:700;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  margin-bottom:13px;
+}
+
+.field.full-field{
+  grid-column:1 / -1;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:900;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.field input,
+.field select{
+  width:100%;
+  border:1px solid #dce5e0;
+  border-radius:13px;
+  padding:13px 12px;
+  background:#f8faf9;
+  color:var(--text);
+  outline:none;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:var(--green-2);
+  box-shadow:0 0 0 3px #19553f18;
+}
+
+.modal-actions{
+  display:flex;
+  gap:9px;
+  margin-top:6px;
+}
+
+.modal-actions button{
+  flex:1;
+}
+
+.delete-zone{
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid var(--line);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(520px,100%);
+  display:flex;
+  justify-content:space-around;
+  background:#ffffffee;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-top:1px solid #dfe7e3;
+  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
+  z-index:20;
+  box-shadow:0 -8px 30px #10221b0c;
+}
+
+nav button{
+  position:relative;
+  background:none;
+  border:0;
+  color:#7a8781;
+  font-size:11px;
+  font-weight:800;
+  padding:7px 8px;
+  min-width:58px;
+  border-radius:13px;
+}
+
+nav button.active{
+  color:var(--green)!important;
+  background:#edf4ef;
+}
+
+nav button:first-line{
+  font-size:18px;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:380px){
 
@@ -495,18 +661,31 @@ nav button.active{
     padding-right:12px;
   }
 
-  .brand{
-    font-size:27px;
-  }
-
   .big{
     font-size:20px;
   }
 
+  .brand{
+    font-size:27px;
+  }
+
+  .title-row{
+    align-items:flex-start;
+  }
+
+  .title-row .btn{
+    padding:11px 12px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full-field{
+    grid-column:auto;
+  }
 }
-
 </style>
-
 </head>
 
 <body>
@@ -514,100 +693,236 @@ nav button.active{
 <div class="app">
 
 <header>
-
-  <div class="brand">
-    ⚽ <span>KNATT</span>
-  </div>
-
-  <div
-    class="role-text"
-    id="roleText">
-  </div>
-
+  <div class="brand">⚽ <span>KNATT</span></div>
+  <div class="role" id="roleText"></div>
 </header>
 
 <main id="content"></main>
 
 <nav id="nav"></nav>
 
+<div id="playerModal" class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">
+        Nuevo jugador
+      </div>
+
+      <button
+        class="close-btn"
+        onclick="closePlayerForm()">
+        ×
+      </button>
+    </div>
+
+    <form onsubmit="savePlayer(event)">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Nombre</label>
+          <input
+            id="playerName"
+            type="text"
+            placeholder="Ej. Marc"
+            required>
+        </div>
+
+        <div class="field">
+          <label>Dorsal</label>
+          <input
+            id="playerNum"
+            type="number"
+            min="0"
+            max="99"
+            placeholder="7"
+            required>
+        </div>
+
+        <div class="field">
+          <label>Posición</label>
+          <select id="playerPos">
+            <option value="POR">POR · Portero</option>
+            <option value="DFC">DFC · Central</option>
+            <option value="LI">LI · Lateral izquierdo</option>
+            <option value="LD">LD · Lateral derecho</option>
+            <option value="MC">MC · Centrocampista</option>
+            <option value="MCD">MCD · Mediocentro</option>
+            <option value="MP">MP · Mediapunta</option>
+            <option value="EI">EI · Extremo izquierdo</option>
+            <option value="ED">ED · Extremo derecho</option>
+            <option value="DC">DC · Delantero</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Disponibilidad</label>
+          <select id="playerAvailable">
+            <option value="true">🟢 Disponible</option>
+            <option value="false">🔴 Ausente</option>
+          </select>
+        </div>
+
+        <div class="field full-field">
+          <label>Motivo de ausencia</label>
+          <input
+            id="playerReason"
+            type="text"
+            placeholder="Ej. Trabajo, lesión...">
+        </div>
+
+        <div class="field">
+          <label>Minutos</label>
+          <input
+            id="playerMin"
+            type="number"
+            min="0"
+            value="0">
+        </div>
+
+        <div class="field">
+          <label>Goles</label>
+          <input
+            id="playerGoals"
+            type="number"
+            min="0"
+            value="0">
+        </div>
+
+        <div class="field">
+          <label>Asistencias</label>
+          <input
+            id="playerAssists"
+            type="number"
+            min="0"
+            value="0">
+        </div>
+
+        <div class="field">
+          <label>Entrenos realizados</label>
+          <input
+            id="playerTrain"
+            type="number"
+            min="0"
+            value="0">
+        </div>
+
+        <div class="field">
+          <label>Total de entrenos</label>
+          <input
+            id="playerTotal"
+            type="number"
+            min="0"
+            value="0">
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="btn light"
+          onclick="closePlayerForm()">
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="btn">
+          Guardar jugador
+        </button>
+
+      </div>
+
+    </form>
+
+    <div
+      id="deleteZone"
+      class="delete-zone"
+      style="display:none">
+
+      <button
+        class="btn danger full"
+        onclick="deleteCurrentPlayer()">
+        🗑️ Eliminar jugador
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
 
+</div>
 
 <script>
 
-/* =====================================================
-   DATOS
-===================================================== */
+const KEY='teamhub-v2';
 
-const STORAGE_KEY = "knatt-v3";
-
-
-const DEFAULT_DATA = {
-
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||{
   players:[
     {
       id:1,
-      name:"Montiimontys",
+      name:'Montiimontys',
       num:9,
-      pos:"DC",
+      pos:'DC',
       available:true,
-      reason:"",
+      reason:'',
       min:1126,
       g:12,
       a:6,
       train:18,
       total:20
     },
-
     {
       id:2,
-      name:"Marc",
+      name:'Marc',
       num:7,
-      pos:"MC",
+      pos:'MC',
       available:true,
-      reason:"",
+      reason:'',
       min:1030,
       g:5,
       a:8,
       train:18,
       total:20
     },
-
     {
       id:3,
-      name:"Juan",
+      name:'Juan',
       num:4,
-      pos:"DFC",
+      pos:'DFC',
       available:false,
-      reason:"Trabajo",
+      reason:'Trabajo',
       min:980,
       g:4,
       a:3,
       train:17,
       total:20
     },
-
     {
       id:4,
-      name:"Alex",
+      name:'Alex',
       num:1,
-      pos:"POR",
+      pos:'POR',
       available:true,
-      reason:"",
+      reason:'',
       min:1260,
       g:0,
       a:1,
       train:19,
       total:20
     },
-
     {
       id:5,
-      name:"Pedro",
+      name:'Pedro',
       num:3,
-      pos:"LI",
+      pos:'LI',
       available:false,
-      reason:"Lesión",
+      reason:'Lesión',
       min:640,
       g:1,
       a:2,
@@ -617,652 +932,166 @@ const DEFAULT_DATA = {
   ],
 
   next:{
-    opponent:"CD Rival",
-    date:"Domingo 23 de agosto",
-    time:"12:00",
-    place:"Campo Municipal"
+    opponent:'CD Rival',
+    date:'Domingo 23 de agosto',
+    time:'12:00',
+    place:'Campo Municipal'
   },
 
   trainings:[
     {
-      date:"Jueves 20 de agosto",
-      time:"21:15",
-      place:"Campo Municipal"
+      date:'Jueves 20 de agosto',
+      time:'21:15',
+      place:'Campo Municipal'
     }
   ]
-
 };
 
+let role=localStorage.getItem('teamhub-role')||'trainer';
+let section='home';
+let filter='all';
+let editingPlayerId=null;
 
-/* =====================================================
-   CARGAR DATOS DE FORMA SEGURA
-===================================================== */
-
-function loadData(){
-
-  try{
-
-    const saved =
-      localStorage.getItem(STORAGE_KEY);
-
-    if(!saved){
-      return structuredClone(DEFAULT_DATA);
-    }
-
-    const parsed=JSON.parse(saved);
-
-    if(
-      !parsed ||
-      !Array.isArray(parsed.players)
-    ){
-      return structuredClone(DEFAULT_DATA);
-    }
-
-    if(
-      !parsed.next ||
-      typeof parsed.next!=="object"
-    ){
-      parsed.next=structuredClone(DEFAULT_DATA.next);
-    }
-
-    if(
-      !Array.isArray(parsed.trainings) ||
-      parsed.trainings.length===0
-    ){
-      parsed.trainings=
-        structuredClone(DEFAULT_DATA.trainings);
-    }
-
-    return parsed;
-
-  }catch(error){
-
-    console.log("Error cargando datos:",error);
-
-    return structuredClone(DEFAULT_DATA);
-
-  }
-
-}
-
-
-let data=loadData();
-
-
-/* =====================================================
-   ESTADO
-===================================================== */
-
-let role="trainer";
-
-try{
-
-  const savedRole=
-    localStorage.getItem("knatt-role");
-
-  if(
-    savedRole==="trainer" ||
-    savedRole==="player"
-  ){
-    role=savedRole;
-  }
-
-}catch(error){}
-
-
-let section="home";
-
-let filter="all";
-
-
-/* =====================================================
-   GUARDAR
-===================================================== */
+/* =========================
+   HELPERS
+========================= */
 
 function save(){
-
-  try{
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(data)
-    );
-
-  }catch(error){
-
-    console.log("No se pudo guardar:",error);
-
-  }
-
+  localStorage.setItem(KEY,JSON.stringify(data));
 }
 
+function esc(value){
+  return String(value??'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
 
-/* =====================================================
-   CAMBIAR ROL
-===================================================== */
+function escAttr(value){
+  return esc(value);
+}
 
-function setRole(newRole){
+function numberValue(id){
+  const value=parseInt(document.getElementById(id).value,10);
+  return Number.isFinite(value)?Math.max(0,value):0;
+}
 
-  if(
-    newRole!=="trainer" &&
-    newRole!=="player"
-  ){
-    return;
-  }
+/* =========================
+   ROLE
+========================= */
 
-  role=newRole;
-
-  section="home";
-
-  try{
-
-    localStorage.setItem(
-      "knatt-role",
-      role
-    );
-
-  }catch(error){}
-
+function setRole(r){
+  role=r;
+  localStorage.setItem('teamhub-role',r);
+  section='home';
   render();
-
 }
-
-
-/* =====================================================
-   NOMBRE DEL ROL
-===================================================== */
 
 function roleName(){
-
-  if(role==="player"){
-    return "Jugador";
-  }
-
-  return "Entrenador";
-
+  return role==='trainer'?'Entrenador':'Jugador';
 }
 
+/* =========================
+   NAVIGATION
+========================= */
 
-/* =====================================================
-   NAVEGACIÓN
-===================================================== */
+function navItems(){
 
-function getNavItems(){
-
-  if(role==="trainer"){
-
-    return [
-
-      ["home","🏠","Inicio"],
-
-      ["team","👥","Plantilla"],
-
-      ["training","🏋️","Entrenos"],
-
-      ["matches","🏆","Partidos"],
-
-      ["stats","📊","Stats"]
-
+  return role==='trainer'
+  ? [
+      ['home','🏠','Inicio'],
+      ['team','👥','Plantilla'],
+      ['training','🏋️','Entrenos'],
+      ['matches','🏆','Partidos'],
+      ['stats','📊','Stats']
+    ]
+  : [
+      ['home','🏠','Inicio'],
+      ['profile','⚽','Mi perfil'],
+      ['training','🏋️','Entrenos'],
+      ['matches','🏆','Partidos'],
+      ['stats','📊','Mi temporada']
     ];
-
-  }
-
-
-  return [
-
-    ["home","🏠","Inicio"],
-
-    ["profile","⚽","Mi perfil"],
-
-    ["training","🏋️","Entrenos"],
-
-    ["matches","🏆","Partidos"],
-
-    ["stats","📊","Mi temporada"]
-
-  ];
-
 }
-
-
-/* =====================================================
-   IR A UNA SECCIÓN
-===================================================== */
-
-function go(newSection){
-
-  section=newSection;
-
-  render();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =====================================================
-   RENDER PRINCIPAL
-===================================================== */
 
 function render(){
 
-  try{
+  document.getElementById('roleText').textContent=
+    roleName()+' · Primer Equipo';
 
-    document.getElementById(
-      "roleText"
-    ).textContent=
-      roleName()+" · Primer Equipo";
+  document.getElementById('nav').innerHTML=
+    navItems()
+    .map(x=>`
+      <button
+        class="${section===x[0]?'active':''}"
+        onclick="go('${x[0]}')">
+        ${x[1]}<br>${x[2]}
+      </button>
+    `)
+    .join('');
 
+  let c=document.getElementById('content');
 
-    renderRoleButtons();
-
-
-    renderNavigation();
-
-
-    renderContent();
-
-  }catch(error){
-
-    console.log(
-      "Error renderizando KNATT:",
-      error
-    );
-
-    document.getElementById(
-      "content"
-    ).innerHTML=`
-
-      <div class="card">
-
-        <div class="title">
-          KNATT
-        </div>
-
-        <div class="empty">
-          Ha ocurrido un error cargando la pantalla.
-        </div>
-
-        <button
-          class="btn full"
-          type="button"
-          onclick="resetApp()">
-          Reiniciar KNATT
-        </button>
-
-      </div>
-
-    `;
-
-  }
-
-}
-
-
-/* =====================================================
-   BOTONES ENTRENADOR / JUGADOR
-===================================================== */
-
-function renderRoleButtons(){
-
-  const content=
-    document.getElementById("content");
-
-  content.innerHTML=`
-
+  c.innerHTML=`
     <div class="rolebar">
 
       <button
-        type="button"
-        class="role-button ${
-          role==="trainer" ? "active" : ""
-        }"
+        class="btn ${role==='trainer'?'':'light'}"
         onclick="setRole('trainer')">
-
         🧑‍🏫 Entrenador
-
       </button>
 
-
       <button
-        type="button"
-        class="role-button ${
-          role==="player" ? "active" : ""
-        }"
+        class="btn ${role==='player'?'':'light'}"
         onclick="setRole('player')">
-
         ⚽ Jugador
-
       </button>
 
     </div>
-
   `;
 
+  if(section==='home')c.innerHTML+=home();
+  if(section==='team')c.innerHTML+=team();
+  if(section==='training')c.innerHTML+=training();
+  if(section==='matches')c.innerHTML+=matches();
+  if(section==='stats')c.innerHTML+=stats();
+  if(section==='profile')c.innerHTML+=profile();
 }
 
-
-/* =====================================================
-   NAVEGACIÓN INFERIOR
-===================================================== */
-
-function renderNavigation(){
-
-  const nav=
-    document.getElementById("nav");
-
-  nav.innerHTML=
-    getNavItems()
-    .map(item=>`
-
-      <button
-        type="button"
-        class="${
-          section===item[0]
-          ? "active"
-          : ""
-        }"
-        onclick="go('${item[0]}')">
-
-        ${item[1]}<br>
-        ${item[2]}
-
-      </button>
-
-    `)
-    .join("");
-
+function go(s){
+  section=s;
+  render();
 }
 
-
-/* =====================================================
-   CONTENIDO
-===================================================== */
-
-function renderContent(){
-
-  const content=
-    document.getElementById("content");
-
-  let html="";
-
-
-  if(section==="home"){
-    html=home();
-  }
-
-  else if(section==="team"){
-    html=team();
-  }
-
-  else if(section==="training"){
-    html=training();
-  }
-
-  else if(section==="matches"){
-    html=matches();
-  }
-
-  else if(section==="stats"){
-    html=stats();
-  }
-
-  else if(section==="profile"){
-    html=profile();
-  }
-
-  else{
-    html=home();
-  }
-
-
-  content.innerHTML += html;
-
-}
-
-
-/* =====================================================
+/* =========================
    HOME
-===================================================== */
+========================= */
 
 function home(){
 
-  if(role==="trainer"){
+  if(role==='trainer'){
 
-    const available=
-      data.players.filter(
-        p=>p.available===true
-      ).length;
-
-
-    const absent=
-      data.players.filter(
-        p=>p.available!==true
-      ).length;
-
-
-    const goals=
-      data.players.reduce(
-        (sum,p)=>
-          sum + Number(p.g || 0),
-        0
-      );
-
-
-    const training=
-      data.trainings[0];
-
+    let available=data.players.filter(p=>p.available).length;
+    let absent=data.players.filter(p=>!p.available).length;
+    let goals=data.players.reduce((s,p)=>s+Number(p.g||0),0);
 
     return `
 
-      <div class="title">
-        Panel del equipo
-      </div>
-
-
-      <div class="card hero">
-
-        <div class="section-label">
-          PRÓXIMO PARTIDO
-        </div>
-
-        <div class="big">
-          KNATT 🆚 ${data.next.opponent}
-        </div>
-
-
-        <div class="match-meta">
-
-          <div class="team-ball">
-            ⚽
-          </div>
-
-          <div class="match-info">
-
-            <div class="match-date">
-              ${data.next.date}
-              ·
-              ${data.next.time}
-            </div>
-
-            <div class="match-place">
-              📍 ${data.next.place}
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <button
-          type="button"
-          class="btn lime full"
-          onclick="go('matches')">
-
-          Ver partido →
-
-        </button>
-
-      </div>
-
-
-      <div class="section-label">
-        RESUMEN DEL EQUIPO
-      </div>
-
-
-      <div class="grid">
-
-        <div class="stat accent">
-          <b>${data.players.length}</b>
-          <span>Jugadores</span>
-        </div>
-
-        <div class="stat">
-          <b>${available}</b>
-          <span>Disponibles</span>
-        </div>
-
-        <div class="stat">
-          <b>${absent}</b>
-          <span>Ausentes</span>
-        </div>
-
-        <div class="stat">
-          <b>${goals}</b>
-          <span>Goles</span>
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="section-label">
-          PRÓXIMO ENTRENAMIENTO
-        </div>
-
-        <div class="big">
-          ${training.date}
-        </div>
-
-        <div class="muted small">
-          ${training.time}
-          ·
-          ${training.place}
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="section-label">
-          AUSENCIAS
-        </div>
-
-
-        ${
-          data.players
-          .filter(p=>p.available!==true)
-          .map(p=>`
-
-            <div class="item">
-
-              <div class="avatar">
-                ⚽
-              </div>
-
-              <div class="grow">
-
-                <b>
-                  ${p.num} · ${p.name}
-                </b>
-
-                <div class="muted small">
-                  ${p.pos}
-                </div>
-
-              </div>
-
-              <span class="pill red">
-                ${p.reason || "No disponible"}
-              </span>
-
-            </div>
-
-          `)
-          .join("")
-          ||
-          `<div class="muted">
-            No hay ausencias.
-          </div>`
-        }
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* =========================
-     HOME JUGADOR
-  ========================= */
-
-  const player=
-    data.players[0];
-
-
-  const percentage=
-    player.total>0
-    ? Math.round(
-        player.train/
-        player.total*
-        100
-      )
-    : 0;
-
-
-  return `
-
     <div class="title">
-      Hola, ${player.name}
+      Panel del equipo
     </div>
-
-
-    <div class="player-card">
-
-      <div class="player-number">
-        #${player.num}
-      </div>
-
-      <div class="player-name">
-        ${player.name}
-      </div>
-
-      <div class="player-position">
-        ${player.pos}
-        ·
-        Primer Equipo
-      </div>
-
-    </div>
-
 
     <div class="card hero">
 
-      <div class="section-label">
+      <div class="section-label" style="color:#b9e86c">
         PRÓXIMO PARTIDO
       </div>
 
       <div class="big">
-        KNATT 🆚 ${data.next.opponent}
+        KNATT 🆚 ${esc(data.next.opponent)}
       </div>
-
 
       <div class="match-meta">
 
@@ -1273,31 +1102,177 @@ function home(){
         <div class="match-info">
 
           <div class="match-date">
-            ${data.next.date}
-            ·
-            ${data.next.time}
+            ${esc(data.next.date)} · ${esc(data.next.time)}
           </div>
 
           <div class="match-place">
-            📍 ${data.next.place}
+            📍 ${esc(data.next.place)}
           </div>
 
         </div>
 
       </div>
 
-
       <button
-        type="button"
         class="btn lime full"
         onclick="go('matches')">
-
         Ver partido →
-
       </button>
 
     </div>
 
+    <div class="section-label">
+      RESUMEN DEL EQUIPO
+    </div>
+
+    <div class="grid">
+
+      <div class="stat accent">
+        <b>${data.players.length}</b>
+        <span>Jugadores</span>
+      </div>
+
+      <div class="stat">
+        <b>${available}</b>
+        <span>Disponibles</span>
+      </div>
+
+      <div class="stat">
+        <b>${absent}</b>
+        <span>Ausentes</span>
+      </div>
+
+      <div class="stat">
+        <b>${goals}</b>
+        <span>Goles</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="row">
+
+        <div>
+
+          <div class="section-label">
+            PRÓXIMO ENTRENAMIENTO
+          </div>
+
+          <div class="big">
+            ${esc(data.trainings[0].date)}
+          </div>
+
+          <div class="muted small">
+            ${esc(data.trainings[0].time)} ·
+            ${esc(data.trainings[0].place)}
+          </div>
+
+        </div>
+
+        <div class="avatar">
+          🏋️
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="section-label">
+        AUSENCIAS
+      </div>
+
+      ${
+        data.players.filter(p=>!p.available).map(p=>`
+
+          <div class="item">
+
+            <div class="avatar">
+              ⚽
+            </div>
+
+            <div class="grow">
+
+              <b>
+                ${esc(p.num)} · ${esc(p.name)}
+              </b>
+
+              <div class="muted small">
+                ${esc(p.pos)}
+              </div>
+
+            </div>
+
+            <span class="pill danger">
+              ${esc(p.reason||'Ausente')}
+            </span>
+
+          </div>
+
+        `).join('')
+        || '<div class="muted">Ninguna</div>'
+      }
+
+    </div>
+
+    `;
+  }
+
+  let p=data.players[0];
+
+  if(!p){
+    return `
+      <div class="empty">
+        <div class="empty-icon">⚽</div>
+        <div class="empty-title">
+          Todavía no tienes jugador
+        </div>
+        <div>
+          Pide al entrenador que te añada a la plantilla.
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+
+    <div class="title">
+      Hola, ${esc(p.name)}
+    </div>
+
+    <div class="card hero">
+
+      <div class="section-label" style="color:#b9e86c">
+        PRÓXIMO PARTIDO
+      </div>
+
+      <div class="big">
+        KNATT 🆚 ${esc(data.next.opponent)}
+      </div>
+
+      <div class="match-meta">
+
+        <div class="team-ball">
+          ⚽
+        </div>
+
+        <div class="match-info">
+
+          <div class="match-date">
+            ${esc(data.next.date)} · ${esc(data.next.time)}
+          </div>
+
+          <div class="match-place">
+            📍 ${esc(data.next.place)}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 
     <div class="card">
 
@@ -1306,272 +1281,378 @@ function home(){
       </div>
 
       <div class="big">
-        ${data.trainings[0].date}
+        ${esc(data.trainings[0].date)}
       </div>
 
       <div class="muted small">
-        ${data.trainings[0].time}
-        ·
-        ${data.trainings[0].place}
+        ${esc(data.trainings[0].time)} ·
+        ${esc(data.trainings[0].place)}
       </div>
 
-
       <br>
-
 
       <div class="choice">
 
         <button
-          type="button"
           class="btn"
-          onclick="confirmAttendance()">
-
+          onclick="alert('Asistencia confirmada')">
           ✅ Voy
-
         </button>
 
-
         <button
-          type="button"
           class="btn light"
-          onclick="reportAbsence()">
-
+          onclick="alert('Ausencia comunicada')">
           ❌ No voy
-
         </button>
 
       </div>
 
     </div>
-
 
     <div class="section-label">
       MI TEMPORADA
     </div>
 
-
     <div class="grid">
 
       <div class="stat">
-        <b>${player.min}</b>
+        <b>${p.min}</b>
         <span>Minutos</span>
       </div>
 
       <div class="stat accent">
-        <b>${player.g}</b>
+        <b>${p.g}</b>
         <span>Goles</span>
       </div>
 
       <div class="stat">
-        <b>${player.a}</b>
+        <b>${p.a}</b>
         <span>Asistencias</span>
       </div>
 
       <div class="stat">
-        <b>${percentage}%</b>
+        <b>${p.total>0?Math.round(p.train/p.total*100):0}%</b>
         <span>Entrenos</span>
       </div>
 
     </div>
 
   `;
-
 }
 
-
-/* =====================================================
-   ASISTENCIA
-===================================================== */
-
-function confirmAttendance(){
-
-  alert(
-    "Asistencia confirmada para el próximo entrenamiento."
-  );
-
-}
-
-
-function reportAbsence(){
-
-  alert(
-    "Ausencia comunicada al entrenador."
-  );
-
-}
-
-
-/* =====================================================
-   PLANTILLA
-===================================================== */
+/* =========================
+   TEAM / PLANTILLA
+========================= */
 
 function team(){
 
-  const list=
-    data.players.filter(p=>{
-
-      if(filter==="available"){
-        return p.available===true;
-      }
-
-      if(filter==="absent"){
-        return p.available!==true;
-      }
-
-      return true;
-
-    });
-
+  let list=data.players.filter(
+    p=>filter==='all'||
+    (filter==='available'?p.available:!p.available)
+  );
 
   return `
 
-    <div class="title">
-      Plantilla
+    <div class="title-row">
+
+      <div class="title">
+        Plantilla
+      </div>
+
+      <button
+        class="btn add"
+        onclick="openPlayerForm()">
+        ＋ Añadir
+      </button>
+
     </div>
 
+    <div class="subtitle">
+      ${data.players.length} jugadores ·
+      Gestiona tu plantilla
+    </div>
 
     <div class="tabs">
 
       <button
-        type="button"
-        class="tab ${
-          filter==="all" ? "active" : ""
-        }"
-        onclick="
-          filter='all';
-          render();
-        ">
-
-        Todos
-
+        class="tab ${filter==='all'?'active':''}"
+        onclick="filter='all';render()">
+        Todos · ${data.players.length}
       </button>
 
-
       <button
-        type="button"
-        class="tab ${
-          filter==="available"
-          ? "active"
-          : ""
-        }"
-        onclick="
-          filter='available';
-          render();
-        ">
-
-        🟢 Disponibles
-
+        class="tab ${filter==='available'?'active':''}"
+        onclick="filter='available';render()">
+        🟢 Disponibles ·
+        ${data.players.filter(p=>p.available).length}
       </button>
 
-
       <button
-        type="button"
-        class="tab ${
-          filter==="absent"
-          ? "active"
-          : ""
-        }"
-        onclick="
-          filter='absent';
-          render();
-        ">
-
-        🔴 Ausentes
-
+        class="tab ${filter==='absent'?'active':''}"
+        onclick="filter='absent';render()">
+        🔴 Ausentes ·
+        ${data.players.filter(p=>!p.available).length}
       </button>
 
     </div>
-
 
     <div class="card">
 
       ${
-        list.length===0
-
+        list.length
         ?
-
-        `<div class="empty">
-          No hay jugadores en esta categoría.
-        </div>`
-
-        :
-
         list.map(p=>`
 
-          <div class="item">
+          <div
+            class="item player-row"
+            onclick="openPlayerForm(${p.id})">
 
-            <div class="avatar">
-              ${
-                p.pos==="POR"
-                ? "🧤"
-                : "⚽"
-              }
+            <div class="avatar player-avatar">
+              ${p.pos==='POR'?'🧤':'⚽'}
             </div>
-
 
             <div class="grow">
 
-              <b>
-                ${p.num} · ${p.name}
-              </b>
+              <div class="player-name">
+                ${esc(p.name)}
+              </div>
 
-              <div class="muted small">
-                ${p.pos}
-                ·
-                ${
-                  p.available===true
-                  ? "🟢 Disponible"
-                  : "🔴 "+(p.reason || "No disponible")
-                }
+              <div class="player-number">
+                #${esc(p.num)} · ${esc(p.pos)}
               </div>
 
               <div class="muted small">
-                ${p.g} ⚽
-                ·
-                ${p.a} 🎯
-                ·
-                ${p.min} min
+                ${p.g||0} ⚽ ·
+                ${p.a||0} 🎯 ·
+                ${p.min||0} min
               </div>
 
             </div>
 
+            <div style="text-align:right">
 
-            <span class="pill">
+              <span class="pill ${p.available?'':'danger'}">
+                ${p.available?'🟢':'🔴'}
+                ${p.available?'Disponible':'Ausente'}
+              </span>
 
-              ${
-                p.total>0
-                ? Math.round(
-                    p.train/
-                    p.total*
-                    100
-                  )
-                : 0
-              }%
+              <div class="player-arrow">
+                ›
+              </div>
 
-            </span>
+            </div>
 
           </div>
 
-        `).join("")
+        `).join('')
+        :
+        `
+        <div class="empty">
 
+          <div class="empty-icon">
+            ${
+              filter==='absent'
+              ?'🟢'
+              :'👥'
+            }
+          </div>
+
+          <div class="empty-title">
+            ${
+              filter==='absent'
+              ?'No hay ausencias'
+              :'No hay jugadores'
+            }
+          </div>
+
+          <div>
+            ${
+              filter==='absent'
+              ?'Todos los jugadores están disponibles.'
+              :'Añade el primer jugador de tu plantilla.'
+            }
+          </div>
+
+        </div>
+        `
       }
 
     </div>
 
-  `;
+    <div class="notice">
+      💡 Pulsa sobre cualquier jugador para editar su ficha.
+    </div>
 
+  `;
 }
 
+/* =========================
+   PLAYER FORM
+========================= */
 
-/* =====================================================
-   ENTRENAMIENTOS
-===================================================== */
+function openPlayerForm(id=null){
+
+  if(role!=='trainer'){
+    return;
+  }
+
+  editingPlayerId=id;
+
+  const modal=document.getElementById('playerModal');
+  const title=document.getElementById('modalTitle');
+  const deleteZone=document.getElementById('deleteZone');
+
+  if(id===null){
+
+    title.textContent='Nuevo jugador';
+    deleteZone.style.display='none';
+
+    document.getElementById('playerName').value='';
+    document.getElementById('playerNum').value='';
+    document.getElementById('playerPos').value='DC';
+    document.getElementById('playerAvailable').value='true';
+    document.getElementById('playerReason').value='';
+    document.getElementById('playerMin').value=0;
+    document.getElementById('playerGoals').value=0;
+    document.getElementById('playerAssists').value=0;
+    document.getElementById('playerTrain').value=0;
+    document.getElementById('playerTotal').value=0;
+
+  }else{
+
+    const p=data.players.find(x=>x.id===id);
+
+    if(!p){
+      return;
+    }
+
+    title.textContent='Editar jugador';
+    deleteZone.style.display='block';
+
+    document.getElementById('playerName').value=p.name||'';
+    document.getElementById('playerNum').value=p.num??'';
+    document.getElementById('playerPos').value=p.pos||'DC';
+    document.getElementById('playerAvailable').value=String(p.available);
+    document.getElementById('playerReason').value=p.reason||'';
+    document.getElementById('playerMin').value=p.min||0;
+    document.getElementById('playerGoals').value=p.g||0;
+    document.getElementById('playerAssists').value=p.a||0;
+    document.getElementById('playerTrain').value=p.train||0;
+    document.getElementById('playerTotal').value=p.total||0;
+  }
+
+  modal.classList.remove('hidden');
+
+  setTimeout(()=>{
+    document.getElementById('playerName').focus();
+  },100);
+}
+
+function closePlayerForm(){
+
+  editingPlayerId=null;
+
+  document
+    .getElementById('playerModal')
+    .classList.add('hidden');
+}
+
+function savePlayer(event){
+
+  event.preventDefault();
+
+  const name=document
+    .getElementById('playerName')
+    .value
+    .trim();
+
+  const num=numberValue('playerNum');
+
+  if(!name){
+    alert('Introduce el nombre del jugador.');
+    return;
+  }
+
+  const player={
+    id:editingPlayerId??Date.now(),
+    name:name,
+    num:num,
+    pos:document.getElementById('playerPos').value,
+    available:
+      document.getElementById('playerAvailable').value==='true',
+    reason:
+      document.getElementById('playerReason').value.trim(),
+    min:numberValue('playerMin'),
+    g:numberValue('playerGoals'),
+    a:numberValue('playerAssists'),
+    train:numberValue('playerTrain'),
+    total:numberValue('playerTotal')
+  };
+
+  if(player.available){
+    player.reason='';
+  }
+
+  if(player.train>player.total && player.total>0){
+    player.total=player.train;
+  }
+
+  if(editingPlayerId===null){
+
+    data.players.push(player);
+
+  }else{
+
+    const index=data.players.findIndex(
+      p=>p.id===editingPlayerId
+    );
+
+    if(index!==-1){
+      data.players[index]=player;
+    }
+  }
+
+  save();
+  closePlayerForm();
+  render();
+}
+
+function deleteCurrentPlayer(){
+
+  if(editingPlayerId===null){
+    return;
+  }
+
+  const p=data.players.find(
+    x=>x.id===editingPlayerId
+  );
+
+  if(!p){
+    return;
+  }
+
+  const confirmed=confirm(
+    `¿Seguro que quieres eliminar a ${p.name} de la plantilla?`
+  );
+
+  if(!confirmed){
+    return;
+  }
+
+  data.players=data.players.filter(
+    x=>x.id!==editingPlayerId
+  );
+
+  save();
+  closePlayerForm();
+  render();
+}
+
+/* =========================
+   TRAINING
+========================= */
 
 function training(){
-
-  const next=
-    data.trainings[0];
-
 
   return `
 
@@ -1579,17 +1660,15 @@ function training(){
       Entrenamientos
     </div>
 
-
     <div class="card hero">
 
-      <div class="section-label">
+      <div class="section-label" style="color:#b9e86c">
         PRÓXIMO
       </div>
 
       <div class="big">
-        ${next.date}
+        ${esc(data.trainings[0].date)}
       </div>
-
 
       <div class="match-meta">
 
@@ -1600,11 +1679,11 @@ function training(){
         <div class="match-info">
 
           <div class="match-date">
-            ${next.time}
+            ${esc(data.trainings[0].time)}
           </div>
 
           <div class="match-place">
-            📍 ${next.place}
+            📍 ${esc(data.trainings[0].place)}
           </div>
 
         </div>
@@ -1613,25 +1692,19 @@ function training(){
 
     </div>
 
-
     <div class="card">
 
       <div class="section-label">
-
         ${
-          role==="trainer"
-          ? "CONTROL DE ASISTENCIA"
-          : "MI ASISTENCIA"
+          role==='trainer'
+          ?'CONTROL DE ASISTENCIA'
+          :'MI ASISTENCIA'
         }
-
       </div>
 
-
       ${
-        role==="trainer"
-
+        role==='trainer'
         ?
-
         data.players.map(p=>`
 
           <div class="item">
@@ -1643,74 +1716,47 @@ function training(){
             <div class="grow">
 
               <b>
-                ${p.num} · ${p.name}
+                ${esc(p.num)} · ${esc(p.name)}
               </b>
 
               <div class="muted small">
-                ${p.train}/${p.total}
-                entrenamientos
+                ${p.train||0}/${p.total||0} entrenamientos
               </div>
 
             </div>
 
-
             <span class="pill">
-
-              ${
-                p.total>0
-                ? Math.round(
-                    p.train/
-                    p.total*
-                    100
-                  )
-                : 0
-              }%
-
+              ${p.total>0?Math.round(p.train/p.total*100):0}%
             </span>
 
           </div>
 
-        `).join("")
-
+        `).join('')
         :
-
         `
 
-          <div class="grid">
+        <div class="grid">
 
-            <div class="stat">
-              <b>
-                ${data.players[0].train}
-              </b>
-              <span>
-                Asistencias
-              </span>
-            </div>
-
-
-            <div class="stat accent">
-
-              <b>
-
-                ${
-                  data.players[0].total>0
-                  ? Math.round(
-                      data.players[0].train/
-                      data.players[0].total*
-                      100
-                    )
-                  : 0
-                }%
-
-              </b>
-
-              <span>
-                Asistencia
-              </span>
-
-            </div>
-
+          <div class="stat">
+            <b>${data.players[0]?.train||0}</b>
+            <span>Asistencias</span>
           </div>
+
+          <div class="stat accent">
+            <b>
+              ${
+                data.players[0]?.total>0
+                ?Math.round(
+                  data.players[0].train/
+                  data.players[0].total*100
+                )
+                :0
+              }%
+            </b>
+            <span>Asistencia</span>
+          </div>
+
+        </div>
 
         `
       }
@@ -1718,13 +1764,11 @@ function training(){
     </div>
 
   `;
-
 }
 
-
-/* =====================================================
-   PARTIDOS
-===================================================== */
+/* =========================
+   MATCHES
+========================= */
 
 function matches(){
 
@@ -1734,17 +1778,15 @@ function matches(){
       Partidos
     </div>
 
-
     <div class="card hero">
 
-      <div class="section-label">
+      <div class="section-label" style="color:#b9e86c">
         PRÓXIMO PARTIDO
       </div>
 
       <div class="big">
-        KNATT 🆚 ${data.next.opponent}
+        KNATT 🆚 ${esc(data.next.opponent)}
       </div>
-
 
       <div class="match-meta">
 
@@ -1755,42 +1797,29 @@ function matches(){
         <div class="match-info">
 
           <div class="match-date">
-            ${data.next.date}
+            ${esc(data.next.date)}
           </div>
 
           <div class="match-place">
-            ${data.next.time}
-            ·
-            ${data.next.place}
+            ${esc(data.next.time)} ·
+            ${esc(data.next.place)}
           </div>
 
         </div>
 
       </div>
 
-
       ${
-        role==="trainer"
-
+        role==='trainer'
         ?
-
         `
         <button
-          type="button"
           class="btn lime full"
-          onclick="
-            alert(
-              'Aquí añadiremos la convocatoria y la alineación.'
-            )
-          ">
-
+          onclick="alert('Aquí gestionaremos convocatoria y alineación')">
           Gestionar convocatoria
-
         </button>
         `
-
         :
-
         `
         <span class="pill">
           Convocatoria pendiente
@@ -1801,87 +1830,55 @@ function matches(){
     </div>
 
   `;
-
 }
 
-
-/* =====================================================
-   ESTADÍSTICAS
-===================================================== */
+/* =========================
+   STATS
+========================= */
 
 function stats(){
 
-  const sorted=
-    [...data.players]
-    .sort(
-      (a,b)=>
-        Number(b.g||0)-
-        Number(a.g||0)
-    );
-
-
-  const goals=
-    data.players.reduce(
-      (s,p)=>
-        s+Number(p.g||0),
-      0
-    );
-
-
-  const assists=
-    data.players.reduce(
-      (s,p)=>
-        s+Number(p.a||0),
-      0
-    );
-
-
-  const minutes=
-    data.players.reduce(
-      (s,p)=>
-        s+Number(p.min||0),
-      0
-    );
-
-
-  const list=
-    role==="trainer"
-    ? sorted
-    : [data.players[0]];
-
+  let sorted=[...data.players]
+    .sort((a,b)=>(b.g||0)-(a.g||0));
 
   return `
 
     <div class="title">
-
       ${
-        role==="trainer"
-        ? "Estadísticas del equipo"
-        : "Mi temporada"
+        role==='trainer'
+        ?'Estadísticas del equipo'
+        :'Mi temporada'
       }
-
     </div>
-
 
     <div class="grid">
 
       <div class="stat accent">
-        <b>${goals}</b>
+        <b>
+          ${data.players.reduce(
+            (s,p)=>s+Number(p.g||0),0
+          )}
+        </b>
         <span>Goles</span>
       </div>
 
-
       <div class="stat">
-        <b>${assists}</b>
+        <b>
+          ${data.players.reduce(
+            (s,p)=>s+Number(p.a||0),0
+          )}
+        </b>
         <span>Asistencias</span>
       </div>
 
-
       <div class="stat">
-        <b>${minutes}</b>
+        <b>
+          ${data.players.reduce(
+            (s,p)=>s+Number(p.min||0),0
+          )}
+        </b>
         <span>Minutos</span>
       </div>
-
 
       <div class="stat">
         <b>${data.players.length}</b>
@@ -1890,23 +1887,24 @@ function stats(){
 
     </div>
 
-
     <div class="card">
 
       <div class="section-label">
-
         ${
-          role==="trainer"
-          ? "RENDIMIENTO DE PLANTILLA"
-          : "MIS ESTADÍSTICAS"
+          role==='trainer'
+          ?'RENDIMIENTO DE PLANTILLA'
+          :'MIS ESTADÍSTICAS'
         }
-
       </div>
 
-
       ${
-
-        list.map(p=>`
+        (
+          role==='trainer'
+          ?sorted
+          :data.players.length
+            ?[data.players[0]]
+            :[]
+        ).map(p=>`
 
           <div class="item">
 
@@ -1914,66 +1912,73 @@ function stats(){
               ⚽
             </div>
 
-
             <div class="grow">
 
               <b>
-                ${p.num} · ${p.name}
+                ${esc(p.num)} · ${esc(p.name)}
               </b>
 
               <div class="muted small">
-                ${p.pos}
+                ${esc(p.pos)}
               </div>
 
             </div>
 
-
             <div style="text-align:right">
 
               <b>
-                ${p.min}
+                ${p.min||0}
               </b>
 
               <div class="muted small">
-                ${p.g} ⚽
-                ·
-                ${p.a} 🎯
+                ${p.g||0} ⚽ ·
+                ${p.a||0} 🎯
               </div>
 
             </div>
 
           </div>
 
-        `).join("")
-
+        `).join('')
+        ||
+        `
+        <div class="empty">
+          Todavía no hay jugadores.
+        </div>
+        `
       }
 
     </div>
 
   `;
-
 }
 
-
-/* =====================================================
-   PERFIL DEL JUGADOR
-===================================================== */
+/* =========================
+   PROFILE
+========================= */
 
 function profile(){
 
-  const p=
-    data.players[0];
+  let p=data.players[0];
 
+  if(!p){
 
-  const percentage=
-    p.total>0
-    ? Math.round(
-        p.train/
-        p.total*
-        100
-      )
-    : 0;
+    return `
+      <div class="title">
+        Mi perfil
+      </div>
 
+      <div class="empty">
+        <div class="empty-icon">⚽</div>
+        <div class="empty-title">
+          Sin jugador asignado
+        </div>
+        <div>
+          Todavía no hay un jugador asociado.
+        </div>
+      </div>
+    `;
+  }
 
   return `
 
@@ -1981,127 +1986,74 @@ function profile(){
       Mi perfil
     </div>
 
+    <div class="card hero">
 
-    <div class="player-card">
+      <div class="row">
 
-      <div class="player-number">
-        #${p.num}
-      </div>
+        <div>
 
-      <div class="player-name">
-        ${p.name}
-      </div>
+          <div class="section-label" style="color:#b9e86c">
+            JUGADOR
+          </div>
 
-      <div class="player-position">
-        ${p.pos}
-        ·
-        Primer Equipo
+          <div class="big">
+            ${esc(p.num)} · ${esc(p.name)}
+          </div>
+
+          <div class="muted">
+            ${esc(p.pos)}
+          </div>
+
+        </div>
+
+        <div class="avatar">
+          ⚽
+        </div>
+
       </div>
 
     </div>
 
-
     <div class="grid">
 
       <div class="stat">
-        <b>${p.min}</b>
+        <b>${p.min||0}</b>
         <span>Minutos jugados</span>
       </div>
 
-
       <div class="stat accent">
-        <b>${p.g}</b>
+        <b>${p.g||0}</b>
         <span>Goles</span>
       </div>
 
-
       <div class="stat">
-        <b>${p.a}</b>
+        <b>${p.a||0}</b>
         <span>Asistencias</span>
       </div>
 
-
       <div class="stat">
-        <b>${percentage}%</b>
+        <b>
+          ${
+            p.total>0
+            ?Math.round(p.train/p.total*100)
+            :0
+          }%
+        </b>
         <span>Entrenamientos</span>
       </div>
 
     </div>
 
-
-    <div class="card">
-
-      <div class="section-label">
-        ESTADO
-      </div>
-
-
-      ${
-        p.available===true
-
-        ?
-
-        `
-        <b>
-          🟢 Disponible
-        </b>
-
-        <div class="muted small">
-          Disponible para el próximo partido.
-        </div>
-        `
-
-        :
-
-        `
-        <b>
-          🔴 No disponible
-        </b>
-
-        <div class="muted small">
-          ${p.reason || "No disponible"}
-        </div>
-        `
-      }
-
-    </div>
-
   `;
-
 }
 
-
-/* =====================================================
-   REINICIAR SOLO LA CONFIGURACIÓN DE KNATT
-===================================================== */
-
-function resetApp(){
-
-  try{
-
-    localStorage.removeItem(
-      STORAGE_KEY
-    );
-
-    localStorage.removeItem(
-      "knatt-role"
-    );
-
-  }catch(error){}
-
-  location.reload();
-
-}
-
-
-/* =====================================================
-   INICIAR
-===================================================== */
+/* =========================
+   START
+========================= */
 
 render();
 
 </script>
 
 </body>
-
 </html>
