@@ -21,6 +21,7 @@
   --muted:#718078;
   --line:#e4ebe7;
   --danger:#d95c5c;
+  --warning:#e4a936;
 }
 
 body{
@@ -293,6 +294,11 @@ main{
   color:#b44343;
 }
 
+.pill.warning{
+  background:#fff2d7;
+  color:#986d18;
+}
+
 /* BUTTONS */
 
 .btn{
@@ -394,6 +400,87 @@ main{
   font-weight:700;
 }
 
+/* FORM */
+
+.form-group{
+  margin-bottom:13px;
+}
+
+.form-group label{
+  display:block;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  font-weight:900;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+
+.form-input{
+  width:100%;
+  border:1px solid var(--line);
+  background:#f8faf9;
+  color:var(--text);
+  border-radius:14px;
+  padding:13px;
+  font-size:15px;
+  outline:none;
+}
+
+.form-input:focus{
+  border-color:#a9c99a;
+}
+
+/* ATTENDANCE */
+
+.attendance-buttons{
+  display:flex;
+  gap:6px;
+  flex:0 0 auto;
+}
+
+.attendance-btn{
+  border:0;
+  width:39px;
+  height:39px;
+  border-radius:12px;
+  font-size:17px;
+  cursor:pointer;
+  font-weight:900;
+}
+
+.attendance-btn.present{
+  background:#e9f7d8;
+}
+
+.attendance-btn.absent{
+  background:#fae9e9;
+}
+
+.attendance-btn.late{
+  background:#fff2d7;
+}
+
+.attendance-btn.active{
+  box-shadow:0 0 0 2px var(--green);
+}
+
+.training-card{
+  cursor:pointer;
+}
+
+.training-card:active{
+  transform:scale(.99);
+}
+
+.training-status{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:12px;
+}
+
 /* NAVIGATION */
 
 nav{
@@ -449,6 +536,12 @@ nav button:first-line{
 
   .brand{
     font-size:27px;
+  }
+
+  .attendance-btn{
+    width:34px;
+    height:34px;
+    font-size:15px;
   }
 
 }
@@ -568,9 +661,11 @@ try{
 
       trainings:[
         {
+          id:1,
           date:'Jueves 20 de agosto',
           time:'21:15',
-          place:'Campo Municipal'
+          place:'Campo Municipal',
+          attendance:{}
         }
       ]
     };
@@ -591,9 +686,11 @@ try{
     },
     trainings:[
       {
+        id:1,
         date:'Próximo entrenamiento',
         time:'21:15',
-        place:'Campo Municipal'
+        place:'Campo Municipal',
+        attendance:{}
       }
     ]
   };
@@ -602,7 +699,7 @@ try{
 
 
 /* =========================================================
-   REPARAR DATOS ANTIGUOS
+   REPARAR DATOS
 ========================================================= */
 
 if(!data || typeof data!=='object'){
@@ -623,9 +720,8 @@ data.players=data.players.map((p,index)=>{
 
     id:p.id ?? Date.now()+index,
 
-    name:(
+    name:
       typeof p.name==='string' && p.name.trim()
-    )
       ?p.name
       :'Jugador',
 
@@ -682,7 +778,7 @@ data.players=data.players.map((p,index)=>{
 
 
 /* =========================================================
-   ASEGURAR PARTIDO
+   PARTIDO
 ========================================================= */
 
 if(!data.next || typeof data.next!=='object'){
@@ -714,52 +810,81 @@ if(!data.next.place){
 
 
 /* =========================================================
-   ASEGURAR ENTRENAMIENTOS
+   ENTRENAMIENTOS
 ========================================================= */
 
-if(!Array.isArray(data.trainings) || !data.trainings.length){
+if(!Array.isArray(data.trainings)){
+  data.trainings=[];
+}
 
-  data.trainings=[
-    {
-      date:'Próximo entrenamiento',
-      time:'21:15',
-      place:'Campo Municipal'
-    }
-  ];
+if(!data.trainings.length){
+
+  data.trainings.push({
+    id:Date.now(),
+    date:'Próximo entrenamiento',
+    time:'21:15',
+    place:'Campo Municipal',
+    attendance:{}
+  });
 
 }
 
-if(!data.trainings[0].date){
-  data.trainings[0].date='Próximo entrenamiento';
-}
+data.trainings=data.trainings.map((t,index)=>{
 
-if(!data.trainings[0].time){
-  data.trainings[0].time='21:15';
-}
+  if(!t || typeof t!=='object'){
+    t={};
+  }
 
-if(!data.trainings[0].place){
-  data.trainings[0].place='Campo Municipal';
-}
+  if(!t.id){
+    t.id=Date.now()+index;
+  }
+
+  if(!t.date){
+    t.date='Próximo entrenamiento';
+  }
+
+  if(!t.time){
+    t.time='21:15';
+  }
+
+  if(!t.place){
+    t.place='Campo Municipal';
+  }
+
+  if(!t.attendance || typeof t.attendance!=='object'){
+    t.attendance={};
+  }
+
+  return t;
+
+});
 
 
 /* =========================================================
-   GUARDAR DATOS YA REPARADOS
+   GUARDAR REPARACIÓN
 ========================================================= */
 
-localStorage.setItem(KEY,JSON.stringify(data));
+localStorage.setItem(
+  KEY,
+  JSON.stringify(data)
+);
 
 
 /* =========================================================
    ESTADO
 ========================================================= */
 
-let role=localStorage.getItem('teamhub-role')||'trainer';
+let role=
+  localStorage.getItem('teamhub-role')||
+  'trainer';
 
 let section='home';
 
 let filter='all';
 
 let selectedPlayerId=null;
+
+let selectedTrainingId=null;
 
 
 /* =========================================================
@@ -777,7 +902,7 @@ function save(){
 
 
 /* =========================================================
-   CAMBIAR ROL
+   ROL
 ========================================================= */
 
 function setRole(r){
@@ -793,14 +918,12 @@ function setRole(r){
 
   selectedPlayerId=null;
 
+  selectedTrainingId=null;
+
   render();
 
 }
 
-
-/* =========================================================
-   NOMBRE DEL ROL
-========================================================= */
 
 function roleName(){
 
@@ -843,7 +966,7 @@ function navItems(){
 
 
 /* =========================================================
-   RENDER PRINCIPAL
+   RENDER
 ========================================================= */
 
 function render(){
@@ -884,6 +1007,7 @@ function render(){
 
       </button>
 
+
       <button
         class="btn ${role==='player'?'':'light'}"
         onclick="setRole('player')">
@@ -909,6 +1033,10 @@ function render(){
     c.innerHTML+=training();
   }
 
+  if(section==='training-detail'){
+    c.innerHTML+=trainingDetail();
+  }
+
   if(section==='matches'){
     c.innerHTML+=matches();
   }
@@ -929,12 +1057,16 @@ function render(){
 
 
 /* =========================================================
-   NAVEGAR
+   GO
 ========================================================= */
 
 function go(s){
 
   section=s;
+
+  selectedPlayerId=null;
+
+  selectedTrainingId=null;
 
   render();
 
@@ -942,7 +1074,7 @@ function go(s){
 
 
 /* =========================================================
-   ABRIR FICHA DE JUGADOR
+   FICHA JUGADOR
 ========================================================= */
 
 function openPlayer(id){
@@ -955,10 +1087,6 @@ function openPlayer(id){
 
 }
 
-
-/* =========================================================
-   OBTENER JUGADOR SELECCIONADO
-========================================================= */
 
 function getSelectedPlayer(){
 
@@ -985,15 +1113,12 @@ function editPlayer(){
     return;
   }
 
-
   const name=prompt(
     'Nombre del jugador:',
     p.name
   );
 
-  if(name===null){
-    return;
-  }
+  if(name===null)return;
 
 
   const num=prompt(
@@ -1001,9 +1126,7 @@ function editPlayer(){
     p.num
   );
 
-  if(num===null){
-    return;
-  }
+  if(num===null)return;
 
 
   const pos=prompt(
@@ -1011,9 +1134,7 @@ function editPlayer(){
     p.pos
   );
 
-  if(pos===null){
-    return;
-  }
+  if(pos===null)return;
 
 
   const available=confirm(
@@ -1043,9 +1164,7 @@ function editPlayer(){
     p.min
   );
 
-  if(min===null){
-    return;
-  }
+  if(min===null)return;
 
 
   const goals=prompt(
@@ -1053,9 +1172,7 @@ function editPlayer(){
     p.g
   );
 
-  if(goals===null){
-    return;
-  }
+  if(goals===null)return;
 
 
   const assists=prompt(
@@ -1063,9 +1180,7 @@ function editPlayer(){
     p.a
   );
 
-  if(assists===null){
-    return;
-  }
+  if(assists===null)return;
 
 
   const train=prompt(
@@ -1073,9 +1188,7 @@ function editPlayer(){
     p.train
   );
 
-  if(train===null){
-    return;
-  }
+  if(train===null)return;
 
 
   const total=prompt(
@@ -1083,31 +1196,21 @@ function editPlayer(){
     p.total
   );
 
-  if(total===null){
-    return;
-  }
+  if(total===null)return;
 
 
   p.name=name.trim()||p.name;
-
   p.num=num.trim()||p.num;
-
   p.pos=pos.trim()||p.pos;
 
   p.available=available;
-
   p.reason=reason;
 
   p.min=Math.max(0,Number(min)||0);
-
   p.g=Math.max(0,Number(goals)||0);
-
   p.a=Math.max(0,Number(assists)||0);
-
   p.train=Math.max(0,Number(train)||0);
-
   p.total=Math.max(0,Number(total)||0);
-
 
   save();
 
@@ -1126,7 +1229,6 @@ function addPlayer(){
     return;
   }
 
-
   const name=prompt(
     'Nombre del jugador:'
   );
@@ -1135,15 +1237,12 @@ function addPlayer(){
     return;
   }
 
-
   const num=prompt(
     'Número de camiseta:',
     ''
   );
 
-  if(num===null){
-    return;
-  }
+  if(num===null)return;
 
 
   const pos=prompt(
@@ -1151,12 +1250,10 @@ function addPlayer(){
     ''
   );
 
-  if(pos===null){
-    return;
-  }
+  if(pos===null)return;
 
 
-  const newPlayer={
+  data.players.push({
 
     id:Date.now(),
 
@@ -1180,10 +1277,8 @@ function addPlayer(){
 
     total:0
 
-  };
+  });
 
-
-  data.players.push(newPlayer);
 
   save();
 
@@ -1203,7 +1298,6 @@ function deletePlayer(id){
   if(role!=='trainer'){
     return;
   }
-
 
   const player=data.players.find(
     p=>String(p.id)===String(id)
@@ -1248,23 +1342,26 @@ function home(){
 
   if(role==='trainer'){
 
-    let available=
+    const available=
       data.players.filter(
         p=>p.available
       ).length;
 
 
-    let absent=
+    const absent=
       data.players.filter(
         p=>!p.available
       ).length;
 
 
-    let goals=
+    const goals=
       data.players.reduce(
         (s,p)=>s+(Number(p.g)||0),
         0
       );
+
+
+    const firstTraining=data.trainings[0];
 
 
     return `
@@ -1401,25 +1498,17 @@ function home(){
           <div>
 
             <div class="section-label">
-
               PRÓXIMO ENTRENAMIENTO
-
             </div>
-
 
             <div class="big">
-
-              ${data.trainings[0].date}
-
+              ${firstTraining.date}
             </div>
 
-
             <div class="muted small">
-
-              ${data.trainings[0].time}
+              ${firstTraining.time}
               ·
-              ${data.trainings[0].place}
-
+              ${firstTraining.place}
             </div>
 
           </div>
@@ -1461,9 +1550,7 @@ function home(){
 
 
                 <div class="muted small">
-
                   ${p.pos}
-
                 </div>
 
               </div>
@@ -1492,7 +1579,7 @@ function home(){
   }
 
 
-  let p=data.players[0];
+  const p=data.players[0];
 
 
   if(!p){
@@ -1506,9 +1593,7 @@ function home(){
         </div>
 
         <div class="muted">
-
           El entrenador todavía no ha añadido jugadores.
-
         </div>
 
       </div>
@@ -1519,17 +1604,21 @@ function home(){
 
 
   const percentage=
-    p.total>0
-    ?Math.round(p.train/p.total*100)
-    :0;
+    Number(p.total)>0
+    ?
+    Math.round(
+      Number(p.train)/
+      Number(p.total)*
+      100
+    )
+    :
+    0;
 
 
   return `
 
     <div class="title">
-
       Hola, ${p.name}
-
     </div>
 
 
@@ -1586,16 +1675,12 @@ function home(){
     <div class="card">
 
       <div class="section-label">
-
         PRÓXIMO ENTRENAMIENTO
-
       </div>
 
 
       <div class="big">
-
         ${data.trainings[0].date}
-
       </div>
 
 
@@ -1636,9 +1721,7 @@ function home(){
 
 
     <div class="section-label">
-
       MI TEMPORADA
-
     </div>
 
 
@@ -1708,7 +1791,7 @@ function home(){
 
 function team(){
 
-  let list=data.players.filter(
+  const list=data.players.filter(
 
     p=>
       filter==='all' ||
@@ -1848,8 +1931,13 @@ function team(){
             <span class="pill">
 
               ${
-                p.total>0
-                ?Math.round(p.train/p.total*100)
+                Number(p.total)>0
+                ?
+                Math.round(
+                  Number(p.train)/
+                  Number(p.total)*
+                  100
+                )
                 :0
               }%
 
@@ -1928,9 +2016,7 @@ function playerProfile(){
       <div class="card">
 
         <div class="muted">
-
           No se ha encontrado el jugador.
-
         </div>
 
 
@@ -1965,8 +2051,10 @@ function playerProfile(){
 
   const percentage=
     total>0
-    ?Math.round(train/total*100)
-    :0;
+    ?
+    Math.round(train/total*100)
+    :
+    0;
 
 
   return `
@@ -2183,19 +2271,277 @@ function playerProfile(){
 
 
 /* =========================================================
-   ENTRENAMIENTOS
+   CREAR ENTRENAMIENTO
 ========================================================= */
 
-function training(){
+function addTraining(){
 
-  let first=data.trainings[0];
+  if(role!=='trainer'){
+    return;
+  }
+
+
+  const date=prompt(
+    'Fecha del entrenamiento:',
+    ''
+  );
+
+  if(!date || !date.trim()){
+    return;
+  }
+
+
+  const time=prompt(
+    'Hora del entrenamiento:',
+    '21:15'
+  );
+
+  if(time===null){
+    return;
+  }
+
+
+  const place=prompt(
+    'Lugar:',
+    'Campo Municipal'
+  );
+
+  if(place===null){
+    return;
+  }
+
+
+  const training={
+
+    id:Date.now(),
+
+    date:date.trim(),
+
+    time:time.trim()||'21:15',
+
+    place:place.trim()||'Campo Municipal',
+
+    attendance:{}
+
+  };
+
+
+  data.trainings.unshift(training);
+
+  save();
+
+  selectedTrainingId=training.id;
+
+  section='training-detail';
+
+  render();
+
+}
+
+
+/* =========================================================
+   ABRIR ENTRENAMIENTO
+========================================================= */
+
+function openTraining(id){
+
+  selectedTrainingId=id;
+
+  section='training-detail';
+
+  render();
+
+}
+
+
+function getSelectedTraining(){
+
+  return data.trainings.find(
+    t=>String(t.id)===String(selectedTrainingId)
+  );
+
+}
+
+
+/* =========================================================
+   ASISTENCIA
+========================================================= */
+
+function setAttendance(trainingId,playerId,status){
+
+  if(role!=='trainer'){
+    return;
+  }
+
+
+  const training=data.trainings.find(
+    t=>String(t.id)===String(trainingId)
+  );
+
+
+  if(!training){
+    return;
+  }
+
+
+  if(!training.attendance){
+    training.attendance={};
+  }
+
+
+  training.attendance[String(playerId)]=status;
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =========================================================
+   CALCULAR ASISTENCIA
+========================================================= */
+
+function attendanceStats(playerId){
+
+  let present=0;
+
+  let late=0;
+
+  let absent=0;
+
+  let total=0;
+
+
+  data.trainings.forEach(t=>{
+
+    if(!t.attendance){
+      return;
+    }
+
+
+    const status=
+      t.attendance[String(playerId)];
+
+
+    if(!status){
+      return;
+    }
+
+
+    total++;
+
+
+    if(status==='present'){
+      present++;
+    }
+
+
+    if(status==='late'){
+      late++;
+    }
+
+
+    if(status==='absent'){
+      absent++;
+    }
+
+  });
+
+
+  const percentage=
+    total>0
+    ?
+    Math.round(
+      (present+late)/total*100
+    )
+    :
+    0;
+
+
+  return {
+    present,
+    late,
+    absent,
+    total,
+    percentage
+  };
+
+}
+
+
+/* =========================================================
+   DETALLE ENTRENAMIENTO
+========================================================= */
+
+function trainingDetail(){
+
+  const t=getSelectedTraining();
+
+
+  if(!t){
+
+    return `
+
+      <div class="title">
+        Entrenamiento
+      </div>
+
+
+      <div class="card">
+
+        <div class="muted">
+          No se ha encontrado el entrenamiento.
+        </div>
+
+
+        <br>
+
+
+        <button
+          class="btn full"
+          onclick="go('training')">
+
+          ← Entrenamientos
+
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  const attendance=t.attendance||{};
+
+
+  const present=data.players.filter(
+    p=>attendance[String(p.id)]==='present'
+  ).length;
+
+
+  const absent=data.players.filter(
+    p=>attendance[String(p.id)]==='absent'
+  ).length;
+
+
+  const late=data.players.filter(
+    p=>attendance[String(p.id)]==='late'
+  ).length;
 
 
   return `
 
-    <div class="title">
-      Entrenamientos
-    </div>
+    <button
+      class="btn light"
+      onclick="go('training')"
+      style="margin-bottom:14px">
+
+      ← Entrenamientos
+
+    </button>
 
 
     <div class="card hero">
@@ -2204,14 +2550,14 @@ function training(){
         class="section-label"
         style="color:#b9e86c">
 
-        PRÓXIMO
+        ENTRENAMIENTO
 
       </div>
 
 
       <div class="big">
 
-        ${first.date}
+        ${t.date}
 
       </div>
 
@@ -2226,19 +2572,71 @@ function training(){
         <div class="match-info">
 
           <div class="match-date">
-
-            ${first.time}
-
+            ${t.time}
           </div>
 
 
           <div class="match-place">
-
-            📍 ${first.place}
-
+            📍 ${t.place}
           </div>
 
         </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="stat accent">
+
+        <b>
+          ${present}
+        </b>
+
+        <span>
+          Presentes
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${late}
+        </b>
+
+        <span>
+          Tarde
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${absent}
+        </b>
+
+        <span>
+          Ausentes
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${data.players.length}
+        </b>
+
+        <span>
+          Jugadores
+        </span>
 
       </div>
 
@@ -2248,136 +2646,267 @@ function training(){
     <div class="card">
 
       <div class="section-label">
-
-        ${
-          role==='trainer'
-          ?
-          'CONTROL DE ASISTENCIA'
-          :
-          'MI ASISTENCIA'
-        }
-
+        LISTA DE JUGADORES
       </div>
 
 
       ${
-        role==='trainer'
+        data.players.length
 
         ?
 
-        data.players.map(p=>`
+        data.players.map(p=>{
 
-          <div class="item">
-
-            <div class="avatar">
-              ⚽
-            </div>
+          const status=
+            attendance[String(p.id)]||'';
 
 
-            <div class="grow">
+          return `
 
-              <b>
+            <div class="item">
 
-                ${p.num} ·
-                ${p.name}
+              <div class="avatar">
 
-              </b>
+                ${p.pos==='POR'
+                  ?'🧤'
+                  :'⚽'}
+
+              </div>
 
 
-              <div class="muted small">
+              <div class="grow">
 
-                ${Number(p.train)||0}/
-                ${Number(p.total)||0}
-                entrenamientos
+                <b>
+
+                  ${p.num} ·
+                  ${p.name}
+
+                </b>
+
+
+                <div class="muted small">
+
+                  ${p.pos}
+
+                </div>
+
+              </div>
+
+
+              <div class="attendance-buttons">
+
+                <button
+                  class="attendance-btn present ${status==='present'?'active':''}"
+                  onclick="setAttendance(${t.id},${p.id},'present')"
+                  title="Presente">
+
+                  ✅
+
+                </button>
+
+
+                <button
+                  class="attendance-btn absent ${status==='absent'?'active':''}"
+                  onclick="setAttendance(${t.id},${p.id},'absent')"
+                  title="Ausente">
+
+                  ❌
+
+                </button>
+
+
+                <button
+                  class="attendance-btn late ${status==='late'?'active':''}"
+                  onclick="setAttendance(${t.id},${p.id},'late')"
+                  title="Tarde">
+
+                  🕐
+
+                </button>
 
               </div>
 
             </div>
 
+          `;
 
-            <span class="pill">
-
-              ${
-                Number(p.total)>0
-                ?
-                Math.round(
-                  Number(p.train)/
-                  Number(p.total)*
-                  100
-                )
-                :
-                0
-              }%
-
-            </span>
-
-          </div>
-
-        `).join('')
-
-
-        :
-
-
-        data.players[0]
-
-        ?
-
-        `
-
-        <div class="grid">
-
-          <div class="stat">
-
-            <b>
-              ${Number(data.players[0].train)||0}
-            </b>
-
-            <span>
-              Asistencias
-            </span>
-
-          </div>
-
-
-          <div class="stat accent">
-
-            <b>
-
-              ${
-                Number(data.players[0].total)>0
-                ?
-                Math.round(
-                  Number(data.players[0].train)/
-                  Number(data.players[0].total)*
-                  100
-                )
-                :
-                0
-              }%
-
-            </b>
-
-            <span>
-              Asistencia
-            </span>
-
-          </div>
-
-        </div>
-
-        `
+        }).join('')
 
 
         :
 
         `<div class="muted">
-          No hay datos.
+          No hay jugadores en la plantilla.
         </div>`
 
       }
 
     </div>
+
+
+    <div class="notice">
+
+      Pulsa ✅ para marcar presente,
+      ❌ para ausente o 🕐 para tarde.
+
+      <br><br>
+
+      La asistencia se actualizará automáticamente.
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ENTRENAMIENTOS
+========================================================= */
+
+function training(){
+
+  return `
+
+    <div class="title">
+      Entrenamientos
+    </div>
+
+
+    ${
+      role==='trainer'
+      ?
+      `
+
+      <div class="add-player">
+
+        <button
+          class="btn lime full"
+          onclick="addTraining()">
+
+          ➕ Crear entrenamiento
+
+        </button>
+
+      </div>
+
+      `
+      :
+      ''
+    }
+
+
+    ${
+      data.trainings.map((t,index)=>{
+
+        const statuses=
+          Object.values(t.attendance||{});
+
+
+        const present=
+          statuses.filter(
+            s=>s==='present'
+          ).length;
+
+
+        const late=
+          statuses.filter(
+            s=>s==='late'
+          ).length;
+
+
+        const total=data.players.length;
+
+
+        return `
+
+          <div
+            class="card training-card"
+            onclick="openTraining(${t.id})">
+
+            <div class="row">
+
+              <div>
+
+                <div class="section-label">
+
+                  ${index===0
+                    ?'PRÓXIMO'
+                    :'ENTRENAMIENTO'}
+
+                </div>
+
+
+                <div class="big">
+
+                  ${t.date}
+
+                </div>
+
+
+                <div class="muted small">
+
+                  ${t.time}
+                  ·
+                  ${t.place}
+
+                </div>
+
+              </div>
+
+
+              <div class="avatar">
+                🏋️
+              </div>
+
+            </div>
+
+
+            ${
+              role==='trainer'
+              ?
+              `
+
+              <div class="training-status">
+
+                <span class="pill">
+
+                  ✅ ${present} presentes
+
+                </span>
+
+
+                ${
+                  late>0
+                  ?
+                  `<span class="pill warning">
+                    🕐 ${late} tarde
+                  </span>`
+                  :
+                  ''
+                }
+
+
+                <span class="muted small">
+
+                  ${total} jugadores
+
+                </span>
+
+              </div>
+
+              `
+              :
+              ''
+            }
+
+          </div>
+
+        `;
+
+      }).join('')
+
+    }
 
   `;
 
@@ -2426,9 +2955,7 @@ function matches(){
         <div class="match-info">
 
           <div class="match-date">
-
             ${data.next.date}
-
           </div>
 
 
@@ -2493,7 +3020,7 @@ function matches(){
 
 function stats(){
 
-  let sorted=[...data.players]
+  const sorted=[...data.players]
     .sort(
       (a,b)=>
         (Number(b.g)||0)-
@@ -2641,9 +3168,7 @@ function stats(){
 
 
               <div class="muted small">
-
                 ${p.pos}
-
               </div>
 
             </div>
@@ -2686,12 +3211,12 @@ function stats(){
 
 
 /* =========================================================
-   PERFIL DEL JUGADOR
+   PERFIL
 ========================================================= */
 
 function profile(){
 
-  let p=data.players[0];
+  const p=data.players[0];
 
 
   if(!p){
