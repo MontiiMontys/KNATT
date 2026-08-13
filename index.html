@@ -663,7 +663,7 @@ function render(){
   if(section==='matches')c.innerHTML+=matches();
   if(section==='stats')c.innerHTML+=stats();
   if(section==='profile')c.innerHTML+=profile();
-}
+} if(section==='player')c.innerHTML+=playerProfile();
 
 function go(s){
   section=s;
@@ -1361,10 +1361,15 @@ function team(){
 
       ${
         list.length
+
         ?
+
         list.map(p=>`
 
-          <div class="item">
+          <div
+            class="item"
+            onclick="openPlayer(${p.id})"
+            style="cursor:pointer">
 
             <div class="avatar">
               ${p.pos==='POR'?'🧤':'⚽'}
@@ -1377,10 +1382,15 @@ function team(){
               </b>
 
               <div class="muted small">
-                ${p.pos} ·
-                ${p.available
+
+                ${p.pos||'Jugador'} ·
+
+                ${
+                  p.available
                   ?'🟢 Disponible'
-                  :'🔴 '+p.reason}
+                  :'🔴 '+(p.reason||'Ausente')
+                }
+
               </div>
 
               <div class="muted small">
@@ -1392,7 +1402,11 @@ function team(){
             </div>
 
             <span class="pill">
-              ${p.total ? Math.round(p.train/p.total*100) : 0}%
+              ${
+                p.total
+                ?Math.round(p.train/p.total*100)
+                :0
+              }%
             </span>
 
             ${
@@ -1401,7 +1415,7 @@ function team(){
               `
               <button
                 class="delete-btn"
-                onclick="deletePlayer(${p.id})"
+                onclick="event.stopPropagation();deletePlayer(${p.id})"
                 title="Eliminar jugador">
                 🗑️
               </button>
@@ -1413,10 +1427,16 @@ function team(){
           </div>
 
         `).join('')
+
         :
+
         `
-        <div class="muted" style="text-align:center;padding:20px 0">
+        <div
+          class="muted"
+          style="text-align:center;padding:20px 0">
+
           No hay jugadores en este filtro.
+
         </div>
         `
       }
