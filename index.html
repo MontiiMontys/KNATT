@@ -34,7 +34,7 @@ header{
 }
 
 .brand{
-  font-size:24px;
+  font-size:25px;
   font-weight:800;
 }
 
@@ -149,8 +149,8 @@ label{
 }
 
 .avatar{
-  width:42px;
-  height:42px;
+  width:44px;
+  height:44px;
   border-radius:50%;
   background:#dfe9e4;
   color:#103c2b;
@@ -158,6 +158,7 @@ label{
   align-items:center;
   justify-content:center;
   font-weight:800;
+  flex-shrink:0;
 }
 
 .small{
@@ -187,18 +188,106 @@ label{
   font-size:21px;
 }
 
-.notice{
-  background:#fff7df;
-  border:1px solid #f0df9e;
-  padding:12px;
-  border-radius:13px;
-  font-size:14px;
-}
-
 .empty{
   text-align:center;
   padding:25px 10px;
   color:#7a8480;
+}
+
+.green{
+  color:#187443;
+}
+
+.red{
+  color:#b32626;
+}
+
+.yellow{
+  color:#9a7600;
+}
+
+.search{
+  margin:12px 0;
+}
+
+.player-card{
+  background:white;
+  border:1px solid #e1e7e4;
+  border-radius:16px;
+  padding:13px;
+  margin-bottom:9px;
+}
+
+.player-card:active{
+  transform:scale(.99);
+}
+
+.player-main{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.player-info{
+  flex:1;
+  min-width:0;
+}
+
+.player-name{
+  font-size:16px;
+  font-weight:800;
+}
+
+.player-meta{
+  margin-top:3px;
+  font-size:13px;
+  color:#737d79;
+}
+
+.status-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:5px;
+}
+
+.dot-green{
+  background:#24a148;
+}
+
+.dot-red{
+  background:#c62828;
+}
+
+.fine{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid #edf0ef;
+}
+
+.fine:last-child{
+  border-bottom:0;
+}
+
+.total-fines{
+  background:#fff7df;
+  border:1px solid #f0df9e;
+  padding:14px;
+  border-radius:13px;
+  margin-top:10px;
+}
+
+.action-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.action-grid button{
+  min-height:65px;
 }
 
 nav{
@@ -264,26 +353,20 @@ nav button.active{
   padding:8px 11px;
 }
 
-.action-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+.section-title{
+  font-size:15px;
+  font-weight:800;
+  margin:18px 0 8px;
 }
 
-.action-grid button{
-  min-height:70px;
-}
+@media(max-width:380px){
+  .grid3{
+    gap:5px;
+  }
 
-.green{
-  color:#187443;
-}
-
-.red{
-  color:#b32626;
-}
-
-.yellow{
-  color:#9a7600;
+  .stat strong{
+    font-size:18px;
+  }
 }
 </style>
 </head>
@@ -294,31 +377,38 @@ nav button.active{
 
 <header>
   <div class="brand">⚽ KNATT</div>
-  <div class="header-sub" id="headerSub">Gestión de equipo</div>
+  <div class="header-sub" id="headerSub">Entrenador</div>
 </header>
 
 <main id="content"></main>
 
 <nav id="nav">
+
   <button onclick="go('inicio')" id="nav-inicio">
-    <span class="nav-icon">🏠</span>Inicio
+    <span class="nav-icon">🏠</span>
+    Inicio
   </button>
 
   <button onclick="go('plantilla')" id="nav-plantilla">
-    <span class="nav-icon">👥</span>Plantilla
+    <span class="nav-icon">👥</span>
+    Plantilla
   </button>
 
   <button onclick="go('entrenos')" id="nav-entrenos">
-    <span class="nav-icon">🏋️</span>Entrenos
+    <span class="nav-icon">🏋️</span>
+    Entrenos
   </button>
 
   <button onclick="go('partidos')" id="nav-partidos">
-    <span class="nav-icon">⚽</span>Partidos
+    <span class="nav-icon">⚽</span>
+    Partidos
   </button>
 
   <button onclick="go('mas')" id="nav-mas">
-    <span class="nav-icon">☰</span>Más
+    <span class="nav-icon">☰</span>
+    Más
   </button>
+
 </nav>
 
 </div>
@@ -334,18 +424,59 @@ const KEY="teamhub-v2";
 let data=JSON.parse(localStorage.getItem(KEY)||"null");
 
 if(!data){
+
   data={
     team:{
       name:"KNATT",
-      season:""
+      season:"2026/27"
     },
 
     players:[
-      {id:1,name:"Montiimontys",num:9,pos:"DC",available:true,reason:""},
-      {id:2,name:"Marc",num:7,pos:"MC",available:true,reason:""},
-      {id:3,name:"Juan",num:4,pos:"DFC",available:false,reason:"Lesión"},
-      {id:4,name:"Alex",num:1,pos:"POR",available:true,reason:""},
-      {id:5,name:"Pedro",num:3,pos:"LI",available:false,reason:"Trabajo"}
+      {
+        id:1,
+        name:"Montiimontys",
+        num:9,
+        pos:"DC",
+        available:true,
+        reason:"",
+        fines:[]
+      },
+      {
+        id:2,
+        name:"Marc",
+        num:7,
+        pos:"MC",
+        available:true,
+        reason:"",
+        fines:[]
+      },
+      {
+        id:3,
+        name:"Juan",
+        num:4,
+        pos:"DFC",
+        available:false,
+        reason:"Lesión",
+        fines:[]
+      },
+      {
+        id:4,
+        name:"Alex",
+        num:1,
+        pos:"POR",
+        available:true,
+        reason:"",
+        fines:[]
+      },
+      {
+        id:5,
+        name:"Pedro",
+        num:3,
+        pos:"LI",
+        available:false,
+        reason:"Trabajo",
+        fines:[]
+      }
     ],
 
     matches:[
@@ -375,7 +506,18 @@ if(!data){
   };
 
   save();
+
 }
+
+/* Compatibilidad con datos antiguos */
+
+data.players.forEach(p=>{
+  if(!p.fines)p.fines=[];
+});
+
+if(!data.stats)data.stats={};
+if(!data.matches)data.matches=[];
+if(!data.trainings)data.trainings=[];
 
 function save(){
   localStorage.setItem(KEY,JSON.stringify(data));
@@ -384,11 +526,14 @@ function save(){
 let current="inicio";
 
 function go(page){
+
   current=page;
 
-  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll("nav button")
+    .forEach(x=>x.classList.remove("active"));
 
   const n=document.getElementById("nav-"+page);
+
   if(n)n.classList.add("active");
 
   render();
@@ -398,30 +543,49 @@ function render(){
 
   const content=document.getElementById("content");
 
-  if(current==="inicio") content.innerHTML=home();
-  if(current==="plantilla") content.innerHTML=plantilla();
-  if(current==="entrenos") content.innerHTML=entrenos();
-  if(current==="partidos") content.innerHTML=partidos();
-  if(current==="mas") content.innerHTML=mas();
+  if(current==="inicio")content.innerHTML=home();
+  if(current==="plantilla")content.innerHTML=plantilla();
+  if(current==="entrenos")content.innerHTML=entrenos();
+  if(current==="partidos")content.innerHTML=partidos();
+  if(current==="mas")content.innerHTML=mas();
 
   document.getElementById("headerSub").textContent=
-    data.role==="administrador" ? "Administrador" :
-    data.role==="entrenador" ? "Entrenador" :
-    "Jugador";
+    data.role==="administrador"
+    ? "Administrador"
+    : data.role==="jugador"
+    ? "Jugador"
+    : "Entrenador";
 }
+
+/* =========================
+   INICIO
+========================= */
 
 function home(){
 
   const next=data.matches[0];
 
-  const disponibles=data.players.filter(p=>p.available).length;
+  const disponibles=
+    data.players.filter(p=>p.available).length;
+
+  const totalFines=
+    data.players.reduce(
+      (total,p)=>
+      total+p.fines.reduce((a,f)=>a+Number(f.amount||0),0)
+    ,0);
 
   return `
+
     <div class="card">
+
       <h2>👋 Inicio</h2>
-      <p class="small">Panel principal de ${data.team.name}</p>
+
+      <p class="small">
+        Panel principal de ${data.team.name}
+      </p>
 
       <div class="grid3">
+
         <div class="stat">
           <strong>${data.players.length}</strong>
           <span class="small">Jugadores</span>
@@ -436,111 +600,290 @@ function home(){
           <strong>${data.trainings.length}</strong>
           <span class="small">Entrenos</span>
         </div>
+
       </div>
+
     </div>
 
     <div class="card">
+
       <h2>🏆 Próximo partido</h2>
 
       ${
         next
-        ? `
-          <div class="item">
-            <div class="avatar">⚽</div>
-            <div style="flex:1">
-              <strong>${next.opponent}</strong>
-              <div class="small">${next.date} · ${next.time}</div>
-              <div class="small">${next.location}</div>
+        ?
+        `
+        <div class="item">
+
+          <div class="avatar">⚽</div>
+
+          <div style="flex:1">
+
+            <strong>${next.opponent}</strong>
+
+            <div class="small">
+              ${next.date} · ${next.time}
             </div>
+
+            <div class="small">
+              ${next.location}
+            </div>
+
           </div>
 
-          <button class="btn" style="width:100%;margin-top:10px"
-            onclick="go('partidos')">
-            Ver partido
-          </button>
+        </div>
+
+        <button
+          class="btn"
+          style="width:100%;margin-top:10px"
+          onclick="go('partidos')">
+
+          Ver partido
+
+        </button>
         `
-        : `<div class="empty">No hay partidos registrados.</div>`
+        :
+        `<div class="empty">No hay partidos registrados.</div>`
       }
+
     </div>
 
     <div class="card">
+
       <h2>🏋️ Próximo entrenamiento</h2>
 
       ${
         data.trainings[0]
-        ? `
-          <strong>${data.trainings[0].date}</strong>
-          <div class="small">
-            ${data.trainings[0].time} · ${data.trainings[0].place}
-          </div>
+        ?
         `
-        : `<div class="empty">No hay entrenamientos.</div>`
+        <strong>${data.trainings[0].date}</strong>
+
+        <div class="small">
+          ${data.trainings[0].time}
+          ·
+          ${data.trainings[0].place}
+        </div>
+        `
+        :
+        `<div class="empty">No hay entrenamientos.</div>`
       }
+
     </div>
 
     <div class="card">
+
+      <h2>💶 Multas</h2>
+
+      <div class="total-fines">
+
+        <div class="row-between">
+
+          <span>
+            Total acumulado
+          </span>
+
+          <strong>
+            ${totalFines.toFixed(2)} €
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
       <h2>⚡ Acciones rápidas</h2>
 
       <div class="action-grid">
-        <button class="btn-light" onclick="go('plantilla')">👥 Plantilla</button>
-        <button class="btn-light" onclick="go('entrenos')">🏋️ Entreno</button>
-        <button class="btn-light" onclick="go('partidos')">⚽ Partido</button>
-        <button class="btn-light" onclick="go('mas')">⚙️ Más</button>
+
+        <button
+          class="btn-light"
+          onclick="go('plantilla')">
+          👥 Plantilla
+        </button>
+
+        <button
+          class="btn-light"
+          onclick="go('entrenos')">
+          🏋️ Entreno
+        </button>
+
+        <button
+          class="btn-light"
+          onclick="go('partidos')">
+          ⚽ Partido
+        </button>
+
+        <button
+          class="btn-light"
+          onclick="go('mas')">
+          ⚙️ Más
+        </button>
+
       </div>
+
     </div>
+
   `;
 }
+
+/* =========================
+   PLANTILLA
+========================= */
 
 function plantilla(){
 
   return `
+
     <div class="row-between">
+
       <div>
-        <h2 style="margin-bottom:3px">👥 Plantilla</h2>
-        <div class="small">${data.players.length} jugadores</div>
+
+        <h2 style="margin-bottom:3px">
+          👥 Plantilla
+        </h2>
+
+        <div class="small">
+          ${data.players.length} jugadores
+        </div>
+
       </div>
 
       ${
         data.role!=="jugador"
-        ? `<button class="btn" onclick="newPlayer()">＋</button>`
-        : ""
+        ?
+        `
+        <button
+          class="btn"
+          onclick="newPlayer()">
+          ＋
+        </button>
+        `
+        :
+        ""
       }
+
     </div>
 
-    <div class="card" style="margin-top:12px">
+    <input
+      class="search"
+      id="playerSearch"
+      placeholder="🔎 Buscar jugador..."
+      oninput="filterPlayers()">
 
-      ${
-        data.players.map(p=>`
+    <div id="playerList">
+      ${playerList()}
+    </div>
 
-          <div class="item">
+  `;
+}
 
-            <div class="avatar">${p.num}</div>
+function playerList(filter=""){
 
-            <div style="flex:1">
-              <strong>${p.name}</strong>
-              <div class="small">
-                ${p.pos} ·
-                ${
-                  p.available
-                  ? `<span class="green">Disponible</span>`
-                  : `<span class="red">No disponible</span>`
-                }
-              </div>
+  const search=filter.toLowerCase();
+
+  const players=data.players.filter(p=>
+    p.name.toLowerCase().includes(search) ||
+    p.pos.toLowerCase().includes(search)
+  );
+
+  if(!players.length){
+    return `
+      <div class="card empty">
+        No se encontraron jugadores.
+      </div>
+    `;
+  }
+
+  return players.map(p=>{
+
+    const fines=
+      p.fines.reduce(
+        (a,f)=>a+Number(f.amount||0),0
+      );
+
+    return `
+
+      <div
+        class="player-card"
+        onclick="player(${p.id})">
+
+        <div class="player-main">
+
+          <div class="avatar">
+            ${p.num||"-"}
+          </div>
+
+          <div class="player-info">
+
+            <div class="player-name">
+              ${p.name}
             </div>
 
-            <button class="btn-light"
-              onclick="player(${p.id})">
-              Ver
-            </button>
+            <div class="player-meta">
+
+              ${p.pos}
+
+              ·
+
+              <span class="${p.available?"green":"red"}">
+
+                <span class="status-dot ${
+                  p.available
+                  ?"dot-green"
+                  :"dot-red"
+                }"></span>
+
+                ${
+                  p.available
+                  ?"Disponible"
+                  :"No disponible"
+                }
+
+              </span>
+
+            </div>
 
           </div>
 
-        `).join("")
-      }
+          ${
+            fines>0
+            ?
+            `
+            <span class="badge">
+              ${fines.toFixed(2)} €
+            </span>
+            `
+            :
+            ""
+          }
 
-    </div>
-  `;
+          <span>›</span>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+
 }
+
+function filterPlayers(){
+
+  const value=
+    document.getElementById("playerSearch").value;
+
+  document.getElementById("playerList").innerHTML=
+    playerList(value);
+}
+
+/* =========================
+   FICHA JUGADOR
+========================= */
 
 function player(id){
 
@@ -556,47 +899,94 @@ function player(id){
     games:0
   };
 
+  const totalFines=
+    p.fines.reduce(
+      (a,f)=>a+Number(f.amount||0),0
+    );
+
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>${p.name}</h2>
+    <h2>
+      ${p.name}
+    </h2>
 
     <div class="grid2">
 
-      <div>
-        <div class="small">Dorsal</div>
-        <strong>#${p.num}</strong>
+      <div class="stat">
+
+        <strong>
+          #${p.num}
+        </strong>
+
+        <span class="small">
+          Dorsal
+        </span>
+
       </div>
 
-      <div>
-        <div class="small">Posición</div>
-        <strong>${p.pos}</strong>
+      <div class="stat">
+
+        <strong>
+          ${p.pos}
+        </strong>
+
+        <span class="small">
+          Posición
+        </span>
+
       </div>
 
     </div>
 
-    <div class="card" style="margin-top:15px;background:#f4f7f5">
+    <div
+      class="card"
+      style="margin-top:15px;background:#f4f7f5">
 
       <div class="row-between">
-        <strong>Estado</strong>
+
+        <strong>
+          Estado
+        </strong>
 
         ${
           p.available
-          ? `<span class="badge green">Disponible</span>`
-          : `<span class="badge red">No disponible</span>`
+          ?
+          `<span class="badge green">
+             Disponible
+           </span>`
+          :
+          `<span class="badge red">
+             No disponible
+           </span>`
         }
+
       </div>
 
       ${
         !p.available && p.reason
-        ? `<div class="small" style="margin-top:8px">${p.reason}</div>`
-        : ""
+        ?
+        `
+        <div
+          class="small"
+          style="margin-top:8px">
+          Motivo: ${p.reason}
+        </div>
+        `
+        :
+        ""
       }
 
     </div>
 
-    <h3>📊 Estadísticas</h3>
+    <div class="section-title">
+      📊 Estadísticas
+    </div>
 
     <div class="grid3">
 
@@ -631,36 +1021,140 @@ function player(id){
 
     </div>
 
+    <div class="section-title">
+      💶 Multas
+    </div>
+
+    <div class="total-fines">
+
+      <div class="row-between">
+
+        <span>
+          Total
+        </span>
+
+        <strong>
+          ${totalFines.toFixed(2)} €
+        </strong>
+
+      </div>
+
+    </div>
+
+    ${
+      p.fines.length
+      ?
+      p.fines.map(f=>`
+
+        <div class="fine">
+
+          <div>
+
+            <strong>
+              ${f.reason}
+            </strong>
+
+            <div class="small">
+              ${f.date||""}
+            </div>
+
+          </div>
+
+          <strong class="red">
+            ${Number(f.amount).toFixed(2)} €
+          </strong>
+
+        </div>
+
+      `).join("")
+      :
+      `<div class="empty">
+        Este jugador no tiene multas.
+      </div>`
+    }
+
     ${
       data.role!=="jugador"
-      ? `
-        <button class="btn" style="width:100%;margin-top:15px"
-          onclick="editPlayer(${p.id})">
-          ✏️ Editar jugador
-        </button>
+      ?
       `
-      : ""
+
+      <button
+        class="btn-gold"
+        style="width:100%;margin-top:15px"
+        onclick="newFine(${p.id})">
+
+        💶 Añadir multa
+
+      </button>
+
+      <button
+        class="btn"
+        style="width:100%;margin-top:8px"
+        onclick="editPlayer(${p.id})">
+
+        ✏️ Editar jugador
+
+      </button>
+
+      <button
+        class="btn-light"
+        style="width:100%;margin-top:8px"
+        onclick="editStats(${p.id})">
+
+        📊 Editar estadísticas
+
+      </button>
+
+      `
+      :
+      ""
     }
 
   `);
+
 }
+
+/* =========================
+   NUEVO JUGADOR
+========================= */
 
 function newPlayer(){
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>Nuevo jugador</h2>
+    <h2>
+      Nuevo jugador
+    </h2>
 
-    <label>Nombre</label>
-    <input id="pName" placeholder="Nombre del jugador">
+    <label>
+      Nombre
+    </label>
 
-    <label>Dorsal</label>
-    <input id="pNum" type="number" placeholder="Dorsal">
+    <input
+      id="pName"
+      placeholder="Nombre del jugador">
 
-    <label>Posición</label>
+    <label>
+      Dorsal
+    </label>
+
+    <input
+      id="pNum"
+      type="number"
+      placeholder="Dorsal">
+
+    <label>
+      Posición
+    </label>
+
     <select id="pPos">
+
       <option>POR</option>
       <option>DFC</option>
       <option>LD</option>
@@ -670,37 +1164,64 @@ function newPlayer(){
       <option>ED</option>
       <option>EI</option>
       <option>DC</option>
+
     </select>
 
-    <button class="btn" style="width:100%;margin-top:16px"
+    <button
+      class="btn"
+      style="width:100%;margin-top:16px"
       onclick="addPlayer()">
+
       Guardar jugador
+
     </button>
 
   `);
+
 }
 
 function addPlayer(){
 
-  const name=document.getElementById("pName").value.trim();
-  const num=Number(document.getElementById("pNum").value);
-  const pos=document.getElementById("pPos").value;
+  const name=
+    document.getElementById("pName")
+    .value.trim();
 
-  if(!name)return alert("Introduce el nombre.");
+  const num=
+    Number(
+      document.getElementById("pNum").value
+    );
+
+  const pos=
+    document.getElementById("pPos").value;
+
+  if(!name){
+    alert("Introduce el nombre.");
+    return;
+  }
 
   data.players.push({
+
     id:Date.now(),
     name,
     num,
     pos,
     available:true,
-    reason:""
+    reason:"",
+    fines:[]
+
   });
 
   save();
+
   closeModal();
+
   render();
+
 }
+
+/* =========================
+   EDITAR JUGADOR
+========================= */
 
 function editPlayer(id){
 
@@ -710,74 +1231,268 @@ function editPlayer(id){
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
-
-    <h2>Editar jugador</h2>
-
-    <label>Nombre</label>
-    <input id="eName" value="${p.name}">
-
-    <label>Dorsal</label>
-    <input id="eNum" type="number" value="${p.num}">
-
-    <label>Posición</label>
-    <select id="ePos">
-
-      ${["POR","DFC","LD","LI","MC","MP","ED","EI","DC"]
-      .map(x=>`<option ${x===p.pos?"selected":""}>${x}</option>`)
-      .join("")}
-
-    </select>
-
-    <label>Disponibilidad</label>
-
-    <select id="eAvailable">
-      <option value="true" ${p.available?"selected":""}>Disponible</option>
-      <option value="false" ${!p.available?"selected":""}>No disponible</option>
-    </select>
-
-    <label>Motivo</label>
-    <input id="eReason" value="${p.reason||""}"
-      placeholder="Lesión, trabajo, etc.">
-
-    <button class="btn" style="width:100%;margin-top:15px"
-      onclick="savePlayer(${id})">
-      Guardar cambios
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
     </button>
 
-    <button class="btn-danger" style="width:100%;margin-top:8px"
+    <h2>
+      Editar jugador
+    </h2>
+
+    <label>
+      Nombre
+    </label>
+
+    <input
+      id="eName"
+      value="${p.name}">
+
+    <label>
+      Dorsal
+    </label>
+
+    <input
+      id="eNum"
+      type="number"
+      value="${p.num}">
+
+    <label>
+      Posición
+    </label>
+
+    <select id="ePos">
+
+      ${
+        ["POR","DFC","LD","LI","MC","MP","ED","EI","DC"]
+        .map(x=>
+          `<option ${
+            x===p.pos
+            ?"selected"
+            :""
+          }>${x}</option>`
+        ).join("")
+      }
+
+    </select>
+
+    <label>
+      Disponibilidad
+    </label>
+
+    <select id="eAvailable">
+
+      <option
+        value="true"
+        ${p.available?"selected":""}>
+        Disponible
+      </option>
+
+      <option
+        value="false"
+        ${!p.available?"selected":""}>
+        No disponible
+      </option>
+
+    </select>
+
+    <label>
+      Motivo
+    </label>
+
+    <input
+      id="eReason"
+      value="${p.reason||""}"
+      placeholder="Lesión, trabajo, etc.">
+
+    <button
+      class="btn"
+      style="width:100%;margin-top:15px"
+      onclick="savePlayer(${id})">
+
+      Guardar cambios
+
+    </button>
+
+    <button
+      class="btn-danger"
+      style="width:100%;margin-top:8px"
       onclick="deletePlayer(${id})">
+
       Eliminar jugador
+
     </button>
 
   `);
+
 }
 
 function savePlayer(id){
 
   const p=data.players.find(x=>x.id===id);
 
-  p.name=document.getElementById("eName").value.trim();
-  p.num=Number(document.getElementById("eNum").value);
-  p.pos=document.getElementById("ePos").value;
-  p.available=document.getElementById("eAvailable").value==="true";
-  p.reason=document.getElementById("eReason").value.trim();
+  if(!p)return;
+
+  p.name=
+    document.getElementById("eName")
+    .value.trim();
+
+  p.num=
+    Number(
+      document.getElementById("eNum").value
+    );
+
+  p.pos=
+    document.getElementById("ePos").value;
+
+  p.available=
+    document.getElementById("eAvailable")
+    .value==="true";
+
+  p.reason=
+    document.getElementById("eReason")
+    .value.trim();
 
   save();
+
   closeModal();
+
   render();
+
 }
 
 function deletePlayer(id){
 
-  if(!confirm("¿Eliminar este jugador?"))return;
+  if(!confirm(
+    "¿Eliminar este jugador?"
+  ))return;
 
-  data.players=data.players.filter(x=>x.id!==id);
+  data.players=
+    data.players.filter(
+      x=>x.id!==id
+    );
 
   save();
+
   closeModal();
+
   render();
+
 }
+
+/* =========================
+   MULTAS
+========================= */
+
+function newFine(id){
+
+  const p=data.players.find(x=>x.id===id);
+
+  if(!p)return;
+
+  openModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
+
+    <h2>
+      💶 Nueva multa
+    </h2>
+
+    <p class="small">
+      Jugador: ${p.name}
+    </p>
+
+    <label>
+      Motivo
+    </label>
+
+    <input
+      id="fReason"
+      placeholder="Ej. Llegar tarde">
+
+    <label>
+      Importe (€)
+    </label>
+
+    <input
+      id="fAmount"
+      type="number"
+      step="0.01"
+      placeholder="10">
+
+    <label>
+      Fecha
+    </label>
+
+    <input
+      id="fDate"
+      placeholder="13/08/2026">
+
+    <button
+      class="btn-gold"
+      style="width:100%;margin-top:15px"
+      onclick="addFine(${id})">
+
+      Añadir multa
+
+    </button>
+
+  `);
+
+}
+
+function addFine(id){
+
+  const p=data.players.find(x=>x.id===id);
+
+  const reason=
+    document.getElementById("fReason")
+    .value.trim();
+
+  const amount=
+    Number(
+      document.getElementById("fAmount").value
+    );
+
+  const date=
+    document.getElementById("fDate")
+    .value.trim();
+
+  if(!reason){
+    alert("Introduce el motivo.");
+    return;
+  }
+
+  if(!amount || amount<=0){
+    alert("Introduce un importe válido.");
+    return;
+  }
+
+  p.fines.push({
+
+    id:Date.now(),
+    reason,
+    amount,
+    date
+
+  });
+
+  save();
+
+  closeModal();
+
+  player(id);
+
+}
+
+/* =========================
+   ENTRENAMIENTOS
+========================= */
 
 function entrenos(){
 
@@ -786,135 +1501,229 @@ function entrenos(){
     <div class="row-between">
 
       <div>
-        <h2 style="margin-bottom:3px">🏋️ Entrenamientos</h2>
-        <div class="small">Control de asistencia</div>
+
+        <h2>
+          🏋️ Entrenamientos
+        </h2>
+
+        <div class="small">
+          Control de asistencia
+        </div>
+
       </div>
 
       ${
         data.role!=="jugador"
-        ? `<button class="btn" onclick="newTraining()">＋</button>`
-        : ""
+        ?
+        `<button
+          class="btn"
+          onclick="newTraining()">
+          ＋
+        </button>`
+        :
+        ""
       }
 
     </div>
 
     ${
       data.trainings.length
-      ? data.trainings.map(t=>`
+      ?
+      data.trainings.map(t=>`
 
         <div class="card">
 
           <div class="row-between">
 
             <div>
-              <strong>${t.date}</strong>
+
+              <strong>
+                ${t.date}
+              </strong>
+
               <div class="small">
                 ${t.time} · ${t.place}
               </div>
+
             </div>
 
-            <button class="btn-light"
+            <button
+              class="btn-light"
               onclick="attendance(${t.id},'training')">
+
               Asistencia
+
             </button>
 
           </div>
 
-          <div class="small" style="margin-top:10px">
-            ${t.attendance.length}/${data.players.length} registrados
+          <div
+            class="small"
+            style="margin-top:10px">
+
+            ${t.attendance.length}
+            /
+            ${data.players.length}
+            asistentes
+
           </div>
 
         </div>
 
       `).join("")
-      : `<div class="card empty">No hay entrenamientos.</div>`
+      :
+      `<div class="card empty">
+        No hay entrenamientos.
+      </div>`
     }
 
   `;
+
 }
 
 function newTraining(){
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>Nuevo entrenamiento</h2>
+    <h2>
+      Nuevo entrenamiento
+    </h2>
 
-    <label>Fecha</label>
-    <input id="tDate" placeholder="Jueves 20 de agosto">
+    <label>
+      Fecha
+    </label>
 
-    <label>Hora</label>
-    <input id="tTime" placeholder="21:15">
+    <input
+      id="tDate"
+      placeholder="Jueves 20 de agosto">
 
-    <label>Lugar</label>
-    <input id="tPlace" placeholder="Campo habitual">
+    <label>
+      Hora
+    </label>
 
-    <button class="btn" style="width:100%;margin-top:15px"
+    <input
+      id="tTime"
+      placeholder="21:15">
+
+    <label>
+      Lugar
+    </label>
+
+    <input
+      id="tPlace"
+      placeholder="Campo habitual">
+
+    <button
+      class="btn"
+      style="width:100%;margin-top:15px"
       onclick="addTraining()">
+
       Crear entrenamiento
+
     </button>
 
   `);
+
 }
 
 function addTraining(){
 
-  const date=document.getElementById("tDate").value.trim();
-  const time=document.getElementById("tTime").value.trim();
-  const place=document.getElementById("tPlace").value.trim();
+  const date=
+    document.getElementById("tDate")
+    .value.trim();
 
-  if(!date)return alert("Introduce la fecha.");
+  const time=
+    document.getElementById("tTime")
+    .value.trim();
+
+  const place=
+    document.getElementById("tPlace")
+    .value.trim();
+
+  if(!date){
+    alert("Introduce la fecha.");
+    return;
+  }
 
   data.trainings.push({
+
     id:Date.now(),
     date,
     time,
     place,
     attendance:[]
+
   });
 
   save();
+
   closeModal();
+
   render();
+
 }
+
+/* =========================
+   ASISTENCIA
+========================= */
 
 function attendance(id,type){
 
   const list=
     type==="training"
-    ? data.trainings.find(x=>x.id===id)
-    : data.matches.find(x=>x.id===id);
+    ?
+    data.trainings.find(x=>x.id===id)
+    :
+    data.matches.find(x=>x.id===id);
 
   if(!list)return;
 
-  let records=type==="training"
-    ? list.attendance
-    : list.convocados;
+  const records=
+    type==="training"
+    ?
+    list.attendance
+    :
+    list.convocados;
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>${type==="training"?"🏋️ Asistencia":"⚽ Convocatoria"}</h2>
-
-    <p class="small">
-      Marca los jugadores que ${
-        type==="training"?"han asistido":"están convocados"
-      }.
-    </p>
+    <h2>
+      ${
+        type==="training"
+        ?"🏋️ Asistencia"
+        :"⚽ Convocatoria"
+      }
+    </h2>
 
     ${
       data.players.map(p=>`
 
-        <label style="display:flex;align-items:center;gap:10px">
+        <label
+          style="
+          display:flex;
+          align-items:center;
+          gap:10px">
 
           <input
             type="checkbox"
             style="width:auto"
             value="${p.id}"
-            ${records.includes(p.id)?"checked":""}
-          >
+            ${records.includes(p.id)
+              ?"checked"
+              :""
+            }>
 
           ${p.name}
 
@@ -923,32 +1732,54 @@ function attendance(id,type){
       `).join("")
     }
 
-    <button class="btn" style="width:100%;margin-top:16px"
+    <button
+      class="btn"
+      style="width:100%;margin-top:16px"
       onclick="saveAttendance(${id},'${type}')">
+
       Guardar
+
     </button>
 
   `);
+
 }
 
 function saveAttendance(id,type){
 
-  const ids=[...document.querySelectorAll(
-    '.modal-box input[type="checkbox"]:checked'
-  )].map(x=>Number(x.value));
+  const ids=
+    [...document.querySelectorAll(
+      '.modal-box input[type="checkbox"]:checked'
+    )]
+    .map(x=>Number(x.value));
 
   if(type==="training"){
-    const t=data.trainings.find(x=>x.id===id);
+
+    const t=
+      data.trainings.find(x=>x.id===id);
+
     t.attendance=ids;
+
   }else{
-    const m=data.matches.find(x=>x.id===id);
+
+    const m=
+      data.matches.find(x=>x.id===id);
+
     m.convocados=ids;
+
   }
 
   save();
+
   closeModal();
+
   render();
+
 }
+
+/* =========================
+   PARTIDOS
+========================= */
 
 function partidos(){
 
@@ -957,25 +1788,41 @@ function partidos(){
     <div class="row-between">
 
       <div>
-        <h2 style="margin-bottom:3px">⚽ Partidos</h2>
-        <div class="small">Calendario y convocatorias</div>
+
+        <h2>
+          ⚽ Partidos
+        </h2>
+
+        <div class="small">
+          Calendario y convocatorias
+        </div>
+
       </div>
 
       ${
         data.role!=="jugador"
-        ? `<button class="btn" onclick="newMatch()">＋</button>`
-        : ""
+        ?
+        `<button
+          class="btn"
+          onclick="newMatch()">
+          ＋
+        </button>`
+        :
+        ""
       }
 
     </div>
 
     ${
       data.matches.length
-      ? data.matches.map(m=>`
+      ?
+      data.matches.map(m=>`
 
         <div class="card">
 
-          <h3>${m.opponent}</h3>
+          <h3>
+            ${m.opponent}
+          </h3>
 
           <div class="small">
             📅 ${m.date}
@@ -989,75 +1836,139 @@ function partidos(){
             📍 ${m.location}
           </div>
 
-          <div class="row" style="margin-top:14px">
+          <button
+            class="btn-light"
+            style="margin-top:14px"
+            onclick="attendance(${m.id},'match')">
 
-            <button class="btn-light"
-              onclick="attendance(${m.id},'match')">
-              Convocatoria
-            </button>
+            Convocatoria
 
-          </div>
+          </button>
 
-          <div class="small" style="margin-top:10px">
-            ${m.convocados.length} convocados
+          <div
+            class="small"
+            style="margin-top:10px">
+
+            ${m.convocados.length}
+            convocados
+
           </div>
 
         </div>
 
       `).join("")
-      : `<div class="card empty">No hay partidos.</div>`
+      :
+      `<div class="card empty">
+        No hay partidos.
+      </div>`
     }
 
   `;
+
 }
 
 function newMatch(){
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>Nuevo partido</h2>
+    <h2>
+      Nuevo partido
+    </h2>
 
-    <label>Rival</label>
-    <input id="mOpponent" placeholder="Nombre del rival">
+    <label>
+      Rival
+    </label>
 
-    <label>Fecha</label>
-    <input id="mDate" placeholder="Domingo 23 de agosto">
+    <input
+      id="mOpponent"
+      placeholder="Nombre del rival">
 
-    <label>Hora</label>
-    <input id="mTime" placeholder="12:00">
+    <label>
+      Fecha
+    </label>
 
-    <label>Lugar</label>
-    <input id="mLocation" placeholder="Campo">
+    <input
+      id="mDate"
+      placeholder="Domingo 23 de agosto">
 
-    <button class="btn" style="width:100%;margin-top:15px"
+    <label>
+      Hora
+    </label>
+
+    <input
+      id="mTime"
+      placeholder="12:00">
+
+    <label>
+      Lugar
+    </label>
+
+    <input
+      id="mLocation"
+      placeholder="Campo">
+
+    <button
+      class="btn"
+      style="width:100%;margin-top:15px"
       onclick="addMatch()">
+
       Crear partido
+
     </button>
 
   `);
+
 }
 
 function addMatch(){
 
-  const opponent=document.getElementById("mOpponent").value.trim();
+  const opponent=
+    document.getElementById("mOpponent")
+    .value.trim();
 
-  if(!opponent)return alert("Introduce el rival.");
+  if(!opponent){
+    alert("Introduce el rival.");
+    return;
+  }
 
   data.matches.push({
+
     id:Date.now(),
     opponent,
-    date:document.getElementById("mDate").value.trim(),
-    time:document.getElementById("mTime").value.trim(),
-    location:document.getElementById("mLocation").value.trim(),
+
+    date:
+      document.getElementById("mDate")
+      .value.trim(),
+
+    time:
+      document.getElementById("mTime")
+      .value.trim(),
+
+    location:
+      document.getElementById("mLocation")
+      .value.trim(),
+
     convocados:[]
+
   });
 
   save();
+
   closeModal();
+
   render();
+
 }
+
+/* =========================
+   MÁS
+========================= */
 
 function mas(){
 
@@ -1065,75 +1976,219 @@ function mas(){
 
     <div class="card">
 
-      <h2>⚙️ Más</h2>
+      <h2>
+        ⚙️ Más
+      </h2>
 
       <div class="item">
-        <div class="avatar">👤</div>
-        <div style="flex:1">
-          <strong>Rol actual</strong>
-          <div class="small">${data.role}</div>
+
+        <div class="avatar">
+          👤
         </div>
 
-        <button class="btn-light" onclick="changeRole()">
+        <div style="flex:1">
+
+          <strong>
+            Rol actual
+          </strong>
+
+          <div class="small">
+            ${data.role}
+          </div>
+
+        </div>
+
+        <button
+          class="btn-light"
+          onclick="changeRole()">
+
           Cambiar
+
         </button>
+
       </div>
 
     </div>
 
     <div class="card">
 
-      <h2>📊 Estadísticas</h2>
+      <h2>
+        📊 Estadísticas
+      </h2>
 
-      <button class="btn-light"
+      <button
+        class="btn-light"
         style="width:100%"
         onclick="statistics()">
+
         Ver estadísticas
+
       </button>
 
     </div>
 
     <div class="card">
 
-      <h2>ℹ️ KNATT</h2>
+      <h2>
+        💶 Multas
+      </h2>
+
+      <button
+        class="btn-light"
+        style="width:100%"
+        onclick="fineSummary()">
+
+        Ver multas del equipo
+
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h2>
+        ℹ️ KNATT
+      </h2>
 
       <p class="small">
         Aplicación de gestión de equipos de fútbol.
       </p>
 
-      <p class="small">
-        Datos guardados localmente en este dispositivo.
-      </p>
-
     </div>
 
   `;
+
 }
+
+/* =========================
+   RESUMEN MULTAS
+========================= */
+
+function fineSummary(){
+
+  const rows=data.players.map(p=>{
+
+    const total=
+      p.fines.reduce(
+        (a,f)=>a+Number(f.amount||0),0
+      );
+
+    return `
+
+      <div class="item">
+
+        <div style="flex:1">
+
+          <strong>
+            ${p.name}
+          </strong>
+
+          <div class="small">
+            ${p.fines.length} multas
+          </div>
+
+        </div>
+
+        <strong class="${total>0?"red":"green"}">
+          ${total.toFixed(2)} €
+        </strong>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+  const total=
+    data.players.reduce(
+      (a,p)=>
+      a+
+      p.fines.reduce(
+        (x,f)=>x+Number(f.amount||0),0
+      )
+    ,0);
+
+  openModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
+
+    <h2>
+      💶 Multas del equipo
+    </h2>
+
+    <div class="total-fines">
+
+      <div class="row-between">
+
+        <strong>
+          Total
+        </strong>
+
+        <strong>
+          ${total.toFixed(2)} €
+        </strong>
+
+      </div>
+
+    </div>
+
+    ${rows}
+
+  `);
+
+}
+
+/* =========================
+   ROLES
+========================= */
 
 function changeRole(){
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>👤 Cambiar rol</h2>
+    <h2>
+      👤 Cambiar rol
+    </h2>
 
-    <button class="btn-light" style="width:100%;margin-top:8px"
+    <button
+      class="btn-light"
+      style="width:100%;margin-top:8px"
       onclick="setRole('administrador')">
+
       ⚙️ Administrador
+
     </button>
 
-    <button class="btn-light" style="width:100%;margin-top:8px"
+    <button
+      class="btn-light"
+      style="width:100%;margin-top:8px"
       onclick="setRole('entrenador')">
+
       🧑‍🏫 Entrenador
+
     </button>
 
-    <button class="btn-light" style="width:100%;margin-top:8px"
+    <button
+      class="btn-light"
+      style="width:100%;margin-top:8px"
       onclick="setRole('jugador')">
+
       👤 Jugador
+
     </button>
 
   `);
+
 }
 
 function setRole(role){
@@ -1141,25 +2196,44 @@ function setRole(role){
   data.role=role;
 
   save();
+
   closeModal();
+
   render();
+
 }
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
 
 function statistics(){
 
   const total=data.players.length;
 
-  const totalGoals=Object.values(data.stats)
-    .reduce((a,b)=>a+(b.goals||0),0);
+  const totalGoals=
+    Object.values(data.stats)
+    .reduce(
+      (a,b)=>a+(b.goals||0)
+    ,0);
 
-  const totalAssists=Object.values(data.stats)
-    .reduce((a,b)=>a+(b.assists||0),0);
+  const totalAssists=
+    Object.values(data.stats)
+    .reduce(
+      (a,b)=>a+(b.assists||0)
+    ,0);
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>📊 Estadísticas</h2>
+    <h2>
+      📊 Estadísticas
+    </h2>
 
     <div class="grid3">
 
@@ -1180,7 +2254,9 @@ function statistics(){
 
     </div>
 
-    <h3 style="margin-top:20px">Jugadores</h3>
+    <div class="section-title">
+      Jugadores
+    </div>
 
     ${
       data.players.map(p=>{
@@ -1197,22 +2273,35 @@ function statistics(){
           <div class="item">
 
             <div style="flex:1">
-              <strong>${p.name}</strong>
+
+              <strong>
+                ${p.name}
+              </strong>
+
               <div class="small">
+
                 ⚽ ${s.goals}
-                · 🅰️ ${s.assists}
-                · 🟨 ${s.yellow}
-                · 🟥 ${s.red}
+                ·
+                🅰️ ${s.assists}
+                ·
+                🟨 ${s.yellow}
+                ·
+                🟥 ${s.red}
+
               </div>
+
             </div>
 
             ${
               data.role!=="jugador"
-              ? `<button class="btn-light"
-                   onclick="editStats(${p.id})">
-                   Editar
-                 </button>`
-              : ""
+              ?
+              `<button
+                class="btn-light"
+                onclick="editStats(${p.id})">
+                Editar
+              </button>`
+              :
+              ""
             }
 
           </div>
@@ -1223,6 +2312,7 @@ function statistics(){
     }
 
   `);
+
 }
 
 function editStats(id){
@@ -1230,6 +2320,7 @@ function editStats(id){
   const p=data.players.find(x=>x.id===id);
 
   if(!data.stats[id]){
+
     data.stats[id]={
       goals:0,
       assists:0,
@@ -1237,70 +2328,146 @@ function editStats(id){
       red:0,
       games:0
     };
+
   }
 
   const s=data.stats[id];
 
   openModal(`
 
-    <button class="close" onclick="closeModal()">✕</button>
+    <button
+      class="close"
+      onclick="closeModal()">
+      ✕
+    </button>
 
-    <h2>📊 ${p.name}</h2>
+    <h2>
+      📊 ${p.name}
+    </h2>
 
-    <label>Partidos</label>
-    <input id="stGames" type="number" value="${s.games}">
+    <label>
+      Partidos
+    </label>
 
-    <label>Goles</label>
-    <input id="stGoals" type="number" value="${s.goals}">
+    <input
+      id="stGames"
+      type="number"
+      value="${s.games||0}">
 
-    <label>Asistencias</label>
-    <input id="stAssists" type="number" value="${s.assists}">
+    <label>
+      Goles
+    </label>
 
-    <label>Amarillas</label>
-    <input id="stYellow" type="number" value="${s.yellow}">
+    <input
+      id="stGoals"
+      type="number"
+      value="${s.goals||0}">
 
-    <label>Rojas</label>
-    <input id="stRed" type="number" value="${s.red}">
+    <label>
+      Asistencias
+    </label>
 
-    <button class="btn" style="width:100%;margin-top:15px"
+    <input
+      id="stAssists"
+      type="number"
+      value="${s.assists||0}">
+
+    <label>
+      Amarillas
+    </label>
+
+    <input
+      id="stYellow"
+      type="number"
+      value="${s.yellow||0}">
+
+    <label>
+      Rojas
+    </label>
+
+    <input
+      id="stRed"
+      type="number"
+      value="${s.red||0}">
+
+    <button
+      class="btn"
+      style="width:100%;margin-top:15px"
       onclick="saveStats(${id})">
+
       Guardar estadísticas
+
     </button>
 
   `);
+
 }
 
 function saveStats(id){
 
   data.stats[id]={
-    games:Number(document.getElementById("stGames").value)||0,
-    goals:Number(document.getElementById("stGoals").value)||0,
-    assists:Number(document.getElementById("stAssists").value)||0,
-    yellow:Number(document.getElementById("stYellow").value)||0,
-    red:Number(document.getElementById("stRed").value)||0
+
+    games:
+      Number(
+        document.getElementById("stGames").value
+      )||0,
+
+    goals:
+      Number(
+        document.getElementById("stGoals").value
+      )||0,
+
+    assists:
+      Number(
+        document.getElementById("stAssists").value
+      )||0,
+
+    yellow:
+      Number(
+        document.getElementById("stYellow").value
+      )||0,
+
+    red:
+      Number(
+        document.getElementById("stRed").value
+      )||0
+
   };
 
   save();
+
   closeModal();
+
   statistics();
+
 }
+
+/* =========================
+   MODAL
+========================= */
 
 function openModal(html){
 
-  document.getElementById("modalBox").innerHTML=html;
-  document.getElementById("modal").classList.remove("hidden");
+  document.getElementById("modalBox")
+    .innerHTML=html;
+
+  document.getElementById("modal")
+    .classList.remove("hidden");
 
 }
 
 function closeModal(){
 
-  document.getElementById("modal").classList.add("hidden");
+  document.getElementById("modal")
+    .classList.add("hidden");
 
 }
 
-document.getElementById("modal").addEventListener("click",e=>{
+document.getElementById("modal")
+.addEventListener("click",e=>{
 
-  if(e.target.id==="modal")closeModal();
+  if(e.target.id==="modal")
+    closeModal();
 
 });
 
