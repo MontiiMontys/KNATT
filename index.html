@@ -669,6 +669,299 @@ function go(s){
   section=s;
   render();
 }
+/* =========================================================
+   FICHA DE JUGADOR
+========================================================= */
+
+let selectedPlayerId=null;
+
+function openPlayer(id){
+
+  selectedPlayerId=id;
+  section='player';
+  render();
+
+}
+
+function getSelectedPlayer(){
+
+  return data.players.find(
+    p=>String(p.id)===String(selectedPlayerId)
+  );
+
+}
+
+function editPlayer(){
+
+  if(role!=='trainer') return;
+
+  const p=getSelectedPlayer();
+
+  if(!p) return;
+
+  const name=prompt(
+    'Nombre del jugador:',
+    p.name
+  );
+
+  if(name===null) return;
+
+  const num=prompt(
+    'Número de camiseta:',
+    p.num
+  );
+
+  if(num===null) return;
+
+  const pos=prompt(
+    'Posición:',
+    p.pos
+  );
+
+  if(pos===null) return;
+
+  const available=confirm(
+    '¿Está disponible para jugar?\\n\\nAceptar = Sí\\nCancelar = No'
+  );
+
+  let reason='';
+
+  if(!available){
+
+    const r=prompt(
+      'Motivo de la ausencia:',
+      p.reason||''
+    );
+
+    if(r!==null){
+      reason=r.trim();
+    }
+
+  }
+
+  const min=prompt(
+    'Minutos jugados:',
+    p.min
+  );
+
+  if(min===null) return;
+
+  const goals=prompt(
+    'Goles:',
+    p.g
+  );
+
+  if(goals===null) return;
+
+  const assists=prompt(
+    'Asistencias:',
+    p.a
+  );
+
+  if(assists===null) return;
+
+  const train=prompt(
+    'Entrenamientos realizados:',
+    p.train
+  );
+
+  if(train===null) return;
+
+  const total=prompt(
+    'Entrenamientos totales:',
+    p.total
+  );
+
+  if(total===null) return;
+
+  p.name=name.trim()||p.name;
+  p.num=num.trim()||p.num;
+  p.pos=pos.trim()||p.pos;
+
+  p.available=available;
+  p.reason=reason;
+
+  p.min=Math.max(0,Number(min)||0);
+  p.g=Math.max(0,Number(goals)||0);
+  p.a=Math.max(0,Number(assists)||0);
+  p.train=Math.max(0,Number(train)||0);
+  p.total=Math.max(0,Number(total)||0);
+
+  save();
+
+  render();
+
+}
+
+function playerProfile(){
+
+  const p=getSelectedPlayer();
+
+  if(!p){
+
+    return `
+
+      <div class="title">
+        Jugador
+      </div>
+
+      <div class="card">
+
+        <div class="muted">
+          No se ha encontrado el jugador.
+        </div>
+
+        <br>
+
+        <button
+          class="btn full"
+          onclick="go('team')">
+          ← Volver a plantilla
+        </button>
+
+      </div>
+
+    `;
+  }
+
+  const percentage=
+    p.total>0
+    ?Math.round(p.train/p.total*100)
+    :0;
+
+  return `
+
+    <button
+      class="btn light"
+      onclick="go('team')"
+      style="margin-bottom:14px">
+      ← Plantilla
+    </button>
+
+    <div class="card hero">
+
+      <div class="row">
+
+        <div>
+
+          <div
+            class="section-label"
+            style="color:#b9e86c">
+            JUGADOR
+          </div>
+
+          <div class="big">
+            #${p.num} · ${p.name}
+          </div>
+
+          <div class="muted">
+            ${p.pos||'Jugador'}
+          </div>
+
+        </div>
+
+        <div class="avatar">
+          ${p.pos==='POR'?'🧤':'⚽'}
+        </div>
+
+      </div>
+
+      <br>
+
+      <span class="pill ${
+        p.available?'':'danger'
+      }">
+
+        ${
+          p.available
+          ?'🟢 Disponible'
+          :'🔴 '+(p.reason||'No disponible')
+        }
+
+      </span>
+
+    </div>
+
+    <div class="section-label">
+      TEMPORADA
+    </div>
+
+    <div class="grid">
+
+      <div class="stat">
+        <b>${p.min}</b>
+        <span>Minutos</span>
+      </div>
+
+      <div class="stat accent">
+        <b>${p.g}</b>
+        <span>Goles</span>
+      </div>
+
+      <div class="stat">
+        <b>${p.a}</b>
+        <span>Asistencias</span>
+      </div>
+
+      <div class="stat">
+        <b>${percentage}%</b>
+        <span>Entrenamientos</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <div class="section-label">
+        ASISTENCIA
+      </div>
+
+      <div class="big">
+        ${p.train}/${p.total}
+      </div>
+
+      <div class="muted small">
+        Entrenamientos realizados
+      </div>
+
+      <br>
+
+      <div class="notice">
+        ${percentage}% de asistencia esta temporada.
+      </div>
+
+    </div>
+
+    ${
+      role==='trainer'
+      ?
+      `
+
+      <div class="card">
+
+        <button
+          class="btn lime full"
+          onclick="editPlayer()">
+          ✏️ Editar jugador
+        </button>
+
+        <br><br>
+
+        <button
+          class="btn light full"
+          onclick="deletePlayer(${p.id})">
+          🗑️ Eliminar jugador
+        </button>
+
+      </div>
+
+      `
+      :
+      ''
+    }
+
+  `;
+}
 
 /* AÑADIR JUGADOR */
 
