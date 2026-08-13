@@ -472,29 +472,119 @@ nav button:first-line{
 
 const KEY='teamhub-v2';
 
-let data=JSON.parse(localStorage.getItem(KEY)||'null')||{
-  players:[
-    {id:1,name:'Montiimontys',num:9,pos:'DC',available:true,reason:'',min:1126,g:12,a:6,train:18,total:20},
-    {id:2,name:'Marc',num:7,pos:'MC',available:true,reason:'',min:1030,g:5,a:8,train:18,total:20},
-    {id:3,name:'Juan',num:4,pos:'DFC',available:false,reason:'Trabajo',min:980,g:4,a:3,train:17,total:20},
-    {id:4,name:'Alex',num:1,pos:'POR',available:true,reason:'',min:1260,g:0,a:1,train:19,total:20},
-    {id:5,name:'Pedro',num:3,pos:'LI',available:false,reason:'Lesión',min:640,g:1,a:2,train:14,total:20}
-  ],
-  next:{
+let data;
+
+try{
+
+  const saved=localStorage.getItem(KEY);
+
+  if(saved){
+
+    data=JSON.parse(saved);
+
+  }else{
+
+    data={
+      players:[
+        {id:1,name:'Montiimontys',num:9,pos:'DC',available:true,reason:'',min:1126,g:12,a:6,train:18,total:20},
+        {id:2,name:'Marc',num:7,pos:'MC',available:true,reason:'',min:1030,g:5,a:8,train:18,total:20},
+        {id:3,name:'Juan',num:4,pos:'DFC',available:false,reason:'Trabajo',min:980,g:4,a:3,train:17,total:20},
+        {id:4,name:'Alex',num:1,pos:'POR',available:true,reason:'',min:1260,g:0,a:1,train:19,total:20},
+        {id:5,name:'Pedro',num:3,pos:'LI',available:false,reason:'Lesión',min:640,g:1,a:2,train:14,total:20}
+      ],
+      next:{
+        opponent:'CD Rival',
+        date:'Domingo 23 de agosto',
+        time:'12:00',
+        place:'Campo Municipal'
+      },
+      trainings:[
+        {
+          date:'Jueves 20 de agosto',
+          time:'21:15',
+          place:'Campo Municipal'
+        }
+      ]
+    };
+
+  }
+
+}catch(error){
+
+  console.error('Error cargando datos:',error);
+
+  data={
+    players:[],
+    next:{
+      opponent:'CD Rival',
+      date:'Próximo partido',
+      time:'12:00',
+      place:'Campo Municipal'
+    },
+    trainings:[
+      {
+        date:'Próximo entrenamiento',
+        time:'21:15',
+        place:'Campo Municipal'
+      }
+    ]
+  };
+
+}
+
+
+/* ASEGURAR ESTRUCTURA */
+
+if(!Array.isArray(data.players)){
+  data.players=[];
+}
+
+if(!data.next || typeof data.next!=='object'){
+  data.next={
     opponent:'CD Rival',
-    date:'Domingo 23 de agosto',
+    date:'Próximo partido',
     time:'12:00',
     place:'Campo Municipal'
-  },
-  trainings:[
+  };
+}
+
+if(!data.next.opponent){
+  data.next.opponent='CD Rival';
+}
+
+if(!data.next.date){
+  data.next.date='Próximo partido';
+}
+
+if(!data.next.time){
+  data.next.time='12:00';
+}
+
+if(!data.next.place){
+  data.next.place='Campo Municipal';
+}
+
+if(!Array.isArray(data.trainings) || !data.trainings.length){
+  data.trainings=[
     {
-      date:'Jueves 20 de agosto',
+      date:'Próximo entrenamiento',
       time:'21:15',
       place:'Campo Municipal'
     }
-  ]
-};
+  ];
+}
 
+if(!data.trainings[0].date){
+  data.trainings[0].date='Próximo entrenamiento';
+}
+
+if(!data.trainings[0].time){
+  data.trainings[0].time='21:15';
+}
+
+if(!data.trainings[0].place){
+  data.trainings[0].place='Campo Municipal';
+}
 let role=localStorage.getItem('teamhub-role')||'trainer';
 let section='home';
 let filter='all';
