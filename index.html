@@ -630,9 +630,10 @@ function render(){
   document.getElementById('nav').innerHTML=
     navItems()
     .map(x=>`
-      <button class="${section===x[0]?'active':''}"
-      onclick="go('${x[0]}')">
-      ${x[1]}<br>${x[2]}
+      <button
+        class="${section===x[0]?'active':''}"
+        onclick="go('${x[0]}')">
+        ${x[1]}<br>${x[2]}
       </button>
     `)
     .join('');
@@ -657,14 +658,35 @@ function render(){
     </div>
   `;
 
-  if(section==='home')c.innerHTML+=home();
-  if(section==='team')c.innerHTML+=team();
-  if(section==='training')c.innerHTML+=training();
-  if(section==='matches')c.innerHTML+=matches();
-  if(section==='stats')c.innerHTML+=stats();
-  if(section==='profile')c.innerHTML+=profile();
-} if(section==='player')c.innerHTML+=playerProfile();
+  if(section==='home'){
+    c.innerHTML+=home();
+  }
 
+  if(section==='team'){
+    c.innerHTML+=team();
+  }
+
+  if(section==='training'){
+    c.innerHTML+=training();
+  }
+
+  if(section==='matches'){
+    c.innerHTML+=matches();
+  }
+
+  if(section==='stats'){
+    c.innerHTML+=stats();
+  }
+
+  if(section==='profile'){
+    c.innerHTML+=profile();
+  }
+
+  if(section==='player'){
+    c.innerHTML+=playerProfile();
+  }
+
+}
 function go(s){
   section=s;
   render();
