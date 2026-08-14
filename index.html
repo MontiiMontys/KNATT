@@ -3,115 +3,108 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0b0d">
+<meta name="theme-color" content="#09090b">
 <title>KNATT</title>
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 :root{
   --red:#e21d2f;
-  --red2:#b90f20;
-  --red3:#ff3b4d;
-  --red-soft:#fff0f2;
-  --dark:#0b0b0d;
-  --dark2:#151518;
-  --dark3:#202024;
-  --bg:#f5f5f6;
-  --card:#fff;
+  --red-dark:#b80f20;
+  --red-light:#fff0f2;
+  --black:#09090b;
+  --black2:#151518;
+  --bg:#f4f4f6;
+  --white:#fff;
   --text:#17171a;
   --muted:#77777e;
-  --line:#e6e6e9;
-  --ok:#27a94b;
-  --warning:#e0a300;
-  --danger:#d51f32;
-  --shadow:0 7px 24px rgba(20,20,25,.08)
+  --line:#e4e4e8;
 }
 
 html,body{
   margin:0;
+  padding:0;
   min-height:100%;
-  background:var(--bg)
+  background:var(--bg);
 }
 
 body{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif
 }
 
-button,input,select{font:inherit}
-button{cursor:pointer}
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
 
 .app{
   width:min(560px,100%);
   min-height:100vh;
   margin:auto;
+  padding-bottom:82px;
   background:var(--bg);
-  padding-bottom:88px
 }
 
-/* CABECERA */
+/* HEADER */
 
 header{
-  background:var(--dark);
-  color:#fff;
-  padding:17px 18px 15px;
-  position:relative;
-  overflow:hidden
-}
-
-header:after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border:1px solid #ffffff12;
-  border-radius:50%;
-  right:-95px;
-  top:-115px
+  background:var(--black);
+  color:white;
+  padding:17px 18px;
 }
 
 .header-row{
-  position:relative;
-  z-index:2;
   display:flex;
   align-items:center;
-  justify-content:space-between
+  justify-content:space-between;
+  gap:10px;
 }
 
 .brand{
-  font-size:27px;
+  font-size:28px;
   font-weight:950;
-  letter-spacing:-1px
+  letter-spacing:-1px;
 }
 
 .brand span{
-  color:var(--red3)
+  color:var(--red);
 }
 
 .role{
+  color:#99999f;
   font-size:11px;
-  color:#a9a9ae;
+  font-weight:700;
   margin-top:2px;
-  font-weight:700
 }
 
-.header-bell{
+.header-button{
   width:38px;
   height:38px;
+  border:1px solid #ffffff15;
   border-radius:12px;
-  background:#ffffff10;
-  border:1px solid #ffffff12;
-  color:#fff;
-  display:grid;
-  place-items:center;
-  font-size:18px
+  background:#ffffff0d;
+  color:white;
 }
 
 /* GENERAL */
 
 main{
-  padding:16px 14px 28px
+  padding:16px 14px 28px;
 }
 
 .title-row{
@@ -119,291 +112,226 @@ main{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin:3px 2px 13px
+  margin:3px 2px 14px;
 }
 
 .title{
   font-size:25px;
+  line-height:1.05;
   font-weight:950;
-  letter-spacing:-.7px
+  letter-spacing:-.7px;
 }
 
 .subtitle{
-  font-size:12px;
   color:var(--muted);
+  font-size:12px;
   font-weight:700;
-  margin-top:2px
+  margin-top:4px;
 }
 
 .card{
-  background:var(--card);
+  background:var(--white);
   border:1px solid var(--line);
   border-radius:18px;
   padding:16px;
   margin-bottom:12px;
-  box-shadow:var(--shadow)
+  box-shadow:0 7px 24px #14141912;
 }
 
 .card-dark{
-  background:var(--dark2);
-  color:#fff;
-  border-color:#2b2b30
-}
-
-.card-dark .muted{
-  color:#a9a9ae
+  background:var(--black2);
+  color:white;
+  border-color:#29292d;
 }
 
 .section-label{
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.8px;
-  font-weight:900;
   color:var(--muted);
-  margin-bottom:7px
-}
-
-.dark-label{
-  color:#9d9da3
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  margin-bottom:7px;
 }
 
 .big{
   font-size:21px;
   font-weight:950;
-  letter-spacing:-.4px
 }
 
 .muted{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .small{
-  font-size:12px
+  font-size:12px;
 }
 
-/* BOTONES */
+/* BUTTONS */
 
 .btn{
   border:0;
   border-radius:11px;
   padding:12px 14px;
   background:var(--red);
-  color:#fff;
-  font-weight:900;
+  color:white;
   font-size:13px;
-  box-shadow:0 5px 12px rgba(226,29,47,.18)
-}
-
-.btn.dark{
-  background:var(--dark);
-  box-shadow:none
+  font-weight:900;
 }
 
 .btn.light{
-  background:#f0f0f2;
+  background:#eeeeF1;
   color:#222;
-  box-shadow:none
 }
 
-.btn.red-soft{
-  background:var(--red-soft);
+.btn.soft{
+  background:var(--red-light);
   color:var(--red);
-  box-shadow:none
 }
 
 .btn.full{
-  width:100%
+  width:100%;
 }
 
-/* HERO */
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(145deg,#151518,#09090b);
-  color:#fff;
-  border:0
-}
-
-.hero:after{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  right:-85px;
-  top:-65px;
-  border:2px solid #e21d2f22
-}
-
-.hero .section-label{
-  color:#ff6975
-}
-
-.hero .muted{
-  color:#b6b6bb
-}
-
-.hero .big{
-  color:#fff
-}
-
-/* PARTIDO */
+/* HOME */
 
 .match-meta{
   display:flex;
   align-items:center;
   gap:12px;
-  margin:15px 0
+  margin-top:14px;
 }
 
-.team-ball{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  background:#ffffff12;
+.icon-box{
+  width:44px;
+  height:44px;
+  border-radius:13px;
   display:grid;
   place-items:center;
-  font-size:24px
+  background:var(--red-light);
+  color:var(--red);
+  font-size:20px;
 }
 
 .match-info{
-  flex:1
+  flex:1;
 }
 
-.match-date{
-  font-weight:850;
-  font-size:13px
+.match-time{
+  font-size:14px;
+  font-weight:900;
 }
 
 .match-place{
-  color:#bdbdc2;
-  font-size:12px;
-  margin-top:3px
+  font-size:11px;
+  color:var(--muted);
+  margin-top:3px;
 }
-
-/* ESTADÍSTICAS */
 
 .stat-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:7px;
-  margin-bottom:13px
 }
 
 .stat{
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
-  border-radius:15px;
-  padding:12px 8px;
-  text-align:center
+  border-radius:14px;
+  padding:12px 6px;
+  text-align:center;
 }
 
 .stat b{
   display:block;
-  font-size:21px;
-  font-weight:950
+  font-size:20px;
+  font-weight:950;
 }
 
 .stat span{
   display:block;
-  color:var(--muted);
-  font-size:10px;
+  margin-top:3px;
+  font-size:9px;
   font-weight:800;
-  margin-top:2px
+  color:var(--muted);
 }
 
-.stat.red{
-  background:var(--red-soft);
-  border-color:#ffd7dc
+.card-dark .stat{
+  background:#1d1d21;
+  border-color:#2b2b30;
+  color:white;
 }
 
-.stat.red b{
-  color:var(--red)
+.card-dark .stat span{
+  color:#9b9ba1;
 }
 
-/* NOVEDADES */
-
-.notice-list{
-  border:1px solid var(--line);
-  border-radius:15px;
-  overflow:hidden
-}
-
-.notice-row{
+.versus{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:11px 12px;
-  border-bottom:1px solid var(--line)
+  justify-content:center;
+  gap:17px;
+  margin:15px 0;
 }
 
-.notice-row:last-child{
-  border-bottom:0
+.club{
+  width:90px;
+  text-align:center;
+  font-size:11px;
+  font-weight:900;
 }
 
-.notice-icon{
-  width:28px;
-  height:28px;
-  border-radius:9px;
-  background:#f1f1f3;
+.club-logo{
+  width:46px;
+  height:46px;
+  margin:0 auto 6px;
+  border-radius:13px;
+  background:#f0f0f2;
   display:grid;
   place-items:center;
+  font-size:21px;
+}
+
+.vs{
   font-size:14px;
-  flex:0 0 28px
+  font-weight:950;
+  color:#888;
 }
 
-.notice-row b{
-  font-size:12px
-}
-
-.notice-row .muted{
-  font-size:10px;
-  margin-top:2px
-}
-
-/* TABS */
+/* PLANTILLA */
 
 .tabs{
   display:flex;
   gap:6px;
   overflow:auto;
   margin-bottom:12px;
-  scrollbar-width:none
-}
-
-.tabs::-webkit-scrollbar{
-  display:none
 }
 
 .tab{
   border:0;
   border-radius:999px;
-  padding:9px 13px;
   background:#e9e9ec;
-  color:#5e5e64;
+  color:#5f5f66;
+  padding:9px 13px;
   font-size:11px;
   font-weight:850;
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 .tab.active{
   background:var(--red);
-  color:#fff
+  color:white;
 }
-
-/* JUGADORES */
 
 .item{
   display:flex;
   align-items:center;
   gap:10px;
   padding:12px 0;
-  border-bottom:1px solid #ededf0
+  border-bottom:1px solid #ededf0;
 }
 
 .item:last-child{
-  border-bottom:0
+  border-bottom:0;
 }
 
 .avatar{
@@ -414,348 +342,149 @@ main{
   background:#ececef;
   display:grid;
   place-items:center;
-  font-size:20px;
-  overflow:hidden
-}
-
-.avatar.red{
-  background:var(--red-soft);
-  color:var(--red)
+  font-size:19px;
 }
 
 .grow{
   flex:1;
-  min-width:0
+  min-width:0;
 }
 
 .item b{
-  font-size:13px
+  font-size:13px;
 }
 
 .item .muted{
   font-size:10px;
-  margin-top:2px
+  margin-top:3px;
 }
 
-.status-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  display:inline-block;
-  background:var(--ok);
-  margin-right:5px
-}
-
-.status-dot.off{
-  background:#f0b400
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  font-size:10px;
-  font-weight:900;
-  border-radius:999px;
-  padding:5px 8px;
-  background:#e8f7ec;
-  color:#258640
-}
-
-.pill.danger{
-  background:#fae8eb;
-  color:#bd2738
-}
-
-.pill.warning{
-  background:#fff4d9;
-  color:#9a7115
-}
-
-/* FORMULARIOS */
+/* FORMS */
 
 .form-group{
-  margin-bottom:12px
+  margin-bottom:13px;
 }
 
 .form-group label{
   display:block;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.7px;
-  font-weight:900;
   color:var(--muted);
-  margin-bottom:6px
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  margin-bottom:6px;
 }
 
 .form-input,
-.select{
+.form-select{
   width:100%;
   border:1px solid var(--line);
+  border-radius:11px;
   background:#fafafa;
-  color:var(--text);
-  border-radius:11px;
   padding:11px;
-  font-size:14px;
-  outline:none
-}
-
-.form-input:focus,
-.select:focus{
-  border-color:#f18b95
-}
-
-/* ENTRENAMIENTOS */
-
-.date-strip{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:4px;
-  margin-bottom:12px
-}
-
-.day{
-  border:0;
-  background:transparent;
-  border-radius:11px;
-  padding:8px 2px;
-  text-align:center;
-  color:#6d6d73
-}
-
-.day b{
-  display:block;
-  font-size:9px;
-  text-transform:uppercase
-}
-
-.day span{
-  display:block;
-  font-size:12px;
-  font-weight:900;
-  margin-top:4px
-}
-
-.day.active{
-  background:var(--red);
-  color:#fff
-}
-
-.training-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:8px
-}
-
-.plus{
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
-  background:var(--red);
-  color:#fff;
-  font-size:24px;
-  line-height:1
-}
-
-.training-card{
-  border-left:4px solid var(--red)
-}
-
-.training-time{
-  font-size:20px;
-  font-weight:950;
-  margin:3px 0
-}
-
-.training-place{
-  font-size:11px;
-  color:var(--muted)
-}
-
-.plan-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:9px 0;
-  border-bottom:1px solid var(--line);
-  font-size:12px
-}
-
-.plan-row:last-child{
-  border-bottom:0
-}
-
-.plan-min{
-  color:var(--muted);
-  font-size:10px
-}
-
-/* PARTIDOS */
-
-.match-card{
-  position:relative
-}
-
-.versus{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  margin:13px 0
-}
-
-.club{
-  width:90px;
-  text-align:center;
-  font-weight:900;
-  font-size:11px
-}
-
-.club-logo{
-  width:46px;
-  height:46px;
-  border-radius:13px;
-  background:#f0f0f2;
-  margin:0 auto 5px;
-  display:grid;
-  place-items:center;
-  font-size:21px
-}
-
-.vs{
-  font-weight:950;
-  font-size:15px;
-  color:#888
+  outline:none;
 }
 
 /* MÁS */
 
 .more-screen{
-  background:var(--dark);
   min-height:calc(100vh - 80px);
   margin:-16px -14px -28px;
-  padding:16px 14px 30px;
-  color:#fff
+  padding:18px 14px 30px;
+  background:var(--black);
+  color:white;
 }
 
 .more-screen .title{
-  color:#fff
-}
-
-.coach-card{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:#17171a;
-  border:1px solid #2b2b30;
-  border-radius:15px;
-  padding:13px;
-  margin-bottom:12px
-}
-
-.coach-avatar{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:linear-gradient(145deg,#d9d9dc,#77777e);
-  display:grid;
-  place-items:center;
-  font-size:22px
+  color:white;
 }
 
 .more-menu{
   display:grid;
-  gap:8px
+  gap:9px;
+  margin-top:18px;
 }
 
 .more-row{
+  width:100%;
   display:flex;
   align-items:center;
   gap:11px;
-  width:100%;
-  border:1px solid #2b2b30;
-  background:#17171a;
-  color:#fff;
-  border-radius:13px;
-  padding:12px;
-  text-align:left
+  border:1px solid #29292d;
+  border-radius:14px;
+  padding:13px;
+  background:#151518;
+  color:white;
+  text-align:left;
 }
 
 .more-icon{
-  width:30px;
-  height:30px;
+  width:31px;
+  height:31px;
   border-radius:9px;
-  background:#242428;
   display:grid;
   place-items:center;
-  font-size:16px;
-  flex:0 0 30px
-}
-
-.more-row.red-icon .more-icon{
-  background:#3b1419;
-  color:#ff6975
+  background:#242428;
+  flex:0 0 31px;
 }
 
 .more-text{
   flex:1;
   font-size:12px;
-  font-weight:850
+  font-weight:850;
 }
 
 .more-arrow{
-  color:#8c8c92;
-  font-size:17px
+  color:#88888e;
 }
 
-/* TÁCTICA — MANTENIDA */
+/* PARTIDOS */
 
-.tactic-toolbar{
+.result{
+  text-align:center;
+  font-weight:950;
+  font-size:18px;
+}
+
+/* ================================
+   TÁCTICA
+   ================================ */
+
+.tactic-top{
   display:grid;
   grid-template-columns:1fr auto;
   gap:8px;
   align-items:end;
-  margin-bottom:12px
-}
-
-.select-wrap label{
-  display:block;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.7px;
-  font-weight:900;
-  color:var(--muted);
-  margin-bottom:5px
+  margin-bottom:12px;
 }
 
 .pitch-wrap{
   background:#e8e8ea;
-  border-radius:19px;
   padding:8px;
-  margin-bottom:12px
+  border-radius:19px;
 }
 
 .pitch{
   position:relative;
   width:100%;
   aspect-ratio:68/105;
-  border-radius:14px;
   overflow:hidden;
-  background:repeating-linear-gradient(
-    0deg,
-    #278247 0 9%,
-    #2d8b4f 9% 18%
-  );
-  touch-action:manipulation
+  border-radius:14px;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #278247 0 9%,
+      #2d8b4f 9% 18%
+    );
 }
 
 .pitch:before{
   content:"";
   position:absolute;
   inset:2.5%;
-  border:2px solid #fff9;
-  border-radius:8px
+  border:2px solid #ffffff99;
+  border-radius:8px;
 }
 
 .pitch-line{
@@ -763,27 +492,27 @@ main{
   left:2.5%;
   right:2.5%;
   top:50%;
-  border-top:2px solid #fff9
+  border-top:2px solid #ffffff99;
 }
 
 .pitch-circle{
   position:absolute;
   width:27%;
   aspect-ratio:1;
-  border:2px solid #fff9;
-  border-radius:50%;
   left:36.5%;
-  top:36.5%
+  top:36.5%;
+  border:2px solid #ffffff99;
+  border-radius:50%;
 }
 
 .pitch-center{
   position:absolute;
   width:8px;
   height:8px;
-  background:#fff;
-  border-radius:50%;
   left:calc(50% - 4px);
-  top:calc(50% - 4px)
+  top:calc(50% - 4px);
+  border-radius:50%;
+  background:white;
 }
 
 .box{
@@ -791,193 +520,140 @@ main{
   left:20%;
   width:60%;
   height:16%;
-  border:2px solid #fff9
+  border:2px solid #ffffff99;
 }
 
-.box.top{top:2.5%}
-.box.bottom{bottom:2.5%}
+.box.top{
+  top:2.5%;
+}
+
+.box.bottom{
+  bottom:2.5%;
+}
 
 .goal{
   position:absolute;
   left:37%;
   width:26%;
   height:2.5%;
-  border:2px solid #fff;
-  background:#ffffff18
+  border:2px solid white;
+  background:#ffffff18;
 }
 
-.goal.top{top:0}
-.goal.bottom{bottom:0}
+.goal.top{
+  top:0;
+}
+
+.goal.bottom{
+  bottom:0;
+}
+
+/*
+  TÁCTICA:
+
+  POSICIÓN
+     ↓
+  [ NOMBRE ]
+
+  SOLO ESO.
+*/
 
 .tactic-slot{
   position:absolute;
   transform:translate(-50%,-50%);
-  width:clamp(68px,22vw,105px);
-  z-index:6;
-  text-align:center
+  width:clamp(67px,22vw,105px);
+  text-align:center;
+  z-index:10;
 }
 
 .tactic-role{
   display:inline-block;
-  background:var(--dark);
-  color:#fff;
-  border-radius:999px;
   padding:4px 7px;
+  margin-bottom:3px;
+  border-radius:999px;
+  background:var(--black);
+  color:white;
   font-size:9px;
-  font-weight:900;
-  margin-bottom:3px
+  font-weight:950;
 }
 
-.slot-select{
+.player-select{
   display:block;
   width:100%;
   height:36px;
   border:3px solid var(--red);
   border-radius:10px;
-  background:#fff;
-  color:var(--text);
+  background:white;
+  color:#151518;
   padding:0 4px;
   font-size:9px;
   font-weight:900;
-  outline:none
+  outline:none;
 }
 
-.alignment-list{
-  border:1px solid var(--line);
-  border-radius:13px;
-  overflow:hidden
-}
-
-.alignment-row{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  min-height:44px;
-  padding:6px 9px;
-  border-bottom:1px solid var(--line)
-}
-
-.alignment-row:last-child{
-  border-bottom:0
-}
-
-.role-badge{
-  background:var(--dark);
-  color:#fff;
-  border-radius:8px;
-  padding:4px 6px;
-  font-size:9px;
-  font-weight:900
-}
-
-.alignment-name{
-  flex:1;
-  min-width:0;
-  font-size:11px;
-  font-weight:800;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis
-}
-
-.availability{
-  font-size:9px;
-  font-weight:800;
-  white-space:nowrap
-}
-
-.availability.ok{
-  color:#2c9646
-}
-
-.availability.no{
-  color:#c52d3d
-}
-
-.tactic-actions{
+.tactic-buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
-  margin-bottom:12px
+  margin-top:12px;
 }
 
-.notice{
-  background:#fff0f2;
-  color:#8c2531;
-  border-radius:13px;
-  padding:12px;
-  font-size:11px;
-  font-weight:700
-}
-
-/* NAVEGACIÓN */
+/* NAV */
 
 nav{
   position:fixed;
-  bottom:0;
+  z-index:50;
   left:50%;
+  bottom:0;
   transform:translateX(-50%);
   width:min(560px,100%);
   display:flex;
   justify-content:space-around;
-  background:#fffefeeF;
+  background:#fffffff0;
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
   border-top:1px solid #dedee2;
   padding:7px 3px calc(7px + env(safe-area-inset-bottom));
-  z-index:30;
-  box-shadow:0 -8px 25px rgba(20,20,25,.08)
+  box-shadow:0 -8px 25px #14141912;
 }
 
 nav button{
-  position:relative;
-  background:none;
+  min-width:52px;
   border:0;
+  border-radius:11px;
+  background:none;
   color:#77777e;
+  padding:6px 4px;
   font-size:10px;
   font-weight:850;
-  padding:6px 4px;
-  min-width:52px;
-  border-radius:11px
 }
 
 nav button.active{
-  color:var(--red)!important;
-  background:var(--red-soft)
+  color:var(--red);
+  background:var(--red-light);
 }
 
-nav button .nav-icon{
+.nav-icon{
   font-size:18px;
   line-height:18px;
-  margin-bottom:2px
+  margin-bottom:2px;
 }
 
 @media(max-width:380px){
 
   main{
     padding-left:11px;
-    padding-right:11px
-  }
-
-  .stat-grid{
-    gap:4px
-  }
-
-  .stat{
-    padding:10px 4px
-  }
-
-  .stat b{
-    font-size:19px
+    padding-right:11px;
   }
 
   .tactic-slot{
-    width:clamp(62px,20vw,90px)
+    width:clamp(61px,20vw,90px);
   }
 
-  .slot-select{
-    font-size:8px
+  .player-select{
+    font-size:8px;
   }
+
 }
 </style>
 </head>
@@ -1003,7 +679,7 @@ nav button .nav-icon{
     </div>
 
     <button
-      class="header-bell"
+      class="header-button"
       onclick="alert('No tienes nuevas notificaciones.')">
 
       🔔
@@ -1020,7 +696,12 @@ nav button .nav-icon{
 
 </div>
 
+
 <script>
+
+/* =========================================
+   DATOS
+   ========================================= */
 
 const KEY='teamhub-v2';
 
@@ -1028,13 +709,9 @@ let data;
 
 try{
 
-  const saved=
-    localStorage.getItem(KEY);
-
-  data=
-    saved
-      ?JSON.parse(saved)
-      :null;
+  data=JSON.parse(
+    localStorage.getItem(KEY)
+  );
 
 }catch(e){
 
@@ -1043,14 +720,11 @@ try{
 }
 
 
-/* DATOS */
-
-if(!data||typeof data!=='object'){
+if(!data || typeof data!=='object'){
 
   data={
 
     players:[
-
       {
         id:1,
         name:'Montiimontys',
@@ -1058,9 +732,9 @@ if(!data||typeof data!=='object'){
         pos:'DC',
         available:true,
         reason:'',
-        min:1126,
-        g:12,
-        a:6
+        min:0,
+        g:0,
+        a:0
       },
 
       {
@@ -1070,9 +744,9 @@ if(!data||typeof data!=='object'){
         pos:'MC',
         available:true,
         reason:'',
-        min:1030,
-        g:5,
-        a:8
+        min:0,
+        g:0,
+        a:0
       },
 
       {
@@ -1080,11 +754,11 @@ if(!data||typeof data!=='object'){
         name:'Juan',
         num:4,
         pos:'DFC',
-        available:false,
-        reason:'Trabajo',
-        min:980,
-        g:4,
-        a:3
+        available:true,
+        reason:'',
+        min:0,
+        g:0,
+        a:0
       },
 
       {
@@ -1094,9 +768,9 @@ if(!data||typeof data!=='object'){
         pos:'POR',
         available:true,
         reason:'',
-        min:1260,
+        min:0,
         g:0,
-        a:1
+        a:0
       },
 
       {
@@ -1104,13 +778,12 @@ if(!data||typeof data!=='object'){
         name:'Pedro',
         num:3,
         pos:'LI',
-        available:false,
-        reason:'Lesión',
-        min:640,
-        g:1,
-        a:2
+        available:true,
+        reason:'',
+        min:0,
+        g:0,
+        a:0
       }
-
     ],
 
     next:{
@@ -1120,34 +793,12 @@ if(!data||typeof data!=='object'){
       place:'Campo Municipal'
     },
 
-    trainings:[
-      {
-        date:'Miércoles, 20 de agosto',
-        time:'21:15',
-        place:'Campo Municipal',
-        att:18,
-        total:22
-      }
-    ],
-
     matches:[
       {
         date:'17 AGO',
         home:'KNATT FC',
         away:'UD Ejemplo',
         score:'2 - 1'
-      },
-      {
-        date:'10 AGO',
-        home:'CD Prueba',
-        away:'KNATT FC',
-        score:'0 - 3'
-      },
-      {
-        date:'03 AGO',
-        home:'KNATT FC',
-        away:'CF Amistad',
-        score:'1 - 1'
       }
     ],
 
@@ -1160,143 +811,48 @@ if(!data||typeof data!=='object'){
     settings:{
       coach:'',
       team:'KNATT FC',
-      season:'2026/27',
-      category:'Primer Equipo'
+      season:'2026/27'
     }
 
-  }
+  };
 
 }
 
 
-/* NORMALIZACIÓN */
-
 if(!Array.isArray(data.players))
   data.players=[];
-
-data.players=
-  data.players.map(
-    (p,index)=>({
-
-      id:
-        p?.id ??
-        Date.now()+index,
-
-      name:
-        String(
-          p?.name ||
-          'Jugador'
-        ),
-
-      num:
-        p?.num ??
-        '-',
-
-      pos:
-        String(
-          p?.pos ||
-          'Jugador'
-        ),
-
-      available:
-        typeof p?.available==='boolean'
-          ?p.available
-          :true,
-
-      reason:
-        String(
-          p?.reason ||
-          ''
-        ),
-
-      min:
-        Number(p?.min)||0,
-
-      g:
-        Number(p?.g)||0,
-
-      a:
-        Number(p?.a)||0
-
-    })
-  );
-
-if(!data.next)
-  data.next={};
-
-data.next.opponent=
-  data.next.opponent ||
-  'CD Rival';
-
-data.next.date=
-  data.next.date ||
-  'Próximo partido';
-
-data.next.time=
-  data.next.time ||
-  '12:00';
-
-data.next.place=
-  data.next.place ||
-  'Campo Municipal';
-
-if(!Array.isArray(data.trainings))
-  data.trainings=[];
-
-if(!Array.isArray(data.matches))
-  data.matches=[];
 
 if(!data.tactics)
   data.tactics={};
 
-data.tactics.formation=
-  data.tactics.formation ||
-  '4-3-3';
-
-data.tactics.positions=
-  data.tactics.positions ||
-  {};
-
-data.tactics.savedLineup=
-  Array.isArray(
-    data.tactics.savedLineup
-  )
-  ?data.tactics.savedLineup
-  :[];
+if(!data.tactics.positions)
+  data.tactics.positions={};
 
 if(!data.settings)
   data.settings={};
 
-data.settings.coach=
-  data.settings.coach ||
-  '';
+if(!data.matches)
+  data.matches=[];
+
+if(!data.next)
+  data.next={};
+
+data.tactics.formation=
+  data.tactics.formation||
+  '4-3-3';
 
 data.settings.team=
-  data.settings.team ||
+  data.settings.team||
   'KNATT FC';
 
 data.settings.season=
-  data.settings.season ||
+  data.settings.season||
   '2026/27';
 
-data.settings.category=
-  data.settings.category ||
-  'Primer Equipo';
 
-localStorage.setItem(
-  KEY,
-  JSON.stringify(data)
-);
-
-
-/* ESTADO */
-
-let section='home';
-let filter='all';
-let selectedPlayerId=null;
-
-
-/* FORMACIONES */
+/* =========================================
+   FORMACIONES
+   ========================================= */
 
 const formations={
 
@@ -1401,22 +957,36 @@ const formations={
 };
 
 
-/* FUNCIONES */
+/* =========================================
+   ESTADO
+   ========================================= */
+
+let section='home';
+
+let filter='all';
+
+let selectedPlayerId=null;
+
+
+/* =========================================
+   FUNCIONES GENERALES
+   ========================================= */
 
 function save(){
 
   localStorage.setItem(
     KEY,
     JSON.stringify(data)
-  )
+  );
 
 }
 
-function esc(str){
 
-  return String(str).replace(
+function esc(value){
+
+  return String(value).replace(
     /[&<>"']/g,
-    m=>({
+    char=>({
 
       '&':'&amp;',
       '<':'&lt;',
@@ -1424,34 +994,28 @@ function esc(str){
       '"':'&quot;',
       "'":'&#039;'
 
-    }[m])
-  )
-
-}
-
-function go(s){
-
-  section=s;
-  selectedPlayerId=null;
-
-  window.scrollTo(
-    0,
-    0
+    }[char])
   );
 
-  render()
+}
+
+
+function go(page){
+
+  section=page;
+
+  selectedPlayerId=null;
+
+  window.scrollTo(0,0);
+
+  render();
 
 }
 
-function getPlayer(){
 
-  return data.players.find(
-    p=>
-      String(p.id)===
-      String(selectedPlayerId)
-  )
-
-}
+/* =========================================
+   NAVEGACIÓN
+   ========================================= */
 
 function navItems(){
 
@@ -1461,18 +1025,20 @@ function navItems(){
 
     ['team','♟','Plantilla'],
 
-    ['training','♜','Entrenos'],
+    ['tactic','⚽','Táctica'],
 
     ['matches','🏆','Partidos'],
 
     ['more','☰','Más']
 
-  ]
+  ];
 
 }
 
 
-/* RENDER */
+/* =========================================
+   RENDER
+   ========================================= */
 
 function render(){
 
@@ -1482,21 +1048,23 @@ function render(){
 
     navItems()
       .map(
-        x=>`
+        item=>`
 
         <button
           class="${
-            section===x[0]
+            section===item[0]
               ?'active'
               :''
           }"
-          onclick="go('${x[0]}')">
+          onclick="
+            go('${item[0]}')
+          ">
 
           <div class="nav-icon">
-            ${x[1]}
+            ${item[1]}
           </div>
 
-          ${x[2]}
+          ${item[2]}
 
         </button>
 
@@ -1504,44 +1072,43 @@ function render(){
       )
       .join('');
 
-  const c=
+
+  const content=
     document.getElementById(
       'content'
     );
 
-  c.innerHTML='';
 
   if(section==='home')
-    c.innerHTML=home();
+    content.innerHTML=home();
 
-  if(section==='team')
-    c.innerHTML=team();
+  else if(section==='team')
+    content.innerHTML=team();
 
-  if(section==='player')
-    c.innerHTML=playerProfile();
+  else if(section==='player')
+    content.innerHTML=player();
 
-  if(section==='training')
-    c.innerHTML=training();
+  else if(section==='tactic')
+    content.innerHTML=tactic();
 
-  if(section==='matches')
-    c.innerHTML=matches();
+  else if(section==='matches')
+    content.innerHTML=matches();
 
-  if(section==='more')
-    c.innerHTML=more();
+  else if(section==='more')
+    content.innerHTML=more();
 
-  if(section==='tactic')
-    c.innerHTML=tactic();
+  else if(section==='stats')
+    content.innerHTML=stats();
 
-  if(section==='stats')
-    c.innerHTML=stats();
-
-  if(section==='settings')
-    c.innerHTML=settings()
+  else if(section==='settings')
+    content.innerHTML=settings();
 
 }
 
 
-/* INICIO */
+/* =========================================
+   INICIO
+   ========================================= */
 
 function home(){
 
@@ -1550,9 +1117,6 @@ function home(){
       p=>p.available
     ).length;
 
-  const absent=
-    data.players.length-
-    available;
 
   return `
 
@@ -1561,18 +1125,16 @@ function home(){
     <div>
 
       <div class="title">
-        ¡Buenos días,
+        KNATT
+      </div>
+
+      <div class="subtitle">
         ${esc(
-          data.settings.coach ||
-          'Entrenador'
-        )}!
+          data.settings.team
+        )}
       </div>
 
     </div>
-
-    <span class="pill">
-      ● Equipo activo
-    </span>
 
   </div>
 
@@ -1580,64 +1142,39 @@ function home(){
   <div class="card">
 
     <div class="section-label">
-      PRÓXIMO ENTRENAMIENTO
+      PRÓXIMO PARTIDO
     </div>
 
     <div class="big">
-
       ${esc(
-        data.trainings[0]?.date ||
-        'Miércoles, 20 de agosto'
+        data.next.date||
+        'Próximo partido'
       )}
-
     </div>
 
     <div class="match-meta">
 
-      <div class="avatar red">
-        ⏱️
+      <div class="icon-box">
+        ⚽
       </div>
 
       <div class="match-info">
 
-        <div class="match-date">
-
+        <div class="match-time">
           ${esc(
-            data.trainings[0]?.time ||
-            '21:15'
+            data.next.time||
+            '12:00'
           )}
-
         </div>
 
         <div class="match-place">
-
           📍 ${esc(
-            data.trainings[0]?.place ||
+            data.next.place||
             'Campo Municipal'
           )}
-
         </div>
 
       </div>
-
-      <span>›</span>
-
-    </div>
-
-  </div>
-
-
-  <div class="card match-card">
-
-    <div class="section-label">
-      PRÓXIMO PARTIDO
-    </div>
-
-    <div class="muted small">
-
-      ${esc(data.next.date)}
-      ·
-      ${esc(data.next.time)}
 
     </div>
 
@@ -1650,13 +1187,17 @@ function home(){
           ⚽
         </div>
 
-        ${esc(data.settings.team)}
+        ${esc(
+          data.settings.team
+        )}
 
       </div>
+
 
       <div class="vs">
         VS
       </div>
+
 
       <div class="club">
 
@@ -1664,17 +1205,12 @@ function home(){
           🛡️
         </div>
 
-        ${esc(data.next.opponent)}
+        ${esc(
+          data.next.opponent||
+          'Rival'
+        )}
 
       </div>
-
-    </div>
-
-    <div
-      class="muted small"
-      style="text-align:center">
-
-      Jornada 3 · Liga Regular
 
     </div>
 
@@ -1683,42 +1219,61 @@ function home(){
 
   <div class="card card-dark">
 
-    <div class="section-label dark-label">
+    <div class="section-label">
       ESTADO DEL EQUIPO
     </div>
 
     <div class="stat-grid">
 
-      <div>
+      <div class="stat">
+
         <b>
           ${data.players.length}
         </b>
-        <span>Jugadores</span>
+
+        <span>
+          Jugadores
+        </span>
+
       </div>
 
-      <div>
-        <b style="color:#5bd878">
+
+      <div class="stat">
+
+        <b>
           ${available}
         </b>
-        <span>Disponibles</span>
+
+        <span>
+          Disponibles
+        </span>
+
       </div>
 
-      <div>
-        <b style="color:#ff6574">
-          ${absent}
+
+      <div class="stat">
+
+        <b>
+          ${data.players.length-available}
         </b>
-        <span>Ausentes</span>
+
+        <span>
+          Ausentes
+        </span>
+
       </div>
 
-      <div>
-        <b style="color:#ffd45c">
-          ${
-            data.players.filter(
-              p=>!p.available
-            ).length
-          }
+
+      <div class="stat">
+
+        <b>
+          ${data.matches.length}
         </b>
-        <span>Pendientes</span>
+
+        <span>
+          Partidos
+        </span>
+
       </div>
 
     </div>
@@ -1729,105 +1284,41 @@ function home(){
   <div class="card">
 
     <div class="section-label">
-      ÚLTIMAS NOVEDADES
+      ACCESO RÁPIDO
     </div>
 
-    <div class="notice-list">
+    <button
+      class="btn full"
+      onclick="go('tactic')">
 
-      <div class="notice-row">
+      ⚽ Abrir Táctica
 
-        <div class="notice-icon">
-          ✅
-        </div>
+    </button>
 
-        <div>
+    <br><br>
 
-          <b>
-            ${
-              esc(
-                data.players.find(
-                  p=>p.available
-                )?.name ||
-                'Jugador'
-              )
-            }
+    <button
+      class="btn light full"
+      onclick="go('team')">
 
-            ha confirmado asistencia
-          </b>
+      👥 Ver Plantilla
 
-          <div class="muted">
-            Entrenamiento · Hoy
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="notice-row">
-
-        <div class="notice-icon">
-          🩹
-        </div>
-
-        <div>
-
-          <b>
-            ${
-              esc(
-                data.players.find(
-                  p=>!p.available
-                )?.name ||
-                'Ningún jugador'
-              )
-            }
-
-            sigue no disponible
-          </b>
-
-          <div class="muted">
-            Estado de plantilla · Ayer
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="notice-row">
-
-        <div class="notice-icon">
-          📋
-        </div>
-
-        <div>
-
-          <b>
-            Convocatoria del partido pendiente
-          </b>
-
-          <div class="muted">
-            Hoy
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
+    </button>
 
   </div>
 
-  `
+  `;
 
 }
 
 
-/* PLANTILLA */
+/* =========================================
+   PLANTILLA
+   ========================================= */
 
 function team(){
 
-  const list=
+  const players=
     data.players.filter(
       p=>
         filter==='all' ||
@@ -1837,6 +1328,7 @@ function team(){
             :!p.available
         )
     );
+
 
   return `
 
@@ -1850,13 +1342,14 @@ function team(){
 
       <div class="subtitle">
         ${data.players.length}
-        jugadores registrados
+        jugadores
       </div>
 
     </div>
 
+
     <button
-      class="btn red-soft"
+      class="btn soft"
       onclick="addPlayer()">
 
       ＋
@@ -1883,6 +1376,7 @@ function team(){
 
     </button>
 
+
     <button
       class="tab ${
         filter==='available'
@@ -1897,6 +1391,7 @@ function team(){
       Disponibles
 
     </button>
+
 
     <button
       class="tab ${
@@ -1919,26 +1414,23 @@ function team(){
   <div class="card">
 
     ${
-      list.length
-
-      ?
-
-      list.map(
+      players.map(
         p=>`
 
         <div
           class="item"
-          onclick="openPlayer(${p.id})">
+          onclick="
+            openPlayer(${p.id})
+          ">
 
           <div class="avatar">
-
             ${
               p.pos==='POR'
                 ?'🧤'
                 :'⚽'
             }
-
           </div>
+
 
           <div class="grow">
 
@@ -1953,93 +1445,72 @@ function team(){
 
               ${
                 p.available
-
-                ?
-
-                `
-                <span class="status-dot"></span>
-                Disponible
-                `
-
-                :
-
-                `
-                <span class="status-dot off"></span>
-                ${esc(
-                  p.reason ||
-                  'No disponible'
-                )}
-                `
+                  ?'Disponible'
+                  :esc(
+                    p.reason||
+                    'No disponible'
+                  )
               }
-
-            </div>
-
-            <div class="muted">
-
-              ${p.g||0}
-              ⚽ ·
-
-              ${p.a||0}
-              🎯 ·
-
-              ${p.min||0}
-              min
 
             </div>
 
           </div>
 
-          <span>›</span>
+
+          <span>
+            ›
+          </span>
 
         </div>
 
         `
       ).join('')
-
-      :
-
+      ||
       `
-      <div
-        class="muted"
-        style="
-          text-align:center;
-          padding:20px">
-
+      <div class="muted">
         No hay jugadores.
-
       </div>
       `
     }
 
   </div>
 
-  `
+  `;
 
 }
 
-
-/* JUGADOR */
 
 function openPlayer(id){
 
   selectedPlayerId=id;
+
   section='player';
 
-  render()
+  render();
 
 }
 
-function playerProfile(){
 
-  const p=getPlayer();
+function player(){
 
-  if(!p)
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(selectedPlayerId)
+    );
+
+
+  if(!p){
 
     return `
-    <div class="card">
-      Jugador no encontrado
-    </div>
+      <div class="card">
+        Jugador no encontrado.
+      </div>
     `;
+
+  }
+
 
   return `
 
@@ -2053,60 +1524,22 @@ function playerProfile(){
 
 
   <div
-    class="card hero"
+    class="card"
     style="margin-top:12px">
 
-    <div class="row">
-
-      <div>
-
-        <div class="section-label">
-          JUGADOR
-        </div>
-
-        <div class="big">
-          ${esc(p.name)}
-        </div>
-
-        <div class="muted">
-          ${esc(p.pos)}
-          ·
-          #${esc(p.num)}
-        </div>
-
-      </div>
-
-      <div class="avatar">
-
-        ${
-          p.pos==='POR'
-            ?'🧤'
-            :'⚽'
-        }
-
-      </div>
-
+    <div class="section-label">
+      JUGADOR
     </div>
 
-    <br>
+    <div class="big">
+      ${esc(p.name)}
+    </div>
 
-    <span
-      class="pill ${
-        p.available
-          ?''
-          :'danger'
-      }">
-
-      ${
-        p.available
-          ?'● Disponible'
-          :'● '+esc(
-            p.reason ||
-            'No disponible'
-          )
-      }
-
-    </span>
+    <div class="muted">
+      ${esc(p.pos)}
+      ·
+      #${esc(p.num)}
+    </div>
 
   </div>
 
@@ -2115,7 +1548,9 @@ function playerProfile(){
 
     <div class="stat">
 
-      <b>${p.min||0}</b>
+      <b>
+        ${p.min||0}
+      </b>
 
       <span>
         Minutos
@@ -2123,9 +1558,12 @@ function playerProfile(){
 
     </div>
 
+
     <div class="stat red">
 
-      <b>${p.g||0}</b>
+      <b>
+        ${p.g||0}
+      </b>
 
       <span>
         Goles
@@ -2133,9 +1571,12 @@ function playerProfile(){
 
     </div>
 
+
     <div class="stat">
 
-      <b>${p.a||0}</b>
+      <b>
+        ${p.a||0}
+      </b>
 
       <span>
         Asistencias
@@ -2143,9 +1584,12 @@ function playerProfile(){
 
     </div>
 
+
     <div class="stat">
 
-      <b>#${esc(p.num)}</b>
+      <b>
+        #${esc(p.num)}
+      </b>
 
       <span>
         Dorsal
@@ -2155,30 +1599,7 @@ function playerProfile(){
 
   </div>
 
-
-  <div class="card">
-
-    <button
-      class="btn full"
-      onclick="editPlayer()">
-
-      ✏️ Editar jugador
-
-    </button>
-
-    <br><br>
-
-    <button
-      class="btn light full"
-      onclick="deletePlayer(${p.id})">
-
-      🗑️ Eliminar jugador
-
-    </button>
-
-  </div>
-
-  `
+  `;
 
 }
 
@@ -2190,15 +1611,19 @@ function addPlayer(){
       'Nombre del jugador:'
     );
 
-  if(!name)return;
+  if(!name)
+    return;
+
 
   const num=
     prompt(
-      'Número de camiseta:',
+      'Dorsal:',
       ''
     );
 
-  if(num===null)return;
+  if(num===null)
+    return;
+
 
   const pos=
     prompt(
@@ -2206,7 +1631,9 @@ function addPlayer(){
       ''
     );
 
-  if(pos===null)return;
+  if(pos===null)
+    return;
+
 
   data.players.push({
 
@@ -2216,9 +1643,7 @@ function addPlayer(){
 
     num:num.trim()||'-',
 
-    pos:
-      pos.trim()||
-      'Jugador',
+    pos:pos.trim()||'Jugador',
 
     available:true,
 
@@ -2232,1270 +1657,91 @@ function addPlayer(){
 
   });
 
-  save();
-  render()
-
-}
-
-
-function editPlayer(){
-
-  const p=getPlayer();
-
-  if(!p)return;
-
-  const name=
-    prompt(
-      'Nombre del jugador:',
-      p.name
-    );
-
-  if(name===null)return;
-
-  const num=
-    prompt(
-      'Número de camiseta:',
-      p.num
-    );
-
-  if(num===null)return;
-
-  const pos=
-    prompt(
-      'Posición:',
-      p.pos
-    );
-
-  if(pos===null)return;
-
-  const available=
-    confirm(
-      '¿Está disponible?\n\n' +
-      'Aceptar = Sí\n' +
-      'Cancelar = No'
-    );
-
-  let reason='';
-
-  if(!available){
-
-    const r=
-      prompt(
-        'Motivo:',
-        p.reason
-      );
-
-    if(r!==null)
-      reason=r.trim()
-
-  }
-
-  const min=
-    prompt(
-      'Minutos:',
-      p.min
-    );
-
-  if(min===null)return;
-
-  const goals=
-    prompt(
-      'Goles:',
-      p.g
-    );
-
-  if(goals===null)return;
-
-  const assists=
-    prompt(
-      'Asistencias:',
-      p.a
-    );
-
-  if(assists===null)return;
-
-  p.name=
-    name.trim()||
-    p.name;
-
-  p.num=
-    num.trim()||
-    p.num;
-
-  p.pos=
-    pos.trim()||
-    p.pos;
-
-  p.available=
-    available;
-
-  p.reason=
-    reason;
-
-  p.min=
-    Number(min)||0;
-
-  p.g=
-    Number(goals)||0;
-
-  p.a=
-    Number(assists)||0;
-
-  save();
-  render()
-
-}
-
-
-function deletePlayer(id){
-
-  const p=
-    data.players.find(
-      x=>
-        String(x.id)===
-        String(id)
-    );
-
-  if(
-    !p ||
-    !confirm(
-      '¿Eliminar a '+
-      p.name+
-      ' de la plantilla?'
-    )
-  )
-    return;
-
-  data.players=
-    data.players.filter(
-      x=>
-        String(x.id)!==
-        String(id)
-    );
-
-  Object.keys(
-    data.tactics.positions||{}
-  )
-  .forEach(
-    k=>{
-
-      if(
-        String(
-          data.tactics.positions[k]
-            ?.playerId
-        )===
-        String(id)
-      ){
-
-        delete data.tactics.positions[k]
-
-      }
-
-    }
-  );
-
-  data.tactics.savedLineup=
-    data.tactics.savedLineup
-      .filter(
-        x=>
-          String(x)!==
-          String(id)
-      );
 
   save();
 
-  selectedPlayerId=null;
-
-  section='team';
-
-  render()
+  render();
 
 }
 
 
-/* ENTRENAMIENTOS */
-
-function training(){
-
-  return `
-
-  <div class="title-row">
-
-    <div>
-
-      <div class="title">
-        Entrenamientos
-      </div>
-
-      <div class="subtitle">
-        Planificación y asistencia
-      </div>
-
-    </div>
-
-    <button
-      class="plus"
-      onclick="addTraining()">
-
-      +
-
-    </button>
-
-  </div>
-
-
-  <div class="date-strip">
-
-    ${
-      [
-        'LUN',
-        'MAR',
-        'MIÉ',
-        'JUE',
-        'VIE',
-        'SÁB',
-        'DOM'
-      ]
-      .map(
-        (d,i)=>`
-
-        <button
-          class="day ${
-            i===2
-              ?'active'
-              :''
-          }">
-
-          <b>${d}</b>
-
-          <span>
-            ${18+i}
-          </span>
-
-        </button>
-
-        `
-      )
-      .join('')
-    }
-
-  </div>
-
-
-  <div
-    class="card training-card">
-
-    <div class="training-header">
-
-      <div>
-
-        <div class="section-label">
-          PRÓXIMO ENTRENAMIENTO
-        </div>
-
-        <div class="big">
-
-          ${esc(
-            data.trainings[0]?.date ||
-            'Miércoles, 20 de agosto'
-          )}
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="training-time">
-
-      ${esc(
-        data.trainings[0]?.time ||
-        '21:15'
-      )}
-
-    </div>
-
-    <div class="training-place">
-
-      📍 ${esc(
-        data.trainings[0]?.place ||
-        'Campo Municipal'
-      )}
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-label">
-      PLAN DE ENTRENAMIENTO
-    </div>
-
-    ${
-      [
-        ['Calentamiento','15 min'],
-        ['Rondo','20 min'],
-        ['Posesión','25 min'],
-        ['Finalización','20 min'],
-        ['Partido reducido','30 min']
-      ]
-      .map(
-        x=>`
-
-        <div class="plan-row">
-
-          <span>
-            ◷ &nbsp;${x[0]}
-          </span>
-
-          <span class="plan-min">
-            ${x[1]}
-          </span>
-
-        </div>
-
-        `
-      )
-      .join('')
-    }
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-label">
-
-      ASISTENCIA
-      (
-      ${data.trainings[0]?.att||0}
-      /
-      ${
-        data.trainings[0]?.total ||
-        data.players.length
-      }
-      )
-
-    </div>
-
-    ${
-      data.players
-        .slice(0,6)
-        .map(
-          p=>`
-
-          <div class="item">
-
-            <div class="avatar">
-              ${p.pos==='POR'?'🧤':'⚽'}
-            </div>
-
-            <div class="grow">
-
-              <b>
-                ${esc(p.name)}
-              </b>
-
-            </div>
-
-            <span
-              class="pill ${
-                p.available
-                  ?''
-                  :'warning'
-              }">
-
-              ${
-                p.available
-                  ?'✓ Asistió'
-                  :'◷ Pendiente'
-              }
-
-            </span>
-
-          </div>
-
-          `
-        )
-        .join('')
-    }
-
-  </div>
-
-  `
-
-}
-
-
-function addTraining(){
-
-  const date=
-    prompt(
-      'Fecha:',
-      'Miércoles, 20 de agosto'
-    );
-
-  if(!date)return;
-
-  const time=
-    prompt(
-      'Hora:',
-      '21:15'
-    )||'21:15';
-
-  const place=
-    prompt(
-      'Lugar:',
-      'Campo Municipal'
-    )||'Campo Municipal';
-
-  data.trainings.unshift({
-
-    date,
-    time,
-    place,
-    att:0,
-    total:data.players.length
-
-  });
-
-  save();
-  render()
-
-}
-
-
-/* PARTIDOS */
-
-function matches(){
-
-  return `
-
-  <div class="title-row">
-
-    <div>
-
-      <div class="title">
-        Partidos
-      </div>
-
-      <div class="subtitle">
-        Temporada
-        ${esc(data.settings.season)}
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="card match-card">
-
-    <div class="section-label">
-      PRÓXIMO PARTIDO
-    </div>
-
-    <div class="muted small">
-
-      ${esc(data.next.date)}
-      ·
-      ${esc(data.next.time)}
-
-    </div>
-
-
-    <div class="versus">
-
-      <div class="club">
-
-        <div class="club-logo">
-          ⚽
-        </div>
-
-        ${esc(data.settings.team)}
-
-      </div>
-
-      <div class="vs">
-        VS
-      </div>
-
-      <div class="club">
-
-        <div class="club-logo">
-          🛡️
-        </div>
-
-        ${esc(data.next.opponent)}
-
-      </div>
-
-    </div>
-
-
-    <div
-      class="muted small"
-      style="text-align:center">
-
-      Jornada 3 · Liga Regular
-
-    </div>
-
-    <br>
-
-    <button
-      class="btn full"
-      onclick="go('tactic')">
-
-      CONVOCATORIA
-
-    </button>
-
-  </div>
-
-
-  <div
-    class="section-label"
-    style="margin:18px 3px 8px">
-
-    PARTIDOS JUGADOS
-
-  </div>
-
-
-  ${
-    data.matches.length
-
-      ?
-
-      data.matches
-        .map(
-          m=>`
-
-          <div class="card">
-
-            <div class="row">
-
-              <b>
-                ${esc(m.date)}
-              </b>
-
-              <div class="muted small">
-                Jornada
-              </div>
-
-            </div>
-
-
-            <div
-              class="versus"
-              style="margin:10px 0">
-
-              <div class="club">
-                ${esc(m.home)}
-              </div>
-
-              <div class="vs">
-                ${esc(m.score)}
-              </div>
-
-              <div class="club">
-                ${esc(m.away)}
-              </div>
-
-            </div>
-
-            <div
-              style="text-align:center">
-
-              <span class="pill">
-                Resultado
-              </span>
-
-            </div>
-
-          </div>
-
-          `
-        )
-        .join('')
-
-      :
-
-      `
-      <div class="card muted">
-        No hay partidos registrados.
-      </div>
-      `
-  }
-
-  `
-
-}
-
-
-/* MÁS */
-
-function more(){
-
-  return `
-
-  <div class="more-screen">
-
-    <div class="title-row">
-
-      <div class="title">
-        Más
-      </div>
-
-    </div>
-
-
-    <div class="coach-card">
-
-      <div class="coach-avatar">
-        👨🏻
-      </div>
-
-      <div class="grow">
-
-        <b>
-
-          ${esc(
-            data.settings.coach ||
-            'Entrenador Principal'
-          )}
-
-        </b>
-
-        <div class="muted">
-
-          🛡️
-          ${esc(data.settings.team)}
-
-        </div>
-
-      </div>
-
-      <span>›</span>
-
-    </div>
-
-
-    <div class="more-menu">
-
-      ${
-        [
-          ['🩹','Lesiones','red-icon','goPlaceholder'],
-          ['👕','Material','','goPlaceholder'],
-          ['€','Pagos y multas','red-icon','goPlaceholder'],
-          ['▣','Calendario','','goPlaceholder'],
-          ['💬','Mensajes','red-icon','goPlaceholder'],
-          ['📁','Documentos','','goPlaceholder'],
-          ['📊','Estadísticas','','goStats'],
-          ['⚽','Táctica','red-icon','goTactic'],
-          ['⚙️','Ajustes','','goSettings'],
-          ['❓','Ayuda','red-icon','goPlaceholder']
-        ]
-        .map(
-          x=>`
-
-          <button
-            class="more-row ${x[2]}"
-            onclick="${x[3]}()">
-
-            <div class="more-icon">
-              ${x[0]}
-            </div>
-
-            <div class="more-text">
-              ${x[1]}
-            </div>
-
-            <div class="more-arrow">
-              ›
-            </div>
-
-          </button>
-
-          `
-        )
-        .join('')
-      }
-
-    </div>
-
-  </div>
-
-  `
-
-}
-
-
-function goPlaceholder(){
-
-  alert(
-    'Esta sección está preparada para la siguiente fase de KNATT.'
-  )
-
-}
-
-function goStats(){
-  go('stats')
-}
-
-function goTactic(){
-  go('tactic')
-}
-
-function goSettings(){
-  go('settings')
-}
-
-
-/* ESTADÍSTICAS */
-
-function stats(){
-
-  const goals=
-    data.players.reduce(
-      (s,p)=>
-        s+(Number(p.g)||0),
-      0
-    );
-
-  const assists=
-    data.players.reduce(
-      (s,p)=>
-        s+(Number(p.a)||0),
-      0
-    );
-
-  const minutes=
-    data.players.reduce(
-      (s,p)=>
-        s+(Number(p.min)||0),
-      0
-    );
-
-  return `
-
-  <div class="title">
-    Estadísticas
-  </div>
-
-
-  <div class="stat-grid">
-
-    <div class="stat red">
-
-      <b>${goals}</b>
-
-      <span>
-        Goles
-      </span>
-
-    </div>
-
-    <div class="stat">
-
-      <b>${assists}</b>
-
-      <span>
-        Asistencias
-      </span>
-
-    </div>
-
-    <div class="stat">
-
-      <b>${minutes}</b>
-
-      <span>
-        Minutos
-      </span>
-
-    </div>
-
-    <div class="stat">
-
-      <b>
-        ${data.players.length}
-      </b>
-
-      <span>
-        Jugadores
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-label">
-      RENDIMIENTO DE PLANTILLA
-    </div>
-
-    ${
-      [...data.players]
-        .sort(
-          (a,b)=>
-            b.g-a.g
-        )
-        .map(
-          p=>`
-
-          <div class="item">
-
-            <div class="avatar">
-
-              ${
-                p.pos==='POR'
-                  ?'🧤'
-                  :'⚽'
-              }
-
-            </div>
-
-            <div class="grow">
-
-              <b>
-                ${esc(p.name)}
-              </b>
-
-              <div class="muted">
-                ${esc(p.pos)}
-              </div>
-
-            </div>
-
-            <div
-              style="text-align:right">
-
-              <b>
-                ${p.min||0}
-              </b>
-
-              <div class="muted">
-
-                ${p.g||0}
-                ⚽ ·
-
-                ${p.a||0}
-                🎯
-
-              </div>
-
-            </div>
-
-          </div>
-
-          `
-        )
-        .join('')
-    }
-
-  </div>
-
-  `
-
-}
-
-
-/* AJUSTES */
-
-function settings(){
-
-  return `
-
-  <div class="title">
-    Ajustes
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-label">
-      PERFIL DEL ENTRENADOR
-    </div>
-
-    <div class="form-group">
-
-      <label>
-        Nombre
-      </label>
-
-      <input
-        id="coachName"
-        class="form-input"
-        value="${esc(
-          data.settings.coach
-        )}"
-        placeholder="Nombre del entrenador">
-
-    </div>
-
-    <button
-      class="btn full"
-      onclick="saveSettings()">
-
-      💾 Guardar cambios
-
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <div class="section-label">
-      EQUIPO
-    </div>
-
-    <div class="form-group">
-
-      <label>
-        Equipo
-      </label>
-
-      <input
-        id="teamName"
-        class="form-input"
-        value="${esc(
-          data.settings.team
-        )}">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>
-        Temporada
-      </label>
-
-      <input
-        id="seasonName"
-        class="form-input"
-        value="${esc(
-          data.settings.season
-        )}">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>
-        Categoría
-      </label>
-
-      <input
-        id="categoryName"
-        class="form-input"
-        value="${esc(
-          data.settings.category
-        )}">
-
-    </div>
-
-    <button
-      class="btn full"
-      onclick="saveSettings()">
-
-      Guardar equipo
-
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <button
-      class="btn light full"
-      onclick="exportData()">
-
-      📤 Exportar datos
-
-    </button>
-
-    <br><br>
-
-    <button
-      class="btn light full"
-      onclick="resetApp()">
-
-      ♻️ Restaurar datos
-
-    </button>
-
-  </div>
-
-  `
-
-}
-
-
-function saveSettings(){
-
-  data.settings.coach=
-    document
-      .getElementById('coachName')
-      .value
-      .trim();
-
-  data.settings.team=
-    document
-      .getElementById('teamName')
-      .value
-      .trim()
-    ||
-    'KNATT FC';
-
-  data.settings.season=
-    document
-      .getElementById('seasonName')
-      .value
-      .trim()
-    ||
-    '2026/27';
-
-  data.settings.category=
-    document
-      .getElementById('categoryName')
-      .value
-      .trim()
-    ||
-    'Primer Equipo';
-
-  save();
-
-  go('home')
-
-}
-
-
-function exportData(){
-
-  const blob=
-    new Blob(
-      [
-        JSON.stringify(
-          data,
-          null,
-          2
-        )
-      ],
-      {
-        type:'application/json'
-      }
-    );
-
-  const url=
-    URL.createObjectURL(
-      blob
-    );
-
-  const a=
-    document.createElement(
-      'a'
-    );
-
-  a.href=url;
-
-  a.download=
-    'knatt-datos.json';
-
-  a.click();
-
-  URL.revokeObjectURL(url)
-
-}
-
-
-function resetApp(){
-
-  if(
-    !confirm(
-      'Esto borrará los datos actuales de KNATT en este dispositivo. ¿Continuar?'
-    )
-  )
-    return;
-
-  localStorage.removeItem(
-    KEY
-  );
-
-  location.reload()
-
-}
-
-
-/* =========================
+/* =========================================
    TÁCTICA
-   ========================= */
-
-function normalizeTacticPositions(){
-
-  const spots=
-    formations[
-      data.tactics.formation
-    ] ||
-    formations['4-3-3'];
-
-  const old=
-    data.tactics.positions ||
-    {};
-
-  const values=
-    Object.values(old);
-
-  const alreadyNew=
-    values.some(
-      v=>
-        v &&
-        v.playerId!==undefined
-    );
-
-  if(alreadyNew)
-    return;
-
-  const next={};
-
-  const oldPlayers=
-    Object.entries(old)
-      .map(
-        ([id,v])=>({
-          id:String(id),
-          v
-        })
-      )
-      .filter(
-        x=>
-          data.players.some(
-            p=>
-              String(p.id)===
-              x.id
-          )
-      );
-
-  oldPlayers
-    .slice(
-      0,
-      spots.length
-    )
-    .forEach(
-      (x,i)=>{
-
-        next[String(i)]={
-          playerId:x.id,
-          x:spots[i][1],
-          y:spots[i][2],
-          role:spots[i][0]
-        }
-
-      }
-    );
-
-  data.tactics.positions=
-    next;
-
-  save()
-
-}
-
+   ========================================= */
 
 function tactic(){
 
-  normalizeTacticPositions();
-
   const formation=
-    data.tactics.formation;
+    data.tactics.formation||
+    '4-3-3';
+
 
   const spots=
-    formations[formation] ||
-    formations['4-3-3'];
+    formations[formation];
+
 
   const positions=
-    data.tactics.positions ||
+    data.tactics.positions||
     {};
+
 
   return `
 
-  <div class="title">
-    Táctica
-  </div>
+  <div class="title-row">
 
+    <div>
 
-  <div class="card">
+      <div class="title">
+        Táctica
+      </div>
 
-    <div class="section-label">
-      PIZARRA TÁCTICA
-    </div>
-
-    <div class="big">
-      Crear alineación
-    </div>
-
-    <div class="muted small">
-
-      Elige una formación y selecciona
-      un jugador en cada una de las
-      11 posiciones. No hay que
-      arrastrar nada.
+      <div class="subtitle">
+        ${formation}
+      </div>
 
     </div>
 
   </div>
 
 
-  <div class="tactic-toolbar">
+  <div class="tactic-top">
 
-    <div class="select-wrap">
+    <select
+      class="form-select"
+      onchange="
+        changeFormation(this.value)
+      ">
 
-      <label>
-        Formación
-      </label>
+      ${
+        Object.keys(formations)
+          .map(
+            f=>`
 
-      <select
-        class="select"
-        onchange="changeFormation(this.value)">
+            <option
+              value="${f}"
+              ${
+                f===formation
+                  ?'selected'
+                  :''
+              }>
 
-        ${
-          Object.keys(formations)
-            .map(
-              f=>`
+              ${f}
 
-              <option
-                value="${f}"
-                ${
-                  f===formation
-                    ?'selected'
-                    :''
-                }>
+            </option>
 
-                ${f}
+            `
+          )
+          .join('')
+      }
 
-              </option>
-
-              `
-            )
-            .join('')
-        }
-
-      </select>
-
-    </div>
+    </select>
 
 
     <button
       class="btn light"
-      onclick="resetTactic()">
+      onclick="clearTactic()">
 
-      ↺ Reset
+      Vaciar
 
     </button>
 
@@ -3504,9 +1750,7 @@ function tactic(){
 
   <div class="pitch-wrap">
 
-    <div
-      class="pitch"
-      id="pitch">
+    <div class="pitch">
 
       <div class="pitch-line"></div>
 
@@ -3522,17 +1766,16 @@ function tactic(){
 
       <div class="goal bottom"></div>
 
+
       ${
-        spots
-          .map(
-            (spot,i)=>
-              slotHtml(
-                spot,
-                i,
-                positions
-              )
-          )
-          .join('')
+        spots.map(
+          (spot,index)=>
+            createTacticSlot(
+              spot,
+              index,
+              positions
+            )
+        ).join('')
       }
 
     </div>
@@ -3540,77 +1783,46 @@ function tactic(){
   </div>
 
 
-  <div class="card">
-
-    <div class="section-label">
-      ALINEACIÓN
-    </div>
-
-    <div
-      class="muted small"
-      style="margin-bottom:8px">
-
-      Cada jugador solo puede ocupar
-      una posición.
-
-    </div>
-
-    <div class="alignment-list">
-
-      ${
-        spots
-          .map(
-            (spot,i)=>
-              alignmentRow(
-                spot,
-                i,
-                positions
-              )
-          )
-          .join('')
-      }
-
-    </div>
-
-  </div>
-
-
-  <div class="tactic-actions">
+  <div class="tactic-buttons">
 
     <button
       class="btn"
       onclick="saveTactic()">
 
-      💾 Guardar alineación
+      💾 Guardar
 
     </button>
+
 
     <button
       class="btn light"
-      onclick="clearTactic()">
+      onclick="resetTactic()">
 
-      🧹 Vaciar campo
+      ↺ Reset
 
     </button>
 
   </div>
 
-
-  <div class="notice">
-
-    💡 Puedes poner cualquier jugador
-    en cualquier posición. Si un jugador
-    ya está seleccionado, no aparecerá
-    como opción en otra posición.
-
-  </div>
-
-  `
+  `;
 
 }
 
 
-function slotHtml(
+/*
+  IMPORTANTE:
+
+  Aquí NO aparece el dorsal.
+
+  Ejemplo:
+
+      DC
+  [Montiimontys]
+
+  Y nada más.
+*/
+
+function createTacticSlot(
   spot,
   index,
   positions
@@ -3622,11 +1834,14 @@ function slotHtml(
 
   const y=spot[2];
 
-  const selectedId=
-    positions[
-      String(index)
-    ]?.playerId ||
-    '';
+  const selected=
+    String(
+      positions[
+        String(index)
+      ]?.playerId||
+      ''
+    );
+
 
   return `
 
@@ -3634,30 +1849,31 @@ function slotHtml(
     class="tactic-slot"
     style="
       left:${x}%;
-      top:${y}%
+      top:${y}%;
     ">
 
     <div class="tactic-role">
       ${role}
     </div>
 
+
     <select
-      class="slot-select"
-      aria-label="Posición ${role}"
+      class="player-select"
       onchange="
-        assignPosition(
+        assignPlayer(
           ${index},
           this.value
         )
       ">
 
       <option value="">
-        -- ${role} --
+        Seleccionar jugador
       </option>
 
+
       ${
-        playerOptions(
-          selectedId
+        getPlayerOptions(
+          selected
         )
       }
 
@@ -3665,50 +1881,56 @@ function slotHtml(
 
   </div>
 
-  `
+  `;
 
 }
 
 
-function playerOptions(
-  selectedId
+/*
+  EL DESPLEGABLE SOLO MUESTRA:
+  NOMBRE
+*/
+
+function getPlayerOptions(
+  selected
 ){
 
   const used=
     new Set(
       Object.values(
-        data.tactics.positions ||
+        data.tactics.positions||
         {}
       )
       .map(
-        v=>
+        position=>
           String(
-            v?.playerId ||
+            position?.playerId||
             ''
           )
       )
       .filter(Boolean)
     );
 
+
   return data.players
     .map(
-      p=>{
+      player=>{
 
         const id=
-          String(p.id);
+          String(player.id);
+
 
         const disabled=
-          used.has(id) &&
-          id!==String(
-            selectedId
-          );
+          used.has(id)&&
+          id!==selected;
+
 
         return `
 
         <option
           value="${id}"
           ${
-            id===String(selectedId)
+            id===selected
               ?'selected'
               :''
           }
@@ -3718,136 +1940,57 @@ function playerOptions(
               :''
           }>
 
-          ${esc(p.name)}
+          ${esc(player.name)}
 
         </option>
 
-        `
+        `;
 
       }
     )
-    .join('')
+    .join('');
 
 }
 
 
-function alignmentRow(
-  spot,
-  index,
-  positions
-){
-
-  const id=
-    positions[
-      String(index)
-    ]?.playerId ||
-    '';
-
-  const p=
-    data.players.find(
-      x=>
-        String(x.id)===
-        String(id)
-    );
-
-  return `
-
-  <div class="alignment-row">
-
-    <span class="role-badge">
-      ${spot[0]}
-    </span>
-
-    <span class="alignment-name">
-
-      ${
-        p
-          ?esc(p.name)
-          :'-- Sin jugador --'
-      }
-
-    </span>
-
-    ${
-      p
-
-      ?
-
-      `
-      <span
-        class="availability ${
-          p.available
-            ?'ok'
-            :'no'
-        }">
-
-        ${
-          p.available
-            ?'● Disponible'
-            :'● '+esc(
-              p.reason ||
-              'No disponible'
-            )
-        }
-
-      </span>
-      `
-
-      :
-
-      ''
-
-    }
-
-  </div>
-
-  `
-
-}
-
-
-function assignPosition(
+function assignPlayer(
   index,
   playerId
 ){
 
-  if(!data.tactics.positions)
-    data.tactics.positions={};
-
-  const key=
-    String(index);
-
   const id=
-    String(
-      playerId ||
-      ''
-    );
+    String(playerId||'');
+
 
   if(!id){
 
-    delete data.tactics.positions[
-      key
-    ];
+    delete
+      data.tactics.positions[
+        String(index)
+      ];
 
     save();
+
     render();
 
-    return
+    return;
 
   }
+
 
   const duplicate=
     Object.entries(
       data.tactics.positions
     )
     .some(
-      ([k,v])=>
-        k!==key &&
+      ([position,value])=>
+        position!==String(index)&&
         String(
-          v?.playerId ||
+          value?.playerId||
           ''
         )===id
     );
+
 
   if(duplicate){
 
@@ -3857,106 +2000,109 @@ function assignPosition(
 
     render();
 
-    return
+    return;
 
   }
 
-  const spot=
-    (
-      formations[
-        data.tactics.formation
-      ] ||
-      formations['4-3-3']
-    )[index];
 
   data.tactics.positions[
-    key
+    String(index)
   ]={
 
-    playerId:id,
-
-    x:spot[1],
-
-    y:spot[2],
-
-    role:spot[0]
+    playerId:id
 
   };
 
+
   save();
 
-  render()
+  render();
 
 }
 
+
+/* CAMBIAR FORMACIÓN */
 
 function changeFormation(
   formation
 ){
 
-  data.tactics.formation=
-    formation;
-
-  const spots=
-    formations[formation];
-
   const old=
-    data.tactics.positions ||
+    data.tactics.positions||
     {};
+
 
   const next={};
 
-  spots.forEach(
-    (spot,i)=>{
 
-      const id=
-        String(
-          old[
-            String(i)
-          ]?.playerId ||
-          ''
-        );
+  formations[
+    formation
+  ].forEach(
+    (spot,index)=>{
+
+      const oldPlayer=
+        old[
+          String(index)
+        ]?.playerId;
+
 
       if(
-        id &&
+        oldPlayer &&
         !Object.values(
           next
-        )
-        .some(
-          v=>
-            String(v.playerId)===
-            id
+        ).some(
+          value=>
+            String(
+              value.playerId
+            )===
+            String(oldPlayer)
         )
       ){
 
         next[
-          String(i)
+          String(index)
         ]={
 
-          playerId:id,
+          playerId:
+            String(oldPlayer)
 
-          x:spot[1],
-
-          y:spot[2],
-
-          role:spot[0]
-
-        }
+        };
 
       }
 
     }
   );
 
+
+  data.tactics.formation=
+    formation;
+
+
   data.tactics.positions=
     next;
 
+
   save();
 
-  render()
+  render();
 
 }
 
+
+/* VACIAR */
+
+function clearTactic(){
+
+  data.tactics.positions={};
+
+  save();
+
+  render();
+
+}
+
+
+/* RESET */
 
 function resetTactic(){
 
@@ -3965,78 +2111,559 @@ function resetTactic(){
       data.tactics.formation
     ];
 
+
   const next={};
 
+
   data.players
-    .slice(
-      0,
-      spots.length
-    )
+    .slice(0,11)
     .forEach(
-      (p,i)=>{
+      (player,index)=>{
+
+        if(!spots[index])
+          return;
+
 
         next[
-          String(i)
+          String(index)
         ]={
 
           playerId:
-            String(p.id),
+            String(player.id)
 
-          x:spots[i][1],
-
-          y:spots[i][2],
-
-          role:spots[i][0]
-
-        }
+        };
 
       }
     );
 
+
   data.tactics.positions=
     next;
 
+
   save();
 
-  render()
+  render();
 
 }
 
 
-function clearTactic(){
-
-  data.tactics.positions={};
-
-  save();
-
-  render()
-
-}
-
+/* GUARDAR */
 
 function saveTactic(){
 
   data.tactics.savedLineup=
-    Object.keys(
-      data.tactics.positions ||
-      {}
+    Object.values(
+      data.tactics.positions
     )
-    .filter(
-      k=>
-        data.tactics.positions[k]
-          ?.playerId
+    .map(
+      value=>
+        value.playerId
     );
+
 
   save();
 
   alert(
     'Alineación guardada correctamente.'
-  )
+  );
 
 }
 
 
-/* ARRANQUE */
+/* =========================================
+   PARTIDOS
+   ========================================= */
+
+function matches(){
+
+  return `
+
+  <div class="title-row">
+
+    <div>
+
+      <div class="title">
+        Partidos
+      </div>
+
+      <div class="subtitle">
+        Temporada
+        ${esc(
+          data.settings.season
+        )}
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-label">
+      PRÓXIMO PARTIDO
+    </div>
+
+    <div class="big">
+      ${esc(
+        data.next.date||
+        'Próximo partido'
+      )}
+    </div>
+
+    <div class="muted small">
+
+      ${esc(
+        data.next.time||
+        '12:00'
+      )}
+
+      ·
+
+      ${esc(
+        data.next.place||
+        'Campo Municipal'
+      )}
+
+    </div>
+
+
+    <div class="versus">
+
+      <div class="club">
+
+        <div class="club-logo">
+          ⚽
+        </div>
+
+        ${esc(
+          data.settings.team
+        )}
+
+      </div>
+
+
+      <div class="vs">
+        VS
+      </div>
+
+
+      <div class="club">
+
+        <div class="club-logo">
+          🛡️
+        </div>
+
+        ${esc(
+          data.next.opponent||
+          'Rival'
+        )}
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="go('tactic')">
+
+      ⚽ Abrir convocatoria
+
+    </button>
+
+  </div>
+
+
+  ${
+    data.matches
+      .map(
+        match=>`
+
+        <div class="card">
+
+          <div class="section-label">
+            PARTIDO
+          </div>
+
+          <div class="muted small">
+            ${esc(match.date)}
+          </div>
+
+
+          <div class="versus">
+
+            <div class="club">
+              ${esc(match.home)}
+            </div>
+
+            <div class="result">
+              ${esc(match.score)}
+            </div>
+
+            <div class="club">
+              ${esc(match.away)}
+            </div>
+
+          </div>
+
+        </div>
+
+        `
+      )
+      .join('')
+  }
+
+  `;
+
+}
+
+
+/* =========================================
+   MÁS
+   ========================================= */
+
+function more(){
+
+  return `
+
+  <div class="more-screen">
+
+    <div class="title">
+      Más
+    </div>
+
+
+    <div class="more-menu">
+
+      <button
+        class="more-row"
+        onclick="
+          go('stats')
+        ">
+
+        <div class="more-icon">
+          📊
+        </div>
+
+        <div class="more-text">
+          Estadísticas
+        </div>
+
+        <div class="more-arrow">
+          ›
+        </div>
+
+      </button>
+
+
+      <button
+        class="more-row"
+        onclick="
+          go('tactic')
+        ">
+
+        <div class="more-icon">
+          ⚽
+        </div>
+
+        <div class="more-text">
+          Táctica
+        </div>
+
+        <div class="more-arrow">
+          ›
+        </div>
+
+      </button>
+
+
+      <button
+        class="more-row"
+        onclick="
+          go('settings')
+        ">
+
+        <div class="more-icon">
+          ⚙️
+        </div>
+
+        <div class="more-text">
+          Configuración
+        </div>
+
+        <div class="more-arrow">
+          ›
+        </div>
+
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   ESTADÍSTICAS
+   ========================================= */
+
+function stats(){
+
+  const goals=
+    data.players.reduce(
+      (total,player)=>
+        total+
+        (Number(player.g)||0),
+      0
+    );
+
+
+  const assists=
+    data.players.reduce(
+      (total,player)=>
+        total+
+        (Number(player.a)||0),
+      0
+    );
+
+
+  return `
+
+  <div class="title">
+    Estadísticas
+  </div>
+
+
+  <div class="stat-grid">
+
+    <div class="stat">
+
+      <b>
+        ${data.players.length}
+      </b>
+
+      <span>
+        Jugadores
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${goals}
+      </b>
+
+      <span>
+        Goles
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${assists}
+      </b>
+
+      <span>
+        Asistencias
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${data.matches.length}
+      </b>
+
+      <span>
+        Partidos
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    ${
+      data.players
+        .map(
+          player=>`
+
+          <div class="item">
+
+            <div class="avatar">
+              ⚽
+            </div>
+
+            <div class="grow">
+
+              <b>
+                ${esc(player.name)}
+              </b>
+
+              <div class="muted">
+                ${esc(player.pos)}
+              </div>
+
+            </div>
+
+            <div>
+
+              <b>
+                ${player.g||0} ⚽
+              </b>
+
+              <div class="muted">
+                ${player.a||0} 🎯
+              </div>
+
+            </div>
+
+          </div>
+
+          `
+        )
+        .join('')
+    }
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================
+   CONFIGURACIÓN
+   ========================================= */
+
+function settings(){
+
+  return `
+
+  <div class="title">
+    Configuración
+  </div>
+
+
+  <div class="card">
+
+    <div class="form-group">
+
+      <label>
+        Entrenador
+      </label>
+
+      <input
+        id="coach"
+        class="form-input"
+        value="${esc(
+          data.settings.coach||
+          ''
+        )}">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Equipo
+      </label>
+
+      <input
+        id="team"
+        class="form-input"
+        value="${esc(
+          data.settings.team
+        )}">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Temporada
+      </label>
+
+      <input
+        id="season"
+        class="form-input"
+        value="${esc(
+          data.settings.season
+        )}">
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="
+        saveSettings()
+      ">
+
+      💾 Guardar
+
+    </button>
+
+  </div>
+
+  `;
+
+}
+
+
+function saveSettings(){
+
+  data.settings.coach=
+    document
+      .getElementById('coach')
+      .value
+      .trim();
+
+
+  data.settings.team=
+    document
+      .getElementById('team')
+      .value
+      .trim()
+    ||
+    'KNATT FC';
+
+
+  data.settings.season=
+    document
+      .getElementById('season')
+      .value
+      .trim()
+    ||
+    '2026/27';
+
+
+  save();
+
+  go('home');
+
+}
+
+
+/* =========================================
+   ARRANQUE
+   ========================================= */
 
 render();
 
