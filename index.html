@@ -959,7 +959,7 @@ if(!e.target.closest('.player-selector')) closePlayerMenus();
 
 function changeFormation(f){
 data.tactics.formation=f;
-data.tactics.positions={}; // Limpiamos posiciones para evitar colisiones extrañas de índices al cambiar esquemas
+data.tactics.positions={};
 save(); render();
 }
 
