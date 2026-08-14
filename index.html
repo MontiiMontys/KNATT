@@ -640,13 +640,6 @@ nav button.active{
   font-size:14px;
 }
 
-/*
-  Cuando ya hay jugador seleccionado,
-  el nombre es lo único visible.
-  El select queda invisible encima del nombre
-  para poder cambiar el jugador al pulsarlo.
-*/
-
 .position-select.selected{
   position:absolute;
   left:0;
@@ -1562,22 +1555,10 @@ function deletePlayer(id){
   }
 
 
-  /*
-    Eliminamos al jugador de la plantilla.
-  */
-
   data.players=data.players.filter(
     p=>String(p.id)!==String(id)
   );
 
-
-  /*
-    IMPORTANTE:
-    No usamos filter() en lineup porque
-    eso desplazaría todas las posiciones.
-    Conservamos exactamente los mismos índices
-    y dejamos vacío solamente el hueco del jugador.
-  */
 
   if(Array.isArray(data.tactics.lineup)){
 
@@ -2487,13 +2468,6 @@ function positionSlot(
     );
 
 
-  /*
-    Si hay jugador:
-    mostramos únicamente el nombre.
-    El selector queda invisible encima
-    para permitir cambiarlo al pulsar.
-  */
-
   if(player){
 
     return `
@@ -2563,11 +2537,6 @@ function positionSlot(
 
   }
 
-
-  /*
-    Si no hay jugador:
-    mostramos el selector normal.
-  */
 
   return `
 
@@ -2640,11 +2609,6 @@ function selectPosition(
     String(playerId||'');
 
 
-  /*
-    Si se deja vacío,
-    eliminamos esa posición.
-  */
-
   if(!playerId){
 
     data.tactics.lineup[index]='';
@@ -2658,11 +2622,6 @@ function selectPosition(
   }
 
 
-  /*
-    Un jugador no puede ocupar
-    dos posiciones simultáneamente.
-  */
-
   const existingIndex=
     data.tactics.lineup.findIndex(
       (id,i)=>
@@ -2672,11 +2631,6 @@ function selectPosition(
 
 
   if(existingIndex!==-1){
-
-    /*
-      Intercambiamos los jugadores
-      para que la selección sea cómoda.
-    */
 
     const current=
       data.tactics.lineup[index]||'';
@@ -2697,11 +2651,6 @@ function selectPosition(
 
   }
 
-
-  /*
-    Aseguramos que siempre haya
-    exactamente 11 posiciones.
-  */
 
   while(
     data.tactics.lineup.length<
@@ -2724,6 +2673,34 @@ function selectPosition(
    CAMBIAR FORMACION
 ========================================================= */
 
+/*
+  Conserva los jugadores por ROL y no por índice.
+
+  Ejemplo:
+
+  4-3-3
+  LI  -> Juan
+  DFC -> Pedro
+  DFC -> Alex
+  MC  -> Marc
+  DC  -> Montiimontys
+  ED  -> Luis
+
+  Al pasar a 4-4-2:
+
+  LI  -> Juan
+  DFC -> Pedro
+  DFC -> Alex
+  MC  -> Marc
+  DC  -> Montiimontys
+
+  ED desaparece porque la nueva formación
+  no tiene ED.
+
+  De esta forma ningún jugador termina
+  automáticamente en un rol incorrecto.
+*/
+
 function changeFormation(
   formation
 ){
@@ -2733,12 +2710,12 @@ function changeFormation(
   }
 
 
-  data.tactics.formation=
-    formation;
+  const oldFormation=
+    data.tactics.formation;
 
 
-  const spots=
-    formations[formation];
+  const oldSpots=
+    formations[oldFormation]||[];
 
 
   const oldLineup=
@@ -2747,17 +2724,95 @@ function changeFormation(
     :[];
 
 
+  const newSpots=
+    formations[formation];
+
+
   /*
-    Intentamos conservar jugadores.
-    Si hay más posiciones nuevas,
-    las dejamos vacías.
+    Guardamos los jugadores actuales
+    agrupados por su rol.
+
+    Ejemplo:
+
+    MC -> [jugador1, jugador2, jugador3]
+
+    DFC -> [jugador4, jugador5]
+  */
+
+  const playersByRole={};
+
+
+  oldSpots.forEach(
+    (spot,index)=>{
+
+      const role=
+        String(spot[0]||'')
+        .trim()
+        .toUpperCase();
+
+
+      const playerId=
+        oldLineup[index]||'';
+
+
+      if(!playerId){
+        return;
+      }
+
+
+      if(!playersByRole[role]){
+        playersByRole[role]=[];
+      }
+
+
+      playersByRole[role].push(
+        playerId
+      );
+
+    }
+  );
+
+
+  /*
+    Creamos la nueva alineación
+    respetando los roles de la nueva formación.
   */
 
   data.tactics.lineup=
-    spots.map(
-      (_,index)=>
-        oldLineup[index]||''
+    newSpots.map(
+      spot=>{
+
+        const role=
+          String(spot[0]||'')
+          .trim()
+          .toUpperCase();
+
+
+        if(
+          !playersByRole[role] ||
+          !playersByRole[role].length
+        ){
+
+          return '';
+
+        }
+
+
+        /*
+          Si hay dos MC, por ejemplo,
+          se utiliza el primer MC disponible
+          para el primer hueco y el segundo
+          para el segundo hueco.
+        */
+
+        return playersByRole[role].shift();
+
+      }
     );
+
+
+  data.tactics.formation=
+    formation;
 
 
   save();
