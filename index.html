@@ -215,7 +215,7 @@ main{
   width:100%
 }
 
-/* TARJETA PRINCIPAL */
+/* HERO */
 
 .hero{
   position:relative;
@@ -450,16 +450,6 @@ main{
   background:#f0b400
 }
 
-.delete-btn{
-  border:0;
-  background:#fae8eb;
-  color:var(--danger);
-  width:35px;
-  height:35px;
-  border-radius:10px;
-  font-size:15px
-}
-
 .pill{
   display:inline-flex;
   align-items:center;
@@ -550,10 +540,6 @@ main{
   color:#fff
 }
 
-.day.active span{
-  font-size:13px
-}
-
 .training-header{
   display:flex;
   align-items:center;
@@ -569,8 +555,7 @@ main{
   background:var(--red);
   color:#fff;
   font-size:24px;
-  line-height:1;
-  box-shadow:0 6px 14px #e21d2f35
+  line-height:1
 }
 
 .training-card{
@@ -724,7 +709,7 @@ main{
   font-size:17px
 }
 
-/* TÁCTICA */
+/* TÁCTICA — MANTENIDA */
 
 .tactic-toolbar{
   display:grid;
@@ -809,13 +794,8 @@ main{
   border:2px solid #fff9
 }
 
-.box.top{
-  top:2.5%
-}
-
-.box.bottom{
-  bottom:2.5%
-}
+.box.top{top:2.5%}
+.box.bottom{bottom:2.5%}
 
 .goal{
   position:absolute;
@@ -826,13 +806,8 @@ main{
   background:#ffffff18
 }
 
-.goal.top{
-  top:0
-}
-
-.goal.bottom{
-  bottom:0
-}
+.goal.top{top:0}
+.goal.bottom{bottom:0}
 
 .tactic-slot{
   position:absolute;
@@ -926,6 +901,15 @@ main{
   margin-bottom:12px
 }
 
+.notice{
+  background:#fff0f2;
+  color:#8c2531;
+  border-radius:13px;
+  padding:12px;
+  font-size:11px;
+  font-weight:700
+}
+
 /* NAVEGACIÓN */
 
 nav{
@@ -969,6 +953,7 @@ nav button .nav-icon{
 }
 
 @media(max-width:380px){
+
   main{
     padding-left:11px;
     padding-right:11px
@@ -1002,18 +987,31 @@ nav button .nav-icon{
 <div class="app">
 
 <header>
+
   <div class="header-row">
+
     <div>
-      <div class="brand">⚽ <span>KNATT</span></div>
-      <div class="role">Tu equipo, en una sola app</div>
+
+      <div class="brand">
+        ⚽ <span>KNATT</span>
+      </div>
+
+      <div class="role">
+        Tu equipo, en una sola app
+      </div>
+
     </div>
 
     <button
       class="header-bell"
       onclick="alert('No tienes nuevas notificaciones.')">
+
       🔔
+
     </button>
+
   </div>
+
 </header>
 
 <main id="content"></main>
@@ -1029,158 +1027,218 @@ const KEY='teamhub-v2';
 let data;
 
 try{
-  const saved=localStorage.getItem(KEY);
-  data=saved?JSON.parse(saved):null
+
+  const saved=
+    localStorage.getItem(KEY);
+
+  data=
+    saved
+      ?JSON.parse(saved)
+      :null;
+
 }catch(e){
-  data=null
+
+  data=null;
+
 }
+
+
+/* DATOS */
 
 if(!data||typeof data!=='object'){
 
- data={
-  players:[
-   {
-    id:1,
-    name:'Montiimontys',
-    num:9,
-    pos:'DC',
-    available:true,
-    reason:'',
-    min:1126,
-    g:12,
-    a:6
-   },
-   {
-    id:2,
-    name:'Marc',
-    num:7,
-    pos:'MC',
-    available:true,
-    reason:'',
-    min:1030,
-    g:5,
-    a:8
-   },
-   {
-    id:3,
-    name:'Juan',
-    num:4,
-    pos:'DFC',
-    available:false,
-    reason:'Trabajo',
-    min:980,
-    g:4,
-    a:3
-   },
-   {
-    id:4,
-    name:'Alex',
-    num:1,
-    pos:'POR',
-    available:true,
-    reason:'',
-    min:1260,
-    g:0,
-    a:1
-   },
-   {
-    id:5,
-    name:'Pedro',
-    num:3,
-    pos:'LI',
-    available:false,
-    reason:'Lesión',
-    min:640,
-    g:1,
-    a:2
-   }
-  ],
+  data={
 
-  next:{
-   opponent:'CD Rival',
-   date:'Domingo, 24 de agosto',
-   time:'12:00',
-   place:'Campo Municipal'
-  },
+    players:[
 
-  trainings:[
-   {
-    date:'Miércoles, 20 de agosto',
-    time:'21:15',
-    place:'Campo Municipal',
-    att:18,
-    total:22
-   }
-  ],
+      {
+        id:1,
+        name:'Montiimontys',
+        num:9,
+        pos:'DC',
+        available:true,
+        reason:'',
+        min:1126,
+        g:12,
+        a:6
+      },
 
-  matches:[
-   {
-    date:'17 AGO',
-    home:'KNATT FC',
-    away:'UD Ejemplo',
-    score:'2 - 1'
-   },
-   {
-    date:'10 AGO',
-    home:'CD Prueba',
-    away:'KNATT FC',
-    score:'0 - 3'
-   },
-   {
-    date:'03 AGO',
-    home:'KNATT FC',
-    away:'CF Amistad',
-    score:'1 - 1'
-   }
-  ],
+      {
+        id:2,
+        name:'Marc',
+        num:7,
+        pos:'MC',
+        available:true,
+        reason:'',
+        min:1030,
+        g:5,
+        a:8
+      },
 
-  tactics:{
-   formation:'4-3-3',
-   positions:{},
-   savedLineup:[]
-  },
+      {
+        id:3,
+        name:'Juan',
+        num:4,
+        pos:'DFC',
+        available:false,
+        reason:'Trabajo',
+        min:980,
+        g:4,
+        a:3
+      },
 
-  settings:{
-   coach:'',
-   team:'KNATT FC',
-   season:'2026/27',
-   category:'Primer Equipo'
+      {
+        id:4,
+        name:'Alex',
+        num:1,
+        pos:'POR',
+        available:true,
+        reason:'',
+        min:1260,
+        g:0,
+        a:1
+      },
+
+      {
+        id:5,
+        name:'Pedro',
+        num:3,
+        pos:'LI',
+        available:false,
+        reason:'Lesión',
+        min:640,
+        g:1,
+        a:2
+      }
+
+    ],
+
+    next:{
+      opponent:'CD Rival',
+      date:'Domingo, 24 de agosto',
+      time:'12:00',
+      place:'Campo Municipal'
+    },
+
+    trainings:[
+      {
+        date:'Miércoles, 20 de agosto',
+        time:'21:15',
+        place:'Campo Municipal',
+        att:18,
+        total:22
+      }
+    ],
+
+    matches:[
+      {
+        date:'17 AGO',
+        home:'KNATT FC',
+        away:'UD Ejemplo',
+        score:'2 - 1'
+      },
+      {
+        date:'10 AGO',
+        home:'CD Prueba',
+        away:'KNATT FC',
+        score:'0 - 3'
+      },
+      {
+        date:'03 AGO',
+        home:'KNATT FC',
+        away:'CF Amistad',
+        score:'1 - 1'
+      }
+    ],
+
+    tactics:{
+      formation:'4-3-3',
+      positions:{},
+      savedLineup:[]
+    },
+
+    settings:{
+      coach:'',
+      team:'KNATT FC',
+      season:'2026/27',
+      category:'Primer Equipo'
+    }
+
   }
- }
+
 }
+
+
+/* NORMALIZACIÓN */
 
 if(!Array.isArray(data.players))
   data.players=[];
 
-data.players=data.players.map((p,i)=>({
-  id:p?.id??Date.now()+i,
-  name:String(p?.name||'Jugador'),
-  num:p?.num??'-',
-  pos:String(p?.pos||'Jugador'),
-  available:
-    typeof p?.available==='boolean'
-      ?p.available
-      :true,
-  reason:String(p?.reason||''),
-  min:Number(p?.min)||0,
-  g:Number(p?.g)||0,
-  a:Number(p?.a)||0
-}));
+data.players=
+  data.players.map(
+    (p,index)=>({
+
+      id:
+        p?.id ??
+        Date.now()+index,
+
+      name:
+        String(
+          p?.name ||
+          'Jugador'
+        ),
+
+      num:
+        p?.num ??
+        '-',
+
+      pos:
+        String(
+          p?.pos ||
+          'Jugador'
+        ),
+
+      available:
+        typeof p?.available==='boolean'
+          ?p.available
+          :true,
+
+      reason:
+        String(
+          p?.reason ||
+          ''
+        ),
+
+      min:
+        Number(p?.min)||0,
+
+      g:
+        Number(p?.g)||0,
+
+      a:
+        Number(p?.a)||0
+
+    })
+  );
 
 if(!data.next)
   data.next={};
 
 data.next.opponent=
-  data.next.opponent||'CD Rival';
+  data.next.opponent ||
+  'CD Rival';
 
 data.next.date=
-  data.next.date||'Próximo partido';
+  data.next.date ||
+  'Próximo partido';
 
 data.next.time=
-  data.next.time||'12:00';
+  data.next.time ||
+  '12:00';
 
 data.next.place=
-  data.next.place||'Campo Municipal';
+  data.next.place ||
+  'Campo Municipal';
 
 if(!Array.isArray(data.trainings))
   data.trainings=[];
@@ -1192,35 +1250,46 @@ if(!data.tactics)
   data.tactics={};
 
 data.tactics.formation=
-  data.tactics.formation||'4-3-3';
+  data.tactics.formation ||
+  '4-3-3';
 
 data.tactics.positions=
-  data.tactics.positions||{};
+  data.tactics.positions ||
+  {};
 
 data.tactics.savedLineup=
-  Array.isArray(data.tactics.savedLineup)
-    ?data.tactics.savedLineup
-    :[];
+  Array.isArray(
+    data.tactics.savedLineup
+  )
+  ?data.tactics.savedLineup
+  :[];
 
 if(!data.settings)
   data.settings={};
 
 data.settings.coach=
-  data.settings.coach||'';
+  data.settings.coach ||
+  '';
 
 data.settings.team=
-  data.settings.team||'KNATT FC';
+  data.settings.team ||
+  'KNATT FC';
 
 data.settings.season=
-  data.settings.season||'2026/27';
+  data.settings.season ||
+  '2026/27';
 
 data.settings.category=
-  data.settings.category||'Primer Equipo';
+  data.settings.category ||
+  'Primer Equipo';
 
 localStorage.setItem(
   KEY,
   JSON.stringify(data)
 );
+
+
+/* ESTADO */
 
 let section='home';
 let filter='all';
@@ -1231,151 +1300,174 @@ let selectedPlayerId=null;
 
 const formations={
 
- '4-3-3':[
-  ['POR',50,92],
-  ['LI',18,76],
-  ['DFC',40,80],
-  ['DFC',60,80],
-  ['LD',82,76],
-  ['MC',28,60],
-  ['MC',50,58],
-  ['MC',72,60],
-  ['EI',18,35],
-  ['DC',50,24],
-  ['ED',82,35]
- ],
+  '4-3-3':[
+    ['POR',50,92],
+    ['LI',18,76],
+    ['DFC',40,80],
+    ['DFC',60,80],
+    ['LD',82,76],
+    ['MC',28,60],
+    ['MC',50,58],
+    ['MC',72,60],
+    ['EI',18,35],
+    ['DC',50,24],
+    ['ED',82,35]
+  ],
 
- '4-4-2':[
-  ['POR',50,92],
-  ['LI',18,76],
-  ['DFC',40,80],
-  ['DFC',60,80],
-  ['LD',82,76],
-  ['MI',18,57],
-  ['MC',40,57],
-  ['MC',60,57],
-  ['MD',82,57],
-  ['DC',38,27],
-  ['DC',62,27]
- ],
+  '4-4-2':[
+    ['POR',50,92],
+    ['LI',18,76],
+    ['DFC',40,80],
+    ['DFC',60,80],
+    ['LD',82,76],
+    ['MI',18,57],
+    ['MC',40,57],
+    ['MC',60,57],
+    ['MD',82,57],
+    ['DC',38,27],
+    ['DC',62,27]
+  ],
 
- '4-2-3-1':[
-  ['POR',50,92],
-  ['LI',18,76],
-  ['DFC',40,80],
-  ['DFC',60,80],
-  ['LD',82,76],
-  ['MCD',38,63],
-  ['MCD',62,63],
-  ['EI',18,43],
-  ['MCO',50,45],
-  ['ED',82,43],
-  ['DC',50,24]
- ],
+  '4-2-3-1':[
+    ['POR',50,92],
+    ['LI',18,76],
+    ['DFC',40,80],
+    ['DFC',60,80],
+    ['LD',82,76],
+    ['MCD',38,63],
+    ['MCD',62,63],
+    ['EI',18,43],
+    ['MCO',50,45],
+    ['ED',82,43],
+    ['DC',50,24]
+  ],
 
- '3-5-2':[
-  ['POR',50,92],
-  ['DFC',27,78],
-  ['DFC',50,82],
-  ['DFC',73,78],
-  ['MI',12,57],
-  ['MC',32,58],
-  ['MCO',50,50],
-  ['MC',68,58],
-  ['MD',88,57],
-  ['DC',38,27],
-  ['DC',62,27]
- ],
+  '3-5-2':[
+    ['POR',50,92],
+    ['DFC',27,78],
+    ['DFC',50,82],
+    ['DFC',73,78],
+    ['MI',12,57],
+    ['MC',32,58],
+    ['MCO',50,50],
+    ['MC',68,58],
+    ['MD',88,57],
+    ['DC',38,27],
+    ['DC',62,27]
+  ],
 
- '3-4-3':[
-  ['POR',50,92],
-  ['DFC',27,80],
-  ['DFC',50,83],
-  ['DFC',73,80],
-  ['MI',18,59],
-  ['MC',40,59],
-  ['MC',60,59],
-  ['MD',82,59],
-  ['EI',18,33],
-  ['DC',50,24],
-  ['ED',82,33]
- ],
+  '3-4-3':[
+    ['POR',50,92],
+    ['DFC',27,80],
+    ['DFC',50,83],
+    ['DFC',73,80],
+    ['MI',18,59],
+    ['MC',40,59],
+    ['MC',60,59],
+    ['MD',82,59],
+    ['EI',18,33],
+    ['DC',50,24],
+    ['ED',82,33]
+  ],
 
- '5-3-2':[
-  ['POR',50,92],
-  ['LI',10,73],
-  ['DFC',30,79],
-  ['DFC',50,82],
-  ['DFC',70,79],
-  ['LD',90,73],
-  ['MC',30,58],
-  ['MC',50,55],
-  ['MC',70,58],
-  ['DC',38,27],
-  ['DC',62,27]
- ],
+  '5-3-2':[
+    ['POR',50,92],
+    ['LI',10,73],
+    ['DFC',30,79],
+    ['DFC',50,82],
+    ['DFC',70,79],
+    ['LD',90,73],
+    ['MC',30,58],
+    ['MC',50,55],
+    ['MC',70,58],
+    ['DC',38,27],
+    ['DC',62,27]
+  ],
 
- '4-5-1':[
-  ['POR',50,92],
-  ['LI',18,76],
-  ['DFC',40,80],
-  ['DFC',60,80],
-  ['LD',82,76],
-  ['MI',12,57],
-  ['MC',31,57],
-  ['MCO',50,53],
-  ['MC',69,57],
-  ['MD',88,57],
-  ['DC',50,24]
- ]
+  '4-5-1':[
+    ['POR',50,92],
+    ['LI',18,76],
+    ['DFC',40,80],
+    ['DFC',60,80],
+    ['LD',82,76],
+    ['MI',12,57],
+    ['MC',31,57],
+    ['MCO',50,53],
+    ['MC',69,57],
+    ['MD',88,57],
+    ['DC',50,24]
+  ]
 
 };
 
 
-/* FUNCIONES GENERALES */
+/* FUNCIONES */
 
 function save(){
+
   localStorage.setItem(
     KEY,
     JSON.stringify(data)
   )
+
 }
 
-function esc(s){
-  return String(s).replace(
+function esc(str){
+
+  return String(str).replace(
     /[&<>"']/g,
     m=>({
+
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
       '"':'&quot;',
       "'":'&#039;'
+
     }[m])
   )
+
 }
 
 function go(s){
+
   section=s;
   selectedPlayerId=null;
-  window.scrollTo(0,0);
+
+  window.scrollTo(
+    0,
+    0
+  );
+
   render()
+
 }
 
 function getPlayer(){
+
   return data.players.find(
-    p=>String(p.id)===String(selectedPlayerId)
+    p=>
+      String(p.id)===
+      String(selectedPlayerId)
   )
+
 }
 
 function navItems(){
 
- return [
-  ['home','⌂','Inicio'],
-  ['team','♟','Plantilla'],
-  ['training','♜','Entrenos'],
-  ['matches','🏆','Partidos'],
-  ['more','☰','Más']
- ]
+  return [
+
+    ['home','⌂','Inicio'],
+
+    ['team','♟','Plantilla'],
+
+    ['training','♜','Entrenos'],
+
+    ['matches','🏆','Partidos'],
+
+    ['more','☰','Más']
+
+  ]
 
 }
 
@@ -1384,43 +1476,68 @@ function navItems(){
 
 function render(){
 
- document.getElementById('nav').innerHTML=
-   navItems()
-   .map(x=>`
-     <button
-       class="${section===x[0]?'active':''}"
-       onclick="go('${x[0]}')">
+  document.getElementById(
+    'nav'
+  ).innerHTML=
 
-       <div class="nav-icon">
-         ${x[1]}
-       </div>
+    navItems()
+      .map(
+        x=>`
 
-       ${x[2]}
+        <button
+          class="${
+            section===x[0]
+              ?'active'
+              :''
+          }"
+          onclick="go('${x[0]}')">
 
-     </button>
-   `)
-   .join('');
+          <div class="nav-icon">
+            ${x[1]}
+          </div>
 
- let c=document.getElementById('content');
+          ${x[2]}
 
- c.innerHTML=
-   section==='home'
-     ?home()
-     :section==='team'
-       ?team()
-       :section==='player'
-         ?playerProfile()
-         :section==='training'
-           ?training()
-           :section==='matches'
-             ?matches()
-             :section==='more'
-               ?more()
-               :section==='tactic'
-                 ?tactic()
-                 :section==='stats'
-                   ?stats()
-                   :settings()
+        </button>
+
+        `
+      )
+      .join('');
+
+  const c=
+    document.getElementById(
+      'content'
+    );
+
+  c.innerHTML='';
+
+  if(section==='home')
+    c.innerHTML=home();
+
+  if(section==='team')
+    c.innerHTML=team();
+
+  if(section==='player')
+    c.innerHTML=playerProfile();
+
+  if(section==='training')
+    c.innerHTML=training();
+
+  if(section==='matches')
+    c.innerHTML=matches();
+
+  if(section==='more')
+    c.innerHTML=more();
+
+  if(section==='tactic')
+    c.innerHTML=tactic();
+
+  if(section==='stats')
+    c.innerHTML=stats();
+
+  if(section==='settings')
+    c.innerHTML=settings()
+
 }
 
 
@@ -1428,256 +1545,281 @@ function render(){
 
 function home(){
 
- const av=
-   data.players.filter(
-     p=>p.available
-   ).length;
+  const available=
+    data.players.filter(
+      p=>p.available
+    ).length;
 
- const abs=
-   data.players.length-av;
+  const absent=
+    data.players.length-
+    available;
 
- return `
+  return `
 
- <div class="title-row">
+  <div class="title-row">
 
-   <div>
-     <div class="title">
-       ¡Buenos días, ${esc(data.settings.coach||'Entrenador')}!
-     </div>
-   </div>
+    <div>
 
-   <span class="pill">
-     ● Equipo activo
-   </span>
+      <div class="title">
+        ¡Buenos días,
+        ${esc(
+          data.settings.coach ||
+          'Entrenador'
+        )}!
+      </div>
 
- </div>
+    </div>
 
+    <span class="pill">
+      ● Equipo activo
+    </span>
 
- <div class="card">
+  </div>
 
-   <div class="section-label">
-     PRÓXIMO ENTRENAMIENTO
-   </div>
 
-   <div class="big">
-     ${esc(
-       data.trainings[0]?.date ||
-       'Miércoles, 20 de agosto'
-     )}
-   </div>
+  <div class="card">
 
-   <div class="match-meta">
+    <div class="section-label">
+      PRÓXIMO ENTRENAMIENTO
+    </div>
 
-     <div class="avatar red">
-       ⏱️
-     </div>
+    <div class="big">
 
-     <div class="match-info">
+      ${esc(
+        data.trainings[0]?.date ||
+        'Miércoles, 20 de agosto'
+      )}
 
-       <div class="match-date">
-         ${esc(
-           data.trainings[0]?.time ||
-           '21:15'
-         )}
-       </div>
+    </div>
 
-       <div class="match-place">
-         📍 ${esc(
-           data.trainings[0]?.place ||
-           'Campo Municipal'
-         )}
-       </div>
+    <div class="match-meta">
 
-     </div>
+      <div class="avatar red">
+        ⏱️
+      </div>
 
-     <span>›</span>
+      <div class="match-info">
 
-   </div>
+        <div class="match-date">
 
- </div>
+          ${esc(
+            data.trainings[0]?.time ||
+            '21:15'
+          )}
 
+        </div>
 
- <div class="card match-card">
+        <div class="match-place">
 
-   <div class="section-label">
-     PRÓXIMO PARTIDO
-   </div>
+          📍 ${esc(
+            data.trainings[0]?.place ||
+            'Campo Municipal'
+          )}
 
-   <div class="muted small">
-     ${esc(data.next.date)}
-     ·
-     ${esc(data.next.time)}
-   </div>
+        </div>
 
-   <div class="versus">
+      </div>
 
-     <div class="club">
+      <span>›</span>
 
-       <div class="club-logo">
-         ⚽
-       </div>
+    </div>
 
-       ${esc(data.settings.team)}
+  </div>
 
-     </div>
 
-     <div class="vs">
-       VS
-     </div>
+  <div class="card match-card">
 
-     <div class="club">
+    <div class="section-label">
+      PRÓXIMO PARTIDO
+    </div>
 
-       <div class="club-logo">
-         🛡️
-       </div>
+    <div class="muted small">
 
-       ${esc(data.next.opponent)}
+      ${esc(data.next.date)}
+      ·
+      ${esc(data.next.time)}
 
-     </div>
+    </div>
 
-   </div>
 
-   <div
-     class="muted small"
-     style="text-align:center">
+    <div class="versus">
 
-     Jornada 3 · Liga Regular
+      <div class="club">
 
-   </div>
+        <div class="club-logo">
+          ⚽
+        </div>
 
- </div>
+        ${esc(data.settings.team)}
 
+      </div>
 
- <div class="card card-dark">
+      <div class="vs">
+        VS
+      </div>
 
-   <div class="section-label dark-label">
-     ESTADO DEL EQUIPO
-   </div>
+      <div class="club">
 
-   <div class="stat-grid">
+        <div class="club-logo">
+          🛡️
+        </div>
 
-     <div>
-       <b>
-         ${data.players.length}
-       </b>
-       <span>Jugadores</span>
-     </div>
+        ${esc(data.next.opponent)}
 
-     <div>
-       <b style="color:#5bd878">
-         ${av}
-       </b>
-       <span>Disponibles</span>
-     </div>
+      </div>
 
-     <div>
-       <b style="color:#ff6574">
-         ${abs}
-       </b>
-       <span>Ausentes</span>
-     </div>
+    </div>
 
-     <div>
-       <b style="color:#ffd45c">
-         ${data.players.filter(
-           p=>!p.available
-         ).length}
-       </b>
-       <span>Pendientes</span>
-     </div>
+    <div
+      class="muted small"
+      style="text-align:center">
 
-   </div>
+      Jornada 3 · Liga Regular
 
- </div>
+    </div>
 
+  </div>
 
- <div class="card">
 
-   <div class="section-label">
-     ÚLTIMAS NOVEDADES
-   </div>
+  <div class="card card-dark">
 
-   <div class="notice-list">
+    <div class="section-label dark-label">
+      ESTADO DEL EQUIPO
+    </div>
 
-     <div class="notice-row">
+    <div class="stat-grid">
 
-       <div class="notice-icon">
-         ✅
-       </div>
+      <div>
+        <b>
+          ${data.players.length}
+        </b>
+        <span>Jugadores</span>
+      </div>
 
-       <div>
+      <div>
+        <b style="color:#5bd878">
+          ${available}
+        </b>
+        <span>Disponibles</span>
+      </div>
 
-         <b>
-           ${esc(
-             data.players.find(
-               p=>p.available
-             )?.name ||
-             'Jugador'
-           )}
-           ha confirmado asistencia
-         </b>
+      <div>
+        <b style="color:#ff6574">
+          ${absent}
+        </b>
+        <span>Ausentes</span>
+      </div>
 
-         <div class="muted">
-           Entrenamiento · Hoy, 08:32
-         </div>
+      <div>
+        <b style="color:#ffd45c">
+          ${
+            data.players.filter(
+              p=>!p.available
+            ).length
+          }
+        </b>
+        <span>Pendientes</span>
+      </div>
 
-       </div>
+    </div>
 
-     </div>
+  </div>
 
 
-     <div class="notice-row">
+  <div class="card">
 
-       <div class="notice-icon">
-         🩹
-       </div>
+    <div class="section-label">
+      ÚLTIMAS NOVEDADES
+    </div>
 
-       <div>
+    <div class="notice-list">
 
-         <b>
-           ${esc(
-             data.players.find(
-               p=>!p.available
-             )?.name ||
-             'Ningún jugador'
-           )}
-           sigue no disponible
-         </b>
+      <div class="notice-row">
 
-         <div class="muted">
-           Estado de plantilla · Ayer
-         </div>
+        <div class="notice-icon">
+          ✅
+        </div>
 
-       </div>
+        <div>
 
-     </div>
+          <b>
+            ${
+              esc(
+                data.players.find(
+                  p=>p.available
+                )?.name ||
+                'Jugador'
+              )
+            }
 
+            ha confirmado asistencia
+          </b>
 
-     <div class="notice-row">
+          <div class="muted">
+            Entrenamiento · Hoy
+          </div>
 
-       <div class="notice-icon">
-         📋
-       </div>
+        </div>
 
-       <div>
+      </div>
 
-         <b>
-           Convocatoria del partido pendiente
-         </b>
 
-         <div class="muted">
-           Hoy, 07:20
-         </div>
+      <div class="notice-row">
 
-       </div>
+        <div class="notice-icon">
+          🩹
+        </div>
 
-     </div>
+        <div>
 
-   </div>
+          <b>
+            ${
+              esc(
+                data.players.find(
+                  p=>!p.available
+                )?.name ||
+                'Ningún jugador'
+              )
+            }
 
- </div>
+            sigue no disponible
+          </b>
 
- `
+          <div class="muted">
+            Estado de plantilla · Ayer
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="notice-row">
+
+        <div class="notice-icon">
+          📋
+        </div>
+
+        <div>
+
+          <b>
+            Convocatoria del partido pendiente
+          </b>
+
+          <div class="muted">
+            Hoy
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  `
+
 }
 
 
@@ -1685,515 +1827,588 @@ function home(){
 
 function team(){
 
- const list=
-   data.players.filter(
-     p=>
-       filter==='all' ||
-       (
-         filter==='available'
-         ?p.available
-         :!p.available
-       )
-   );
+  const list=
+    data.players.filter(
+      p=>
+        filter==='all' ||
+        (
+          filter==='available'
+            ?p.available
+            :!p.available
+        )
+    );
 
- return `
+  return `
 
- <div class="title-row">
+  <div class="title-row">
 
-   <div>
+    <div>
 
-     <div class="title">
-       Plantilla
-     </div>
+      <div class="title">
+        Plantilla
+      </div>
 
-     <div class="subtitle">
-       ${data.players.length}
-       jugadores registrados
-     </div>
+      <div class="subtitle">
+        ${data.players.length}
+        jugadores registrados
+      </div>
 
-   </div>
+    </div>
 
-   <button
-     class="btn red-soft"
-     onclick="addPlayer()">
+    <button
+      class="btn red-soft"
+      onclick="addPlayer()">
 
-     ＋
+      ＋
 
-   </button>
+    </button>
 
- </div>
-
-
- <div class="tabs">
-
-   <button
-     class="tab ${filter==='all'?'active':''}"
-     onclick="filter='all';render()">
-
-     Todos
-
-   </button>
-
-   <button
-     class="tab ${filter==='available'?'active':''}"
-     onclick="filter='available';render()">
-
-     Disponibles
-
-   </button>
-
-   <button
-     class="tab ${filter==='absent'?'active':''}"
-     onclick="filter='absent';render()">
-
-     Ausentes
-
-   </button>
-
- </div>
+  </div>
 
 
- <div class="card">
+  <div class="tabs">
 
- ${
-   list.length
+    <button
+      class="tab ${
+        filter==='all'
+          ?'active'
+          :''
+      }"
+      onclick="
+        filter='all';
+        render()
+      ">
 
-   ?
+      Todos
 
-   list.map(p=>`
+    </button>
 
-     <div
-       class="item"
-       onclick="openPlayer(${p.id})">
+    <button
+      class="tab ${
+        filter==='available'
+          ?'active'
+          :''
+      }"
+      onclick="
+        filter='available';
+        render()
+      ">
 
-       <div class="avatar">
+      Disponibles
 
-         ${
-           p.pos==='POR'
-             ?'🧤'
-             :'⚽'
-         }
+    </button>
 
-       </div>
+    <button
+      class="tab ${
+        filter==='absent'
+          ?'active'
+          :''
+      }"
+      onclick="
+        filter='absent';
+        render()
+      ">
 
-       <div class="grow">
+      Ausentes
 
-         <b>
-           ${esc(p.name)}
-         </b>
+    </button>
 
-         <div class="muted">
+  </div>
 
-           ${esc(p.pos)}
 
-           ·
+  <div class="card">
 
-           ${
-             p.available
+    ${
+      list.length
 
-               ?
+      ?
 
-               '<span class="status-dot"></span>Disponible'
+      list.map(
+        p=>`
 
-               :
+        <div
+          class="item"
+          onclick="openPlayer(${p.id})">
 
-               '<span class="status-dot off"></span>'+
-               (esc(p.reason)||'No disponible')
-           }
+          <div class="avatar">
 
-         </div>
+            ${
+              p.pos==='POR'
+                ?'🧤'
+                :'⚽'
+            }
 
-         <div class="muted">
+          </div>
 
-           ${Number(p.g)||0}
-           ⚽ ·
+          <div class="grow">
 
-           ${Number(p.a)||0}
-           🎯 ·
+            <b>
+              ${esc(p.name)}
+            </b>
 
-           ${Number(p.min)||0}
-           min
+            <div class="muted">
 
-         </div>
+              ${esc(p.pos)}
+              ·
 
-       </div>
+              ${
+                p.available
 
-       <span>
-         ›
-       </span>
+                ?
 
-     </div>
+                `
+                <span class="status-dot"></span>
+                Disponible
+                `
 
-   `).join('')
+                :
 
-   :
+                `
+                <span class="status-dot off"></span>
+                ${esc(
+                  p.reason ||
+                  'No disponible'
+                )}
+                `
+              }
 
-   `
-   <div
-     class="muted"
-     style="text-align:center;padding:20px">
+            </div>
 
-     No hay jugadores.
+            <div class="muted">
 
-   </div>
-   `
- }
+              ${p.g||0}
+              ⚽ ·
 
- </div>
+              ${p.a||0}
+              🎯 ·
 
- `
+              ${p.min||0}
+              min
+
+            </div>
+
+          </div>
+
+          <span>›</span>
+
+        </div>
+
+        `
+      ).join('')
+
+      :
+
+      `
+      <div
+        class="muted"
+        style="
+          text-align:center;
+          padding:20px">
+
+        No hay jugadores.
+
+      </div>
+      `
+    }
+
+  </div>
+
+  `
+
 }
 
 
-/* PERFIL JUGADOR */
+/* JUGADOR */
 
 function openPlayer(id){
+
   selectedPlayerId=id;
   section='player';
+
   render()
+
 }
 
 function playerProfile(){
 
- const p=getPlayer();
+  const p=getPlayer();
 
- if(!p)
+  if(!p)
 
-   return `
-   <div class="card">
-     Jugador no encontrado
-   </div>
-   `;
+    return `
+    <div class="card">
+      Jugador no encontrado
+    </div>
+    `;
 
- return `
+  return `
 
- <button
-   class="btn light"
-   onclick="go('team')">
+  <button
+    class="btn light"
+    onclick="go('team')">
 
-   ← Plantilla
+    ← Plantilla
 
- </button>
-
-
- <div
-   class="card hero"
-   style="margin-top:12px">
-
-   <div class="row">
-
-     <div>
-
-       <div class="section-label">
-         JUGADOR
-       </div>
-
-       <div class="big">
-         ${esc(p.name)}
-       </div>
-
-       <div class="muted">
-         ${esc(p.pos)}
-         ·
-         #${esc(p.num)}
-       </div>
-
-     </div>
-
-     <div class="avatar">
-
-       ${
-         p.pos==='POR'
-           ?'🧤'
-           :'⚽'
-       }
-
-     </div>
-
-   </div>
-
-   <br>
-
-   <span
-     class="pill ${p.available?'':'danger'}">
-
-     ${
-       p.available
-         ?'● Disponible'
-         :'● '+(
-           esc(p.reason) ||
-           'No disponible'
-         )
-     }
-
-   </span>
-
- </div>
+  </button>
 
 
- <div class="stat-grid">
+  <div
+    class="card hero"
+    style="margin-top:12px">
 
-   <div class="stat">
+    <div class="row">
 
-     <b>
-       ${p.min||0}
-     </b>
+      <div>
 
-     <span>
-       Minutos
-     </span>
+        <div class="section-label">
+          JUGADOR
+        </div>
 
-   </div>
+        <div class="big">
+          ${esc(p.name)}
+        </div>
 
-   <div class="stat red">
+        <div class="muted">
+          ${esc(p.pos)}
+          ·
+          #${esc(p.num)}
+        </div>
 
-     <b>
-       ${p.g||0}
-     </b>
+      </div>
 
-     <span>
-       Goles
-     </span>
+      <div class="avatar">
 
-   </div>
+        ${
+          p.pos==='POR'
+            ?'🧤'
+            :'⚽'
+        }
 
-   <div class="stat">
+      </div>
 
-     <b>
-       ${p.a||0}
-     </b>
+    </div>
 
-     <span>
-       Asistencias
-     </span>
+    <br>
 
-   </div>
+    <span
+      class="pill ${
+        p.available
+          ?''
+          :'danger'
+      }">
 
-   <div class="stat">
+      ${
+        p.available
+          ?'● Disponible'
+          :'● '+esc(
+            p.reason ||
+            'No disponible'
+          )
+      }
 
-     <b>
-       #${esc(p.num)}
-     </b>
+    </span>
 
-     <span>
-       Dorsal
-     </span>
-
-   </div>
-
- </div>
+  </div>
 
 
- <div class="card">
+  <div class="stat-grid">
 
-   <button
-     class="btn full"
-     onclick="editPlayer()">
+    <div class="stat">
 
-     ✏️ Editar jugador
+      <b>${p.min||0}</b>
 
-   </button>
+      <span>
+        Minutos
+      </span>
 
-   <br><br>
+    </div>
 
-   <button
-     class="btn light full"
-     onclick="deletePlayer(${p.id})">
+    <div class="stat red">
 
-     🗑️ Eliminar jugador
+      <b>${p.g||0}</b>
 
-   </button>
+      <span>
+        Goles
+      </span>
 
- </div>
+    </div>
 
- `
+    <div class="stat">
+
+      <b>${p.a||0}</b>
+
+      <span>
+        Asistencias
+      </span>
+
+    </div>
+
+    <div class="stat">
+
+      <b>#${esc(p.num)}</b>
+
+      <span>
+        Dorsal
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <button
+      class="btn full"
+      onclick="editPlayer()">
+
+      ✏️ Editar jugador
+
+    </button>
+
+    <br><br>
+
+    <button
+      class="btn light full"
+      onclick="deletePlayer(${p.id})">
+
+      🗑️ Eliminar jugador
+
+    </button>
+
+  </div>
+
+  `
+
 }
 
 
 function addPlayer(){
 
- const name=
-   prompt('Nombre del jugador:');
+  const name=
+    prompt(
+      'Nombre del jugador:'
+    );
 
- if(!name)return;
+  if(!name)return;
 
- const num=
-   prompt(
-     'Número de camiseta:',
-     ''
-   );
+  const num=
+    prompt(
+      'Número de camiseta:',
+      ''
+    );
 
- if(num===null)return;
+  if(num===null)return;
 
- const pos=
-   prompt(
-     'Posición:',
-     ''
-   );
+  const pos=
+    prompt(
+      'Posición:',
+      ''
+    );
 
- if(pos===null)return;
+  if(pos===null)return;
 
- data.players.push({
+  data.players.push({
 
-   id:Date.now(),
+    id:Date.now(),
 
-   name:name.trim(),
+    name:name.trim(),
 
-   num:num.trim()||'-',
+    num:num.trim()||'-',
 
-   pos:
-     pos.trim()||
-     'Jugador',
+    pos:
+      pos.trim()||
+      'Jugador',
 
-   available:true,
+    available:true,
 
-   reason:'',
+    reason:'',
 
-   min:0,
+    min:0,
 
-   g:0,
+    g:0,
 
-   a:0
+    a:0
 
- });
+  });
 
- save();
- render()
+  save();
+  render()
 
 }
 
 
 function editPlayer(){
 
- const p=getPlayer();
+  const p=getPlayer();
 
- if(!p)return;
+  if(!p)return;
 
- const name=
-   prompt(
-     'Nombre del jugador:',
-     p.name
-   );
+  const name=
+    prompt(
+      'Nombre del jugador:',
+      p.name
+    );
 
- if(name===null)return;
+  if(name===null)return;
 
- const num=
-   prompt(
-     'Número de camiseta:',
-     p.num
-   );
+  const num=
+    prompt(
+      'Número de camiseta:',
+      p.num
+    );
 
- if(num===null)return;
+  if(num===null)return;
 
- const pos=
-   prompt(
-     'Posición:',
-     p.pos
-   );
+  const pos=
+    prompt(
+      'Posición:',
+      p.pos
+    );
 
- if(pos===null)return;
+  if(pos===null)return;
 
- const available=
-   confirm(
-     '¿Está disponible?\n\n' +
-     'Aceptar = Sí\n' +
-     'Cancelar = No'
-   );
+  const available=
+    confirm(
+      '¿Está disponible?\n\n' +
+      'Aceptar = Sí\n' +
+      'Cancelar = No'
+    );
 
- let reason='';
+  let reason='';
 
- if(!available){
+  if(!available){
 
-   const r=
-     prompt(
-       'Motivo:',
-       p.reason
-     );
+    const r=
+      prompt(
+        'Motivo:',
+        p.reason
+      );
 
-   if(r!==null)
-     reason=r.trim()
+    if(r!==null)
+      reason=r.trim()
 
- }
+  }
 
- const min=
-   prompt(
-     'Minutos:',
-     p.min
-   );
+  const min=
+    prompt(
+      'Minutos:',
+      p.min
+    );
 
- if(min===null)return;
+  if(min===null)return;
 
- const g=
-   prompt(
-     'Goles:',
-     p.g
-   );
+  const goals=
+    prompt(
+      'Goles:',
+      p.g
+    );
 
- if(g===null)return;
+  if(goals===null)return;
 
- const a=
-   prompt(
-     'Asistencias:',
-     p.a
-   );
+  const assists=
+    prompt(
+      'Asistencias:',
+      p.a
+    );
 
- if(a===null)return;
+  if(assists===null)return;
 
- p.name=
-   name.trim()||p.name;
+  p.name=
+    name.trim()||
+    p.name;
 
- p.num=
-   num.trim()||p.num;
+  p.num=
+    num.trim()||
+    p.num;
 
- p.pos=
-   pos.trim()||p.pos;
+  p.pos=
+    pos.trim()||
+    p.pos;
 
- p.available=
-   available;
+  p.available=
+    available;
 
- p.reason=
-   reason;
+  p.reason=
+    reason;
 
- p.min=
-   Number(min)||0;
+  p.min=
+    Number(min)||0;
 
- p.g=
-   Number(g)||0;
+  p.g=
+    Number(goals)||0;
 
- p.a=
-   Number(a)||0;
+  p.a=
+    Number(assists)||0;
 
- save();
- render()
+  save();
+  render()
 
 }
 
 
 function deletePlayer(id){
 
- const p=
-   data.players.find(
-     x=>String(x.id)===String(id)
-   );
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(id)
+    );
 
- if(
-   !p ||
-   !confirm(
-     '¿Eliminar a '+
-     p.name+
-     ' de la plantilla?'
-   )
- )
-   return;
+  if(
+    !p ||
+    !confirm(
+      '¿Eliminar a '+
+      p.name+
+      ' de la plantilla?'
+    )
+  )
+    return;
 
- data.players=
-   data.players.filter(
-     x=>String(x.id)!==String(id)
-   );
+  data.players=
+    data.players.filter(
+      x=>
+        String(x.id)!==
+        String(id)
+    );
 
- save();
+  Object.keys(
+    data.tactics.positions||{}
+  )
+  .forEach(
+    k=>{
 
- go('team')
+      if(
+        String(
+          data.tactics.positions[k]
+            ?.playerId
+        )===
+        String(id)
+      ){
+
+        delete data.tactics.positions[k]
+
+      }
+
+    }
+  );
+
+  data.tactics.savedLineup=
+    data.tactics.savedLineup
+      .filter(
+        x=>
+          String(x)!==
+          String(id)
+      );
+
+  save();
+
+  selectedPlayerId=null;
+
+  section='team';
+
+  render()
 
 }
 
@@ -2202,245 +2417,252 @@ function deletePlayer(id){
 
 function training(){
 
- return `
+  return `
 
- <div class="title-row">
+  <div class="title-row">
 
-   <div>
+    <div>
 
-     <div class="title">
-       Entrenamientos
-     </div>
+      <div class="title">
+        Entrenamientos
+      </div>
 
-     <div class="subtitle">
-       Planificación y asistencia
-     </div>
+      <div class="subtitle">
+        Planificación y asistencia
+      </div>
 
-   </div>
+    </div>
 
-   <button
-     class="plus"
-     onclick="addTraining()">
+    <button
+      class="plus"
+      onclick="addTraining()">
 
-     +
+      +
 
-   </button>
+    </button>
 
- </div>
+  </div>
 
 
- <div class="date-strip">
+  <div class="date-strip">
 
- ${
-   ['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM']
-   .map(
-     (d,i)=>`
+    ${
+      [
+        'LUN',
+        'MAR',
+        'MIÉ',
+        'JUE',
+        'VIE',
+        'SÁB',
+        'DOM'
+      ]
+      .map(
+        (d,i)=>`
 
-       <button
-         class="day ${i===2?'active':''}">
+        <button
+          class="day ${
+            i===2
+              ?'active'
+              :''
+          }">
 
-         <b>
-           ${d}
-         </b>
+          <b>${d}</b>
 
-         <span>
-           ${18+i}
-         </span>
+          <span>
+            ${18+i}
+          </span>
 
-       </button>
+        </button>
 
-     `
-   )
-   .join('')
- }
+        `
+      )
+      .join('')
+    }
 
- </div>
+  </div>
 
 
- <div class="card training-card">
+  <div
+    class="card training-card">
 
-   <div class="training-header">
+    <div class="training-header">
 
-     <div>
+      <div>
 
-       <div class="section-label">
-         PRÓXIMO ENTRENAMIENTO
-       </div>
+        <div class="section-label">
+          PRÓXIMO ENTRENAMIENTO
+        </div>
 
-       <div class="big">
+        <div class="big">
 
-         ${esc(
-           data.trainings[0]?.date ||
-           'Miércoles, 20 de agosto'
-         )}
+          ${esc(
+            data.trainings[0]?.date ||
+            'Miércoles, 20 de agosto'
+          )}
 
-       </div>
+        </div>
 
-     </div>
+      </div>
 
-     <span class="pill">
-       ✎ Editar
-     </span>
+    </div>
 
-   </div>
+    <div class="training-time">
 
-   <div class="training-time">
+      ${esc(
+        data.trainings[0]?.time ||
+        '21:15'
+      )}
 
-     ${esc(
-       data.trainings[0]?.time ||
-       '21:15'
-     )}
+    </div>
 
-   </div>
+    <div class="training-place">
 
-   <div class="training-place">
+      📍 ${esc(
+        data.trainings[0]?.place ||
+        'Campo Municipal'
+      )}
 
-     📍 ${esc(
-       data.trainings[0]?.place ||
-       'Campo Municipal'
-     )}
+    </div>
 
-   </div>
+  </div>
 
- </div>
 
+  <div class="card">
 
- <div class="card">
+    <div class="section-label">
+      PLAN DE ENTRENAMIENTO
+    </div>
 
-   <div class="section-label">
-     PLAN DE ENTRENAMIENTO
-   </div>
+    ${
+      [
+        ['Calentamiento','15 min'],
+        ['Rondo','20 min'],
+        ['Posesión','25 min'],
+        ['Finalización','20 min'],
+        ['Partido reducido','30 min']
+      ]
+      .map(
+        x=>`
 
-   ${
-     [
-       ['Calentamiento','15 min'],
-       ['Rondo','20 min'],
-       ['Posesión','25 min'],
-       ['Finalización','20 min'],
-       ['Partido reducido','30 min']
-     ]
-     .map(
-       x=>`
+        <div class="plan-row">
 
-       <div class="plan-row">
+          <span>
+            ◷ &nbsp;${x[0]}
+          </span>
 
-         <span>
-           ◷ &nbsp;${x[0]}
-         </span>
+          <span class="plan-min">
+            ${x[1]}
+          </span>
 
-         <span class="plan-min">
-           ${x[1]}
-         </span>
+        </div>
 
-       </div>
+        `
+      )
+      .join('')
+    }
 
-       `
-     )
-     .join('')
-   }
+  </div>
 
- </div>
 
+  <div class="card">
 
- <div class="card">
+    <div class="section-label">
 
-   <div class="section-label">
+      ASISTENCIA
+      (
+      ${data.trainings[0]?.att||0}
+      /
+      ${
+        data.trainings[0]?.total ||
+        data.players.length
+      }
+      )
 
-     ASISTENCIA
-     (
-     ${data.trainings[0]?.att||0}
-     /
-     ${
-       data.trainings[0]?.total ||
-       data.players.length
-     }
-     )
+    </div>
 
-   </div>
+    ${
+      data.players
+        .slice(0,6)
+        .map(
+          p=>`
 
+          <div class="item">
 
-   ${
-     data.players
-       .slice(0,6)
-       .map(
-         p=>`
+            <div class="avatar">
+              ${p.pos==='POR'?'🧤':'⚽'}
+            </div>
 
-         <div class="item">
+            <div class="grow">
 
-           <div class="avatar">
+              <b>
+                ${esc(p.name)}
+              </b>
 
-             ${
-               p.pos==='POR'
-                 ?'🧤'
-                 :'⚽'
-             }
+            </div>
 
-           </div>
+            <span
+              class="pill ${
+                p.available
+                  ?''
+                  :'warning'
+              }">
 
-           <div class="grow">
+              ${
+                p.available
+                  ?'✓ Asistió'
+                  :'◷ Pendiente'
+              }
 
-             <b>
-               ${esc(p.name)}
-             </b>
+            </span>
 
-           </div>
+          </div>
 
-           <span
-             class="${p.available?'pill':'pill warning'}">
+          `
+        )
+        .join('')
+    }
 
-             ${
-               p.available
-                 ?'✓ Asistió'
-                 :'◷ Pendiente'
-             }
+  </div>
 
-           </span>
+  `
 
-         </div>
-
-         `
-       )
-       .join('')
-   }
-
- </div>
-
- `
 }
 
 
 function addTraining(){
 
- const date=
-   prompt(
-     'Fecha:',
-     'Miércoles, 20 de agosto'
-   );
+  const date=
+    prompt(
+      'Fecha:',
+      'Miércoles, 20 de agosto'
+    );
 
- if(!date)return;
+  if(!date)return;
 
- const time=
-   prompt(
-     'Hora:',
-     '21:15'
-   )||'21:15';
+  const time=
+    prompt(
+      'Hora:',
+      '21:15'
+    )||'21:15';
 
- const place=
-   prompt(
-     'Lugar:',
-     'Campo Municipal'
-   )||'Campo Municipal';
+  const place=
+    prompt(
+      'Lugar:',
+      'Campo Municipal'
+    )||'Campo Municipal';
 
- data.trainings.unshift({
-   date,
-   time,
-   place,
-   att:0,
-   total:data.players.length
- });
+  data.trainings.unshift({
 
- save();
- render()
+    date,
+    time,
+    place,
+    att:0,
+    total:data.players.length
+
+  });
+
+  save();
+  render()
 
 }
 
@@ -2449,165 +2671,167 @@ function addTraining(){
 
 function matches(){
 
- return `
+  return `
 
- <div class="title-row">
+  <div class="title-row">
 
-   <div>
+    <div>
 
-     <div class="title">
-       Partidos
-     </div>
+      <div class="title">
+        Partidos
+      </div>
 
-     <div class="subtitle">
-       Temporada
-       ${esc(data.settings.season)}
-     </div>
+      <div class="subtitle">
+        Temporada
+        ${esc(data.settings.season)}
+      </div>
 
-   </div>
+    </div>
 
- </div>
-
-
- <div class="card match-card">
-
-   <div class="section-label">
-     PRÓXIMO PARTIDO
-   </div>
-
-   <div class="muted small">
-
-     ${esc(data.next.date)}
-     ·
-     ${esc(data.next.time)}
-
-   </div>
+  </div>
 
 
-   <div class="versus">
+  <div class="card match-card">
 
-     <div class="club">
+    <div class="section-label">
+      PRÓXIMO PARTIDO
+    </div>
 
-       <div class="club-logo">
-         ⚽
-       </div>
+    <div class="muted small">
 
-       ${esc(data.settings.team)}
+      ${esc(data.next.date)}
+      ·
+      ${esc(data.next.time)}
 
-     </div>
-
-     <div class="vs">
-       VS
-     </div>
-
-     <div class="club">
-
-       <div class="club-logo">
-         🛡️
-       </div>
-
-       ${esc(data.next.opponent)}
-
-     </div>
-
-   </div>
+    </div>
 
 
-   <div
-     class="muted small"
-     style="text-align:center">
+    <div class="versus">
 
-     Jornada 3 · Liga Regular
+      <div class="club">
 
-   </div>
+        <div class="club-logo">
+          ⚽
+        </div>
 
-   <br>
+        ${esc(data.settings.team)}
 
-   <button
-     class="btn full"
-     onclick="go('tactic')">
+      </div>
 
-     CONVOCATORIA
+      <div class="vs">
+        VS
+      </div>
 
-   </button>
+      <div class="club">
 
- </div>
+        <div class="club-logo">
+          🛡️
+        </div>
 
+        ${esc(data.next.opponent)}
 
- <div
-   class="section-label"
-   style="margin:18px 3px 8px">
+      </div>
 
-   PARTIDOS JUGADOS
-
- </div>
-
-
- ${
-   data.matches
-     .map(
-       m=>`
-
-       <div class="card">
-
-         <div class="row">
-
-           <div>
-             <b>
-               ${esc(m.date)}
-             </b>
-           </div>
-
-           <div class="muted small">
-             Jornada
-           </div>
-
-         </div>
+    </div>
 
 
-         <div
-           class="versus"
-           style="margin:10px 0">
+    <div
+      class="muted small"
+      style="text-align:center">
 
-           <div class="club">
-             ${esc(m.home)}
-           </div>
+      Jornada 3 · Liga Regular
 
-           <div class="vs">
-             ${esc(m.score)}
-           </div>
+    </div>
 
-           <div class="club">
-             ${esc(m.away)}
-           </div>
+    <br>
 
-         </div>
+    <button
+      class="btn full"
+      onclick="go('tactic')">
+
+      CONVOCATORIA
+
+    </button>
+
+  </div>
 
 
-         <div style="text-align:center">
+  <div
+    class="section-label"
+    style="margin:18px 3px 8px">
 
-           <span class="pill">
-             Victoria
-           </span>
+    PARTIDOS JUGADOS
 
-         </div>
+  </div>
 
-       </div>
 
-       `
-     )
-     .join('')
+  ${
+    data.matches.length
 
-     ||
+      ?
 
-     `
-     <div class="card muted">
-       No hay partidos registrados.
-     </div>
-     `
- }
+      data.matches
+        .map(
+          m=>`
 
- `
+          <div class="card">
+
+            <div class="row">
+
+              <b>
+                ${esc(m.date)}
+              </b>
+
+              <div class="muted small">
+                Jornada
+              </div>
+
+            </div>
+
+
+            <div
+              class="versus"
+              style="margin:10px 0">
+
+              <div class="club">
+                ${esc(m.home)}
+              </div>
+
+              <div class="vs">
+                ${esc(m.score)}
+              </div>
+
+              <div class="club">
+                ${esc(m.away)}
+              </div>
+
+            </div>
+
+            <div
+              style="text-align:center">
+
+              <span class="pill">
+                Resultado
+              </span>
+
+            </div>
+
+          </div>
+
+          `
+        )
+        .join('')
+
+      :
+
+      `
+      <div class="card muted">
+        No hay partidos registrados.
+      </div>
+      `
+  }
+
+  `
 
 }
 
@@ -2616,104 +2840,105 @@ function matches(){
 
 function more(){
 
- return `
+  return `
 
- <div class="more-screen">
+  <div class="more-screen">
 
-   <div class="title-row">
+    <div class="title-row">
 
-     <div class="title">
-       Más
-     </div>
+      <div class="title">
+        Más
+      </div>
 
-   </div>
-
-
-   <div class="coach-card">
-
-     <div class="coach-avatar">
-       👨🏻
-     </div>
-
-     <div class="grow">
-
-       <b>
-         ${esc(
-           data.settings.coach ||
-           'Entrenador Principal'
-         )}
-       </b>
-
-       <div class="muted">
-
-         🛡️
-         ${esc(data.settings.team)}
-
-       </div>
-
-     </div>
-
-     <span>
-       ›
-     </span>
-
-   </div>
+    </div>
 
 
-   <div class="more-menu">
+    <div class="coach-card">
 
-     ${
-       [
-         ['🩹','Lesiones','red-icon','goPlaceholder'],
-         ['👕','Material','','goPlaceholder'],
-         ['€','Pagos y multas','red-icon','goPlaceholder'],
-         ['▣','Calendario','','goPlaceholder'],
-         ['💬','Mensajes','red-icon','goPlaceholder'],
-         ['📁','Documentos','','goPlaceholder'],
-         ['📊','Estadísticas','','goStats'],
-         ['⚽','Táctica','red-icon','goTactic'],
-         ['⚙️','Ajustes','','goSettings'],
-         ['❓','Ayuda','red-icon','goPlaceholder']
-       ]
-       .map(
-         x=>`
+      <div class="coach-avatar">
+        👨🏻
+      </div>
 
-         <button
-           class="more-row ${x[2]}"
-           onclick="${x[3]}()">
+      <div class="grow">
 
-           <div class="more-icon">
-             ${x[0]}
-           </div>
+        <b>
 
-           <div class="more-text">
-             ${x[1]}
-           </div>
+          ${esc(
+            data.settings.coach ||
+            'Entrenador Principal'
+          )}
 
-           <div class="more-arrow">
-             ›
-           </div>
+        </b>
 
-         </button>
+        <div class="muted">
 
-         `
-       )
-       .join('')
-     }
+          🛡️
+          ${esc(data.settings.team)}
 
-   </div>
+        </div>
 
- </div>
+      </div>
 
- `
+      <span>›</span>
+
+    </div>
+
+
+    <div class="more-menu">
+
+      ${
+        [
+          ['🩹','Lesiones','red-icon','goPlaceholder'],
+          ['👕','Material','','goPlaceholder'],
+          ['€','Pagos y multas','red-icon','goPlaceholder'],
+          ['▣','Calendario','','goPlaceholder'],
+          ['💬','Mensajes','red-icon','goPlaceholder'],
+          ['📁','Documentos','','goPlaceholder'],
+          ['📊','Estadísticas','','goStats'],
+          ['⚽','Táctica','red-icon','goTactic'],
+          ['⚙️','Ajustes','','goSettings'],
+          ['❓','Ayuda','red-icon','goPlaceholder']
+        ]
+        .map(
+          x=>`
+
+          <button
+            class="more-row ${x[2]}"
+            onclick="${x[3]}()">
+
+            <div class="more-icon">
+              ${x[0]}
+            </div>
+
+            <div class="more-text">
+              ${x[1]}
+            </div>
+
+            <div class="more-arrow">
+              ›
+            </div>
+
+          </button>
+
+          `
+        )
+        .join('')
+      }
+
+    </div>
+
+  </div>
+
+  `
+
 }
 
 
 function goPlaceholder(){
 
- alert(
-   'Esta sección está preparada para la siguiente fase de KNATT.'
- )
+  alert(
+    'Esta sección está preparada para la siguiente fase de KNATT.'
+  )
 
 }
 
@@ -2734,154 +2959,150 @@ function goSettings(){
 
 function stats(){
 
- const goals=
-   data.players.reduce(
-     (s,p)=>s+(Number(p.g)||0),
-     0
-   );
+  const goals=
+    data.players.reduce(
+      (s,p)=>
+        s+(Number(p.g)||0),
+      0
+    );
 
- const ass=
-   data.players.reduce(
-     (s,p)=>s+(Number(p.a)||0),
-     0
-   );
+  const assists=
+    data.players.reduce(
+      (s,p)=>
+        s+(Number(p.a)||0),
+      0
+    );
 
- const mins=
-   data.players.reduce(
-     (s,p)=>s+(Number(p.min)||0),
-     0
-   );
+  const minutes=
+    data.players.reduce(
+      (s,p)=>
+        s+(Number(p.min)||0),
+      0
+    );
 
- return `
+  return `
 
- <div class="title">
-   Estadísticas
- </div>
-
-
- <div class="stat-grid">
-
-   <div class="stat red">
-
-     <b>
-       ${goals}
-     </b>
-
-     <span>
-       Goles
-     </span>
-
-   </div>
+  <div class="title">
+    Estadísticas
+  </div>
 
 
-   <div class="stat">
+  <div class="stat-grid">
 
-     <b>
-       ${ass}
-     </b>
+    <div class="stat red">
 
-     <span>
-       Asistencias
-     </span>
+      <b>${goals}</b>
 
-   </div>
+      <span>
+        Goles
+      </span>
+
+    </div>
+
+    <div class="stat">
+
+      <b>${assists}</b>
+
+      <span>
+        Asistencias
+      </span>
+
+    </div>
+
+    <div class="stat">
+
+      <b>${minutes}</b>
+
+      <span>
+        Minutos
+      </span>
+
+    </div>
+
+    <div class="stat">
+
+      <b>
+        ${data.players.length}
+      </b>
+
+      <span>
+        Jugadores
+      </span>
+
+    </div>
+
+  </div>
 
 
-   <div class="stat">
+  <div class="card">
 
-     <b>
-       ${mins}
-     </b>
+    <div class="section-label">
+      RENDIMIENTO DE PLANTILLA
+    </div>
 
-     <span>
-       Minutos
-     </span>
+    ${
+      [...data.players]
+        .sort(
+          (a,b)=>
+            b.g-a.g
+        )
+        .map(
+          p=>`
 
-   </div>
+          <div class="item">
 
+            <div class="avatar">
 
-   <div class="stat">
+              ${
+                p.pos==='POR'
+                  ?'🧤'
+                  :'⚽'
+              }
 
-     <b>
-       ${data.players.length}
-     </b>
+            </div>
 
-     <span>
-       Jugadores
-     </span>
+            <div class="grow">
 
-   </div>
+              <b>
+                ${esc(p.name)}
+              </b>
 
- </div>
+              <div class="muted">
+                ${esc(p.pos)}
+              </div>
 
+            </div>
 
- <div class="card">
+            <div
+              style="text-align:right">
 
-   <div class="section-label">
-     RENDIMIENTO DE PLANTILLA
-   </div>
+              <b>
+                ${p.min||0}
+              </b>
 
-   ${
-     [...data.players]
-       .sort(
-         (a,b)=>b.g-a.g
-       )
-       .map(
-         p=>`
+              <div class="muted">
 
-         <div class="item">
+                ${p.g||0}
+                ⚽ ·
 
-           <div class="avatar">
+                ${p.a||0}
+                🎯
 
-             ${
-               p.pos==='POR'
-                 ?'🧤'
-                 :'⚽'
-             }
+              </div>
 
-           </div>
+            </div>
 
-           <div class="grow">
+          </div>
 
-             <b>
-               ${esc(p.name)}
-             </b>
+          `
+        )
+        .join('')
+    }
 
-             <div class="muted">
-               ${esc(p.pos)}
-             </div>
+  </div>
 
-           </div>
+  `
 
-           <div
-             style="text-align:right">
-
-             <b>
-               ${p.min||0}
-             </b>
-
-             <div class="muted">
-
-               ${p.g||0}
-               ⚽ ·
-
-               ${p.a||0}
-               🎯
-
-             </div>
-
-           </div>
-
-         </div>
-
-         `
-       )
-       .join('')
-   }
-
- </div>
-
- `
 }
 
 
@@ -2889,701 +3110,928 @@ function stats(){
 
 function settings(){
 
- return `
+  return `
 
- <div class="title">
-   Ajustes
- </div>
-
-
- <div class="card">
-
-   <div class="section-label">
-     PERFIL DEL ENTRENADOR
-   </div>
+  <div class="title">
+    Ajustes
+  </div>
 
 
-   <div class="form-group">
+  <div class="card">
 
-     <label>
-       Nombre
-     </label>
+    <div class="section-label">
+      PERFIL DEL ENTRENADOR
+    </div>
 
-     <input
-       id="coachName"
-       class="form-input"
-       value="${esc(data.settings.coach)}"
-       placeholder="Nombre del entrenador">
+    <div class="form-group">
 
-   </div>
+      <label>
+        Nombre
+      </label>
 
+      <input
+        id="coachName"
+        class="form-input"
+        value="${esc(
+          data.settings.coach
+        )}"
+        placeholder="Nombre del entrenador">
 
-   <button
-     class="btn full"
-     onclick="saveSettings()">
+    </div>
 
-     💾 Guardar cambios
+    <button
+      class="btn full"
+      onclick="saveSettings()">
 
-   </button>
+      💾 Guardar cambios
 
- </div>
+    </button>
 
-
- <div class="card">
-
-   <div class="section-label">
-     EQUIPO
-   </div>
-
-
-   <div class="form-group">
-
-     <label>
-       Equipo
-     </label>
-
-     <input
-       id="teamName"
-       class="form-input"
-       value="${esc(data.settings.team)}">
-
-   </div>
+  </div>
 
 
-   <div class="form-group">
+  <div class="card">
 
-     <label>
-       Temporada
-     </label>
+    <div class="section-label">
+      EQUIPO
+    </div>
 
-     <input
-       id="seasonName"
-       class="form-input"
-       value="${esc(data.settings.season)}">
+    <div class="form-group">
 
-   </div>
+      <label>
+        Equipo
+      </label>
+
+      <input
+        id="teamName"
+        class="form-input"
+        value="${esc(
+          data.settings.team
+        )}">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>
+        Temporada
+      </label>
+
+      <input
+        id="seasonName"
+        class="form-input"
+        value="${esc(
+          data.settings.season
+        )}">
+
+    </div>
+
+    <div class="form-group">
+
+      <label>
+        Categoría
+      </label>
+
+      <input
+        id="categoryName"
+        class="form-input"
+        value="${esc(
+          data.settings.category
+        )}">
+
+    </div>
+
+    <button
+      class="btn full"
+      onclick="saveSettings()">
+
+      Guardar equipo
+
+    </button>
+
+  </div>
 
 
-   <div class="form-group">
+  <div class="card">
 
-     <label>
-       Categoría
-     </label>
+    <button
+      class="btn light full"
+      onclick="exportData()">
 
-     <input
-       id="categoryName"
-       class="form-input"
-       value="${esc(data.settings.category)}">
+      📤 Exportar datos
 
-   </div>
+    </button>
 
+    <br><br>
 
-   <button
-     class="btn full"
-     onclick="saveSettings()">
+    <button
+      class="btn light full"
+      onclick="resetApp()">
 
-     Guardar equipo
+      ♻️ Restaurar datos
 
-   </button>
+    </button>
 
- </div>
+  </div>
 
+  `
 
- <div class="card">
-
-   <button
-     class="btn light full"
-     onclick="exportData()">
-
-     📤 Exportar datos
-
-   </button>
-
-   <br><br>
-
-   <button
-     class="btn light full"
-     onclick="resetApp()">
-
-     ♻️ Restaurar datos
-
-   </button>
-
- </div>
-
- `
 }
 
 
 function saveSettings(){
 
- data.settings.coach=
-   document
-     .getElementById('coachName')
-     .value
-     .trim();
+  data.settings.coach=
+    document
+      .getElementById('coachName')
+      .value
+      .trim();
 
- data.settings.team=
-   document
-     .getElementById('teamName')
-     .value
-     .trim()
-   ||'KNATT FC';
+  data.settings.team=
+    document
+      .getElementById('teamName')
+      .value
+      .trim()
+    ||
+    'KNATT FC';
 
- data.settings.season=
-   document
-     .getElementById('seasonName')
-     .value
-     .trim()
-   ||'2026/27';
+  data.settings.season=
+    document
+      .getElementById('seasonName')
+      .value
+      .trim()
+    ||
+    '2026/27';
 
- data.settings.category=
-   document
-     .getElementById('categoryName')
-     .value
-     .trim()
-   ||'Primer Equipo';
+  data.settings.category=
+    document
+      .getElementById('categoryName')
+      .value
+      .trim()
+    ||
+    'Primer Equipo';
 
- save();
+  save();
 
- go('home')
+  go('home')
+
 }
 
 
 function exportData(){
 
- const blob=
-   new Blob(
-     [
-       JSON.stringify(
-         data,
-         null,
-         2
-       )
-     ],
-     {
-       type:'application/json'
-     }
-   );
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:'application/json'
+      }
+    );
 
- const url=
-   URL.createObjectURL(blob);
+  const url=
+    URL.createObjectURL(
+      blob
+    );
 
- const a=
-   document.createElement('a');
+  const a=
+    document.createElement(
+      'a'
+    );
 
- a.href=url;
+  a.href=url;
 
- a.download=
-   'knatt-datos.json';
+  a.download=
+    'knatt-datos.json';
 
- a.click();
+  a.click();
 
- URL.revokeObjectURL(url)
+  URL.revokeObjectURL(url)
 
 }
 
 
 function resetApp(){
 
- if(
-   !confirm(
-     'Esto borrará los datos actuales de KNATT en este dispositivo. ¿Continuar?'
-   )
- )
-   return;
+  if(
+    !confirm(
+      'Esto borrará los datos actuales de KNATT en este dispositivo. ¿Continuar?'
+    )
+  )
+    return;
 
- localStorage.removeItem(KEY);
+  localStorage.removeItem(
+    KEY
+  );
 
- location.reload()
+  location.reload()
 
 }
 
 
-/* TÁCTICA */
+/* =========================
+   TÁCTICA
+   ========================= */
 
-function normalize(){
+function normalizeTacticPositions(){
 
- const spots=
-   formations[data.tactics.formation] ||
-   formations['4-3-3'];
+  const spots=
+    formations[
+      data.tactics.formation
+    ] ||
+    formations['4-3-3'];
 
- const old=
-   data.tactics.positions||{};
+  const old=
+    data.tactics.positions ||
+    {};
 
- if(
-   Object.values(old)
-     .some(
-       v=>v&&v.playerId!==undefined
-     )
- )
-   return;
+  const values=
+    Object.values(old);
 
- const next={};
+  const alreadyNew=
+    values.some(
+      v=>
+        v &&
+        v.playerId!==undefined
+    );
 
- Object.entries(old)
-   .slice(0,spots.length)
-   .forEach(
-     ([id],i)=>{
+  if(alreadyNew)
+    return;
 
-       if(
-         data.players.some(
-           p=>String(p.id)===String(id)
-         )
-       ){
+  const next={};
 
-         next[String(i)]={
-           playerId:id,
-           x:spots[i][1],
-           y:spots[i][2],
-           role:spots[i][0]
-         }
+  const oldPlayers=
+    Object.entries(old)
+      .map(
+        ([id,v])=>({
+          id:String(id),
+          v
+        })
+      )
+      .filter(
+        x=>
+          data.players.some(
+            p=>
+              String(p.id)===
+              x.id
+          )
+      );
 
-       }
+  oldPlayers
+    .slice(
+      0,
+      spots.length
+    )
+    .forEach(
+      (x,i)=>{
 
-     }
-   );
+        next[String(i)]={
+          playerId:x.id,
+          x:spots[i][1],
+          y:spots[i][2],
+          role:spots[i][0]
+        }
 
- data.tactics.positions=next;
+      }
+    );
 
- save()
+  data.tactics.positions=
+    next;
+
+  save()
 
 }
 
 
 function tactic(){
 
- normalize();
+  normalizeTacticPositions();
 
- const formation=
-   data.tactics.formation;
+  const formation=
+    data.tactics.formation;
 
- const spots=
-   formations[formation];
+  const spots=
+    formations[formation] ||
+    formations['4-3-3'];
 
- const positions=
-   data.tactics.positions||{};
+  const positions=
+    data.tactics.positions ||
+    {};
 
- return `
+  return `
 
- <div class="title-row">
+  <div class="title">
+    Táctica
+  </div>
 
-   <div>
 
-     <div class="title">
-       Táctica
-     </div>
+  <div class="card">
 
-     <div class="subtitle">
-       Alineación y formación
-     </div>
+    <div class="section-label">
+      PIZARRA TÁCTICA
+    </div>
 
-   </div>
+    <div class="big">
+      Crear alineación
+    </div>
 
- </div>
+    <div class="muted small">
 
+      Elige una formación y selecciona
+      un jugador en cada una de las
+      11 posiciones. No hay que
+      arrastrar nada.
 
- <div class="tactic-toolbar">
+    </div>
 
-   <div class="select-wrap">
+  </div>
 
-     <label>
-       Formación
-     </label>
 
-     <select
-       class="select"
-       onchange="changeFormation(this.value)">
+  <div class="tactic-toolbar">
 
-       ${
-         Object.keys(formations)
-           .map(
-             f=>`
+    <div class="select-wrap">
 
-             <option
-               value="${f}"
-               ${f===formation?'selected':''}>
+      <label>
+        Formación
+      </label>
 
-               ${f}
+      <select
+        class="select"
+        onchange="changeFormation(this.value)">
 
-             </option>
+        ${
+          Object.keys(formations)
+            .map(
+              f=>`
 
-             `
-           )
-           .join('')
-       }
+              <option
+                value="${f}"
+                ${
+                  f===formation
+                    ?'selected'
+                    :''
+                }>
 
-     </select>
+                ${f}
 
-   </div>
+              </option>
 
+              `
+            )
+            .join('')
+        }
 
-   <button
-     class="btn light"
-     onclick="clearTactic()">
+      </select>
 
-     Vaciar
+    </div>
 
-   </button>
 
- </div>
+    <button
+      class="btn light"
+      onclick="resetTactic()">
 
+      ↺ Reset
 
- <div class="pitch-wrap">
+    </button>
 
-   <div class="pitch">
+  </div>
 
-     <div class="pitch-line"></div>
 
-     <div class="pitch-circle"></div>
+  <div class="pitch-wrap">
 
-     <div class="pitch-center"></div>
+    <div
+      class="pitch"
+      id="pitch">
 
-     <div class="box top"></div>
+      <div class="pitch-line"></div>
 
-     <div class="box bottom"></div>
+      <div class="pitch-circle"></div>
 
-     <div class="goal top"></div>
+      <div class="pitch-center"></div>
 
-     <div class="goal bottom"></div>
+      <div class="box top"></div>
 
+      <div class="box bottom"></div>
 
-     ${
-       spots
-         .map(
-           (s,i)=>
-             slotHtml(
-               s,
-               i,
-               positions
-             )
-         )
-         .join('')
-     }
+      <div class="goal top"></div>
 
-   </div>
+      <div class="goal bottom"></div>
 
- </div>
+      ${
+        spots
+          .map(
+            (spot,i)=>
+              slotHtml(
+                spot,
+                i,
+                positions
+              )
+          )
+          .join('')
+      }
 
+    </div>
 
- <div class="card">
+  </div>
 
-   <div class="section-label">
-     ALINEACIÓN
-   </div>
 
-   <div class="alignment-list">
+  <div class="card">
 
-     ${
-       spots
-         .map(
-           (s,i)=>
-             alignmentRow(
-               s,
-               i,
-               positions
-             )
-         )
-         .join('')
-     }
+    <div class="section-label">
+      ALINEACIÓN
+    </div>
 
-   </div>
+    <div
+      class="muted small"
+      style="margin-bottom:8px">
 
- </div>
+      Cada jugador solo puede ocupar
+      una posición.
 
+    </div>
 
- <div class="tactic-actions">
+    <div class="alignment-list">
 
-   <button
-     class="btn"
-     onclick="saveTactic()">
+      ${
+        spots
+          .map(
+            (spot,i)=>
+              alignmentRow(
+                spot,
+                i,
+                positions
+              )
+          )
+          .join('')
+      }
 
-     💾 Guardar
+    </div>
 
-   </button>
+  </div>
 
-   <button
-     class="btn light"
-     onclick="resetTactic()">
 
-     ↺ Reset
+  <div class="tactic-actions">
 
-   </button>
+    <button
+      class="btn"
+      onclick="saveTactic()">
 
- </div>
+      💾 Guardar alineación
 
- `
-}
+    </button>
 
+    <button
+      class="btn light"
+      onclick="clearTactic()">
 
-function slotHtml(s,i,pos){
+      🧹 Vaciar campo
 
- const id=
-   pos[String(i)]?.playerId||'';
+    </button>
 
- return `
+  </div>
 
- <div
-   class="tactic-slot"
-   style="
-     left:${s[1]}%;
-     top:${s[2]}%
-   ">
 
-   <div class="tactic-role">
-     ${s[0]}
-   </div>
+  <div class="notice">
 
-   <select
-     class="slot-select"
-     onchange="assignPosition(${i},this.value)">
+    💡 Puedes poner cualquier jugador
+    en cualquier posición. Si un jugador
+    ya está seleccionado, no aparecerá
+    como opción en otra posición.
 
-     <option value="">
-       -- ${s[0]} --
-     </option>
+  </div>
 
-     ${
-       playerOptions(id)
-     }
-
-   </select>
-
- </div>
-
- `
-}
-
-
-function playerOptions(selected){
-
- const used=
-   new Set(
-     Object.values(
-       data.tactics.positions||{}
-     )
-     .map(
-       v=>String(
-         v?.playerId||''
-       )
-     )
-     .filter(Boolean)
-   );
-
- return data.players
-   .map(
-     p=>{
-
-       const id=
-         String(p.id);
-
-       const disabled=
-         used.has(id) &&
-         id!==String(selected);
-
-       return `
-
-       <option
-         value="${id}"
-         ${id===String(selected)?'selected':''}
-         ${disabled?'disabled':''}>
-
-         ${esc(p.name)}
-
-       </option>
-
-       `
-
-     }
-   )
-   .join('')
-}
-
-
-function alignmentRow(s,i,pos){
-
- const id=
-   pos[String(i)]?.playerId||'';
-
- const p=
-   data.players.find(
-     x=>String(x.id)===String(id)
-   );
-
- return `
-
- <div class="alignment-row">
-
-   <span class="role-badge">
-     ${s[0]}
-   </span>
-
-   <span class="alignment-name">
-
-     ${
-       p
-         ?esc(p.name)
-         :'-- Sin jugador --'
-     }
-
-   </span>
-
-   ${
-     p
-
-       ?
-
-       `
-       <span
-         class="availability ${p.available?'ok':'no'}">
-
-         ${
-           p.available
-             ?'● Disponible'
-             :'● '+esc(
-               p.reason||
-               'No disponible'
-             )
-         }
-
-       </span>
-       `
-
-       :
-
-       ''
-
-   }
-
- </div>
-
- `
-}
-
-
-function assignPosition(i,id){
-
- if(!data.tactics.positions)
-   data.tactics.positions={};
-
- const key=
-   String(i);
-
- if(!id){
-
-   delete data.tactics.positions[key];
-
-   save();
-   render();
-
-   return
- }
-
- const duplicate=
-   Object.entries(
-     data.tactics.positions
-   )
-   .some(
-     ([k,v])=>
-       k!==key &&
-       String(v?.playerId)===String(id)
-   );
-
- if(duplicate){
-
-   alert(
-     'Ese jugador ya está colocado en otra posición.'
-   );
-
-   return
-
- }
-
- const s=
-   formations[
-     data.tactics.formation
-   ][i];
-
- data.tactics.positions[key]={
-   playerId:String(id),
-   x:s[1],
-   y:s[2],
-   role:s[0]
- };
-
- save();
- render()
+  `
 
 }
 
 
-function changeFormation(f){
+function slotHtml(
+  spot,
+  index,
+  positions
+){
 
- data.tactics.formation=f;
+  const role=spot[0];
 
- data.tactics.positions={};
+  const x=spot[1];
 
- save();
+  const y=spot[2];
 
- render()
+  const selectedId=
+    positions[
+      String(index)
+    ]?.playerId ||
+    '';
+
+  return `
+
+  <div
+    class="tactic-slot"
+    style="
+      left:${x}%;
+      top:${y}%
+    ">
+
+    <div class="tactic-role">
+      ${role}
+    </div>
+
+    <select
+      class="slot-select"
+      aria-label="Posición ${role}"
+      onchange="
+        assignPosition(
+          ${index},
+          this.value
+        )
+      ">
+
+      <option value="">
+        -- ${role} --
+      </option>
+
+      ${
+        playerOptions(
+          selectedId
+        )
+      }
+
+    </select>
+
+  </div>
+
+  `
+
+}
+
+
+function playerOptions(
+  selectedId
+){
+
+  const used=
+    new Set(
+      Object.values(
+        data.tactics.positions ||
+        {}
+      )
+      .map(
+        v=>
+          String(
+            v?.playerId ||
+            ''
+          )
+      )
+      .filter(Boolean)
+    );
+
+  return data.players
+    .map(
+      p=>{
+
+        const id=
+          String(p.id);
+
+        const disabled=
+          used.has(id) &&
+          id!==String(
+            selectedId
+          );
+
+        return `
+
+        <option
+          value="${id}"
+          ${
+            id===String(selectedId)
+              ?'selected'
+              :''
+          }
+          ${
+            disabled
+              ?'disabled'
+              :''
+          }>
+
+          ${esc(p.name)}
+
+        </option>
+
+        `
+
+      }
+    )
+    .join('')
+
+}
+
+
+function alignmentRow(
+  spot,
+  index,
+  positions
+){
+
+  const id=
+    positions[
+      String(index)
+    ]?.playerId ||
+    '';
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(id)
+    );
+
+  return `
+
+  <div class="alignment-row">
+
+    <span class="role-badge">
+      ${spot[0]}
+    </span>
+
+    <span class="alignment-name">
+
+      ${
+        p
+          ?esc(p.name)
+          :'-- Sin jugador --'
+      }
+
+    </span>
+
+    ${
+      p
+
+      ?
+
+      `
+      <span
+        class="availability ${
+          p.available
+            ?'ok'
+            :'no'
+        }">
+
+        ${
+          p.available
+            ?'● Disponible'
+            :'● '+esc(
+              p.reason ||
+              'No disponible'
+            )
+        }
+
+      </span>
+      `
+
+      :
+
+      ''
+
+    }
+
+  </div>
+
+  `
+
+}
+
+
+function assignPosition(
+  index,
+  playerId
+){
+
+  if(!data.tactics.positions)
+    data.tactics.positions={};
+
+  const key=
+    String(index);
+
+  const id=
+    String(
+      playerId ||
+      ''
+    );
+
+  if(!id){
+
+    delete data.tactics.positions[
+      key
+    ];
+
+    save();
+    render();
+
+    return
+
+  }
+
+  const duplicate=
+    Object.entries(
+      data.tactics.positions
+    )
+    .some(
+      ([k,v])=>
+        k!==key &&
+        String(
+          v?.playerId ||
+          ''
+        )===id
+    );
+
+  if(duplicate){
+
+    alert(
+      'Ese jugador ya está colocado en otra posición.'
+    );
+
+    render();
+
+    return
+
+  }
+
+  const spot=
+    (
+      formations[
+        data.tactics.formation
+      ] ||
+      formations['4-3-3']
+    )[index];
+
+  data.tactics.positions[
+    key
+  ]={
+
+    playerId:id,
+
+    x:spot[1],
+
+    y:spot[2],
+
+    role:spot[0]
+
+  };
+
+  save();
+
+  render()
+
+}
+
+
+function changeFormation(
+  formation
+){
+
+  data.tactics.formation=
+    formation;
+
+  const spots=
+    formations[formation];
+
+  const old=
+    data.tactics.positions ||
+    {};
+
+  const next={};
+
+  spots.forEach(
+    (spot,i)=>{
+
+      const id=
+        String(
+          old[
+            String(i)
+          ]?.playerId ||
+          ''
+        );
+
+      if(
+        id &&
+        !Object.values(
+          next
+        )
+        .some(
+          v=>
+            String(v.playerId)===
+            id
+        )
+      ){
+
+        next[
+          String(i)
+        ]={
+
+          playerId:id,
+
+          x:spot[1],
+
+          y:spot[2],
+
+          role:spot[0]
+
+        }
+
+      }
+
+    }
+  );
+
+  data.tactics.positions=
+    next;
+
+  save();
+
+  render()
 
 }
 
 
 function resetTactic(){
 
- const spots=
-   formations[
-     data.tactics.formation
-   ];
+  const spots=
+    formations[
+      data.tactics.formation
+    ];
 
- data.tactics.positions={};
+  const next={};
 
- data.players
-   .slice(0,spots.length)
-   .forEach(
-     (p,i)=>
-       data.tactics.positions[
-         String(i)
-       ]={
-         playerId:String(p.id),
-         x:spots[i][1],
-         y:spots[i][2],
-         role:spots[i][0]
-       }
-   );
+  data.players
+    .slice(
+      0,
+      spots.length
+    )
+    .forEach(
+      (p,i)=>{
 
- save();
- render()
+        next[
+          String(i)
+        ]={
+
+          playerId:
+            String(p.id),
+
+          x:spots[i][1],
+
+          y:spots[i][2],
+
+          role:spots[i][0]
+
+        }
+
+      }
+    );
+
+  data.tactics.positions=
+    next;
+
+  save();
+
+  render()
 
 }
 
 
 function clearTactic(){
 
- data.tactics.positions={};
+  data.tactics.positions={};
 
- save();
+  save();
 
- render()
+  render()
 
 }
 
 
 function saveTactic(){
 
- data.tactics.savedLineup=
-   Object.values(
-     data.tactics.positions
-   )
-   .map(
-     v=>v.playerId
-   );
+  data.tactics.savedLineup=
+    Object.keys(
+      data.tactics.positions ||
+      {}
+    )
+    .filter(
+      k=>
+        data.tactics.positions[k]
+          ?.playerId
+    );
 
- save();
+  save();
 
- alert(
-   'Alineación guardada correctamente.'
- )
+  alert(
+    'Alineación guardada correctamente.'
+  )
 
 }
 
