@@ -1,51 +1,956 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+  name="theme-color"
+  content="#0b0b0d">
+
+<title>KNATT</title>
+
+
 <style>
 
 /* =====================================================
-   SELECTOR DE JUGADOR DE TÁCTICA
+   BASE
+===================================================== */
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+
+  --red:#e21d2f;
+  --red2:#b90f20;
+  --red3:#ff3b4d;
+
+  --red-soft:#fff0f2;
+
+  --dark:#0b0b0d;
+  --dark2:#17171a;
+
+  --bg:#f5f5f6;
+  --card:#fff;
+
+  --text:#17171a;
+  --muted:#77777e;
+  --line:#e6e6e9;
+
+}
+
+html,
+body{
+
+  margin:0;
+  min-height:100%;
+
+  background:var(--bg);
+
+}
+
+body{
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
+
+  color:var(--text);
+
+}
+
+button,
+input,
+select{
+
+  font:inherit;
+
+}
+
+button{
+
+  cursor:pointer;
+
+}
+
+.app{
+
+  width:min(560px,100%);
+  min-height:100vh;
+
+  margin:auto;
+
+  padding-bottom:82px;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+  background:var(--dark);
+
+  color:#fff;
+
+  padding:17px 18px;
+
+}
+
+.header-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.brand{
+
+  font-size:27px;
+
+  font-weight:950;
+
+  letter-spacing:-1px;
+
+}
+
+.brand span{
+
+  color:var(--red3);
+
+}
+
+.role{
+
+  font-size:11px;
+
+  color:#aaa;
+
+  margin-top:2px;
+
+  font-weight:700;
+
+}
+
+.header-bell{
+
+  width:38px;
+  height:38px;
+
+  border-radius:12px;
+
+  background:#ffffff10;
+
+  border:1px solid #ffffff12;
+
+  color:#fff;
+
+}
+
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+main{
+
+  padding:16px 14px 28px;
+
+}
+
+.title{
+
+  font-size:25px;
+
+  font-weight:950;
+
+  letter-spacing:-.7px;
+
+}
+
+.subtitle{
+
+  font-size:12px;
+
+  color:var(--muted);
+
+  font-weight:700;
+
+  margin-top:2px;
+
+}
+
+.title-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin:3px 2px 13px;
+
+}
+
+.card{
+
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:18px;
+
+  padding:16px;
+
+  margin-bottom:12px;
+
+  box-shadow:
+    0 7px 24px #14141914;
+
+}
+
+.card-dark{
+
+  background:var(--dark2);
+
+  color:#fff;
+
+  border-color:#2b2b30;
+
+}
+
+.section-label{
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.8px;
+
+  font-weight:900;
+
+  color:var(--muted);
+
+  margin-bottom:7px;
+
+}
+
+.big{
+
+  font-size:21px;
+
+  font-weight:950;
+
+}
+
+.muted{
+
+  color:var(--muted);
+
+}
+
+.small{
+
+  font-size:12px;
+
+}
+
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.btn{
+
+  border:0;
+
+  border-radius:11px;
+
+  padding:12px 14px;
+
+  background:var(--red);
+
+  color:#fff;
+
+  font-weight:900;
+
+  font-size:13px;
+
+}
+
+.btn.light{
+
+  background:#f0f0f2;
+
+  color:#222;
+
+  box-shadow:none;
+
+}
+
+.btn.red-soft{
+
+  background:var(--red-soft);
+
+  color:var(--red);
+
+  box-shadow:none;
+
+}
+
+.btn.full{
+
+  width:100%;
+
+}
+
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
+.stat-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:7px;
+
+  margin-bottom:13px;
+
+}
+
+.stat{
+
+  background:#fff;
+
+  border:1px solid var(--line);
+
+  border-radius:15px;
+
+  padding:12px 8px;
+
+  text-align:center;
+
+}
+
+.stat b{
+
+  display:block;
+
+  font-size:21px;
+
+  font-weight:950;
+
+}
+
+.stat span{
+
+  display:block;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  font-weight:800;
+
+  margin-top:2px;
+
+}
+
+.stat.red{
+
+  background:var(--red-soft);
+
+  border-color:#ffd7dc;
+
+}
+
+.stat.red b{
+
+  color:var(--red);
+
+}
+
+
+/* =====================================================
+   PLANTILLA
+===================================================== */
+
+.tabs{
+
+  display:flex;
+
+  gap:6px;
+
+  overflow:auto;
+
+  margin-bottom:12px;
+
+}
+
+.tab{
+
+  border:0;
+
+  border-radius:999px;
+
+  padding:9px 13px;
+
+  background:#e9e9ec;
+
+  color:#5e5e64;
+
+  font-size:11px;
+
+  font-weight:850;
+
+  white-space:nowrap;
+
+}
+
+.tab.active{
+
+  background:var(--red);
+
+  color:#fff;
+
+}
+
+.item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:12px 0;
+
+  border-bottom:1px solid #ededf0;
+
+}
+
+.item:last-child{
+
+  border:0;
+
+}
+
+.avatar{
+
+  width:42px;
+
+  height:42px;
+
+  flex:0 0 42px;
+
+  border-radius:13px;
+
+  background:#ececef;
+
+  display:grid;
+
+  place-items:center;
+
+  font-size:20px;
+
+}
+
+.grow{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+.item b{
+
+  font-size:13px;
+
+}
+
+.item .muted{
+
+  font-size:10px;
+
+  margin-top:2px;
+
+}
+
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
+.form-group{
+
+  margin-bottom:12px;
+
+}
+
+.form-group label{
+
+  display:block;
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.7px;
+
+  font-weight:900;
+
+  color:var(--muted);
+
+  margin-bottom:6px;
+
+}
+
+.form-input,
+.select{
+
+  width:100%;
+
+  border:1px solid var(--line);
+
+  background:#fafafa;
+
+  border-radius:11px;
+
+  padding:11px;
+
+  font-size:14px;
+
+  outline:none;
+
+}
+
+
+/* =====================================================
+   PARTIDOS
+===================================================== */
+
+.versus{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:18px;
+
+  margin:13px 0;
+
+}
+
+.club{
+
+  width:90px;
+
+  text-align:center;
+
+  font-weight:900;
+
+  font-size:11px;
+
+}
+
+.club-logo{
+
+  width:46px;
+
+  height:46px;
+
+  border-radius:13px;
+
+  background:#f0f0f2;
+
+  margin:0 auto 5px;
+
+  display:grid;
+
+  place-items:center;
+
+  font-size:21px;
+
+}
+
+.vs{
+
+  font-weight:950;
+
+  color:#888;
+
+}
+
+
+/* =====================================================
+   MÁS
+===================================================== */
+
+.more-screen{
+
+  background:var(--dark);
+
+  min-height:calc(100vh - 80px);
+
+  margin:-16px -14px -28px;
+
+  padding:16px 14px 30px;
+
+  color:#fff;
+
+}
+
+.more-screen .title{
+
+  color:#fff;
+
+}
+
+.more-menu{
+
+  display:grid;
+
+  gap:8px;
+
+}
+
+.more-row{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+  width:100%;
+
+  border:1px solid #2b2b30;
+
+  background:#17171a;
+
+  color:#fff;
+
+  border-radius:13px;
+
+  padding:13px;
+
+  text-align:left;
+
+}
+
+.more-icon{
+
+  width:30px;
+
+  height:30px;
+
+  border-radius:9px;
+
+  background:#242428;
+
+  display:grid;
+
+  place-items:center;
+
+  flex:0 0 30px;
+
+}
+
+.more-text{
+
+  flex:1;
+
+  font-size:12px;
+
+  font-weight:850;
+
+}
+
+.more-arrow{
+
+  color:#8c8c92;
+
+}
+
+
+/* =====================================================
+   TÁCTICA - CAMPO
+===================================================== */
+
+.tactic-toolbar{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr auto;
+
+  gap:8px;
+
+  align-items:end;
+
+  margin-bottom:12px;
+
+}
+
+.pitch-wrap{
+
+  background:#e8e8ea;
+
+  border-radius:19px;
+
+  padding:8px;
+
+  margin-bottom:12px;
+
+}
+
+.pitch{
+
+  position:relative;
+
+  width:100%;
+
+  aspect-ratio:68/105;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #278247 0 9%,
+      #2d8b4f 9% 18%
+    );
+
+  touch-action:manipulation;
+
+}
+
+.pitch:before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:2.5%;
+
+  border:2px solid #fff9;
+
+  border-radius:8px;
+
+}
+
+.pitch-line{
+
+  position:absolute;
+
+  left:2.5%;
+
+  right:2.5%;
+
+  top:50%;
+
+  border-top:2px solid #fff9;
+
+}
+
+.pitch-circle{
+
+  position:absolute;
+
+  width:27%;
+
+  aspect-ratio:1;
+
+  border:2px solid #fff9;
+
+  border-radius:50%;
+
+  left:36.5%;
+
+  top:36.5%;
+
+}
+
+.pitch-center{
+
+  position:absolute;
+
+  width:8px;
+
+  height:8px;
+
+  background:#fff;
+
+  border-radius:50%;
+
+  left:calc(50% - 4px);
+
+  top:calc(50% - 4px);
+
+}
+
+.box{
+
+  position:absolute;
+
+  left:20%;
+
+  width:60%;
+
+  height:16%;
+
+  border:2px solid #fff9;
+
+}
+
+.box.top{
+
+  top:2.5%;
+
+}
+
+.box.bottom{
+
+  bottom:2.5%;
+
+}
+
+.goal{
+
+  position:absolute;
+
+  left:37%;
+
+  width:26%;
+
+  height:2.5%;
+
+  border:2px solid #fff;
+
+  background:#ffffff18;
+
+}
+
+.goal.top{
+
+  top:0;
+
+}
+
+.goal.bottom{
+
+  bottom:0;
+
+}
+
+
+/* =====================================================
+   TÁCTICA - POSICIONES
 ===================================================== */
 
 .tactic-slot{
+
   position:absolute;
-  transform:translate(-50%,-50%);
-  width:clamp(82px,23vw,112px);
+
+  transform:
+    translate(-50%,-50%);
+
+  width:clamp(
+    78px,
+    23vw,
+    112px
+  );
+
   z-index:20;
+
   text-align:center;
+
 }
 
 .tactic-role{
+
   display:inline-block;
-  background:#0b0b0d;
+
+  background:var(--dark);
+
   color:#fff;
+
   border-radius:999px;
+
   padding:5px 9px;
+
   font-size:10px;
+
   font-weight:900;
+
   margin-bottom:5px;
+
 }
 
 
-/* BOTÓN QUE APARECE EN EL CAMPO */
+/* =====================================================
+   SELECTOR PERSONALIZADO
+===================================================== */
 
 .player-selector{
+
   position:relative;
+
   width:100%;
+
 }
 
 
+/* BOTÓN CERRADO */
+
 .player-selector-button{
+
   width:100%;
+
   min-height:40px;
 
-  border:3px solid #e21d2f;
+  border:3px solid var(--red);
+
   border-radius:11px;
 
   background:#fff;
 
-  color:#17171a;
+  color:var(--text);
 
-  padding:8px 28px 8px 9px;
+  padding:
+    8px 28px 8px 9px;
 
   font-size:11px;
+
   line-height:14px;
 
   font-weight:900;
@@ -62,38 +967,53 @@
 
   box-shadow:
     0 3px 8px rgba(0,0,0,.10);
+
 }
 
 
+/* SIN JUGADOR */
+
+.player-selector-button.empty{
+
+  color:#77777e;
+
+  font-weight:800;
+
+}
+
+
+/* FLECHA */
+
 .player-selector-button .arrow{
+
   position:absolute;
 
   right:8px;
+
   top:50%;
 
   transform:
     translateY(-50%);
 
-  font-size:13px;
+  font-size:14px;
+
+  font-weight:950;
 
   pointer-events:none;
+
 }
 
 
-/* CUANDO NO HAY JUGADOR */
-
-.player-selector-button.empty{
-  color:#77777e;
-  font-weight:800;
-}
-
-
-/* LISTA DESPLEGABLE */
+/* =====================================================
+   MENÚ DESPLEGABLE
+===================================================== */
 
 .player-selector-menu{
+
   position:absolute;
 
   left:0;
+
   right:0;
 
   top:calc(100% + 5px);
@@ -109,31 +1029,33 @@
 
   overflow:hidden;
 
-  z-index:999;
+  z-index:9999;
 
   display:none;
 
   max-height:150px;
 
   overflow-y:auto;
+
 }
 
 
-/* LISTA ABIERTA */
-
-.player-selector.open{
-  z-index:1000;
-}
+/* ABIERTO */
 
 .player-selector.open
 .player-selector-menu{
+
   display:block;
+
 }
 
 
-/* OPCIONES */
+/* OPCIÓN */
 
 .player-option{
+
+  display:block;
+
   width:100%;
 
   border:0;
@@ -157,37 +1079,43 @@
   text-overflow:ellipsis;
 
   border-bottom:1px solid #eeeeef;
-}
 
+}
 
 .player-option:last-child{
-  border-bottom:0;
-}
 
+  border-bottom:0;
+
+}
 
 .player-option:active{
-  background:#fff0f2;
-}
 
+  background:var(--red-soft);
+
+}
 
 .player-option.selected{
-  background:#fff0f2;
 
-  color:#e21d2f;
+  background:var(--red-soft);
+
+  color:var(--red);
 
   font-weight:950;
+
+}
+
+.player-option:disabled{
+
+  color:#bdbdc1;
+
+  background:#fafafa;
+
 }
 
 
-/* SIN JUGADOR */
-
-.player-option.empty-option{
-  color:#77777e;
-}
-
-
-/* EN EL BORDE DEL CAMPO:
-   que el menú no se corte */
+/* =====================================================
+   MENÚ HACIA ARRIBA
+===================================================== */
 
 .tactic-slot.menu-up
 .player-selector-menu{
@@ -199,25 +1127,2849 @@
 }
 
 
-/* MÓVIL */
+/* =====================================================
+   ACCIONES TÁCTICA
+===================================================== */
+
+.tactic-actions{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:8px;
+
+  margin-bottom:12px;
+
+}
+
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+nav{
+
+  position:fixed;
+
+  bottom:0;
+
+  left:50%;
+
+  transform:
+    translateX(-50%);
+
+  width:min(560px,100%);
+
+  display:flex;
+
+  justify-content:space-around;
+
+  background:#fffefeed;
+
+  backdrop-filter:blur(18px);
+
+  -webkit-backdrop-filter:blur(18px);
+
+  border-top:1px solid #dedee2;
+
+  padding:
+    7px
+    3px
+    calc(
+      7px +
+      env(safe-area-inset-bottom)
+    );
+
+  z-index:30;
+
+  box-shadow:
+    0 -8px 25px #14141914;
+
+}
+
+nav button{
+
+  background:none;
+
+  border:0;
+
+  color:#77777e;
+
+  font-size:10px;
+
+  font-weight:850;
+
+  padding:6px 4px;
+
+  min-width:52px;
+
+  border-radius:11px;
+
+}
+
+nav button.active{
+
+  color:var(--red);
+
+  background:var(--red-soft);
+
+}
+
+nav .nav-icon{
+
+  font-size:18px;
+
+  line-height:18px;
+
+  margin-bottom:2px;
+
+}
+
+
+/* =====================================================
+   MÓVIL
+===================================================== */
 
 @media(max-width:380px){
 
+  main{
+
+    padding-left:11px;
+
+    padding-right:11px;
+
+  }
+
   .tactic-slot{
+
     width:82px;
+
   }
 
   .player-selector-button{
+
     font-size:10px;
+
     padding-left:7px;
+
     padding-right:25px;
+
   }
 
   .player-option{
+
     font-size:10px;
+
     padding:9px 7px;
+
+  }
+
+  .tactic-role{
+
+    font-size:9px;
+
+    padding:4px 7px;
+
+  }
+
+  nav button{
+
+    min-width:48px;
+
+    padding-left:3px;
+
+    padding-right:3px;
+
   }
 
 }
 
 </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<header>
+
+  <div class="header-row">
+
+    <div>
+
+      <div class="brand">
+
+        ⚽ <span>KNATT</span>
+
+      </div>
+
+      <div class="role">
+
+        Tu equipo, en una sola app
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="header-bell"
+      onclick="
+        alert(
+          'No tienes nuevas notificaciones.'
+        )
+      ">
+
+      🔔
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<main id="content"></main>
+
+<nav id="nav"></nav>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   DATOS
+===================================================== */
+
+const KEY='teamhub-v2';
+
+
+let data;
+
+
+try{
+
+  const saved=
+    localStorage.getItem(KEY);
+
+  data=
+    saved
+      ?JSON.parse(saved)
+      :null;
+
+}catch(e){
+
+  data=null;
+
+}
+
+
+if(
+  !data ||
+  typeof data!=='object'
+){
+
+  data={
+
+    players:[
+
+      {
+        id:1,
+        name:'Montiimontys',
+        num:9,
+        pos:'DC',
+        available:true,
+        reason:'',
+        min:1126,
+        g:12,
+        a:6
+      },
+
+      {
+        id:2,
+        name:'Marc',
+        num:7,
+        pos:'MC',
+        available:true,
+        reason:'',
+        min:1030,
+        g:5,
+        a:8
+      },
+
+      {
+        id:3,
+        name:'Juan',
+        num:4,
+        pos:'DFC',
+        available:true,
+        reason:'',
+        min:980,
+        g:4,
+        a:3
+      },
+
+      {
+        id:4,
+        name:'Alex',
+        num:1,
+        pos:'POR',
+        available:true,
+        reason:'',
+        min:1260,
+        g:0,
+        a:1
+      },
+
+      {
+        id:5,
+        name:'Pedro',
+        num:3,
+        pos:'LI',
+        available:true,
+        reason:'',
+        min:640,
+        g:1,
+        a:2
+      }
+
+    ],
+
+    next:{
+      opponent:'CD Rival',
+      date:'Domingo, 24 de agosto',
+      time:'12:00',
+      place:'Campo Municipal'
+    },
+
+    matches:[
+
+      {
+        date:'17 AGO',
+        home:'KNATT FC',
+        away:'UD Ejemplo',
+        score:'2 - 1'
+      },
+
+      {
+        date:'10 AGO',
+        home:'CD Prueba',
+        away:'KNATT FC',
+        score:'0 - 3'
+      }
+
+    ],
+
+    tactics:{
+
+      formation:'4-3-3',
+
+      positions:{},
+
+      savedLineup:[]
+
+    },
+
+    settings:{
+
+      coach:'',
+
+      team:'KNATT FC',
+
+      season:'2026/27',
+
+      category:'Primer Equipo'
+
+    }
+
+  };
+
+}
+
+
+if(!Array.isArray(data.players))
+  data.players=[];
+
+
+if(!data.tactics)
+  data.tactics={};
+
+
+if(!data.tactics.positions)
+  data.tactics.positions={};
+
+
+if(!data.settings)
+  data.settings={};
+
+
+if(!data.settings.team)
+  data.settings.team='KNATT FC';
+
+
+if(!data.settings.season)
+  data.settings.season='2026/27';
+
+
+if(!data.settings.category)
+  data.settings.category='Primer Equipo';
+
+
+
+/* =====================================================
+   FORMACIONES
+===================================================== */
+
+const formations={
+
+
+  '4-3-3':[
+
+    ['POR',50,92],
+
+    ['LI',18,76],
+
+    ['DFC',40,80],
+
+    ['DFC',60,80],
+
+    ['LD',82,76],
+
+    ['MC',28,60],
+
+    ['MC',50,58],
+
+    ['MC',72,60],
+
+    ['EI',18,35],
+
+    ['DC',50,24],
+
+    ['ED',82,35]
+
+  ],
+
+
+  '4-4-2':[
+
+    ['POR',50,92],
+
+    ['LI',18,76],
+
+    ['DFC',40,80],
+
+    ['DFC',60,80],
+
+    ['LD',82,76],
+
+    ['MI',18,57],
+
+    ['MC',40,57],
+
+    ['MC',60,57],
+
+    ['MD',82,57],
+
+    ['DC',38,27],
+
+    ['DC',62,27]
+
+  ],
+
+
+  '4-2-3-1':[
+
+    ['POR',50,92],
+
+    ['LI',18,76],
+
+    ['DFC',40,80],
+
+    ['DFC',60,80],
+
+    ['LD',82,76],
+
+    ['MCD',38,63],
+
+    ['MCD',62,63],
+
+    ['EI',18,43],
+
+    ['MCO',50,45],
+
+    ['ED',82,43],
+
+    ['DC',50,24]
+
+  ],
+
+
+  '3-5-2':[
+
+    ['POR',50,92],
+
+    ['DFC',27,78],
+
+    ['DFC',50,82],
+
+    ['DFC',73,78],
+
+    ['MI',12,57],
+
+    ['MC',32,58],
+
+    ['MCO',50,50],
+
+    ['MC',68,58],
+
+    ['MD',88,57],
+
+    ['DC',38,27],
+
+    ['DC',62,27]
+
+  ],
+
+
+  '3-4-3':[
+
+    ['POR',50,92],
+
+    ['DFC',27,80],
+
+    ['DFC',50,83],
+
+    ['DFC',73,80],
+
+    ['MI',18,59],
+
+    ['MC',40,59],
+
+    ['MC',60,59],
+
+    ['MD',82,59],
+
+    ['EI',18,33],
+
+    ['DC',50,24],
+
+    ['ED',82,33]
+
+  ],
+
+
+  '5-3-2':[
+
+    ['POR',50,92],
+
+    ['LI',10,73],
+
+    ['DFC',30,79],
+
+    ['DFC',50,82],
+
+    ['DFC',70,79],
+
+    ['LD',90,73],
+
+    ['MC',30,58],
+
+    ['MC',50,55],
+
+    ['MC',70,58],
+
+    ['DC',38,27],
+
+    ['DC',62,27]
+
+  ],
+
+
+  '4-5-1':[
+
+    ['POR',50,92],
+
+    ['LI',18,76],
+
+    ['DFC',40,80],
+
+    ['DFC',60,80],
+
+    ['LD',82,76],
+
+    ['MI',12,57],
+
+    ['MC',31,57],
+
+    ['MCO',50,53],
+
+    ['MC',69,57],
+
+    ['MD',88,57],
+
+    ['DC',50,24]
+
+  ]
+
+};
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+let section='home';
+
+let filter='all';
+
+let selectedPlayerId=null;
+
+
+/* =====================================================
+   UTILIDADES
+===================================================== */
+
+function save(){
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+
+function esc(s){
+
+  return String(
+    s ?? ''
+  ).replace(
+    /[&<>"']/g,
+
+    m=>({
+
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#039;'
+
+    }[m])
+
+  );
+
+}
+
+
+function go(s){
+
+  section=s;
+
+  selectedPlayerId=null;
+
+  closePlayerMenus();
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+  render();
+
+}
+
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+function navItems(){
+
+  return [
+
+    ['home','⌂','Inicio'],
+
+    ['team','♟','Plantilla'],
+
+    ['tactic','⚽','Táctica'],
+
+    ['matches','🏆','Partidos'],
+
+    ['more','☰','Más']
+
+  ];
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function render(){
+
+  document
+    .getElementById(
+      'nav'
+    )
+    .innerHTML=
+
+      navItems()
+        .map(
+          x=>`
+
+          <button
+            class="${
+              section===x[0]
+                ?'active'
+                :''
+            }"
+
+            onclick="
+              go('${x[0]}')
+            ">
+
+            <div class="nav-icon">
+              ${x[1]}
+            </div>
+
+            ${x[2]}
+
+          </button>
+
+          `
+        )
+        .join('');
+
+
+  const c=
+    document.getElementById(
+      'content'
+    );
+
+
+  c.innerHTML=
+
+    section==='home'
+      ?home()
+
+      :section==='team'
+      ?team()
+
+      :section==='player'
+      ?playerProfile()
+
+      :section==='tactic'
+      ?tactic()
+
+      :section==='matches'
+      ?matches()
+
+      :section==='more'
+      ?more()
+
+      :section==='stats'
+      ?stats()
+
+      :settings();
+
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+function home(){
+
+  const available=
+    data.players.filter(
+      p=>p.available
+    ).length;
+
+
+  return `
+
+  <div class="title-row">
+
+    <div>
+
+      <div class="title">
+        ¡Buenos días!
+      </div>
+
+      <div class="subtitle">
+        ${esc(
+          data.settings.team ||
+          'KNATT FC'
+        )}
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-label">
+      PRÓXIMO PARTIDO
+    </div>
+
+    <div class="big">
+      ${esc(data.next.date)}
+    </div>
+
+    <div class="muted small">
+
+      ${esc(data.next.time)}
+
+      ·
+
+      ${esc(data.next.place)}
+
+    </div>
+
+
+    <div class="versus">
+
+      <div class="club">
+
+        <div class="club-logo">
+          ⚽
+        </div>
+
+        ${esc(
+          data.settings.team ||
+          'KNATT FC'
+        )}
+
+      </div>
+
+
+      <div class="vs">
+        VS
+      </div>
+
+
+      <div class="club">
+
+        <div class="club-logo">
+          🛡️
+        </div>
+
+        ${esc(data.next.opponent)}
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="
+        go('tactic')
+      ">
+
+      Abrir Táctica
+
+    </button>
+
+  </div>
+
+
+  <div class="card card-dark">
+
+    <div class="section-label">
+      ESTADO DEL EQUIPO
+    </div>
+
+
+    <div class="stat-grid">
+
+      <div class="stat">
+
+        <b>
+          ${data.players.length}
+        </b>
+
+        <span>
+          Jugadores
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${available}
+        </b>
+
+        <span>
+          Disponibles
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${data.players.length -
+            available}
+        </b>
+
+        <span>
+          Ausentes
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${data.matches.length}
+        </b>
+
+        <span>
+          Partidos
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PLANTILLA
+===================================================== */
+
+function team(){
+
+  const list=
+    data.players.filter(
+
+      p=>
+
+        filter==='all'
+
+        ||
+
+        (
+          filter==='available'
+            ?p.available
+            :!p.available
+        )
+
+    );
+
+
+  return `
+
+  <div class="title-row">
+
+    <div>
+
+      <div class="title">
+        Plantilla
+      </div>
+
+      <div class="subtitle">
+        ${data.players.length}
+        jugadores
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn red-soft"
+      onclick="
+        addPlayer()
+      ">
+
+      ＋
+
+    </button>
+
+  </div>
+
+
+  <div class="tabs">
+
+    <button
+      class="tab ${
+        filter==='all'
+          ?'active'
+          :''
+      }"
+
+      onclick="
+        filter='all';
+        render()
+      ">
+
+      Todos
+
+    </button>
+
+
+    <button
+      class="tab ${
+        filter==='available'
+          ?'active'
+          :''
+      }"
+
+      onclick="
+        filter='available';
+        render()
+      ">
+
+      Disponibles
+
+    </button>
+
+
+    <button
+      class="tab ${
+        filter==='absent'
+          ?'active'
+          :''
+      }"
+
+      onclick="
+        filter='absent';
+        render()
+      ">
+
+      Ausentes
+
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    ${
+      list.map(
+        p=>`
+
+        <div
+          class="item"
+          onclick="
+            openPlayer(${p.id})
+          ">
+
+          <div class="avatar">
+
+            ${
+              p.pos==='POR'
+                ?'🧤'
+                :'⚽'
+            }
+
+          </div>
+
+
+          <div class="grow">
+
+            <b>
+              ${esc(p.name)}
+            </b>
+
+            <div class="muted">
+
+              ${esc(p.pos)}
+
+              ·
+
+              ${
+                p.available
+                  ?'Disponible'
+                  :esc(
+                    p.reason ||
+                    'No disponible'
+                  )
+              }
+
+            </div>
+
+          </div>
+
+
+          <span>
+            ›
+          </span>
+
+        </div>
+
+        `
+      ).join('')
+
+      ||
+
+      '<div class="muted">No hay jugadores.</div>'
+
+    }
+
+  </div>
+
+  `;
+
+}
+
+
+function openPlayer(id){
+
+  selectedPlayerId=id;
+
+  section='player';
+
+  render();
+
+}
+
+
+function playerProfile(){
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(selectedPlayerId)
+    );
+
+
+  if(!p){
+
+    return `
+      <div class="card">
+        Jugador no encontrado
+      </div>
+    `;
+
+  }
+
+
+  return `
+
+  <button
+    class="btn light"
+    onclick="
+      go('team')
+    ">
+
+    ← Plantilla
+
+  </button>
+
+
+  <div
+    class="card"
+    style="margin-top:12px">
+
+    <div class="section-label">
+      JUGADOR
+    </div>
+
+    <div class="big">
+      ${esc(p.name)}
+    </div>
+
+    <div class="muted">
+      ${esc(p.pos)}
+      ·
+      #${esc(p.num)}
+    </div>
+
+  </div>
+
+
+  <div class="stat-grid">
+
+    <div class="stat">
+
+      <b>
+        ${p.min || 0}
+      </b>
+
+      <span>
+        Minutos
+      </span>
+
+    </div>
+
+
+    <div class="stat red">
+
+      <b>
+        ${p.g || 0}
+      </b>
+
+      <span>
+        Goles
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${p.a || 0}
+      </b>
+
+      <span>
+        Asistencias
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        #${esc(p.num)}
+      </b>
+
+      <span>
+        Dorsal
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <button
+      class="btn full"
+      onclick="
+        editPlayer()
+      ">
+
+      ✏️ Editar jugador
+
+    </button>
+
+
+    <br>
+    <br>
+
+
+    <button
+      class="btn light full"
+      onclick="
+        deletePlayer(${p.id})
+      ">
+
+      🗑️ Eliminar jugador
+
+    </button>
+
+  </div>
+
+  `;
+
+}
+
+
+function addPlayer(){
+
+  const name=
+    prompt(
+      'Nombre del jugador:'
+    );
+
+  if(!name)
+    return;
+
+
+  const num=
+    prompt(
+      'Número de camiseta:',
+      ''
+    );
+
+  if(num===null)
+    return;
+
+
+  const pos=
+    prompt(
+      'Posición:',
+      ''
+    );
+
+  if(pos===null)
+    return;
+
+
+  data.players.push({
+
+    id:Date.now(),
+
+    name:name.trim(),
+
+    num:num.trim() || '-',
+
+    pos:pos.trim() || 'Jugador',
+
+    available:true,
+
+    reason:'',
+
+    min:0,
+
+    g:0,
+
+    a:0
+
+  });
+
+
+  save();
+
+  render();
+
+}
+
+
+function editPlayer(){
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(selectedPlayerId)
+    );
+
+
+  if(!p)
+    return;
+
+
+  const name=
+    prompt(
+      'Nombre del jugador:',
+      p.name
+    );
+
+  if(name===null)
+    return;
+
+
+  const num=
+    prompt(
+      'Número de camiseta:',
+      p.num
+    );
+
+  if(num===null)
+    return;
+
+
+  const pos=
+    prompt(
+      'Posición:',
+      p.pos
+    );
+
+  if(pos===null)
+    return;
+
+
+  p.name=
+    name.trim() || p.name;
+
+  p.num=
+    num.trim() || p.num;
+
+  p.pos=
+    pos.trim() || p.pos;
+
+
+  save();
+
+  render();
+
+}
+
+
+function deletePlayer(id){
+
+  if(
+    !confirm(
+      '¿Eliminar este jugador?'
+    )
+  )
+    return;
+
+
+  data.players=
+    data.players.filter(
+      p=>
+        String(p.id)!==
+        String(id)
+    );
+
+
+  Object
+    .keys(
+      data.tactics.positions
+    )
+    .forEach(
+      k=>{
+
+        if(
+          String(
+            data.tactics.positions[k]
+              ?.playerId
+          )===String(id)
+        ){
+
+          delete
+            data.tactics.positions[k];
+
+        }
+
+      }
+    );
+
+
+  save();
+
+  go('team');
+
+}
+
+
+/* =====================================================
+   TÁCTICA
+===================================================== */
+
+function tactic(){
+
+  const formation=
+    data.tactics.formation ||
+    '4-3-3';
+
+
+  const spots=
+    formations[formation];
+
+
+  const positions=
+    data.tactics.positions ||
+    {};
+
+
+  return `
+
+  <div class="title-row">
+
+    <div>
+
+      <div class="title">
+        Táctica
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="tactic-toolbar">
+
+
+    <select
+      class="select"
+      onchange="
+        changeFormation(this.value)
+      ">
+
+      ${
+        Object.keys(
+          formations
+        )
+        .map(
+          f=>`
+
+          <option
+            value="${f}"
+
+            ${
+              f===formation
+                ?'selected'
+                :''
+            }>
+
+            ${f}
+
+          </option>
+
+          `
+        )
+        .join('')
+      }
+
+    </select>
+
+
+    <button
+      class="btn light"
+      onclick="
+        clearTactic()
+      ">
+
+      Vaciar
+
+    </button>
+
+  </div>
+
+
+  <div class="pitch-wrap">
+
+    <div class="pitch">
+
+
+      <div class="pitch-line"></div>
+
+      <div class="pitch-circle"></div>
+
+      <div class="pitch-center"></div>
+
+      <div class="box top"></div>
+
+      <div class="box bottom"></div>
+
+      <div class="goal top"></div>
+
+      <div class="goal bottom"></div>
+
+
+      ${
+        spots
+          .map(
+            (s,i)=>
+              slotHtml(
+                s,
+                i,
+                positions
+              )
+          )
+          .join('')
+      }
+
+
+    </div>
+
+  </div>
+
+
+  <div class="tactic-actions">
+
+
+    <button
+      class="btn"
+      onclick="
+        saveTactic()
+      ">
+
+      💾 Guardar
+
+    </button>
+
+
+    <button
+      class="btn light"
+      onclick="
+        resetTactic()
+      ">
+
+      ↺ Reset
+
+    </button>
+
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   SLOT DE TÁCTICA
+===================================================== */
+
+function slotHtml(
+  spot,
+  index,
+  positions
+){
+
+  const role=
+    spot[0];
+
+  const x=
+    spot[1];
+
+  const y=
+    spot[2];
+
+
+  const selectedId=
+    String(
+      positions[
+        String(index)
+      ]?.playerId || ''
+    );
+
+
+  const selectedPlayer=
+    data.players.find(
+      p=>
+        String(p.id)===
+        selectedId
+    );
+
+
+  const selectedName=
+    selectedPlayer
+      ?esc(selectedPlayer.name)
+      :'Seleccionar jugador';
+
+
+  return `
+
+  <div
+    class="tactic-slot"
+
+    id="
+      tactic-slot-${index}
+    "
+
+    style="
+      left:${x}%;
+      top:${y}%;
+    ">
+
+
+    <div class="tactic-role">
+
+      ${role}
+
+    </div>
+
+
+    <div
+      class="player-selector"
+
+
+      id="
+        player-selector-${index}
+      ">
+
+
+      <button
+        type="button"
+
+        class="
+          player-selector-button
+          ${
+            selectedPlayer
+              ?''
+              :'empty'
+          }
+        "
+
+        onclick="
+          togglePlayerMenu(
+            ${index}
+          )
+        ">
+
+
+        <span>
+
+          ${selectedName}
+
+        </span>
+
+
+        <span class="arrow">
+
+          ⌄
+
+        </span>
+
+
+      </button>
+
+
+      <div
+        class="player-selector-menu"
+
+        id="
+          player-menu-${index}
+        ">
+
+
+        <button
+          type="button"
+
+          class="
+            player-option
+            empty-option
+          "
+
+          onclick="
+            choosePlayer(
+              ${index},
+              ''
+            )
+          ">
+
+          Seleccionar jugador
+
+        </button>
+
+
+        ${
+          playerOptionsCustom(
+            selectedId,
+            index
+          )
+        }
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   OPCIONES DEL DESPLEGABLE
+===================================================== */
+
+function playerOptionsCustom(
+  selectedId,
+  index
+){
+
+  const used=
+    new Set(
+
+      Object.entries(
+        data.tactics.positions || {}
+      )
+
+      .filter(
+        ([key])=>
+          String(key)!==
+          String(index)
+      )
+
+      .map(
+        ([,value])=>
+          String(
+            value?.playerId || ''
+          )
+      )
+
+      .filter(Boolean)
+
+    );
+
+
+  return data.players
+    .map(
+      p=>{
+
+        const id=
+          String(p.id);
+
+
+        const disabled=
+          used.has(id);
+
+
+        return `
+
+        <button
+          type="button"
+
+          class="
+            player-option
+            ${
+              id===String(selectedId)
+                ?'selected'
+                :''
+            }
+          "
+
+          ${
+            disabled
+              ?'disabled'
+              :''
+          }
+
+          onclick="
+            choosePlayer(
+              ${index},
+              '${id}'
+            )
+          ">
+
+
+          ${esc(p.name)}
+
+
+        </button>
+
+        `;
+
+      }
+    )
+    .join('');
+
+}
+
+
+/* =====================================================
+   ABRIR / CERRAR DESPLEGABLE
+===================================================== */
+
+function togglePlayerMenu(
+  index
+){
+
+  const selector=
+    document.getElementById(
+      `player-selector-${index}`
+    );
+
+
+  const slot=
+    document.getElementById(
+      `tactic-slot-${index}`
+    );
+
+
+  if(!selector || !slot)
+    return;
+
+
+  const wasOpen=
+    selector.classList.contains(
+      'open'
+    );
+
+
+  /*
+     Cerramos todos los demás
+  */
+
+  document
+    .querySelectorAll(
+      '.player-selector.open'
+    )
+    .forEach(
+      el=>
+        el.classList.remove(
+          'open'
+        )
+    );
+
+
+  document
+    .querySelectorAll(
+      '.tactic-slot.menu-up'
+    )
+    .forEach(
+      el=>
+        el.classList.remove(
+          'menu-up'
+        )
+    );
+
+
+  if(wasOpen)
+    return;
+
+
+  /*
+     Calculamos si el menú debe abrir
+     hacia arriba o hacia abajo.
+  */
+
+  const rect=
+    slot.getBoundingClientRect();
+
+
+  if(
+    rect.bottom > window.innerHeight - 190
+  ){
+
+    slot.classList.add(
+      'menu-up'
+    );
+
+  }
+
+
+  selector.classList.add(
+    'open'
+  );
+
+}
+
+
+/* =====================================================
+   ELEGIR JUGADOR
+===================================================== */
+
+function choosePlayer(
+  index,
+  playerId
+){
+
+  const key=
+    String(index);
+
+
+  const id=
+    String(
+      playerId || ''
+    );
+
+
+  /*
+     QUITAR JUGADOR
+  */
+
+  if(!id){
+
+    delete
+      data.tactics.positions[
+        key
+      ];
+
+
+    save();
+
+    closePlayerMenus();
+
+    render();
+
+    return;
+
+  }
+
+
+  /*
+     EVITAR DUPLICADOS
+  */
+
+  const duplicate=
+    Object.entries(
+      data.tactics.positions || {}
+    )
+    .some(
+      ([position,value])=>
+
+        String(position)!==
+        key
+
+        &&
+
+        String(
+          value?.playerId || ''
+        )===id
+
+    );
+
+
+  if(duplicate){
+
+    alert(
+      'Ese jugador ya está colocado en otra posición.'
+    );
+
+    return;
+
+  }
+
+
+  /*
+     GUARDAMOS ÚNICAMENTE EL ID
+  */
+
+  data.tactics.positions[
+    key
+  ]={
+
+    playerId:id
+
+  };
+
+
+  save();
+
+  closePlayerMenus();
+
+  render();
+
+}
+
+
+/* =====================================================
+   CERRAR MENÚS
+===================================================== */
+
+function closePlayerMenus(){
+
+  document
+    .querySelectorAll(
+      '.player-selector.open'
+    )
+    .forEach(
+      el=>
+        el.classList.remove(
+          'open'
+        )
+    );
+
+
+  document
+    .querySelectorAll(
+      '.tactic-slot.menu-up'
+    )
+    .forEach(
+      el=>
+        el.classList.remove(
+          'menu-up'
+        )
+    );
+
+}
+
+
+/*
+   Si tocamos fuera de un selector,
+   cerramos el menú.
+*/
+
+document.addEventListener(
+  'click',
+
+  function(event){
+
+    if(
+      !event.target.closest(
+        '.player-selector'
+      )
+    ){
+
+      closePlayerMenus();
+
+    }
+
+  }
+
+);
+
+
+/* =====================================================
+   CAMBIAR FORMACIÓN
+===================================================== */
+
+function changeFormation(
+  formation
+){
+
+  const oldPositions=
+    data.tactics.positions ||
+    {};
+
+
+  const oldFormation=
+    data.tactics.formation ||
+    '4-3-3';
+
+
+  const oldSpots=
+    formations[
+      oldFormation
+    ];
+
+
+  const newSpots=
+    formations[
+      formation
+    ];
+
+
+  const next={};
+
+  const used=
+    new Set();
+
+
+  /*
+     Primero intentamos conservar
+     al jugador en una posición
+     del mismo tipo.
+  */
+
+  newSpots.forEach(
+    (newSpot,newIndex)=>{
+
+      const newRole=
+        String(
+          newSpot[0]
+        )
+        .trim()
+        .toUpperCase();
+
+
+      for(
+        let oldIndex=0;
+        oldIndex<oldSpots.length;
+        oldIndex++
+      ){
+
+        if(
+          used.has(
+            String(oldIndex)
+          )
+        )
+          continue;
+
+
+        const oldRole=
+          String(
+            oldSpots[oldIndex][0]
+          )
+          .trim()
+          .toUpperCase();
+
+
+        const playerId=
+          oldPositions[
+            String(oldIndex)
+          ]?.playerId;
+
+
+        if(
+          playerId &&
+
+          oldRole===newRole &&
+
+          ![
+            ...Object.values(next)
+          ]
+          .some(
+            v=>
+              String(
+                v.playerId
+              )===String(playerId)
+          )
+        ){
+
+          next[
+            String(newIndex)
+          ]={
+
+            playerId:
+              String(playerId)
+
+          };
+
+
+          used.add(
+            String(oldIndex)
+          );
+
+
+          break;
+
+        }
+
+      }
+
+    }
+  );
+
+
+  data.tactics.formation=
+    formation;
+
+
+  data.tactics.positions=
+    next;
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetTactic(){
+
+  const formation=
+    data.tactics.formation ||
+    '4-3-3';
+
+
+  const spots=
+    formations[
+      formation
+    ];
+
+
+  const next={};
+
+  const used=
+    new Set();
+
+
+  /*
+     Buscamos primero jugadores
+     por su posición natural.
+  */
+
+  spots.forEach(
+    (spot,index)=>{
+
+      const role=
+        String(
+          spot[0]
+        )
+        .trim()
+        .toUpperCase();
+
+
+      const player=
+        data.players.find(
+          p=>
+
+            !used.has(
+              String(p.id)
+            )
+
+            &&
+
+            String(
+              p.pos || ''
+            )
+            .trim()
+            .toUpperCase()===role
+
+        );
+
+
+      if(player){
+
+        next[
+          String(index)
+        ]={
+
+          playerId:
+            String(player.id)
+
+        };
+
+
+        used.add(
+          String(player.id)
+        );
+
+      }
+
+    }
+  );
+
+
+  data.tactics.positions=
+    next;
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =====================================================
+   VACIAR
+===================================================== */
+
+function clearTactic(){
+
+  data.tactics.positions={};
+
+  save();
+
+  render();
+
+}
+
+
+/* =====================================================
+   GUARDAR TÁCTICA
+===================================================== */
+
+function saveTactic(){
+
+  data.tactics.savedLineup=
+
+    Object.values(
+      data.tactics.positions || {}
+    )
+    .map(
+      v=>
+        v.playerId
+    );
+
+
+  save();
+
+
+  alert(
+    'Alineación guardada correctamente.'
+  );
+
+}
+
+
+/* =====================================================
+   PARTIDOS
+===================================================== */
+
+function matches(){
+
+  return `
+
+  <div class="title">
+    Partidos
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-label">
+      PRÓXIMO PARTIDO
+    </div>
+
+
+    <div class="muted small">
+
+      ${esc(data.next.date)}
+
+      ·
+
+      ${esc(data.next.time)}
+
+    </div>
+
+
+    <div class="versus">
+
+      <div class="club">
+
+        <div class="club-logo">
+          ⚽
+        </div>
+
+        ${esc(
+          data.settings.team ||
+          'KNATT FC'
+        )}
+
+      </div>
+
+
+      <div class="vs">
+        VS
+      </div>
+
+
+      <div class="club">
+
+        <div class="club-logo">
+          🛡️
+        </div>
+
+        ${esc(
+          data.next.opponent
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="muted small"
+      style="text-align:center">
+
+      ${esc(data.next.place)}
+
+    </div>
+
+  </div>
+
+
+  ${
+    data.matches
+      .map(
+        m=>`
+
+        <div class="card">
+
+          <div class="muted small">
+            ${esc(m.date)}
+          </div>
+
+
+          <div class="versus">
+
+            <div class="club">
+              ${esc(m.home)}
+            </div>
+
+            <div class="vs">
+              ${esc(m.score)}
+            </div>
+
+            <div class="club">
+              ${esc(m.away)}
+            </div>
+
+          </div>
+
+        </div>
+
+        `
+      )
+      .join('')
+  }
+
+  `;
+
+}
+
+
+/* =====================================================
+   MÁS
+===================================================== */
+
+function more(){
+
+  return `
+
+  <div class="more-screen">
+
+    <div class="title">
+      Más
+    </div>
+
+
+    <div class="more-menu">
+
+
+      <button
+        class="more-row"
+        onclick="
+          go('stats')
+        ">
+
+        <div class="more-icon">
+          📊
+        </div>
+
+        <div class="more-text">
+          Estadísticas
+        </div>
+
+        <div class="more-arrow">
+          ›
+        </div>
+
+      </button>
+
+
+      <button
+        class="more-row"
+        onclick="
+          go('tactic')
+        ">
+
+        <div class="more-icon">
+          ⚽
+        </div>
+
+        <div class="more-text">
+          Táctica
+        </div>
+
+        <div class="more-arrow">
+          ›
+        </div>
+
+      </button>
+
+
+      <button
+        class="more-row"
+        onclick="
+          go('settings')
+        ">
+
+        <div class="more-icon">
+          ⚙️
+        </div>
+
+        <div class="more-text">
+          Configuración
+        </div>
+
+        <div class="more-arrow">
+          ›
+        </div>
+
+      </button>
+
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
+function stats(){
+
+  const goals=
+    data.players.reduce(
+      (s,p)=>
+        s+(Number(p.g)||0),
+      0
+    );
+
+
+  const assists=
+    data.players.reduce(
+      (s,p)=>
+        s+(Number(p.a)||0),
+      0
+    );
+
+
+  return `
+
+  <div class="title">
+    Estadísticas
+  </div>
+
+
+  <div class="stat-grid">
+
+
+    <div class="stat red">
+
+      <b>
+        ${goals}
+      </b>
+
+      <span>
+        Goles
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${assists}
+      </b>
+
+      <span>
+        Asistencias
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${data.players.length}
+      </b>
+
+      <span>
+        Jugadores
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <b>
+        ${data.matches.length}
+      </b>
+
+      <span>
+        Partidos
+      </span>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="card">
+
+    ${
+      data.players
+        .map(
+          p=>`
+
+          <div class="item">
+
+            <div class="avatar">
+              ⚽
+            </div>
+
+
+            <div class="grow">
+
+              <b>
+                ${esc(p.name)}
+              </b>
+
+              <div class="muted">
+                ${esc(p.pos)}
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <b>
+                ${p.g || 0} ⚽
+              </b>
+
+              <div class="muted">
+                ${p.a || 0} 🎯
+              </div>
+
+            </div>
+
+          </div>
+
+          `
+        )
+        .join('')
+    }
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
+
+function settings(){
+
+  return `
+
+  <div class="title">
+    Configuración
+  </div>
+
+
+  <div class="card">
+
+
+    <div class="form-group">
+
+      <label>
+        Entrenador
+      </label>
+
+      <input
+        id="coach"
+        class="form-input"
+
+        value="${
+          esc(
+            data.settings.coach || ''
+          )
+        }">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Equipo
+      </label>
+
+      <input
+        id="team"
+        class="form-input"
+
+        value="${
+          esc(
+            data.settings.team ||
+            'KNATT FC'
+          )
+        }">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Temporada
+      </label>
+
+      <input
+        id="season"
+        class="form-input"
+
+        value="${
+          esc(
+            data.settings.season ||
+            '2026/27'
+          )
+        }">
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="
+        saveSettings()
+      ">
+
+      💾 Guardar
+
+    </button>
+
+
+  </div>
+
+  `;
+
+}
+
+
+function saveSettings(){
+
+  data.settings.coach=
+    document
+      .getElementById(
+        'coach'
+      )
+      .value
+      .trim();
+
+
+  data.settings.team=
+    document
+      .getElementById(
+        'team'
+      )
+      .value
+      .trim()
+    ||
+    'KNATT FC';
+
+
+  data.settings.season=
+    document
+      .getElementById(
+        'season'
+      )
+      .value
+      .trim()
+    ||
+    '2026/27';
+
+
+  save();
+
+  go('home');
+
+}
+
+
+/* =====================================================
+   ARRANQUE
+===================================================== */
+
+render();
+
+</script>
+
+
+</body>
+
+</html>
