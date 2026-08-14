@@ -432,7 +432,7 @@ nav button.active{
 
 
 /* =========================================================
-   TACTICA
+   TÁCTICA
 ========================================================= */
 
 .tactic-toolbar{
@@ -498,7 +498,8 @@ nav button.active{
       #338f56 75% 83.33%,
       #2d8a52 83.33% 91.66%,
       #338f56 91.66% 100%
-    )
+    );
+  touch-action:none
 }
 
 .pitch:before{
@@ -573,63 +574,142 @@ nav button.active{
 
 
 /* =========================================================
-   POSICIONES FIJAS
+   NUEVAS POSICIONES TÁCTICAS
 ========================================================= */
 
-.position-slot{
+.tactic-slot{
   position:absolute;
   transform:translate(-50%,-50%);
-  width:27%;
-  min-width:92px;
-  max-width:135px;
-  display:flex;
-  flex-direction:column;
+  width:92px;
+  z-index:8;
+  text-align:center
+}
+
+.tactic-role{
+  display:inline-flex;
   align-items:center;
-  z-index:5
-}
-
-.position-role{
-  background:var(--green);
-  color:#fff;
+  justify-content:center;
+  min-width:48px;
+  height:27px;
+  padding:0 9px;
   border-radius:999px;
-  padding:6px 11px;
-  font-size:11px;
+  background:#123c2d;
+  color:#fff;
+  font-size:10px;
   font-weight:900;
-  margin-bottom:5px;
-  white-space:nowrap;
-  box-shadow:0 3px 8px #10221b30
+  box-shadow:0 4px 9px #10221b30;
+  margin-bottom:4px
 }
 
-.position-select{
+.tactic-select{
   width:100%;
-  min-width:0;
-  height:48px;
+  height:38px;
   border:3px solid var(--lime);
-  border-radius:14px;
+  border-radius:13px;
   background:#fff;
   color:var(--text);
-  padding:0 8px;
-  font-size:13px;
+  padding:0 24px 0 7px;
+  font-size:10px;
   font-weight:900;
   outline:none;
-  text-align:center;
-  text-overflow:ellipsis;
-  overflow:hidden
+  appearance:auto;
+  -webkit-appearance:auto
 }
 
-.position-select:focus{
-  border-color:#8fca3f;
-  box-shadow:0 0 0 3px #b9e86c30
+.tactic-select:focus{
+  border-color:#8fca40
 }
 
-.position-select option{
-  font-size:14px;
-  font-weight:700
+.tactic-player-name{
+  width:100%;
+  min-height:25px;
+  margin-top:4px;
+  padding:3px 4px;
+  border-radius:8px;
+  background:#ffffffec;
+  color:var(--text);
+  font-size:10px;
+  font-weight:900;
+  line-height:1.15;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+  box-shadow:0 3px 8px #10221b18
+}
+
+.tactic-player-name.empty{
+  visibility:hidden
+}
+
+
+/*
+  Las posiciones laterales se mantienen dentro del terreno.
+  Los selectores nunca ocupan más allá del 2%-98%.
+*/
+
+.tactic-slot.side-left{
+  transform:translate(-50%,-50%);
+}
+
+.tactic-slot.side-right{
+  transform:translate(-50%,-50%);
+}
+
+
+/* En pantallas pequeñas reducimos ligeramente los selectores */
+
+@media(max-width:430px){
+
+  .tactic-slot{
+    width:78px
+  }
+
+  .tactic-select{
+    height:35px;
+    font-size:9px;
+    padding-left:5px;
+    padding-right:20px;
+    border-width:2.5px
+  }
+
+  .tactic-role{
+    height:25px;
+    min-width:44px;
+    font-size:9px;
+    padding:0 7px
+  }
+
+  .tactic-player-name{
+    font-size:9px;
+    min-height:23px;
+    padding:3px
+  }
+
+}
+
+@media(max-width:380px){
+
+  .tactic-slot{
+    width:70px
+  }
+
+  .tactic-select{
+    height:33px;
+    font-size:8px
+  }
+
+  .tactic-role{
+    font-size:8px
+  }
+
+  .tactic-player-name{
+    font-size:8px
+  }
+
 }
 
 
 /* =========================================================
-   ALINEACION
+   ALINEACIÓN
 ========================================================= */
 
 .lineup-list{
@@ -642,31 +722,29 @@ nav button.active{
   display:flex;
   align-items:center;
   gap:10px;
-  background:#f7faf8;
-  border:1px solid var(--line);
+  padding:10px;
   border-radius:14px;
-  padding:10px 12px
+  background:#f7faf8;
+  border:1px solid var(--line)
 }
 
 .lineup-role{
-  width:48px;
-  flex:0 0 48px;
-  font-size:11px;
+  min-width:48px;
+  text-align:center;
+  font-size:10px;
   font-weight:900;
-  color:var(--muted)
+  color:#fff;
+  background:var(--green);
+  border-radius:999px;
+  padding:6px 7px
 }
 
-.lineup-player{
+.lineup-name{
   flex:1;
   min-width:0;
-  font-weight:800
-}
-
-.lineup-player span{
-  display:block;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap
+  font-size:13px;
+  font-weight:800;
+  overflow-wrap:anywhere
 }
 
 .tactic-actions{
@@ -682,32 +760,6 @@ nav button.active{
   margin-top:8px
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:430px){
-
-  .position-slot{
-    width:29%;
-    min-width:88px
-  }
-
-  .position-select{
-    height:47px;
-    font-size:12px;
-    padding-left:5px;
-    padding-right:5px
-  }
-
-  .position-role{
-    font-size:10px;
-    padding:5px 9px
-  }
-
-}
-
 @media(max-width:380px){
 
   main{
@@ -721,23 +773,6 @@ nav button.active{
 
   .brand{
     font-size:27px
-  }
-
-  .position-slot{
-    width:31%;
-    min-width:76px
-  }
-
-  .position-select{
-    height:44px;
-    font-size:11px;
-    padding-left:3px;
-    padding-right:3px
-  }
-
-  .position-role{
-    font-size:9px;
-    padding:5px 7px
   }
 
   nav button{
@@ -870,6 +905,7 @@ if(!data || typeof data!=='object'){
     tactics:{
       formation:'4-3-3',
       lineup:{},
+      positions:{},
       savedLineup:[]
     },
 
@@ -948,21 +984,10 @@ if(!data.next || typeof data.next!=='object'){
   data.next={};
 }
 
-data.next.opponent=
-  data.next.opponent ||
-  'CD Rival';
-
-data.next.date=
-  data.next.date ||
-  'Próximo partido';
-
-data.next.time=
-  data.next.time ||
-  '12:00';
-
-data.next.place=
-  data.next.place ||
-  'Campo Municipal';
+data.next.opponent=data.next.opponent||'CD Rival';
+data.next.date=data.next.date||'Próximo partido';
+data.next.time=data.next.time||'12:00';
+data.next.place=data.next.place||'Campo Municipal';
 
 
 if(!data.tactics || typeof data.tactics!=='object'){
@@ -970,13 +995,18 @@ if(!data.tactics || typeof data.tactics!=='object'){
 }
 
 data.tactics.formation=
-  data.tactics.formation ||
-  '4-3-3';
+  data.tactics.formation||'4-3-3';
 
 data.tactics.lineup=
   data.tactics.lineup &&
   typeof data.tactics.lineup==='object'
   ?data.tactics.lineup
+  :{};
+
+data.tactics.positions=
+  data.tactics.positions &&
+  typeof data.tactics.positions==='object'
+  ?data.tactics.positions
   :{};
 
 data.tactics.savedLineup=
@@ -989,17 +1019,10 @@ if(!data.settings || typeof data.settings!=='object'){
   data.settings={};
 }
 
-data.settings.coach=
-  data.settings.coach || '';
-
-data.settings.team=
-  data.settings.team || 'KNATT FC';
-
-data.settings.season=
-  data.settings.season || '2026/27';
-
-data.settings.category=
-  data.settings.category || 'Primer Equipo';
+data.settings.coach=data.settings.coach||'';
+data.settings.team=data.settings.team||'KNATT FC';
+data.settings.season=data.settings.season||'2026/27';
+data.settings.category=data.settings.category||'Primer Equipo';
 
 
 localStorage.setItem(
@@ -1027,69 +1050,69 @@ const formations={
 
   '4-3-3':[
     ['POR',50,91],
-    ['LI',16,73],
-    ['DFC',39,78],
-    ['DFC',61,78],
-    ['LD',84,73],
+    ['LI',17,73],
+    ['DFC',39,77],
+    ['DFC',61,77],
+    ['LD',83,73],
     ['MC',27,57],
-    ['MC',50,55],
+    ['MC',50,54],
     ['MC',73,57],
-    ['EI',18,34],
+    ['EI',18,35],
     ['DC',50,25],
-    ['ED',82,34]
+    ['ED',82,35]
   ],
 
   '4-4-2':[
     ['POR',50,91],
-    ['LI',16,73],
-    ['DFC',39,78],
-    ['DFC',61,78],
-    ['LD',84,73],
-    ['MI',14,56],
-    ['MC',38,56],
-    ['MC',62,56],
-    ['MD',86,56],
+    ['LI',17,73],
+    ['DFC',39,77],
+    ['DFC',61,77],
+    ['LD',83,73],
+    ['MI',17,57],
+    ['MC',39,57],
+    ['MC',61,57],
+    ['MD',83,57],
     ['DC',39,27],
     ['DC',61,27]
   ],
 
   '4-2-3-1':[
     ['POR',50,91],
-    ['LI',16,73],
-    ['DFC',39,78],
-    ['DFC',61,78],
-    ['LD',84,73],
-    ['MCD',37,59],
-    ['MCD',63,59],
-    ['EI',18,43],
-    ['MCO',50,43],
-    ['ED',82,43],
+    ['LI',17,73],
+    ['DFC',39,77],
+    ['DFC',61,77],
+    ['LD',83,73],
+    ['MCD',38,61],
+    ['MCD',62,61],
+    ['EI',18,42],
+    ['MCO',50,42],
+    ['ED',82,42],
     ['DC',50,25]
   ],
 
   '3-5-2':[
     ['POR',50,91],
-    ['DFC',27,77],
+    ['DFC',29,77],
     ['DFC',50,80],
-    ['DFC',73,77],
-    ['MI',13,56],
+    ['DFC',71,77],
+    ['MI',14,57],
     ['MC',32,57],
-    ['MCO',50,51],
+    ['MCO',50,53],
     ['MC',68,57],
-    ['MD',87,56],
+    ['MD',86,57],
     ['DC',39,27],
     ['DC',61,27]
   ],
 
   '3-4-3':[
     ['POR',50,91],
-    ['DFC',27,78],
-    ['DFC',50,81],
-    ['DFC',73,78],
-    ['MI',17,57],
+    ['DFC',29,77],
+    ['DFC',50,80],
+    ['DFC',71,77],
+    ['MI',18,57],
     ['MC',39,57],
     ['MC',61,57],
-    ['MD',83,57],
+    ['MD',82,57],
     ['EI',18,34],
     ['DC',50,25],
     ['ED',82,34]
@@ -1097,29 +1120,29 @@ const formations={
 
   '5-3-2':[
     ['POR',50,91],
-    ['LI',11,72],
-    ['DFC',30,78],
-    ['DFC',50,81],
-    ['DFC',70,78],
-    ['LD',89,72],
-    ['MC',30,56],
+    ['LI',13,72],
+    ['DFC',31,77],
+    ['DFC',50,80],
+    ['DFC',69,77],
+    ['LD',87,72],
+    ['MC',31,56],
     ['MC',50,53],
-    ['MC',70,56],
+    ['MC',69,56],
     ['DC',39,27],
     ['DC',61,27]
   ],
 
   '4-5-1':[
     ['POR',50,91],
-    ['LI',16,73],
-    ['DFC',39,78],
-    ['DFC',61,78],
-    ['LD',84,73],
-    ['MI',13,56],
-    ['MC',31,56],
-    ['MCO',50,52],
-    ['MC',69,56],
-    ['MD',87,56],
+    ['LI',17,73],
+    ['DFC',39,77],
+    ['DFC',61,77],
+    ['LD',83,73],
+    ['MI',14,57],
+    ['MC',31,57],
+    ['MCO',50,53],
+    ['MC',69,57],
+    ['MD',86,57],
     ['DC',50,25]
   ]
 
@@ -1165,15 +1188,10 @@ function navItems(){
   return [
 
     ['home','🏠','Inicio'],
-
     ['team','👥','Plantilla'],
-
     ['tactic','🧠','Táctica'],
-
     ['matches','🏆','Partidos'],
-
     ['stats','📊','Stats'],
-
     ['settings','⚙️','Config.']
 
   ];
@@ -1347,19 +1365,12 @@ function editPlayer(){
 
 
   p.name=name.trim()||p.name;
-
   p.num=num.trim()||p.num;
-
   p.pos=pos.trim()||p.pos;
-
   p.available=available;
-
   p.reason=reason;
-
   p.min=Math.max(0,Number(min)||0);
-
   p.g=Math.max(0,Number(goals)||0);
-
   p.a=Math.max(0,Number(assists)||0);
 
 
@@ -1458,21 +1469,18 @@ function deletePlayer(id){
   );
 
 
-  if(data.tactics && data.tactics.lineup){
-
-    Object.keys(data.tactics.lineup)
-      .forEach(role=>{
-
-        if(
-          String(data.tactics.lineup[role])===
-          String(id)
-        ){
-          delete data.tactics.lineup[role];
-        }
-
-      });
-
+  if(data.tactics.positions){
+    delete data.tactics.positions[String(id)];
   }
+
+
+  Object.keys(data.tactics.lineup||{}).forEach(
+    role=>{
+      if(String(data.tactics.lineup[role])===String(id)){
+        delete data.tactics.lineup[role];
+      }
+    }
+  );
 
 
   save();
@@ -1652,8 +1660,7 @@ function home(){
         class="btn lime full"
         onclick="go('tactic')">
 
-        🧠
-        Abrir pizarra táctica →
+        🧠 Abrir pizarra táctica →
 
       </button>
 
@@ -1753,8 +1760,7 @@ function team(){
         class="btn lime full"
         onclick="addPlayer()">
 
-        ➕
-        Añadir jugador
+        ➕ Añadir jugador
 
       </button>
 
@@ -1930,8 +1936,7 @@ function playerProfile(){
           class="btn full"
           onclick="go('team')">
 
-          ←
-          Volver a plantilla
+          ← Volver a plantilla
 
         </button>
 
@@ -1949,8 +1954,7 @@ function playerProfile(){
       onclick="go('team')"
       style="margin-bottom:14px">
 
-      ←
-      Plantilla
+      ← Plantilla
 
     </button>
 
@@ -2058,8 +2062,7 @@ function playerProfile(){
         class="btn lime full"
         onclick="editPlayer()">
 
-        ✏️
-        Editar jugador
+        ✏️ Editar jugador
 
       </button>
 
@@ -2071,8 +2074,7 @@ function playerProfile(){
         class="btn light full"
         onclick="deletePlayer(${p.id})">
 
-        🗑️
-        Eliminar jugador
+        🗑️ Eliminar jugador
 
       </button>
 
@@ -2084,19 +2086,16 @@ function playerProfile(){
 
 
 /* =========================================================
-   TACTICA
+   TÁCTICA NUEVA
 ========================================================= */
 
 function tactic(){
 
-  const formation=
-    data.tactics.formation;
+  const formation=data.tactics.formation;
 
-  const lineup=
-    data.tactics.lineup||{};
+  const spots=formations[formation];
 
-  const spots=
-    formations[formation];
+  const lineup=data.tactics.lineup||{};
 
 
   return `
@@ -2136,14 +2135,14 @@ function tactic(){
     </div>
 
 
-    <div class="section-label">
-      FORMACIÓN
-    </div>
-
-
     <div class="tactic-toolbar">
 
       <div class="select-wrap">
+
+        <label>
+          Formación
+        </label>
+
 
         <select
           class="select"
@@ -2185,7 +2184,9 @@ function tactic(){
 
     <div class="pitch-wrap">
 
-      <div class="pitch">
+      <div
+        class="pitch"
+        id="pitch">
 
         <div class="pitch-line"></div>
 
@@ -2209,20 +2210,40 @@ function tactic(){
 
               const role=spot[0];
 
-              const selectedId=
-                lineup[role+'_'+index]||'';
+              const x=spot[1];
+
+              const y=spot[2];
+
+              const playerId=
+                lineup[String(index)]||'';
+
+              const player=
+                data.players.find(
+                  p=>String(p.id)===String(playerId)
+                );
+
+
+              const isLeft=
+                x<20;
+
+              const isRight=
+                x>80;
 
 
               return `
 
                 <div
-                  class="position-slot"
+                  class="
+                    tactic-slot
+                    ${isLeft?'side-left':''}
+                    ${isRight?'side-right':''}
+                  "
                   style="
-                    left:${spot[1]}%;
-                    top:${spot[2]}%
+                    left:${x}%;
+                    top:${y}%
                   ">
 
-                  <div class="position-role">
+                  <div class="tactic-role">
 
                     ${escapeHtml(role)}
 
@@ -2230,10 +2251,10 @@ function tactic(){
 
 
                   <select
-                    class="position-select"
+                    class="tactic-select"
                     onchange="
-                      setLineupPlayer(
-                        '${role}_${index}',
+                      selectLineupPlayer(
+                        ${index},
                         this.value
                       )
                     ">
@@ -2253,8 +2274,7 @@ function tactic(){
                           <option
                             value="${p.id}"
                             ${
-                              String(p.id)===
-                              String(selectedId)
+                              String(playerId)===String(p.id)
                               ?'selected'
                               :''
                             }>
@@ -2271,6 +2291,26 @@ function tactic(){
                     }
 
                   </select>
+
+
+                  <div
+                    class="
+                      tactic-player-name
+                      ${player?'':'empty'}
+                    ">
+
+                    ${
+                      player
+                      ?
+                      '#'+
+                      escapeHtml(String(player.num))+
+                      ' · '+
+                      escapeHtml(player.name)
+                      :
+                      '&nbsp;'
+                    }
+
+                  </div>
 
                 </div>
 
@@ -2303,13 +2343,12 @@ function tactic(){
 
               const role=spot[0];
 
-              const selectedId=
-                lineup[role+'_'+index];
+              const playerId=
+                lineup[String(index)];
 
               const player=
                 data.players.find(
-                  p=>String(p.id)===
-                  String(selectedId)
+                  p=>String(p.id)===String(playerId)
                 );
 
 
@@ -2324,23 +2363,17 @@ function tactic(){
                   </div>
 
 
-                  <div class="lineup-player">
+                  <div class="lineup-name">
 
                     ${
                       player
                       ?
-
-                      `<span>
-                        #${escapeHtml(String(player.num))}
-                        ·
-                        ${escapeHtml(player.name)}
-                      </span>`
-
+                      '#'+
+                      escapeHtml(String(player.num))+
+                      ' · '+
+                      escapeHtml(player.name)
                       :
-
-                      `<span class="muted">
-                        Sin jugador
-                      </span>`
+                      'Sin jugador'
                     }
 
                   </div>
@@ -2366,8 +2399,7 @@ function tactic(){
         class="btn lime"
         onclick="saveTactic()">
 
-        💾
-        Guardar alineación
+        💾 Guardar alineación
 
       </button>
 
@@ -2376,8 +2408,7 @@ function tactic(){
         class="btn light"
         onclick="clearTactic()">
 
-        🧹
-        Vaciar campo
+        🧹 Vaciar campo
 
       </button>
 
@@ -2386,11 +2417,10 @@ function tactic(){
 
     <div class="notice">
 
-      💡
-
-      Puedes cambiar cualquier jugador
-      en cualquier posición desde su
-      desplegable.
+      💡 Cada jugador se asigna a una
+      posición concreta. Si cambias de
+      formación, KNATT conserva los jugadores
+      siempre que sea posible.
 
     </div>
 
@@ -2400,51 +2430,75 @@ function tactic(){
 
 
 /* =========================================================
-   NOMBRE COMPLETO
-========================================================= */
-
-function shortName(name){
-
-  return String(name||'Jugador');
-
-}
-
-
-function escapeHtml(str){
-
-  return String(str).replace(
-    /[&<>"']/g,
-    m=>({
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#039;'
-    }[m])
-  );
-
-}
-
-
-/* =========================================================
    SELECCIONAR JUGADOR
 ========================================================= */
 
-function setLineupPlayer(slotKey,playerId){
+function selectLineupPlayer(
+  positionIndex,
+  playerId
+){
+
+  const key=String(positionIndex);
 
   if(!data.tactics.lineup){
     data.tactics.lineup={};
   }
 
 
-  if(playerId){
+  if(!playerId){
 
-    data.tactics.lineup[slotKey]=
-      String(playerId);
+    delete data.tactics.lineup[key];
 
-  }else{
+    save();
 
-    delete data.tactics.lineup[slotKey];
+    render();
+
+    return;
+
+  }
+
+
+  /*
+    Evitamos que un mismo jugador
+    aparezca en dos posiciones.
+  */
+
+  Object.keys(data.tactics.lineup).forEach(
+    k=>{
+
+      if(
+        k!==key &&
+        String(data.tactics.lineup[k])===String(playerId)
+      ){
+
+        delete data.tactics.lineup[k];
+
+      }
+
+    }
+  );
+
+
+  data.tactics.lineup[key]=String(playerId);
+
+
+  /*
+    Guardamos también una posición
+    aproximada para compatibilidad
+    con versiones anteriores.
+  */
+
+  const spot=
+    formations[data.tactics.formation][positionIndex];
+
+
+  if(spot){
+
+    data.tactics.positions[String(playerId)]={
+      x:spot[1],
+      y:spot[2],
+      role:spot[0]
+    };
 
   }
 
@@ -2462,36 +2516,37 @@ function setLineupPlayer(slotKey,playerId){
 
 function changeFormation(formation){
 
-  data.tactics.formation=
-    formation;
+  if(!formations[formation]){
+    return;
+  }
+
+
+  data.tactics.formation=formation;
+
+
+  /*
+    Intentamos conservar jugadores
+    por índice de posición.
+  */
 
   const oldLineup=
     data.tactics.lineup||{};
 
-  const spots=
-    formations[formation];
 
   const next={};
 
 
-  spots.forEach(
-    (spot,index)=>{
+  Object.keys(oldLineup).forEach(
+    key=>{
 
-      const role=spot[0];
+      const index=Number(key);
 
-      const sameRoleKey=
-        Object.keys(oldLineup)
-        .find(
-          key=>
-            key.startsWith(role+'_') &&
-            oldLineup[key]
-        );
+      if(
+        Number.isInteger(index) &&
+        index<formations[formation].length
+      ){
 
-
-      if(sameRoleKey){
-
-        next[role+'_'+index]=
-          oldLineup[sameRoleKey];
+        next[String(index)]=oldLineup[key];
 
       }
 
@@ -2499,12 +2554,58 @@ function changeFormation(formation){
   );
 
 
-  data.tactics.lineup=
-    next;
+  data.tactics.lineup=next;
+
+
+  rebuildTacticPositions();
 
   save();
 
   render();
+
+}
+
+
+/* =========================================================
+   RECONSTRUIR POSICIONES
+========================================================= */
+
+function rebuildTacticPositions(){
+
+  const spots=
+    formations[data.tactics.formation];
+
+  const next={};
+
+
+  Object.keys(
+    data.tactics.lineup||{}
+  ).forEach(
+    key=>{
+
+      const index=Number(key);
+
+      const playerId=
+        data.tactics.lineup[key];
+
+      const spot=spots[index];
+
+      if(!spot || !playerId){
+        return;
+      }
+
+
+      next[String(playerId)]={
+        x:spot[1],
+        y:spot[2],
+        role:spot[0]
+      };
+
+    }
+  );
+
+
+  data.tactics.positions=next;
 
 }
 
@@ -2516,6 +2617,8 @@ function changeFormation(formation){
 function resetTactic(){
 
   data.tactics.lineup={};
+
+  data.tactics.positions={};
 
   save();
 
@@ -2530,16 +2633,11 @@ function resetTactic(){
 
 function clearTactic(){
 
-  if(
-    !confirm(
-      '¿Quieres vaciar las 11 posiciones?'
-    )
-  ){
-    return;
-  }
-
-
   data.tactics.lineup={};
+
+  data.tactics.positions={};
+
+  data.tactics.savedLineup=[];
 
   save();
 
@@ -2557,7 +2655,7 @@ function saveTactic(){
   data.tactics.savedLineup=
     Object.values(
       data.tactics.lineup||{}
-    ).filter(Boolean);
+    );
 
 
   save();
@@ -2634,8 +2732,7 @@ function matches(){
         class="btn lime full"
         onclick="go('tactic')">
 
-        🧠
-        Preparar alineación
+        🧠 Preparar alineación
 
       </button>
 
@@ -2870,8 +2967,7 @@ function settings(){
         class="btn lime full"
         onclick="saveSettings()">
 
-        💾
-        Guardar cambios
+        💾 Guardar cambios
 
       </button>
 
@@ -2963,8 +3059,7 @@ function settings(){
         class="btn light full"
         onclick="exportData()">
 
-        📤
-        Exportar datos
+        📤 Exportar datos
 
       </button>
 
@@ -2976,8 +3071,7 @@ function settings(){
         class="btn light full"
         onclick="resetApp()">
 
-        ♻️
-        Restaurar datos de ejemplo
+        ♻️ Restaurar datos de ejemplo
 
       </button>
 
@@ -3081,6 +3175,28 @@ function resetApp(){
   localStorage.removeItem(KEY);
 
   location.reload();
+
+}
+
+
+/* =========================================================
+   ESCAPAR HTML
+========================================================= */
+
+function escapeHtml(str){
+
+  return String(str).replace(
+    /[&<>"']/g,
+    m=>({
+
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#039;'
+
+    }[m])
+  );
 
 }
 
