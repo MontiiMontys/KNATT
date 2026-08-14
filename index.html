@@ -432,7 +432,7 @@ nav button.active{
 
 
 /* =========================================================
-   TACTICA
+   TÁCTICA
 ========================================================= */
 
 .tactic-toolbar{
@@ -470,9 +470,7 @@ nav button.active{
 }
 
 
-/* =========================================================
-   CAMPO
-========================================================= */
+/* CAMPO */
 
 .pitch-wrap{
   background:#dfe9e2;
@@ -504,7 +502,7 @@ nav button.active{
       #2d8a52 83.33% 91.66%,
       #338f56 91.66% 100%
     );
-  overflow:hidden
+  touch-action:auto
 }
 
 .pitch:before{
@@ -512,8 +510,7 @@ nav button.active{
   position:absolute;
   inset:2.5%;
   border:2px solid #fff8;
-  border-radius:10px;
-  pointer-events:none
+  border-radius:10px
 }
 
 .pitch-line{
@@ -521,8 +518,7 @@ nav button.active{
   left:2.5%;
   right:2.5%;
   top:50%;
-  border-top:2px solid #fff8;
-  pointer-events:none
+  border-top:2px solid #fff8
 }
 
 .pitch-circle{
@@ -532,8 +528,7 @@ nav button.active{
   border:2px solid #fff8;
   border-radius:50%;
   left:36.5%;
-  top:36.5%;
-  pointer-events:none
+  top:36.5%
 }
 
 .pitch-center{
@@ -544,8 +539,7 @@ nav button.active{
   border-radius:50%;
   left:calc(50% - 4px);
   top:calc(50% - 4px);
-  opacity:.85;
-  pointer-events:none
+  opacity:.85
 }
 
 .box{
@@ -553,8 +547,7 @@ nav button.active{
   left:20%;
   width:60%;
   height:16%;
-  border:2px solid #fff8;
-  pointer-events:none
+  border:2px solid #fff8
 }
 
 .box.top{
@@ -571,8 +564,7 @@ nav button.active{
   width:26%;
   height:2.5%;
   border:2px solid #fff;
-  background:#ffffff18;
-  pointer-events:none
+  background:#ffffff18
 }
 
 .goal.top{
@@ -585,77 +577,80 @@ nav button.active{
 
 
 /* =========================================================
-   NUEVAS POSICIONES TACTICAS
+   POSICIONES FIJAS
 ========================================================= */
 
-.tactic-slot{
+.position-slot{
   position:absolute;
-  width:112px;
   transform:translate(-50%,-50%);
-  z-index:5;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:5px;
+  width:clamp(88px,24vw,126px);
+  z-index:6;
+  text-align:center
 }
 
-.slot-role{
+
+/* Para líneas con 5 jugadores */
+
+.position-slot.compact{
+  width:clamp(62px,18vw,94px)
+}
+
+
+/* Posición */
+
+.position-role{
+  display:block;
+  width:100%;
+  min-height:38px;
+  border:0;
+  border-radius:999px;
   background:var(--green);
   color:#fff;
-  border-radius:999px;
-  padding:7px 13px;
-  font-size:11px;
-  line-height:1;
+  padding:9px 25px 9px 8px;
+  font-size:13px;
   font-weight:900;
-  white-space:nowrap;
-  box-shadow:0 4px 10px #10221b25;
-  z-index:2
+  text-align:center;
+  outline:none;
+  box-shadow:0 4px 10px #10221b30;
+  appearance:auto;
+  -webkit-appearance:auto
 }
 
-.slot-select{
+
+/* Nombre elegido */
+
+.position-player-name{
   width:100%;
-  min-width:0;
-  border:3px solid var(--lime);
-  background:#fff;
+  min-height:32px;
+  margin-top:7px;
+  padding:6px 7px;
+  border-radius:12px;
+  background:#ffffffef;
+  border:1px solid #dfe8e2;
   color:var(--text);
-  border-radius:15px;
-  padding:10px 7px;
   font-size:12px;
   font-weight:900;
-  outline:none;
-  text-align:center;
-  appearance:auto;
-  -webkit-appearance:auto;
-  box-shadow:0 4px 10px #10221b20;
-}
-
-.slot-select:focus{
-  border-color:#94c94d
-}
-
-.slot-name{
-  width:100%;
-  min-height:18px;
-  color:#fff;
-  font-size:11px;
   line-height:1.15;
-  font-weight:900;
   text-align:center;
-  text-shadow:
-    0 1px 2px #10221b,
-    0 1px 4px #10221b;
   overflow-wrap:anywhere;
-  word-break:break-word;
-  padding:0 3px
+  word-break:normal;
+  box-shadow:0 3px 8px #10221b18
 }
 
-.slot-name.empty{
-  visibility:hidden
+.position-player-name.empty{
+  display:none
+}
+
+
+/* Select cuando está vacío */
+
+.position-role.empty{
+  background:#123c2dcc
 }
 
 
 /* =========================================================
-   ALINEACION DEBAJO DEL CAMPO
+   RESUMEN ALINEACIÓN
 ========================================================= */
 
 .lineup-list{
@@ -665,40 +660,42 @@ nav button.active{
 }
 
 .lineup-row{
-  background:#f7faf8;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:11px 12px;
   display:flex;
   align-items:center;
-  gap:10px
+  gap:10px;
+  padding:10px;
+  background:#f8faf9;
+  border:1px solid var(--line);
+  border-radius:15px
 }
 
 .lineup-role{
-  flex:0 0 auto;
+  flex:0 0 58px;
+  text-align:center;
   background:var(--green);
   color:#fff;
   border-radius:999px;
-  padding:7px 10px;
-  font-size:10px;
+  padding:7px 5px;
+  font-size:11px;
   font-weight:900
 }
 
 .lineup-player{
+  flex:1;
   min-width:0;
-  font-size:14px;
-  font-weight:900;
+  font-size:13px;
+  font-weight:800;
   overflow-wrap:anywhere
 }
 
-.lineup-empty{
+.lineup-player.empty{
   color:var(--muted);
   font-weight:700
 }
 
 
 /* =========================================================
-   ACCIONES TACTICAS
+   BOTONES TÁCTICA
 ========================================================= */
 
 .tactic-actions{
@@ -716,30 +713,8 @@ nav button.active{
 
 
 /* =========================================================
-   RESPONSIVE
+   MÓVIL
 ========================================================= */
-
-@media(max-width:420px){
-
-  .tactic-slot{
-    width:100px
-  }
-
-  .slot-role{
-    font-size:10px;
-    padding:7px 11px
-  }
-
-  .slot-select{
-    font-size:11px;
-    padding:9px 5px
-  }
-
-  .slot-name{
-    font-size:10px
-  }
-
-}
 
 @media(max-width:380px){
 
@@ -756,22 +731,24 @@ nav button.active{
     font-size:27px
   }
 
-  .tactic-slot{
-    width:94px
+  .position-slot{
+    width:clamp(82px,25vw,112px)
   }
 
-  .slot-role{
-    font-size:9px;
-    padding:6px 10px
+  .position-slot.compact{
+    width:clamp(58px,18vw,82px)
   }
 
-  .slot-select{
-    font-size:10px;
-    padding:8px 4px
+  .position-role{
+    font-size:12px;
+    padding-left:6px;
+    padding-right:20px
   }
 
-  .slot-name{
-    font-size:9px
+  .position-player-name{
+    font-size:11px;
+    padding-left:5px;
+    padding-right:5px
   }
 
   nav button{
@@ -779,7 +756,6 @@ nav button.active{
     padding-left:3px;
     padding-right:3px
   }
-
 }
 </style>
 </head>
@@ -799,16 +775,16 @@ nav button.active{
 
 </div>
 
-
 <script>
-
-/* =========================================================
-   DATOS
-========================================================= */
 
 const KEY='teamhub-v2';
 
 let data;
+
+
+/* =========================================================
+   CARGAR DATOS
+========================================================= */
 
 try{
 
@@ -906,8 +882,9 @@ if(!data || typeof data!=='object'){
 
     tactics:{
       formation:'4-3-3',
-      lineup:Array(11).fill(null),
-      savedLineup:[]
+      positions:{},
+      savedLineup:[],
+      lineup:[]
     },
 
     settings:{
@@ -1010,66 +987,51 @@ data.tactics.formation=
   data.tactics.formation ||
   '4-3-3';
 
+data.tactics.positions=
+  data.tactics.positions &&
+  typeof data.tactics.positions==='object'
+  ?data.tactics.positions
+  :{};
 
-/*
-   NUEVO SISTEMA DE ALINEACION
-
-   Cada posición tiene un índice fijo:
-   0 = POR
-   1 = posición 2
-   ...
-   10 = posición 11
-
-   El valor es el ID del jugador.
-*/
-
-if(!Array.isArray(data.tactics.lineup)){
-
-  data.tactics.lineup=
-    Array(11).fill(null);
-
-}
+data.tactics.savedLineup=
+  Array.isArray(data.tactics.savedLineup)
+  ?data.tactics.savedLineup
+  :[];
 
 
 /* =========================================================
-   MIGRACION DESDE VERSION ANTERIOR
+   MIGRAR ALINEACIÓN ANTIGUA
 ========================================================= */
 
-if(
-  Array.isArray(data.tactics.lineup) &&
-  data.tactics.lineup.every(x=>x===null) &&
-  data.tactics.positions &&
-  typeof data.tactics.positions==='object'
-){
+if(!Array.isArray(data.tactics.lineup)){
+
+  data.tactics.lineup=[];
 
   const oldPositions=
-    Object.entries(
-      data.tactics.positions
-    );
+    data.tactics.positions||{};
 
-  oldPositions
-    .slice(0,11)
-    .forEach(
-      ([playerId],index)=>{
-        data.tactics.lineup[index]=
-          playerId;
-      }
-    );
+  const oldIds=
+    Object.keys(oldPositions);
 
-}
+  const spots=
+    formations[data.tactics.formation] ||
+    formations['4-3-3'];
 
+  spots.forEach((spot,index)=>{
 
-/* Asegurar exactamente 11 posiciones */
+    data.tactics.lineup.push({
 
-data.tactics.lineup=
-  Array.from(
-    {length:11},
-    (_,i)=>data.tactics.lineup[i]??null
-  );
+      role:spot[0],
 
+      playerId:
+        oldIds[index]
+        ?String(oldIds[index])
+        :null
 
-if(!Array.isArray(data.tactics.savedLineup)){
-  data.tactics.savedLineup=[];
+    });
+
+  });
+
 }
 
 
@@ -1115,135 +1077,135 @@ const formations={
 
   '4-3-3':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['LI',18,76],
-    ['DFC',39,78],
-    ['DFC',61,78],
-    ['LD',82,76],
+    ['LI',16,72],
+    ['DFC',38,74],
+    ['DFC',62,74],
+    ['LD',84,72],
 
-    ['MC',28,59],
-    ['MC',50,57],
-    ['MC',72,59],
+    ['MC',28,53],
+    ['MC',50,51],
+    ['MC',72,53],
 
-    ['EI',18,38],
-    ['DC',50,27],
-    ['ED',82,38]
+    ['EI',17,34],
+    ['DC',50,24],
+    ['ED',83,34]
 
   ],
 
   '4-4-2':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['LI',18,76],
-    ['DFC',39,79],
-    ['DFC',61,79],
-    ['LD',82,76],
+    ['LI',16,72],
+    ['DFC',38,74],
+    ['DFC',62,74],
+    ['LD',84,72],
 
-    ['MI',18,59],
-    ['MC',39,59],
-    ['MC',61,59],
-    ['MD',82,59],
+    ['MI',15,55],
+    ['MC',38,54],
+    ['MC',62,54],
+    ['MD',85,55],
 
-    ['DC',39,29],
-    ['DC',61,29]
+    ['DC',38,25],
+    ['DC',62,25]
 
   ],
 
   '4-2-3-1':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['LI',18,76],
-    ['DFC',39,79],
-    ['DFC',61,79],
-    ['LD',82,76],
+    ['LI',16,72],
+    ['DFC',38,74],
+    ['DFC',62,74],
+    ['LD',84,72],
 
-    ['MCD',39,62],
-    ['MCD',61,62],
+    ['MCD',36,57],
+    ['MCD',64,57],
 
-    ['EI',18,43],
-    ['MCO',50,45],
-    ['ED',82,43],
+    ['EI',17,40],
+    ['MCO',50,42],
+    ['ED',83,40],
 
-    ['DC',50,27]
+    ['DC',50,24]
 
   ],
 
   '3-5-2':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['DFC',25,78],
-    ['DFC',50,81],
-    ['DFC',75,78],
+    ['DFC',29,73],
+    ['DFC',50,76],
+    ['DFC',71,73],
 
-    ['MI',18,59],
-    ['MC',35,59],
-    ['MCO',50,55],
-    ['MC',65,59],
-    ['MD',82,59],
+    ['MI',13,54],
+    ['MC',32,54],
+    ['MCO',50,50],
+    ['MC',68,54],
+    ['MD',87,54],
 
-    ['DC',39,29],
-    ['DC',61,29]
+    ['DC',38,25],
+    ['DC',62,25]
 
   ],
 
   '3-4-3':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['DFC',25,80],
-    ['DFC',50,82],
-    ['DFC',75,80],
+    ['DFC',29,73],
+    ['DFC',50,76],
+    ['DFC',71,73],
 
-    ['MI',18,60],
-    ['MC',39,60],
-    ['MC',61,60],
-    ['MD',82,60],
+    ['MI',16,55],
+    ['MC',38,55],
+    ['MC',62,55],
+    ['MD',84,55],
 
-    ['EI',18,37],
-    ['DC',50,27],
-    ['ED',82,37]
+    ['EI',17,34],
+    ['DC',50,24],
+    ['ED',83,34]
 
   ],
 
   '5-3-2':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['LI',18,74],
-    ['DFC',32,79],
-    ['DFC',50,81],
-    ['DFC',68,79],
-    ['LD',82,74],
+    ['LI',13,68],
+    ['DFC',32,73],
+    ['DFC',50,75],
+    ['DFC',68,73],
+    ['LD',87,68],
 
-    ['MC',31,59],
-    ['MC',50,56],
-    ['MC',69,59],
+    ['MC',31,52],
+    ['MC',50,50],
+    ['MC',69,52],
 
-    ['DC',39,29],
-    ['DC',61,29]
+    ['DC',38,25],
+    ['DC',62,25]
 
   ],
 
   '4-5-1':[
 
-    ['POR',50,91],
+    ['POR',50,88],
 
-    ['LI',18,76],
-    ['DFC',39,79],
-    ['DFC',61,79],
-    ['LD',82,76],
+    ['LI',16,72],
+    ['DFC',38,74],
+    ['DFC',62,74],
+    ['LD',84,72],
 
-    ['MI',18,59],
-    ['MC',34,59],
-    ['MCO',50,55],
-    ['MC',66,59],
-    ['MD',82,59],
+    ['MI',14,54],
+    ['MC',32,54],
+    ['MCO',50,50],
+    ['MC',68,54],
+    ['MD',86,54],
 
-    ['DC',50,27]
+    ['DC',50,25]
 
   ]
 
@@ -1328,8 +1290,7 @@ function render(){
     .join('');
 
 
-  const c=
-    document.getElementById('content');
+  const c=document.getElementById('content');
 
   c.innerHTML='';
 
@@ -1583,12 +1544,21 @@ function deletePlayer(id){
   );
 
 
-  data.tactics.lineup=
-    data.tactics.lineup.map(
-      x=>String(x)===String(id)
-      ?null
-      :x
-    );
+  if(Array.isArray(data.tactics.lineup)){
+
+    data.tactics.lineup=
+      data.tactics.lineup.map(slot=>({
+
+        ...slot,
+
+        playerId:
+          String(slot.playerId)===String(id)
+          ?null
+          :slot.playerId
+
+      }));
+
+  }
 
 
   save();
@@ -1772,8 +1742,7 @@ function home(){
       <div class="muted small">
 
         Elige una formación y selecciona
-        un jugador en cada una de las
-        11 posiciones.
+        un jugador en cada posición.
 
       </div>
 
@@ -1816,7 +1785,7 @@ function home(){
             <div class="grow">
 
               <b>
-                ${escapeHtml(p.num)}
+                ${escapeHtml(String(p.num))}
                 ·
                 ${escapeHtml(p.name)}
               </b>
@@ -1957,7 +1926,7 @@ function team(){
 
               <b>
 
-                ${escapeHtml(p.num)}
+                ${escapeHtml(String(p.num))}
                 ·
                 ${escapeHtml(p.name)}
 
@@ -2108,7 +2077,7 @@ function playerProfile(){
 
           <div class="big">
 
-            #${escapeHtml(p.num)}
+            #${escapeHtml(String(p.num))}
             ·
             ${escapeHtml(p.name)}
 
@@ -2232,7 +2201,7 @@ function playerProfile(){
 
 
 /* =========================================================
-   TACTICA
+   TÁCTICA NUEVA
 ========================================================= */
 
 function tactic(){
@@ -2241,10 +2210,10 @@ function tactic(){
     data.tactics.formation;
 
   const spots=
-    formations[formation];
+    formations[formation] ||
+    formations['4-3-3'];
 
-  const lineup=
-    data.tactics.lineup;
+  ensureLineupLength(spots);
 
 
   return `
@@ -2273,7 +2242,6 @@ function tactic(){
         11 posiciones.
 
       </div>
-
 
       <div class="formation-help">
 
@@ -2313,7 +2281,6 @@ function tactic(){
               `
             )
             .join('')
-
           }
 
         </select>
@@ -2325,7 +2292,7 @@ function tactic(){
         class="btn light"
         onclick="resetTactic()">
 
-        ↺
+        ↻
         Reset
 
       </button>
@@ -2356,10 +2323,10 @@ function tactic(){
           spots
           .map(
             (spot,index)=>
-              renderTacticSlot(
+              positionSlot(
                 spot,
                 index,
-                lineup[index]
+                spots
               )
           )
           .join('')
@@ -2380,56 +2347,41 @@ function tactic(){
       <div class="lineup-list">
 
         ${
-          spots
+          data.tactics.lineup
           .map(
-            (spot,index)=>{
+            (slot,index)=>{
 
               const player=
-                getPlayerById(
-                  lineup[index]
-                );
+                getPlayerById(slot.playerId);
 
               return `
 
                 <div class="lineup-row">
 
-                  <span class="lineup-role">
+                  <div class="lineup-role">
 
-                    ${escapeHtml(spot[0])}
+                    ${escapeHtml(slot.role)}
 
-                  </span>
+                  </div>
 
 
-                  ${
-                    player
+                  <div
+                    class="lineup-player ${
+                      player?'':'empty'
+                    }">
 
-                    ?
+                    ${
+                      player
+                      ?
+                      '#'+
+                      escapeHtml(String(player.num))+
+                      ' · '+
+                      escapeHtml(player.name)
+                      :
+                      'Sin jugador'
+                    }
 
-                    `
-
-                    <div class="lineup-player">
-
-                      #${escapeHtml(player.num)}
-                      ·
-                      ${escapeHtml(player.name)}
-
-                    </div>
-
-                    `
-
-                    :
-
-                    `
-
-                    <div class="lineup-empty">
-
-                      Sin jugador
-
-                    </div>
-
-                    `
-
-                  }
+                  </div>
 
                 </div>
 
@@ -2463,7 +2415,7 @@ function tactic(){
         onclick="clearTactic()">
 
         🧹
-        Vaciar campo
+        Vaciar
 
       </button>
 
@@ -2472,10 +2424,10 @@ function tactic(){
 
     <div class="notice">
 
-      💡 Selecciona un jugador en cada posición.
-      Si eliges un jugador que ya está colocado
-      en otra posición, se moverá automáticamente
-      a la nueva posición.
+      💡
+      Cada jugador puede ocupar una sola
+      posición. Puedes cambiarlo en cualquier
+      momento desde el desplegable.
 
     </div>
 
@@ -2485,13 +2437,13 @@ function tactic(){
 
 
 /* =========================================================
-   POSICION TACTICA
+   POSICIÓN
 ========================================================= */
 
-function renderTacticSlot(
+function positionSlot(
   spot,
   index,
-  playerId
+  spots
 ){
 
   const role=spot[0];
@@ -2500,31 +2452,75 @@ function renderTacticSlot(
 
   const y=spot[2];
 
+  const slot=
+    data.tactics.lineup[index] ||
+    {
+      role,
+      playerId:null
+    };
+
+  const selectedId=
+    slot.playerId
+    ?String(slot.playerId)
+    :'';
+
+
+  const occupied=
+    data.tactics.lineup
+    .map((s,i)=>{
+
+      if(i===index){
+        return null;
+      }
+
+      return s.playerId
+        ?String(s.playerId)
+        :null;
+
+    })
+    .filter(Boolean);
+
+
+  const compact=
+    spots.length===11 &&
+    (
+      (
+        formationHasFiveMidfielders() &&
+        index>=5 &&
+        index<=9
+      )
+      ||
+      (
+        data.tactics.formation==='5-3-2' &&
+        index>=1 &&
+        index<=5
+      )
+    );
+
+
   const player=
-    getPlayerById(playerId);
+    getPlayerById(selectedId);
 
 
   return `
 
     <div
-      class="tactic-slot"
+      class="position-slot ${compact?'compact':''}"
       style="
         left:${x}%;
-        top:${y}%;
-      "
-    >
-
-      <div class="slot-role">
-
-        ${escapeHtml(role)}
-
-      </div>
-
+        top:${y}%
+      ">
 
       <select
-        class="slot-select"
-        onchange="selectTacticPlayer(${index},this.value)"
-      >
+        class="position-role ${
+          selectedId?'':'empty'
+        }"
+        onchange="
+          selectTacticPlayer(
+            ${index},
+            this.value
+          )
+        ">
 
         <option value="">
 
@@ -2535,25 +2531,38 @@ function renderTacticSlot(
 
         ${
           data.players
-          .map(
-            p=>`
+          .map(p=>{
+
+            const pid=
+              String(p.id);
+
+            const disabled=
+              occupied.includes(pid);
+
+            return `
 
               <option
-                value="${p.id}"
+                value="${pid}"
                 ${
-                  String(p.id)===String(playerId)
+                  pid===selectedId
                   ?'selected'
+                  :''
+                }
+                ${
+                  disabled
+                  ?'disabled'
                   :''
                 }>
 
-                #${escapeHtml(p.num)}
+                #${escapeHtml(String(p.num))}
                 ·
                 ${escapeHtml(p.name)}
 
               </option>
 
-            `
-          )
+            `;
+
+          })
           .join('')
         }
 
@@ -2561,18 +2570,19 @@ function renderTacticSlot(
 
 
       <div
-        class="slot-name ${
+        class="position-player-name ${
           player?'':'empty'
         }">
 
         ${
           player
           ?
-          '#'+escapeHtml(player.num)+
+          '#'+
+          escapeHtml(String(player.num))+
           ' · '+
           escapeHtml(player.name)
           :
-          'Sin jugador'
+          ''
         }
 
       </div>
@@ -2584,9 +2594,14 @@ function renderTacticSlot(
 }
 
 
-/* =========================================================
-   BUSCAR JUGADOR
-========================================================= */
+function formationHasFiveMidfielders(){
+
+  return data.tactics.formation==='4-5-1' ||
+         data.tactics.formation==='3-5-2' ||
+         data.tactics.formation==='5-3-2';
+
+}
+
 
 function getPlayerById(id){
 
@@ -2606,41 +2621,90 @@ function getPlayerById(id){
 
 
 /* =========================================================
-   SELECCIONAR JUGADOR EN POSICION
+   ASEGURAR 11 POSICIONES
+========================================================= */
+
+function ensureLineupLength(spots){
+
+  if(!Array.isArray(data.tactics.lineup)){
+    data.tactics.lineup=[];
+  }
+
+
+  const next=[];
+
+
+  spots.forEach((spot,index)=>{
+
+    const old=
+      data.tactics.lineup[index];
+
+
+    next.push({
+
+      role:spot[0],
+
+      playerId:
+        old?.playerId
+        ?String(old.playerId)
+        :null
+
+    });
+
+  });
+
+
+  data.tactics.lineup=next;
+
+}
+
+
+/* =========================================================
+   SELECCIONAR JUGADOR
 ========================================================= */
 
 function selectTacticPlayer(
-  slotIndex,
+  index,
   playerId
 ){
 
-  playerId=
-    playerId===''
-    ?null
-    :String(playerId);
+  const id=
+    playerId
+    ?String(playerId)
+    :null;
 
 
-  /*
-     Si el jugador ya estaba en otra posición,
-     la dejamos libre.
-  */
+  if(id){
 
-  if(playerId!==null){
-
-    data.tactics.lineup=
-      data.tactics.lineup.map(
-        (id,index)=>
-          index!==slotIndex &&
-          String(id)===String(playerId)
-          ?null
-          :id
+    const duplicate=
+      data.tactics.lineup.some(
+        (slot,i)=>
+          i!==index &&
+          String(slot.playerId)===id
       );
+
+
+    if(duplicate){
+
+      alert(
+        'Ese jugador ya está colocado en otra posición.'
+      );
+
+      render();
+
+      return;
+
+    }
 
   }
 
 
-  data.tactics.lineup[slotIndex]=
-    playerId;
+  if(!data.tactics.lineup[index]){
+    return;
+  }
+
+
+  data.tactics.lineup[index].playerId=id;
 
 
   save();
@@ -2651,38 +2715,44 @@ function selectTacticPlayer(
 
 
 /* =========================================================
-   CAMBIAR FORMACION
+   CAMBIAR FORMACIÓN
 ========================================================= */
 
 function changeFormation(
   formation
 ){
 
-  if(!formations[formation]){
+  const spots=
+    formations[formation];
+
+
+  if(!spots){
     return;
   }
+
+
+  const oldPlayers=
+    data.tactics.lineup
+    .map(slot=>slot.playerId)
+    .filter(Boolean)
+    .slice(0,11);
 
 
   data.tactics.formation=
     formation;
 
 
-  /*
-     La formación cambia únicamente
-     las posiciones visuales.
-     
-     Los jugadores se mantienen
-     en los mismos índices cuando
-     es posible.
-  */
-
-
   data.tactics.lineup=
-    Array.from(
-      {length:11},
-      (_,i)=>
-        data.tactics.lineup[i]??null
-    );
+    spots.map((spot,index)=>({
+
+      role:spot[0],
+
+      playerId:
+        oldPlayers[index]
+        ?String(oldPlayers[index])
+        :null
+
+    }));
 
 
   save();
@@ -2693,13 +2763,30 @@ function changeFormation(
 
 
 /* =========================================================
-   RESET TACTICA
+   RESET
 ========================================================= */
 
 function resetTactic(){
 
+  const formation=
+    data.tactics.formation;
+
+  const spots=
+    formations[formation];
+
+
   data.tactics.lineup=
-    Array(11).fill(null);
+    spots.map((spot,index)=>({
+
+      role:spot[0],
+
+      playerId:
+        data.players[index]
+        ?String(data.players[index].id)
+        :null
+
+    }));
+
 
   save();
 
@@ -2709,22 +2796,21 @@ function resetTactic(){
 
 
 /* =========================================================
-   VACIAR CAMPO
+   VACIAR
 ========================================================= */
 
 function clearTactic(){
 
-  if(
-    !confirm(
-      '¿Quieres vaciar las 11 posiciones?'
-    )
-  ){
-    return;
-  }
-
-
   data.tactics.lineup=
-    Array(11).fill(null);
+    formations[data.tactics.formation]
+    .map(spot=>({
+
+      role:spot[0],
+
+      playerId:null
+
+    }));
+
 
   save();
 
@@ -2734,13 +2820,16 @@ function clearTactic(){
 
 
 /* =========================================================
-   GUARDAR ALINEACION
+   GUARDAR ALINEACIÓN
 ========================================================= */
 
 function saveTactic(){
 
   data.tactics.savedLineup=
-    [...data.tactics.lineup];
+    data.tactics.lineup
+    .map(slot=>slot.playerId)
+    .filter(Boolean)
+    .map(String);
 
 
   save();
@@ -2796,9 +2885,7 @@ function matches(){
         <div class="match-info">
 
           <div class="match-date">
-
             ${escapeHtml(data.next.date)}
-
           </div>
 
 
@@ -2836,9 +2923,9 @@ function matches(){
 
       <div class="muted">
 
-        Aquí podremos añadir
-        resultados y estadísticas
-        de partidos en la siguiente fase.
+        Aquí podremos añadir resultados
+        y estadísticas de partidos
+        en la siguiente fase.
 
       </div>
 
@@ -2850,7 +2937,7 @@ function matches(){
 
 
 /* =========================================================
-   ESTADISTICAS
+   ESTADÍSTICAS
 ========================================================= */
 
 function stats(){
@@ -2981,7 +3068,7 @@ function stats(){
 
                 <b>
 
-                  ${escapeHtml(p.num)}
+                  ${escapeHtml(String(p.num))}
                   ·
                   ${escapeHtml(p.name)}
 
@@ -3036,7 +3123,7 @@ function stats(){
 
 
 /* =========================================================
-   CONFIGURACION
+   CONFIGURACIÓN
 ========================================================= */
 
 function settings(){
@@ -3193,10 +3280,6 @@ function settings(){
 }
 
 
-/* =========================================================
-   GUARDAR CONFIGURACION
-========================================================= */
-
 function saveSettings(){
 
   data.settings.coach=
@@ -3237,10 +3320,6 @@ function saveSettings(){
 }
 
 
-/* =========================================================
-   EXPORTAR DATOS
-========================================================= */
-
 function exportData(){
 
   const blob=
@@ -3280,10 +3359,6 @@ function exportData(){
 }
 
 
-/* =========================================================
-   RESTAURAR
-========================================================= */
-
 function resetApp(){
 
   if(
@@ -3303,12 +3378,12 @@ function resetApp(){
 
 
 /* =========================================================
-   ESCAPAR HTML
+   UTILIDADES
 ========================================================= */
 
 function escapeHtml(str){
 
-  return String(str??'').replace(
+  return String(str).replace(
     /[&<>"']/g,
     m=>({
 
