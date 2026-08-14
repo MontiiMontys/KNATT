@@ -6,7 +6,10 @@
 <title>KNATT</title>
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent
+}
 
 :root{
   --green:#123c2d;
@@ -17,8 +20,7 @@
   --text:#10221b;
   --muted:#718078;
   --line:#e4ebe7;
-  --danger:#d95c5c;
-  --warning:#e4a936
+  --danger:#d95c5c
 }
 
 body{
@@ -28,7 +30,11 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
-button,select,input{font-family:inherit}
+button,
+select,
+input{
+  font-family:inherit
+}
 
 .app{
   max-width:520px;
@@ -37,6 +43,8 @@ button,select,input{font-family:inherit}
   background:var(--bg);
   padding-bottom:96px
 }
+
+/* ================= HEADER ================= */
 
 header{
   position:relative;
@@ -67,7 +75,9 @@ header:after{
   letter-spacing:-.8px
 }
 
-.brand span{color:var(--lime)}
+.brand span{
+  color:var(--lime)
+}
 
 .role{
   position:relative;
@@ -78,7 +88,9 @@ header:after{
   font-weight:600
 }
 
-main{padding:20px 16px 30px}
+main{
+  padding:20px 16px 30px
+}
 
 .title{
   font-size:25px;
@@ -103,8 +115,13 @@ main{padding:20px 16px 30px}
   padding:20px
 }
 
-.hero .muted{color:#c8d8d1}
-.hero .big{color:#fff}
+.hero .muted{
+  color:#c8d8d1
+}
+
+.hero .big{
+  color:#fff
+}
 
 .section-label{
   font-size:12px;
@@ -121,8 +138,44 @@ main{padding:20px 16px 30px}
   letter-spacing:-.4px
 }
 
-.muted{color:var(--muted)}
-.small{font-size:13px}
+.muted{
+  color:var(--muted)
+}
+
+.small{
+  font-size:13px
+}
+
+/* ================= BOTONES ================= */
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 15px;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  box-shadow:0 5px 12px #123c2d20
+}
+
+.btn.light{
+  background:#e9efec;
+  color:var(--green);
+  box-shadow:none
+}
+
+.btn.lime{
+  background:var(--lime);
+  color:#19331f
+}
+
+.btn.full{
+  width:100%
+}
+
+/* ================= HOME ================= */
 
 .match-meta{
   display:flex;
@@ -141,7 +194,9 @@ main{padding:20px 16px 30px}
   font-size:25px
 }
 
-.match-info{flex:1}
+.match-info{
+  flex:1
+}
 
 .match-date{
   font-weight:800;
@@ -165,13 +220,15 @@ main{padding:20px 16px 30px}
   background:#fff;
   border:1px solid var(--line);
   border-radius:19px;
-  padding:16px
+  padding:16px;
+  box-shadow:0 6px 20px #10221b08
 }
 
 .stat b{
   display:block;
   font-size:27px;
-  font-weight:900
+  font-weight:900;
+  letter-spacing:-1px
 }
 
 .stat span{
@@ -187,7 +244,11 @@ main{padding:20px 16px 30px}
   border-color:#dcefc1
 }
 
-.stat.accent b{color:#315d18}
+.stat.accent b{
+  color:#315d18
+}
+
+/* ================= PLANTILLA ================= */
 
 .row{
   display:flex;
@@ -204,7 +265,9 @@ main{padding:20px 16px 30px}
   border-bottom:1px solid #edf1ef
 }
 
-.item:last-child{border-bottom:0}
+.item:last-child{
+  border-bottom:0
+}
 
 .avatar{
   width:46px;
@@ -225,6 +288,7 @@ main{padding:20px 16px 30px}
 .pill{
   display:inline-flex;
   align-items:center;
+  gap:5px;
   font-size:11px;
   font-weight:900;
   border-radius:999px;
@@ -238,31 +302,6 @@ main{padding:20px 16px 30px}
   color:#b44343
 }
 
-.btn{
-  border:0;
-  border-radius:14px;
-  padding:13px 15px;
-  background:var(--green);
-  color:#fff;
-  font-weight:900;
-  font-size:14px;
-  cursor:pointer
-}
-
-.btn.light{
-  background:#e9efec;
-  color:var(--green)
-}
-
-.btn.lime{
-  background:var(--lime);
-  color:#19331f
-}
-
-.btn.full{width:100%}
-
-.add-player{margin-bottom:14px}
-
 .delete-btn{
   border:0;
   background:#fae9e9;
@@ -271,7 +310,13 @@ main{padding:20px 16px 30px}
   height:38px;
   border-radius:12px;
   font-size:17px;
-  cursor:pointer
+  font-weight:900;
+  cursor:pointer;
+  flex:0 0 38px
+}
+
+.add-player{
+  margin-bottom:14px
 }
 
 .tabs{
@@ -282,7 +327,9 @@ main{padding:20px 16px 30px}
   scrollbar-width:none
 }
 
-.tabs::-webkit-scrollbar{display:none}
+.tabs::-webkit-scrollbar{
+  display:none
+}
 
 .tab{
   border:0;
@@ -299,16 +346,11 @@ main{padding:20px 16px 30px}
   color:#fff
 }
 
-.notice{
-  background:#edf6df;
-  color:#36561f;
-  border-radius:17px;
-  padding:14px;
-  font-size:13px;
-  font-weight:700
-}
+/* ================= FORMULARIOS ================= */
 
-.form-group{margin-bottom:13px}
+.form-group{
+  margin-bottom:13px
+}
 
 .form-group label{
   display:block;
@@ -331,6 +373,17 @@ main{padding:20px 16px 30px}
   outline:none
 }
 
+.notice{
+  background:#edf6df;
+  color:#36561f;
+  border-radius:17px;
+  padding:14px;
+  font-size:13px;
+  font-weight:700
+}
+
+/* ================= NAV ================= */
+
 nav{
   position:fixed;
   bottom:0;
@@ -344,7 +397,8 @@ nav{
   -webkit-backdrop-filter:blur(18px);
   border-top:1px solid #dfe7e3;
   padding:9px 4px calc(9px + env(safe-area-inset-bottom));
-  z-index:20
+  z-index:20;
+  box-shadow:0 -8px 30px #10221b0c
 }
 
 nav button{
@@ -363,7 +417,9 @@ nav button.active{
   background:#edf4ef
 }
 
-/* ================= TÁCTICA ================= */
+/* =========================================================
+   TÁCTICA
+========================================================= */
 
 .tactic-toolbar{
   display:grid;
@@ -371,6 +427,10 @@ nav button.active{
   gap:8px;
   align-items:end;
   margin-bottom:14px
+}
+
+.select-wrap{
+  min-width:0
 }
 
 .select-wrap label{
@@ -395,6 +455,8 @@ nav button.active{
   outline:none
 }
 
+/* ================= CAMPO ================= */
+
 .pitch-wrap{
   background:#dfe9e2;
   border-radius:24px;
@@ -409,6 +471,7 @@ nav button.active{
   aspect-ratio:68/105;
   border-radius:18px;
   overflow:hidden;
+
   background:
     linear-gradient(
       90deg,
@@ -424,7 +487,9 @@ nav button.active{
       #338f56 75% 83.33%,
       #2d8a52 83.33% 91.66%,
       #338f56 91.66% 100%
-    )
+    );
+
+  touch-action:manipulation
 }
 
 .pitch:before{
@@ -460,7 +525,8 @@ nav button.active{
   background:#fff;
   border-radius:50%;
   left:calc(50% - 4px);
-  top:calc(50% - 4px)
+  top:calc(50% - 4px);
+  opacity:.85
 }
 
 .box{
@@ -471,8 +537,13 @@ nav button.active{
   border:2px solid #fff8
 }
 
-.box.top{top:2.5%}
-.box.bottom{bottom:2.5%}
+.box.top{
+  top:2.5%
+}
+
+.box.bottom{
+  bottom:2.5%
+}
 
 .goal{
   position:absolute;
@@ -483,91 +554,116 @@ nav button.active{
   background:#ffffff18
 }
 
-.goal.top{top:0}
-.goal.bottom{bottom:0}
+.goal.top{
+  top:0
+}
 
-/* POSICIONES FIJAS */
+.goal.bottom{
+  bottom:0
+}
 
-.tactic-position{
+/* =========================================================
+   NUEVAS POSICIONES
+   11 HUECOS FIJOS
+========================================================= */
+
+.tactic-slot{
   position:absolute;
   transform:translate(-50%,-50%);
-  width:105px;
-  z-index:10;
+  width:clamp(72px,23vw,112px);
+  z-index:6;
   text-align:center
 }
 
-.position-label{
+.tactic-role{
   display:inline-block;
   background:var(--green);
   color:#fff;
   border-radius:999px;
-  padding:4px 7px;
-  font-size:9px;
-  font-weight:900;
-  margin-bottom:4px;
-  box-shadow:0 3px 8px #10221b40
-}
-
-.position-select{
-  width:105px;
-  border:2px solid var(--lime);
-  background:#fff;
-  color:var(--green);
-  border-radius:10px;
-  padding:6px 5px;
+  padding:4px 8px;
   font-size:10px;
-  font-weight:800;
+  font-weight:900;
+  box-shadow:0 3px 8px #10221b35;
+  margin-bottom:4px
+}
+
+.slot-select{
+  display:block;
+  width:100%;
+  height:38px;
+  border:3px solid var(--lime);
+  border-radius:12px;
+  background:#fff;
+  color:var(--text);
+  padding:0 18px 0 7px;
+  font-size:10px;
+  font-weight:900;
   outline:none;
-  box-shadow:0 4px 10px #10221b30
+  box-shadow:0 3px 10px #10221b25;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
 }
 
-.position-select:focus{
-  border-color:var(--green)
+.slot-select:focus{
+  box-shadow:0 0 0 3px #b9e86c55
 }
 
-.lineup-list{
-  display:flex;
-  flex-direction:column;
-  gap:8px
+/* ================= ALINEACIÓN ================= */
+
+.alignment-list{
+  margin-top:4px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden
 }
 
-.lineup-row{
+.alignment-row{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:10px;
-  background:#f8faf9;
-  border:1px solid var(--line);
-  border-radius:13px
+  gap:9px;
+  min-height:48px;
+  padding:7px 10px;
+  border-bottom:1px solid var(--line)
 }
 
-.lineup-position{
-  flex:0 0 48px;
-  text-align:center;
+.alignment-row:last-child{
+  border-bottom:0
+}
+
+.role-badge{
+  flex:0 0 auto;
   background:var(--green);
   color:#fff;
-  border-radius:9px;
-  padding:7px 4px;
+  border-radius:10px;
+  padding:5px 7px;
   font-size:10px;
   font-weight:900
 }
 
-.lineup-player{
+.alignment-name{
   flex:1;
   min-width:0;
-  display:flex;
-  flex-direction:column;
-  gap:2px
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis
 }
 
-.lineup-player b{font-size:13px}
-
-.lineup-player span{
-  color:var(--muted);
-  font-size:11px
+.availability{
+  font-size:10px;
+  font-weight:800;
+  white-space:nowrap
 }
 
-.empty-lineup{font-style:italic}
+.availability.ok{
+  color:#4c8a39
+}
+
+.availability.no{
+  color:#b44343
+}
 
 .tactic-actions{
   display:grid;
@@ -576,6 +672,8 @@ nav button.active{
   margin-bottom:14px
 }
 
+/* ================= MÓVIL ================= */
+
 @media(max-width:380px){
 
   main{
@@ -583,26 +681,33 @@ nav button.active{
     padding-right:12px
   }
 
-  .big{font-size:20px}
-  .brand{font-size:27px}
-
-  .tactic-position{
-    width:88px
+  .big{
+    font-size:20px
   }
 
-  .position-select{
-    width:88px;
+  .brand{
+    font-size:27px
+  }
+
+  .tactic-slot{
+    width:clamp(65px,21vw,92px)
+  }
+
+  .slot-select{
     font-size:9px;
-    padding:5px 3px
+    padding-left:5px;
+    padding-right:14px
   }
 
-  .position-label{
-    font-size:8px;
-    padding:3px 6px
+  .tactic-role{
+    font-size:9px;
+    padding:4px 6px
   }
 
   nav button{
-    min-width:48px
+    min-width:48px;
+    padding-left:3px;
+    padding-right:3px
   }
 }
 </style>
@@ -630,19 +735,35 @@ const KEY='teamhub-v2';
 let data;
 
 try{
+
   const saved=localStorage.getItem(KEY);
-  data=saved?JSON.parse(saved):null;
-}catch(e){
+
+  data=saved
+    ?JSON.parse(saved)
+    :null;
+
+}catch(error){
+
+  console.error(
+    'Error cargando datos:',
+    error
+  );
+
   data=null;
+
 }
 
 
-/* ================= DATOS ================= */
+/* =========================================================
+   DATOS INICIALES
+========================================================= */
 
 if(!data || typeof data!=='object'){
 
   data={
+
     players:[
+
       {
         id:1,
         name:'Montiimontys',
@@ -654,6 +775,7 @@ if(!data || typeof data!=='object'){
         g:12,
         a:6
       },
+
       {
         id:2,
         name:'Marc',
@@ -665,6 +787,7 @@ if(!data || typeof data!=='object'){
         g:5,
         a:8
       },
+
       {
         id:3,
         name:'Juan',
@@ -676,6 +799,7 @@ if(!data || typeof data!=='object'){
         g:4,
         a:3
       },
+
       {
         id:4,
         name:'Alex',
@@ -687,6 +811,7 @@ if(!data || typeof data!=='object'){
         g:0,
         a:1
       },
+
       {
         id:5,
         name:'Pedro',
@@ -698,6 +823,7 @@ if(!data || typeof data!=='object'){
         g:1,
         a:2
       }
+
     ],
 
     next:{
@@ -710,7 +836,6 @@ if(!data || typeof data!=='object'){
     tactics:{
       formation:'4-3-3',
       positions:{},
-      lineup:{},
       savedLineup:[]
     },
 
@@ -720,323 +845,610 @@ if(!data || typeof data!=='object'){
       season:'2026/27',
       category:'Primer Equipo'
     }
+
   };
+
 }
 
 
-/* ================= REPARAR DATOS ================= */
+/* =========================================================
+   REPARAR DATOS
+========================================================= */
 
 if(!Array.isArray(data.players)){
   data.players=[];
 }
 
-data.players=data.players.map((p,i)=>({
-  id:p?.id??Date.now()+i,
-  name:typeof p?.name==='string'&&p.name.trim()?p.name:'Jugador',
-  num:p?.num!==undefined?p.num:'-',
-  pos:typeof p?.pos==='string'&&p.pos.trim()?p.pos:'Jugador',
-  available:typeof p?.available==='boolean'?p.available:true,
-  reason:typeof p?.reason==='string'?p.reason:'',
-  min:Number.isFinite(Number(p?.min))?Math.max(0,Number(p.min)):0,
-  g:Number.isFinite(Number(p?.g))?Math.max(0,Number(p.g)):0,
-  a:Number.isFinite(Number(p?.a))?Math.max(0,Number(p.a)):0
-}));
+data.players=data.players.map(
+  (p,index)=>({
 
-if(!data.next||typeof data.next!=='object'){
-  data.next={}
+    id:
+      p?.id ??
+      Date.now()+index,
+
+    name:
+      typeof p?.name==='string' &&
+      p.name.trim()
+      ?p.name
+      :'Jugador',
+
+    num:
+      p?.num!==undefined &&
+      p?.num!==null &&
+      String(p.num).trim()!==''
+      ?p.num
+      :'-',
+
+    pos:
+      typeof p?.pos==='string' &&
+      p.pos.trim()
+      ?p.pos
+      :'Jugador',
+
+    available:
+      typeof p?.available==='boolean'
+      ?p.available
+      :true,
+
+    reason:
+      typeof p?.reason==='string'
+      ?p.reason
+      :'',
+
+    min:
+      Number.isFinite(
+        Number(p?.min)
+      )
+      ?Math.max(0,Number(p.min))
+      :0,
+
+    g:
+      Number.isFinite(
+        Number(p?.g)
+      )
+      ?Math.max(0,Number(p.g))
+      :0,
+
+    a:
+      Number.isFinite(
+        Number(p?.a)
+      )
+      ?Math.max(0,Number(p.a))
+      :0
+
+  })
+);
+
+
+if(!data.next || typeof data.next!=='object'){
+  data.next={};
 }
 
-data.next.opponent=data.next.opponent||'CD Rival';
-data.next.date=data.next.date||'Próximo partido';
-data.next.time=data.next.time||'12:00';
-data.next.place=data.next.place||'Campo Municipal';
+data.next.opponent=
+  data.next.opponent ||
+  'CD Rival';
 
-if(!data.tactics||typeof data.tactics!=='object'){
-  data.tactics={}
+data.next.date=
+  data.next.date ||
+  'Próximo partido';
+
+data.next.time=
+  data.next.time ||
+  '12:00';
+
+data.next.place=
+  data.next.place ||
+  'Campo Municipal';
+
+
+if(!data.tactics || typeof data.tactics!=='object'){
+  data.tactics={};
 }
 
-data.tactics.formation=data.tactics.formation||'4-3-3';
+data.tactics.formation=
+  data.tactics.formation ||
+  '4-3-3';
 
 data.tactics.positions=
-  data.tactics.positions&&typeof data.tactics.positions==='object'
+  data.tactics.positions &&
+  typeof data.tactics.positions==='object'
   ?data.tactics.positions
   :{};
 
-data.tactics.lineup=
-  data.tactics.lineup&&typeof data.tactics.lineup==='object'
-  ?data.tactics.lineup
-  :{};
-
 data.tactics.savedLineup=
-  Array.isArray(data.tactics.savedLineup)
+  Array.isArray(
+    data.tactics.savedLineup
+  )
   ?data.tactics.savedLineup
   :[];
 
-if(!data.settings||typeof data.settings!=='object'){
-  data.settings={}
+
+if(!data.settings || typeof data.settings!=='object'){
+  data.settings={};
 }
 
-data.settings.coach=data.settings.coach||'';
-data.settings.team=data.settings.team||'KNATT FC';
-data.settings.season=data.settings.season||'2026/27';
-data.settings.category=data.settings.category||'Primer Equipo';
+data.settings.coach=
+  data.settings.coach || '';
 
-localStorage.setItem(KEY,JSON.stringify(data));
+data.settings.team=
+  data.settings.team || 'KNATT FC';
+
+data.settings.season=
+  data.settings.season || '2026/27';
+
+data.settings.category=
+  data.settings.category || 'Primer Equipo';
 
 
-/* ================= ESTADO ================= */
+localStorage.setItem(
+  KEY,
+  JSON.stringify(data)
+);
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
 
 let section='home';
+
 let filter='all';
+
 let selectedPlayerId=null;
 
 
-/* ================= FORMACIONES ================= */
+/* =========================================================
+   FORMACIONES
+========================================================= */
 
 const formations={
 
   '4-3-3':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MC',28,60],
-    ['MC',50,58],
-    ['MC',72,60],
-    ['EI',18,35],
-    ['DC',50,24],
-    ['ED',82,35]
+
+    ['POR',50,90],
+
+    ['LI',14,74],
+    ['DFC',38,79],
+    ['DFC',62,79],
+    ['LD',86,74],
+
+    ['MC',25,59],
+    ['MC',50,56],
+    ['MC',75,59],
+
+    ['EI',16,34],
+    ['DC',50,25],
+    ['ED',84,34]
+
   ],
 
   '4-4-2':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MI',18,57],
-    ['MC',40,57],
-    ['MC',60,57],
-    ['MD',82,57],
+
+    ['POR',50,90],
+
+    ['LI',14,74],
+    ['DFC',38,79],
+    ['DFC',62,79],
+    ['LD',86,74],
+
+    ['MI',14,57],
+    ['MC',38,57],
+    ['MC',62,57],
+    ['MD',86,57],
+
     ['DC',38,27],
     ['DC',62,27]
+
   ],
 
   '4-2-3-1':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MCD',38,63],
-    ['MCD',62,63],
-    ['EI',18,43],
-    ['MCO',50,45],
-    ['ED',82,43],
+
+    ['POR',50,90],
+
+    ['LI',14,74],
+    ['DFC',38,79],
+    ['DFC',62,79],
+    ['LD',86,74],
+
+    ['MCD',36,63],
+    ['MCD',64,63],
+
+    ['EI',16,43],
+    ['MCO',50,43],
+    ['ED',84,43],
+
     ['DC',50,24]
+
   ],
 
   '3-5-2':[
-    ['POR',50,92],
-    ['DFC',27,78],
-    ['DFC',50,82],
-    ['DFC',73,78],
-    ['MI',12,57],
-    ['MC',32,58],
-    ['MCO',50,50],
-    ['MC',68,58],
-    ['MD',88,57],
+
+    ['POR',50,90],
+
+    ['DFC',24,78],
+    ['DFC',50,81],
+    ['DFC',76,78],
+
+    ['MI',12,58],
+    ['MC',32,59],
+    ['MCO',50,53],
+    ['MC',68,59],
+    ['MD',88,58],
+
     ['DC',38,27],
     ['DC',62,27]
+
   ],
 
   '3-4-3':[
-    ['POR',50,92],
-    ['DFC',27,80],
-    ['DFC',50,83],
-    ['DFC',73,80],
-    ['MI',18,59],
-    ['MC',40,59],
-    ['MC',60,59],
-    ['MD',82,59],
-    ['EI',18,33],
+
+    ['POR',50,90],
+
+    ['DFC',24,78],
+    ['DFC',50,81],
+    ['DFC',76,78],
+
+    ['MI',16,59],
+    ['MC',38,59],
+    ['MC',62,59],
+    ['MD',84,59],
+
+    ['EI',16,33],
     ['DC',50,24],
-    ['ED',82,33]
+    ['ED',84,33]
+
   ],
 
   '5-3-2':[
-    ['POR',50,92],
-    ['LI',10,73],
-    ['DFC',30,79],
-    ['DFC',50,82],
-    ['DFC',70,79],
-    ['LD',90,73],
-    ['MC',30,58],
-    ['MC',50,55],
-    ['MC',70,58],
+
+    ['POR',50,90],
+
+    ['LI',10,72],
+    ['DFC',29,77],
+    ['DFC',50,80],
+    ['DFC',71,77],
+    ['LD',90,72],
+
+    ['MC',30,57],
+    ['MC',50,54],
+    ['MC',70,57],
+
     ['DC',38,27],
     ['DC',62,27]
+
   ],
 
   '4-5-1':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
+
+    ['POR',50,90],
+
+    ['LI',14,74],
+    ['DFC',38,79],
+    ['DFC',62,79],
+    ['LD',86,74],
+
     ['MI',12,57],
     ['MC',31,57],
     ['MCO',50,53],
     ['MC',69,57],
     ['MD',88,57],
+
     ['DC',50,24]
+
   ]
 
 };
 
 
-/* ================= GENERALES ================= */
+/* =========================================================
+   FUNCIONES GENERALES
+========================================================= */
 
 function save(){
-  localStorage.setItem(KEY,JSON.stringify(data));
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+
 }
+
 
 function go(s){
+
   section=s;
+
   selectedPlayerId=null;
+
   render();
+
 }
 
+
 function getSelectedPlayer(){
+
   return data.players.find(
     p=>String(p.id)===String(selectedPlayerId)
   );
+
 }
+
 
 function navItems(){
-  return[
+
+  return [
+
     ['home','🏠','Inicio'],
+
     ['team','👥','Plantilla'],
+
     ['tactic','🧠','Táctica'],
+
     ['matches','🏆','Partidos'],
+
     ['stats','📊','Stats'],
+
     ['settings','⚙️','Config.']
+
   ];
+
 }
 
 
-/* ================= RENDER ================= */
+/* =========================================================
+   RENDER
+========================================================= */
 
 function render(){
 
   document.getElementById('nav').innerHTML=
-    navItems().map(x=>`
-      <button
-        class="${section===x[0]?'active':''}"
-        onclick="go('${x[0]}')">
-        ${x[1]}<br>${x[2]}
-      </button>
-    `).join('');
 
-  const c=document.getElementById('content');
+    navItems()
+    .map(
+      x=>`
+
+        <button
+          class="${section===x[0]?'active':''}"
+          onclick="go('${x[0]}')">
+
+          ${x[1]}<br>${x[2]}
+
+        </button>
+
+      `
+    )
+    .join('');
+
+
+  const c=
+    document.getElementById('content');
 
   c.innerHTML='';
 
-  if(section==='home')c.innerHTML=home();
-  if(section==='team')c.innerHTML=team();
-  if(section==='player')c.innerHTML=playerProfile();
-  if(section==='tactic')c.innerHTML=tactic();
-  if(section==='matches')c.innerHTML=matches();
-  if(section==='stats')c.innerHTML=stats();
-  if(section==='settings')c.innerHTML=settings();
+
+  if(section==='home'){
+    c.innerHTML=home();
+  }
+
+  if(section==='team'){
+    c.innerHTML=team();
+  }
+
+  if(section==='player'){
+    c.innerHTML=playerProfile();
+  }
+
+  if(section==='tactic'){
+    c.innerHTML=tactic();
+  }
+
+  if(section==='matches'){
+    c.innerHTML=matches();
+  }
+
+  if(section==='stats'){
+    c.innerHTML=stats();
+  }
+
+  if(section==='settings'){
+    c.innerHTML=settings();
+  }
+
 }
 
 
-/* ================= JUGADORES ================= */
+/* =========================================================
+   JUGADORES
+========================================================= */
 
 function openPlayer(id){
+
   selectedPlayerId=id;
+
   section='player';
+
   render();
+
 }
+
 
 function editPlayer(){
 
   const p=getSelectedPlayer();
 
-  if(!p)return;
+  if(!p){
+    return;
+  }
 
-  const name=prompt('Nombre del jugador:',p.name);
-  if(name===null)return;
 
-  const num=prompt('Número de camiseta:',p.num);
-  if(num===null)return;
+  const name=prompt(
+    'Nombre del jugador:',
+    p.name
+  );
 
-  const pos=prompt('Posición:',p.pos);
-  if(pos===null)return;
+  if(name===null){
+    return;
+  }
+
+
+  const num=prompt(
+    'Número de camiseta:',
+    p.num
+  );
+
+  if(num===null){
+    return;
+  }
+
+
+  const pos=prompt(
+    'Posición:',
+    p.pos
+  );
+
+  if(pos===null){
+    return;
+  }
+
 
   const available=confirm(
     '¿Está disponible para jugar?\n\nAceptar = Sí\nCancelar = No'
   );
 
+
   let reason='';
 
+
   if(!available){
-    const r=prompt('Motivo de la ausencia:',p.reason||'');
-    if(r!==null)reason=r.trim();
+
+    const r=prompt(
+      'Motivo de la ausencia:',
+      p.reason||''
+    );
+
+    if(r!==null){
+      reason=r.trim();
+    }
+
   }
 
-  const min=prompt('Minutos jugados:',p.min);
-  if(min===null)return;
 
-  const goals=prompt('Goles:',p.g);
-  if(goals===null)return;
+  const min=prompt(
+    'Minutos jugados:',
+    p.min
+  );
 
-  const assists=prompt('Asistencias:',p.a);
-  if(assists===null)return;
+  if(min===null){
+    return;
+  }
+
+
+  const goals=prompt(
+    'Goles:',
+    p.g
+  );
+
+  if(goals===null){
+    return;
+  }
+
+
+  const assists=prompt(
+    'Asistencias:',
+    p.a
+  );
+
+  if(assists===null){
+    return;
+  }
+
 
   p.name=name.trim()||p.name;
+
   p.num=num.trim()||p.num;
+
   p.pos=pos.trim()||p.pos;
+
   p.available=available;
+
   p.reason=reason;
+
   p.min=Math.max(0,Number(min)||0);
+
   p.g=Math.max(0,Number(goals)||0);
+
   p.a=Math.max(0,Number(assists)||0);
 
+
   save();
+
   render();
+
 }
+
 
 function addPlayer(){
 
-  const name=prompt('Nombre del jugador:');
+  const name=prompt(
+    'Nombre del jugador:'
+  );
 
-  if(!name||!name.trim())return;
+  if(!name || !name.trim()){
+    return;
+  }
 
-  const num=prompt('Número de camiseta:','');
-  if(num===null)return;
 
-  const pos=prompt('Posición:','');
-  if(pos===null)return;
+  const num=prompt(
+    'Número de camiseta:',
+    ''
+  );
+
+  if(num===null){
+    return;
+  }
+
+
+  const pos=prompt(
+    'Posición:',
+    ''
+  );
+
+  if(pos===null){
+    return;
+  }
+
 
   data.players.push({
+
     id:Date.now(),
+
     name:name.trim(),
+
     num:num.trim()||'-',
+
     pos:pos.trim()||'Jugador',
+
     available:true,
+
     reason:'',
+
     min:0,
+
     g:0,
+
     a:0
+
   });
 
+
   save();
+
   section='team';
+
   render();
+
 }
+
 
 function deletePlayer(id){
 
@@ -1044,119 +1456,211 @@ function deletePlayer(id){
     p=>String(p.id)===String(id)
   );
 
-  if(!player)return;
+  if(!player){
+    return;
+  }
+
 
   if(!confirm(
     '¿Seguro que quieres eliminar a '+
     player.name+
     ' de la plantilla?'
-  ))return;
+  )){
+    return;
+  }
+
 
   data.players=data.players.filter(
     p=>String(p.id)!==String(id)
   );
 
-  Object.keys(data.tactics.lineup||{}).forEach(i=>{
-    if(String(data.tactics.lineup[i])===String(id)){
-      delete data.tactics.lineup[i];
-    }
-  });
 
-  delete data.tactics.positions[String(id)];
+  if(data.tactics && data.tactics.positions){
+
+    Object.keys(
+      data.tactics.positions
+    ).forEach(
+      key=>{
+
+        const pos=
+          data.tactics.positions[key];
+
+        if(
+          String(pos?.playerId)===String(id)
+        ){
+          delete data.tactics.positions[key];
+        }
+
+      }
+    );
+
+  }
+
 
   save();
 
   selectedPlayerId=null;
+
   section='team';
 
   render();
+
 }
 
 
-/* ================= INICIO ================= */
+/* =========================================================
+   INICIO
+========================================================= */
 
 function home(){
 
-  const available=data.players.filter(p=>p.available).length;
-  const absent=data.players.filter(p=>!p.available).length;
+  const available=
+    data.players.filter(
+      p=>p.available
+    ).length;
 
-  const goals=data.players.reduce(
-    (s,p)=>s+(Number(p.g)||0),0
-  );
 
-  return`
+  const absent=
+    data.players.filter(
+      p=>!p.available
+    ).length;
+
+
+  const goals=
+    data.players.reduce(
+      (s,p)=>s+(Number(p.g)||0),
+      0
+    );
+
+
+  return `
 
     <div class="title">
       Panel del equipo
     </div>
 
+
     <div class="card hero">
 
-      <div class="section-label" style="color:#b9e86c">
+      <div
+        class="section-label"
+        style="color:#b9e86c">
+
         PRÓXIMO PARTIDO
+
       </div>
 
+
       <div class="big">
-        ${escapeHtml(data.settings.team)}
+
+        ${data.settings.team}
         🆚
-        ${escapeHtml(data.next.opponent)}
+        ${data.next.opponent}
+
       </div>
+
 
       <div class="match-meta">
 
-        <div class="team-ball">⚽</div>
+        <div class="team-ball">
+          ⚽
+        </div>
+
 
         <div class="match-info">
 
           <div class="match-date">
-            ${escapeHtml(data.next.date)}
+
+            ${data.next.date}
             ·
-            ${escapeHtml(data.next.time)}
+            ${data.next.time}
+
           </div>
 
+
           <div class="match-place">
-            📍 ${escapeHtml(data.next.place)}
+
+            📍
+            ${data.next.place}
+
           </div>
 
         </div>
 
       </div>
 
+
       <button
         class="btn lime full"
         onclick="go('matches')">
+
         Ver partido →
+
       </button>
 
     </div>
+
 
     <div class="section-label">
       RESUMEN DEL EQUIPO
     </div>
 
+
     <div class="grid">
 
       <div class="stat accent">
-        <b>${data.players.length}</b>
-        <span>Jugadores</span>
+
+        <b>
+          ${data.players.length}
+        </b>
+
+        <span>
+          Jugadores
+        </span>
+
       </div>
 
-      <div class="stat">
-        <b>${available}</b>
-        <span>Disponibles</span>
-      </div>
 
       <div class="stat">
-        <b>${absent}</b>
-        <span>Ausentes</span>
+
+        <b>
+          ${available}
+        </b>
+
+        <span>
+          Disponibles
+        </span>
+
       </div>
 
+
       <div class="stat">
-        <b>${goals}</b>
-        <span>Goles</span>
+
+        <b>
+          ${absent}
+        </b>
+
+        <span>
+          Ausentes
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${goals}
+        </b>
+
+        <span>
+          Goles
+        </span>
+
       </div>
 
     </div>
+
 
     <div class="card">
 
@@ -1164,24 +1668,35 @@ function home(){
         TÁCTICA
       </div>
 
+
       <div class="big">
         Prepara tu alineación
       </div>
 
+
       <div class="muted small">
-        Elige una formación y selecciona
-        directamente los jugadores.
+
+        Elige una formación y asigna
+        un jugador a cada posición.
+
       </div>
 
+
       <br>
+
 
       <button
         class="btn lime full"
         onclick="go('tactic')">
-        🧠 Abrir pizarra táctica →
+
+        🧠
+        Abrir pizarra táctica
+        →
+
       </button>
 
     </div>
+
 
     <div class="card">
 
@@ -1189,163 +1704,264 @@ function home(){
         AUSENCIAS
       </div>
 
+
       ${
-        data.players.filter(p=>!p.available).map(p=>`
+        data.players
+        .filter(p=>!p.available)
+        .map(
+          p=>`
 
-          <div class="item">
+            <div class="item">
 
-            <div class="avatar">⚽</div>
-
-            <div class="grow">
-
-              <b>
-                ${p.num} · ${escapeHtml(p.name)}
-              </b>
-
-              <div class="muted small">
-                ${escapeHtml(p.pos)}
+              <div class="avatar">
+                ⚽
               </div>
+
+
+              <div class="grow">
+
+                <b>
+                  ${p.num}
+                  ·
+                  ${escapeHtml(p.name)}
+                </b>
+
+
+                <div class="muted small">
+                  ${escapeHtml(p.pos)}
+                </div>
+
+              </div>
+
+
+              <span class="pill danger">
+
+                ${escapeHtml(
+                  p.reason||'Ausente'
+                )}
+
+              </span>
 
             </div>
 
-            <span class="pill danger">
-              ${escapeHtml(p.reason||'Ausente')}
-            </span>
+          `
+        )
+        .join('')
 
-          </div>
-
-        `).join('')||
+        ||
 
         '<div class="muted">Ninguna</div>'
+
       }
 
     </div>
 
   `;
+
 }
 
 
-/* ================= PLANTILLA ================= */
+/* =========================================================
+   PLANTILLA
+========================================================= */
 
 function team(){
 
-  const list=data.players.filter(
-    p=>
-      filter==='all'||
-      filter==='available'
-      ?p.available
-      :!p.available
-  );
+  const list=
+    data.players.filter(
 
-  return`
+      p=>
+        filter==='all' ||
+
+        (
+          filter==='available'
+          ?p.available
+          :!p.available
+        )
+
+    );
+
+
+  return `
 
     <div class="title">
       Plantilla
     </div>
 
+
     <div class="add-player">
+
       <button
         class="btn lime full"
         onclick="addPlayer()">
-        ➕ Añadir jugador
+
+        ➕
+        Añadir jugador
+
       </button>
+
     </div>
+
 
     <div class="tabs">
 
       <button
         class="tab ${filter==='all'?'active':''}"
         onclick="filter='all';render()">
+
         Todos
+
       </button>
+
 
       <button
         class="tab ${filter==='available'?'active':''}"
         onclick="filter='available';render()">
-        🟢 Disponibles
+
+        🟢
+        Disponibles
+
       </button>
+
 
       <button
         class="tab ${filter==='absent'?'active':''}"
         onclick="filter='absent';render()">
-        🔴 Ausentes
+
+        🔴
+        Ausentes
+
       </button>
 
     </div>
 
+
     <div class="card">
 
       ${
-        list.length?
+        list.length
 
-        list.map(p=>`
+        ?
+
+        list.map(
+          p=>`
+
+            <div
+              class="item"
+              onclick="openPlayer(${p.id})"
+              style="cursor:pointer">
+
+              <div class="avatar">
+
+                ${
+                  p.pos==='POR'
+                  ?'🧤'
+                  :'⚽'
+                }
+
+              </div>
+
+
+              <div class="grow">
+
+                <b>
+
+                  ${p.num}
+                  ·
+                  ${escapeHtml(p.name)}
+
+                </b>
+
+
+                <div class="muted small">
+
+                  ${escapeHtml(p.pos)}
+                  ·
+
+                  ${
+                    p.available
+                    ?'🟢 Disponible'
+                    :'🔴 '+escapeHtml(
+                      p.reason||'Ausente'
+                    )
+                  }
+
+                </div>
+
+
+                <div class="muted small">
+
+                  ${Number(p.g)||0}
+                  ⚽
+                  ·
+                  ${Number(p.a)||0}
+                  🎯
+                  ·
+                  ${Number(p.min)||0}
+                  min
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="delete-btn"
+                onclick="
+                  event.stopPropagation();
+                  deletePlayer(${p.id})
+                ">
+
+                🗑️
+
+              </button>
+
+            </div>
+
+          `
+        ).join('')
+
+
+        :
+
+        `
 
           <div
-            class="item"
-            onclick="openPlayer(${p.id})"
-            style="cursor:pointer">
+            class="muted"
+            style="text-align:center;padding:20px 0">
 
-            <div class="avatar">
-              ${p.pos==='POR'?'🧤':'⚽'}
-            </div>
-
-            <div class="grow">
-
-              <b>
-                ${p.num} · ${escapeHtml(p.name)}
-              </b>
-
-              <div class="muted small">
-                ${escapeHtml(p.pos)}
-                ·
-                ${
-                  p.available
-                  ?'🟢 Disponible'
-                  :'🔴 '+escapeHtml(p.reason||'Ausente')
-                }
-              </div>
-
-              <div class="muted small">
-                ${p.g} ⚽ · ${p.a} 🎯 · ${p.min} min
-              </div>
-
-            </div>
-
-            <button
-              class="delete-btn"
-              onclick="
-                event.stopPropagation();
-                deletePlayer(${p.id})
-              ">
-              🗑️
-            </button>
+            No hay jugadores en este filtro.
 
           </div>
 
-        `).join(''):
+        `
 
-        `<div class="muted" style="text-align:center;padding:20px">
-          No hay jugadores en este filtro.
-        </div>`
       }
 
     </div>
 
   `;
+
 }
 
 
-/* ================= PERFIL ================= */
+/* =========================================================
+   FICHA DEL JUGADOR
+========================================================= */
 
 function playerProfile(){
 
   const p=getSelectedPlayer();
 
+
   if(!p){
 
-    return`
+    return `
 
-      <div class="title">Jugador</div>
+      <div class="title">
+        Jugador
+      </div>
+
 
       <div class="card">
 
@@ -1353,27 +1969,38 @@ function playerProfile(){
           No se ha encontrado el jugador.
         </div>
 
+
         <br>
+
 
         <button
           class="btn full"
           onclick="go('team')">
-          ← Volver a plantilla
+
+          ←
+          Volver a plantilla
+
         </button>
 
       </div>
 
     `;
+
   }
 
-  return`
+
+  return `
 
     <button
       class="btn light"
       onclick="go('team')"
       style="margin-bottom:14px">
-      ← Plantilla
+
+      ←
+      Plantilla
+
     </button>
+
 
     <div class="card hero">
 
@@ -1384,105 +2011,257 @@ function playerProfile(){
           <div
             class="section-label"
             style="color:#b9e86c">
+
             JUGADOR
+
           </div>
+
 
           <div class="big">
-            #${p.num} · ${escapeHtml(p.name)}
+
+            #${p.num}
+            ·
+            ${escapeHtml(p.name)}
+
           </div>
 
+
           <div class="muted">
+
             ${escapeHtml(p.pos)}
+
           </div>
 
         </div>
 
+
         <div class="avatar">
-          ${p.pos==='POR'?'🧤':'⚽'}
+
+          ${
+            p.pos==='POR'
+            ?'🧤'
+            :'⚽'
+          }
+
         </div>
 
       </div>
 
+
       <br>
 
-      <span class="pill ${p.available?'':'danger'}">
+
+      <span
+        class="pill ${p.available?'':'danger'}">
+
         ${
           p.available
           ?'🟢 Disponible'
-          :'🔴 '+escapeHtml(p.reason||'No disponible')
+          :'🔴 '+escapeHtml(
+            p.reason||'No disponible'
+          )
         }
+
       </span>
 
     </div>
+
 
     <div class="section-label">
       TEMPORADA
     </div>
 
+
     <div class="grid">
 
       <div class="stat">
-        <b>${p.min}</b>
-        <span>Minutos</span>
+
+        <b>
+          ${Number(p.min)||0}
+        </b>
+
+        <span>
+          Minutos
+        </span>
+
       </div>
+
 
       <div class="stat accent">
-        <b>${p.g}</b>
-        <span>Goles</span>
+
+        <b>
+          ${Number(p.g)||0}
+        </b>
+
+        <span>
+          Goles
+        </span>
+
       </div>
 
+
       <div class="stat">
-        <b>${p.a}</b>
-        <span>Asistencias</span>
+
+        <b>
+          ${Number(p.a)||0}
+        </b>
+
+        <span>
+          Asistencias
+        </span>
+
       </div>
 
     </div>
+
 
     <div class="card">
 
       <button
         class="btn lime full"
         onclick="editPlayer()">
-        ✏️ Editar jugador
+
+        ✏️
+        Editar jugador
+
       </button>
 
+
       <br><br>
+
 
       <button
         class="btn light full"
         onclick="deletePlayer(${p.id})">
-        🗑️ Eliminar jugador
+
+        🗑️
+        Eliminar jugador
+
       </button>
 
     </div>
 
   `;
+
 }
 
 
 /* =========================================================
-   TÁCTICA NUEVA
+   CONVERTIR TÁCTICA ANTIGUA
+========================================================= */
+
+function normalizeTacticPositions(){
+
+  const spots=
+    formations[data.tactics.formation] ||
+    formations['4-3-3'];
+
+  const old=
+    data.tactics.positions || {};
+
+  const values=
+    Object.values(old);
+
+
+  /*
+    Si ya utilizamos el nuevo sistema
+    no hacemos nada.
+  */
+
+  const alreadyNew=
+    values.some(
+      v=>
+        v &&
+        v.playerId!==undefined
+    );
+
+
+  if(alreadyNew){
+    return;
+  }
+
+
+  /*
+    Convertimos los datos antiguos
+    para no perder jugadores.
+  */
+
+  const next={};
+
+
+  const oldPlayers=
+    Object.entries(old)
+    .map(
+      ([id,value])=>({
+        id:String(id),
+        value
+      })
+    )
+    .filter(
+      x=>
+        data.players.some(
+          p=>String(p.id)===x.id
+        )
+    );
+
+
+  oldPlayers
+  .slice(0,spots.length)
+  .forEach(
+    (x,index)=>{
+
+      next[String(index)]={
+
+        playerId:x.id,
+
+        x:spots[index][1],
+
+        y:spots[index][2],
+
+        role:spots[index][0]
+
+      };
+
+    }
+  );
+
+
+  data.tactics.positions=
+    next;
+
+  save();
+
+}
+
+
+/* =========================================================
+   TÁCTICA
 ========================================================= */
 
 function tactic(){
 
-  const formation=data.tactics.formation;
-  const spots=formations[formation];
+  normalizeTacticPositions();
 
-  if(!data.tactics.lineup){
-    data.tactics.lineup={};
-  }
 
-  const lineup=data.tactics.lineup;
+  const formation=
+    data.tactics.formation;
 
-  const selectedIds=
-    Object.values(lineup).map(String);
 
-  return`
+  const spots=
+    formations[formation] ||
+    formations['4-3-3'];
+
+
+  const positions=
+    data.tactics.positions || {};
+
+
+  return `
 
     <div class="title">
       Táctica
     </div>
+
 
     <div class="card">
 
@@ -1490,16 +2269,26 @@ function tactic(){
         PIZARRA TÁCTICA
       </div>
 
+
       <div class="big">
         Crear alineación
       </div>
 
+
       <div class="muted small">
-        Elige la formación y selecciona
-        un jugador para cada posición.
+
+        Elige una formación y selecciona
+        un jugador en cada una de las
+        11 posiciones.
+
+        <br><br>
+
+        No hay que arrastrar jugadores.
+
       </div>
 
     </div>
+
 
     <div class="tactic-toolbar">
 
@@ -1509,123 +2298,85 @@ function tactic(){
           Formación
         </label>
 
+
         <select
           class="select"
           onchange="changeFormation(this.value)">
 
           ${
-            Object.keys(formations).map(f=>`
+            Object.keys(formations)
+            .map(
+              f=>`
 
-              <option
-                value="${f}"
-                ${f===formation?'selected':''}>
-                ${f}
-              </option>
+                <option
+                  value="${f}"
+                  ${f===formation?'selected':''}>
 
-            `).join('')
+                  ${f}
+
+                </option>
+
+              `
+            )
+            .join('')
+
           }
 
         </select>
 
       </div>
 
+
       <button
         class="btn light"
         onclick="resetTactic()">
-        ↺ Reset
+
+        ↺
+        Reset
+
       </button>
 
     </div>
 
+
     <div class="pitch-wrap">
 
-      <div class="pitch">
+      <div
+        class="pitch"
+        id="pitch">
 
         <div class="pitch-line"></div>
+
         <div class="pitch-circle"></div>
+
         <div class="pitch-center"></div>
+
         <div class="box top"></div>
+
         <div class="box bottom"></div>
+
         <div class="goal top"></div>
+
         <div class="goal bottom"></div>
 
+
         ${
-          spots.map((spot,index)=>{
-
-            const role=spot[0];
-            const x=spot[1];
-            const y=spot[2];
-
-            const playerId=
-              lineup[index]
-              ?String(lineup[index])
-              :'';
-
-            return`
-
-              <div
-                class="tactic-position"
-                style="
-                  left:${x}%;
-                  top:${y}%;
-                ">
-
-                <div class="position-label">
-                  ${role}
-                </div>
-
-                <select
-                  class="position-select"
-                  onchange="
-                    selectTacticPlayer(
-                      ${index},
-                      this.value
-                    )
-                  ">
-
-                  <option value="">
-                    -- ${role} --
-                  </option>
-
-                  ${
-                    data.players.map(p=>{
-
-                      const isSelected=
-                        String(p.id)===playerId;
-
-                      const usedElsewhere=
-                        selectedIds.includes(String(p.id))
-                        &&!isSelected;
-
-                      return`
-
-                        <option
-                          value="${p.id}"
-                          ${isSelected?'selected':''}
-                          ${usedElsewhere?'disabled':''}>
-
-                          #${p.num} ·
-                          ${escapeHtml(p.name)}
-
-                        </option>
-
-                      `;
-
-                    }).join('')
-                  }
-
-                </select>
-
-              </div>
-
-            `;
-
-          }).join('')
+          spots
+          .map(
+            (spot,index)=>
+              slotHtml(
+                spot,
+                index,
+                positions
+              )
+          )
+          .join('')
         }
 
       </div>
 
     </div>
+
 
     <div class="card">
 
@@ -1633,308 +2384,656 @@ function tactic(){
         ALINEACIÓN
       </div>
 
-      <div class="lineup-list">
+
+      <div
+        class="muted small"
+        style="margin-bottom:8px">
+
+        Cada jugador solo puede ocupar
+        una posición.
+
+      </div>
+
+
+      <div class="alignment-list">
 
         ${
-          spots.map((spot,index)=>{
-
-            const role=spot[0];
-
-            const playerId=
-              lineup[index]
-              ?String(lineup[index])
-              :'';
-
-            const player=
-              data.players.find(
-                p=>String(p.id)===playerId
-              );
-
-            return`
-
-              <div class="lineup-row">
-
-                <div class="lineup-position">
-                  ${role}
-                </div>
-
-                <div class="lineup-player">
-
-                  ${
-                    player
-
-                    ?
-
-                    `
-
-                    <b>
-                      #${player.num} ·
-                      ${escapeHtml(player.name)}
-                    </b>
-
-                    <span>
-                      ${escapeHtml(player.pos)}
-                      ·
-                      ${
-                        player.available
-                        ?'🟢 Disponible'
-                        :'🔴 '+escapeHtml(
-                          player.reason||'Ausente'
-                        )
-                      }
-                    </span>
-
-                    `
-
-                    :
-
-                    `
-
-                    <span class="empty-lineup">
-                      Sin jugador seleccionado
-                    </span>
-
-                    `
-                  }
-
-                </div>
-
-              </div>
-
-            `;
-
-          }).join('')
+          spots
+          .map(
+            (spot,index)=>
+              alignmentRow(
+                spot,
+                index,
+                positions
+              )
+          )
+          .join('')
         }
 
       </div>
 
     </div>
 
+
     <div class="tactic-actions">
 
       <button
         class="btn lime"
         onclick="saveTactic()">
-        💾 Guardar alineación
+
+        💾
+        Guardar alineación
+
       </button>
+
 
       <button
         class="btn light"
         onclick="clearTactic()">
-        🧹 Vaciar campo
+
+        🧹
+        Vaciar campo
+
       </button>
 
     </div>
 
+
     <div class="notice">
 
-      💡 Cada jugador solo puede ocupar
-      una posición de la alineación.
+      💡
+
+      Puedes poner cualquier jugador
+      en cualquier posición.
+
+      Si un jugador ya está seleccionado,
+      no aparecerá como opción en otra
+      posición.
 
     </div>
 
   `;
+
 }
 
 
-/* ================= SELECCIONAR JUGADOR ================= */
+/* =========================================================
+   HUECO DE POSICIÓN
+========================================================= */
 
-function selectTacticPlayer(positionIndex,playerId){
+function slotHtml(
+  spot,
+  index,
+  positions
+){
 
-  if(!data.tactics.lineup){
-    data.tactics.lineup={};
+  const role=spot[0];
+
+  const x=spot[1];
+
+  const y=spot[2];
+
+  const selectedId=
+    positions[String(index)]?.playerId ||
+    '';
+
+
+  return `
+
+    <div
+      class="tactic-slot"
+      style="
+        left:${x}%;
+        top:${y}%
+      ">
+
+      <div class="tactic-role">
+
+        ${role}
+
+      </div>
+
+
+      <select
+        class="slot-select"
+        aria-label="Posición ${role}"
+        onchange="
+          assignPosition(
+            ${index},
+            this.value
+          )
+        ">
+
+        <option value="">
+
+          -- ${role} --
+
+        </option>
+
+
+        ${playerOptions(selectedId)}
+
+      </select>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   OPCIONES DE JUGADORES
+========================================================= */
+
+function playerOptions(selectedId){
+
+  const used=
+    new Set(
+
+      Object.values(
+        data.tactics.positions || {}
+      )
+
+      .map(
+        value=>
+          String(
+            value?.playerId || ''
+          )
+      )
+
+      .filter(Boolean)
+
+    );
+
+
+  return data.players
+    .map(
+      p=>{
+
+        const id=
+          String(p.id);
+
+
+        const disabled=
+          used.has(id) &&
+          id!==String(selectedId);
+
+
+        return `
+
+          <option
+            value="${id}"
+            ${id===String(selectedId)?'selected':''}
+            ${disabled?'disabled':''}>
+
+            #${escapeHtml(
+              String(p.num)
+            )}
+            ·
+            ${escapeHtml(p.name)}
+
+          </option>
+
+        `;
+
+      }
+    )
+    .join('');
+
+}
+
+
+/* =========================================================
+   FILA DE ALINEACIÓN
+========================================================= */
+
+function alignmentRow(
+  spot,
+  index,
+  positions
+){
+
+  const id=
+    positions[String(index)]?.playerId ||
+    '';
+
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===String(id)
+    );
+
+
+  return `
+
+    <div class="alignment-row">
+
+      <span class="role-badge">
+
+        ${spot[0]}
+
+      </span>
+
+
+      <span class="alignment-name">
+
+        ${
+          p
+          ?
+
+          `
+
+            #${escapeHtml(
+              String(p.num)
+            )}
+
+            ·
+
+            ${escapeHtml(p.name)}
+
+          `
+
+          :
+
+          '-- Sin jugador --'
+
+        }
+
+      </span>
+
+
+      ${
+        p
+
+        ?
+
+        `
+
+          <span
+            class="availability ${
+              p.available
+              ?'ok'
+              :'no'
+            }">
+
+            ${
+              p.available
+              ?'● Disponible'
+              :'● '+escapeHtml(
+                p.reason||
+                'No disponible'
+              )
+            }
+
+          </span>
+
+        `
+
+        :
+
+        ''
+
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ASIGNAR JUGADOR
+========================================================= */
+
+function assignPosition(
+  index,
+  playerId
+){
+
+  if(!data.tactics.positions){
+
+    data.tactics.positions={};
+
   }
 
-  playerId=String(playerId||'');
 
-  if(!playerId){
+  const key=
+    String(index);
 
-    delete data.tactics.lineup[positionIndex];
 
-    rebuildPositions();
+  const id=
+    String(playerId || '');
+
+
+  /*
+    Si se selecciona vacío,
+    quitamos al jugador.
+  */
+
+  if(!id){
+
+    delete data.tactics.positions[key];
 
     save();
+
     render();
 
     return;
+
   }
 
+
   /*
-    Si el jugador ya estaba en otra posición,
-    lo quitamos de allí.
+    Evitar que un mismo jugador
+    aparezca dos veces.
   */
 
-  Object.keys(data.tactics.lineup).forEach(index=>{
+  const duplicate=
+    Object.entries(
+      data.tactics.positions
+    )
+    .some(
+      ([k,value])=>
 
-    if(
-      String(index)!==String(positionIndex)&&
-      String(data.tactics.lineup[index])===playerId
-    ){
-      delete data.tactics.lineup[index];
-    }
+        k!==key &&
 
-  });
+        String(
+          value?.playerId || ''
+        )===id
 
-  data.tactics.lineup[positionIndex]=playerId;
-
-  rebuildPositions();
-
-  save();
-  render();
-}
+    );
 
 
-/* ================= RECONSTRUIR POSICIONES ================= */
+  if(duplicate){
 
-function rebuildPositions(){
+    alert(
+      'Ese jugador ya está colocado en otra posición.'
+    );
 
-  data.tactics.positions={};
+    render();
+
+    return;
+
+  }
+
 
   const spots=
     formations[data.tactics.formation];
 
-  Object.keys(data.tactics.lineup||{}).forEach(index=>{
 
-    const playerId=
-      String(data.tactics.lineup[index]);
+  const spot=
+    spots[index];
 
-    const spot=spots[index];
 
-    if(!spot)return;
+  data.tactics.positions[key]={
 
-    data.tactics.positions[playerId]={
-      x:spot[1],
-      y:spot[2],
-      role:spot[0]
-    };
+    playerId:id,
 
-  });
+    x:spot[1],
+
+    y:spot[2],
+
+    role:spot[0]
+
+  };
+
+
+  save();
+
+  render();
 
 }
 
 
-/* ================= CAMBIAR FORMACION ================= */
+/* =========================================================
+   CAMBIAR FORMACIÓN
+========================================================= */
 
-function changeFormation(formation){
+function changeFormation(
+  formation
+){
 
-  const oldLineup=
-    data.tactics.lineup||{};
+  data.tactics.formation=
+    formation;
 
-  const players=
-    Object.values(oldLineup)
-    .map(String);
 
-  const spots=formations[formation];
+  const spots=
+    formations[formation];
+
+
+  const old=
+    data.tactics.positions || {};
+
 
   const next={};
 
-  players
-    .slice(0,spots.length)
-    .forEach((playerId,index)=>{
-      next[index]=playerId;
-    });
 
-  data.tactics.formation=formation;
-  data.tactics.lineup=next;
+  /*
+    Conservamos al jugador
+    que estaba en cada número
+    de posición.
+  */
 
-  rebuildPositions();
+  spots.forEach(
+    (spot,index)=>{
+
+      const oldPosition=
+        old[String(index)];
+
+
+      const id=
+        String(
+          oldPosition?.playerId || ''
+        );
+
+
+      if(
+        id &&
+        !Object.values(next)
+        .some(
+          value=>
+            String(
+              value.playerId
+            )===id
+        )
+      ){
+
+        next[String(index)]={
+
+          playerId:id,
+
+          x:spot[1],
+
+          y:spot[2],
+
+          role:spot[0]
+
+        };
+
+      }
+
+    }
+  );
+
+
+  data.tactics.positions=
+    next;
+
 
   save();
+
   render();
+
 }
 
 
-/* ================= RESET ================= */
+/* =========================================================
+   RESET
+========================================================= */
 
 function resetTactic(){
 
-  data.tactics.lineup={};
-  data.tactics.positions={};
-  data.tactics.savedLineup=[];
+  const spots=
+    formations[
+      data.tactics.formation
+    ];
+
+
+  const next={};
+
+
+  data.players
+  .slice(
+    0,
+    spots.length
+  )
+  .forEach(
+    (p,index)=>{
+
+      next[String(index)]={
+
+        playerId:String(p.id),
+
+        x:spots[index][1],
+
+        y:spots[index][2],
+
+        role:spots[index][0]
+
+      };
+
+    }
+  );
+
+
+  data.tactics.positions=
+    next;
+
 
   save();
+
   render();
+
 }
 
 
-/* ================= VACIAR ================= */
+/* =========================================================
+   VACIAR CAMPO
+========================================================= */
 
 function clearTactic(){
 
-  data.tactics.lineup={};
   data.tactics.positions={};
 
   save();
+
   render();
+
 }
 
 
-/* ================= GUARDAR ================= */
+/* =========================================================
+   GUARDAR ALINEACIÓN
+========================================================= */
 
 function saveTactic(){
 
   data.tactics.savedLineup=
-    Object.values(data.tactics.lineup||{});
+    Object.keys(
+      data.tactics.positions || {}
+    )
+    .filter(
+      key=>
+        data.tactics.positions[key]?.playerId
+    );
+
 
   save();
+
 
   alert(
     'Alineación guardada correctamente.'
   );
+
 }
 
 
-/* ================= PARTIDOS ================= */
+/* =========================================================
+   PARTIDOS
+========================================================= */
 
 function matches(){
 
-  return`
+  return `
 
     <div class="title">
       Partidos
     </div>
+
 
     <div class="card hero">
 
       <div
         class="section-label"
         style="color:#b9e86c">
+
         PRÓXIMO PARTIDO
+
       </div>
 
+
       <div class="big">
-        ${escapeHtml(data.settings.team)}
+
+        ${data.settings.team}
         🆚
-        ${escapeHtml(data.next.opponent)}
+        ${data.next.opponent}
+
       </div>
+
 
       <div class="match-meta">
 
-        <div class="team-ball">⚽</div>
+        <div class="team-ball">
+          ⚽
+        </div>
+
 
         <div class="match-info">
 
           <div class="match-date">
-            ${escapeHtml(data.next.date)}
+
+            ${data.next.date}
+
           </div>
 
+
           <div class="match-place">
-            ${escapeHtml(data.next.time)}
+
+            ${data.next.time}
             ·
-            ${escapeHtml(data.next.place)}
+            ${data.next.place}
+
           </div>
 
         </div>
 
       </div>
 
+
       <button
         class="btn lime full"
         onclick="go('tactic')">
-        🧠 Preparar alineación
+
+        🧠
+        Preparar alineación
+
       </button>
 
     </div>
+
 
     <div class="card">
 
@@ -1942,126 +3041,220 @@ function matches(){
         HISTORIAL
       </div>
 
+
       <div class="muted">
-        Aquí podremos añadir resultados
-        y estadísticas de partidos.
+
+        Aquí podremos añadir
+        resultados y estadísticas
+        de partidos en la siguiente fase.
+
       </div>
 
     </div>
 
   `;
+
 }
 
 
-/* ================= STATS ================= */
+/* =========================================================
+   ESTADÍSTICAS
+========================================================= */
 
 function stats(){
 
-  const sorted=[...data.players].sort(
-    (a,b)=>(Number(b.g)||0)-(Number(a.g)||0)
-  );
+  const sorted=
+    [...data.players]
+    .sort(
+      (a,b)=>
+        (Number(b.g)||0)-
+        (Number(a.g)||0)
+    );
 
-  const totalGoals=data.players.reduce(
-    (s,p)=>s+(Number(p.g)||0),0
-  );
 
-  const totalAssists=data.players.reduce(
-    (s,p)=>s+(Number(p.a)||0),0
-  );
+  const totalGoals=
+    data.players.reduce(
+      (s,p)=>s+(Number(p.g)||0),
+      0
+    );
 
-  const totalMinutes=data.players.reduce(
-    (s,p)=>s+(Number(p.min)||0),0
-  );
 
-  return`
+  const totalAssists=
+    data.players.reduce(
+      (s,p)=>s+(Number(p.a)||0),
+      0
+    );
+
+
+  const totalMinutes=
+    data.players.reduce(
+      (s,p)=>s+(Number(p.min)||0),
+      0
+    );
+
+
+  return `
 
     <div class="title">
+
       Estadísticas del equipo
+
     </div>
+
 
     <div class="grid">
 
       <div class="stat accent">
-        <b>${totalGoals}</b>
-        <span>Goles</span>
+
+        <b>
+          ${totalGoals}
+        </b>
+
+        <span>
+          Goles
+        </span>
+
       </div>
 
-      <div class="stat">
-        <b>${totalAssists}</b>
-        <span>Asistencias</span>
-      </div>
 
       <div class="stat">
-        <b>${totalMinutes}</b>
-        <span>Minutos</span>
+
+        <b>
+          ${totalAssists}
+        </b>
+
+        <span>
+          Asistencias
+        </span>
+
       </div>
 
+
       <div class="stat">
-        <b>${data.players.length}</b>
-        <span>Jugadores</span>
+
+        <b>
+          ${totalMinutes}
+        </b>
+
+        <span>
+          Minutos
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <b>
+          ${data.players.length}
+        </b>
+
+        <span>
+          Jugadores
+        </span>
+
       </div>
 
     </div>
 
+
     <div class="card">
 
       <div class="section-label">
+
         RENDIMIENTO DE PLANTILLA
+
       </div>
 
+
       ${
-        sorted.map(p=>`
+        sorted
+        .map(
+          p=>`
 
-          <div class="item">
+            <div class="item">
 
-            <div class="avatar">
-              ${p.pos==='POR'?'🧤':'⚽'}
-            </div>
+              <div class="avatar">
 
-            <div class="grow">
+                ${
+                  p.pos==='POR'
+                  ?'🧤'
+                  :'⚽'
+                }
 
-              <b>
-                ${p.num} · ${escapeHtml(p.name)}
-              </b>
+              </div>
 
-              <div class="muted small">
-                ${escapeHtml(p.pos)}
+
+              <div class="grow">
+
+                <b>
+
+                  ${p.num}
+                  ·
+                  ${escapeHtml(p.name)}
+
+                </b>
+
+
+                <div class="muted small">
+
+                  ${escapeHtml(p.pos)}
+
+                </div>
+
+              </div>
+
+
+              <div style="text-align:right">
+
+                <b>
+                  ${Number(p.min)||0}
+                </b>
+
+
+                <div class="muted small">
+
+                  ${Number(p.g)||0}
+                  ⚽
+                  ·
+                  ${Number(p.a)||0}
+                  🎯
+
+                </div>
+
               </div>
 
             </div>
 
-            <div style="text-align:right">
+          `
+        )
+        .join('')
 
-              <b>${p.min}</b>
-
-              <div class="muted small">
-                ${p.g} ⚽ · ${p.a} 🎯
-              </div>
-
-            </div>
-
-          </div>
-
-        `).join('')||
+        ||
 
         '<div class="muted">No hay jugadores.</div>'
+
       }
 
     </div>
 
   `;
+
 }
 
 
-/* ================= CONFIGURACIÓN ================= */
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
 
 function settings(){
 
-  return`
+  return `
 
     <div class="title">
       Configuración
     </div>
+
 
     <div class="card">
 
@@ -2069,25 +3262,36 @@ function settings(){
         PERFIL DEL ENTRENADOR
       </div>
 
+
       <div class="form-group">
 
-        <label>Nombre</label>
+        <label>
+          Nombre
+        </label>
+
 
         <input
           id="coachName"
           class="form-input"
-          value="${escapeHtml(data.settings.coach)}"
+          value="${escapeHtml(
+            data.settings.coach
+          )}"
           placeholder="Nombre del entrenador">
 
       </div>
 
+
       <button
         class="btn lime full"
         onclick="saveSettings()">
-        💾 Guardar cambios
+
+        💾
+        Guardar cambios
+
       </button>
 
     </div>
+
 
     <div class="card">
 
@@ -2095,46 +3299,68 @@ function settings(){
         EQUIPO
       </div>
 
+
       <div class="form-group">
 
-        <label>Equipo</label>
+        <label>
+          Equipo
+        </label>
+
 
         <input
           id="teamName"
           class="form-input"
-          value="${escapeHtml(data.settings.team)}">
+          value="${escapeHtml(
+            data.settings.team
+          )}">
 
       </div>
 
+
       <div class="form-group">
 
-        <label>Temporada</label>
+        <label>
+          Temporada
+        </label>
+
 
         <input
           id="seasonName"
           class="form-input"
-          value="${escapeHtml(data.settings.season)}">
+          value="${escapeHtml(
+            data.settings.season
+          )}">
 
       </div>
 
+
       <div class="form-group">
 
-        <label>Categoría</label>
+        <label>
+          Categoría
+        </label>
+
 
         <input
           id="categoryName"
           class="form-input"
-          value="${escapeHtml(data.settings.category)}">
+          value="${escapeHtml(
+            data.settings.category
+          )}">
 
       </div>
+
 
       <button
         class="btn full"
         onclick="saveSettings()">
+
         Guardar equipo
+
       </button>
 
     </div>
+
 
     <div class="card">
 
@@ -2142,105 +3368,169 @@ function settings(){
         DATOS
       </div>
 
+
       <div class="muted small">
+
         Los datos de KNATT se guardan
         localmente en este dispositivo.
+
       </div>
 
+
       <br>
+
 
       <button
         class="btn light full"
         onclick="exportData()">
-        📤 Exportar datos
+
+        📤
+        Exportar datos
+
       </button>
 
+
       <br><br>
+
 
       <button
         class="btn light full"
         onclick="resetApp()">
-        ♻️ Restaurar datos de ejemplo
+
+        ♻️
+        Restaurar datos de ejemplo
+
       </button>
 
     </div>
 
   `;
+
 }
 
 
 function saveSettings(){
 
   data.settings.coach=
-    document.getElementById('coachName').value.trim();
+    document
+    .getElementById('coachName')
+    .value
+    .trim();
+
 
   data.settings.team=
-    document.getElementById('teamName').value.trim()||
+    document
+    .getElementById('teamName')
+    .value
+    .trim() ||
     'KNATT FC';
 
+
   data.settings.season=
-    document.getElementById('seasonName').value.trim()||
+    document
+    .getElementById('seasonName')
+    .value
+    .trim() ||
     '2026/27';
 
+
   data.settings.category=
-    document.getElementById('categoryName').value.trim()||
+    document
+    .getElementById('categoryName')
+    .value
+    .trim() ||
     'Primer Equipo';
 
+
   save();
+
   render();
+
 }
 
 
 function exportData(){
 
-  const blob=new Blob(
-    [JSON.stringify(data,null,2)],
-    {type:'application/json'}
-  );
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:'application/json'
+      }
+    );
 
-  const url=URL.createObjectURL(blob);
 
-  const a=document.createElement('a');
+  const url=
+    URL.createObjectURL(blob);
+
+
+  const a=
+    document.createElement('a');
+
 
   a.href=url;
-  a.download='knatt-datos.json';
+
+  a.download=
+    'knatt-datos.json';
+
+
   a.click();
 
+
   URL.revokeObjectURL(url);
+
 }
 
 
 function resetApp(){
 
-  if(!confirm(
-    'Esto borrará los datos actuales de KNATT en este dispositivo. ¿Continuar?'
-  ))return;
+  if(
+    !confirm(
+      'Esto borrará los datos actuales de KNATT en este dispositivo. ¿Continuar?'
+    )
+  ){
+    return;
+  }
+
 
   localStorage.removeItem(KEY);
 
   location.reload();
+
 }
 
 
-/* ================= SEGURIDAD HTML ================= */
+/* =========================================================
+   SEGURIDAD HTML
+========================================================= */
 
 function escapeHtml(str){
 
   return String(str).replace(
     /[&<>"']/g,
     m=>({
+
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
       '"':'&quot;',
       "'":'&#039;'
+
     }[m])
   );
 
 }
 
 
-/* ================= INICIAR ================= */
+/* =========================================================
+   INICIAR
+========================================================= */
 
 render();
 
