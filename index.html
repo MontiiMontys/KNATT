@@ -586,16 +586,8 @@ nav button.active{
 
 
 /* =========================================================
-   NUEVAS POSICIONES TÁCTICAS
+   POSICIONES TÁCTICAS
 ========================================================= */
-
-/*
-  Cada posición es una caja fija.
-  La etiqueta oscura indica la posición.
-  El desplegable va debajo.
-  El jugador seleccionado se muestra
-  directamente en el desplegable.
-*/
 
 .position-slot{
   position:absolute;
@@ -648,6 +640,27 @@ nav button.active{
   font-size:14px;
 }
 
+/*
+  Cuando ya hay jugador seleccionado,
+  el nombre es lo único visible.
+  El select queda invisible encima del nombre
+  para poder cambiar el jugador al pulsarlo.
+*/
+
+.position-select.selected{
+  position:absolute;
+  left:0;
+  top:31px;
+  width:100%;
+  height:34px;
+  max-width:112px;
+  border:0;
+  padding:0;
+  opacity:0;
+  cursor:pointer;
+  z-index:3;
+}
+
 .position-name{
   width:100%;
   max-width:112px;
@@ -663,17 +676,13 @@ nav button.active{
   overflow-wrap:anywhere;
   word-break:break-word;
   box-shadow:0 3px 10px #10221b20;
+  position:relative;
+  z-index:2;
 }
 
 .position-name.empty{
   display:none;
 }
-
-
-/*
-  El desplegable se mantiene dentro del campo.
-  En móvil reducimos un poco su tamaño.
-*/
 
 @media(max-width:380px){
 
@@ -686,6 +695,10 @@ nav button.active{
     font-size:11px;
     padding-left:7px;
     padding-right:20px;
+  }
+
+  .position-select.selected{
+    max-width:96px;
   }
 
   .position-role{
@@ -1021,11 +1034,6 @@ data.tactics.formation=
   '4-3-3';
 
 
-/*
-  Convertimos cualquier alineación antigua
-  a la nueva estructura.
-*/
-
 if(!Array.isArray(data.tactics.lineup)){
 
   if(Array.isArray(data.tactics.savedLineup)){
@@ -1083,7 +1091,6 @@ let selectedPlayerId=null;
 ========================================================= */
 
 const formations={
-
 
   '4-3-3':[
 
@@ -1555,15 +1562,34 @@ function deletePlayer(id){
   }
 
 
+  /*
+    Eliminamos al jugador de la plantilla.
+  */
+
   data.players=data.players.filter(
     p=>String(p.id)!==String(id)
   );
 
 
-  data.tactics.lineup=
-    data.tactics.lineup.filter(
-      x=>String(x)!==String(id)
-    );
+  /*
+    IMPORTANTE:
+    No usamos filter() en lineup porque
+    eso desplazaría todas las posiciones.
+    Conservamos exactamente los mismos índices
+    y dejamos vacío solamente el hueco del jugador.
+  */
+
+  if(Array.isArray(data.tactics.lineup)){
+
+    data.tactics.lineup=
+      data.tactics.lineup.map(
+        x=>
+          String(x)===String(id)
+          ?''
+          :x
+      );
+
+  }
 
 
   save();
@@ -2461,6 +2487,88 @@ function positionSlot(
     );
 
 
+  /*
+    Si hay jugador:
+    mostramos únicamente el nombre.
+    El selector queda invisible encima
+    para permitir cambiarlo al pulsar.
+  */
+
+  if(player){
+
+    return `
+
+      <div
+        class="position-slot"
+        style="
+          left:${x}%;
+          top:${y}%
+        ">
+
+
+        <div class="position-role">
+
+          ${escapeHtml(role)}
+
+        </div>
+
+
+        <div
+          class="position-name">
+
+          ${escapeHtml(player.name)}
+
+        </div>
+
+
+        <select
+          class="position-select selected"
+          data-position-index="${index}"
+          onchange="selectPosition(${index},this.value)"
+          aria-label="Cambiar jugador para ${escapeHtml(role)}">
+
+          <option value="">
+            Quitar jugador
+          </option>
+
+
+          ${
+            data.players
+            .map(
+              p=>`
+
+                <option
+                  value="${p.id}"
+                  ${
+                    String(p.id)===String(selectedId)
+                    ?'selected'
+                    :''
+                  }>
+
+                  ${escapeHtml(p.name)}
+
+                </option>
+
+              `
+            )
+            .join('')
+
+          }
+
+        </select>
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+    Si no hay jugador:
+    mostramos el selector normal.
+  */
+
   return `
 
     <div
@@ -2498,12 +2606,7 @@ function positionSlot(
             p=>`
 
               <option
-                value="${p.id}"
-                ${
-                  String(p.id)===String(selectedId)
-                  ?'selected'
-                  :''
-                }>
+                value="${p.id}">
 
                 ${escapeHtml(p.name)}
 
@@ -2516,22 +2619,6 @@ function positionSlot(
         }
 
       </select>
-
-
-      <div
-        class="position-name ${
-          player
-          ?''
-          :'empty'
-        }">
-
-        ${
-          player
-          ?escapeHtml(player.name)
-          :''
-        }
-
-      </div>
 
     </div>
 
@@ -2689,11 +2776,6 @@ function resetTactic(){
   const spots=
     formations[data.tactics.formation];
 
-
-  /*
-    Reset deja las 11 posiciones
-    vacías.
-  */
 
   data.tactics.lineup=
     spots.map(
