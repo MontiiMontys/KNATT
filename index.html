@@ -184,7 +184,7 @@ main{
 
 .stat-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:7px;
   margin-bottom:13px;
 }
@@ -225,6 +225,10 @@ main{
   color:var(--red);
 }
 
+/* =====================================================
+   INICIO
+===================================================== */
+
 .home-title-row{
   margin-top:0;
   margin-bottom:12px;
@@ -237,38 +241,6 @@ main{
 .home-title-row .subtitle{
   font-size:13px;
   margin-top:3px;
-}
-
-.home-match-card{
-  padding:17px;
-  border-radius:20px;
-}
-
-.home-match-card .section-label{
-  margin-bottom:8px;
-}
-
-.home-match-card .big{
-  font-size:22px;
-  line-height:1.15;
-}
-
-.home-match-card .versus{
-  margin:15px 0 16px;
-}
-
-.match-countdown{
-  text-align:center;
-  margin-top:-6px;
-  margin-bottom:14px;
-  font-size:11px;
-  font-weight:850;
-  color:var(--muted);
-}
-
-.match-countdown strong{
-  color:var(--red);
-  font-weight:950;
 }
 
 .home-quick-card{
@@ -368,6 +340,10 @@ main{
   font-weight:700;
 }
 
+/* =====================================================
+   PLANTILLA
+===================================================== */
+
 .tabs{
   display:flex;
   gap:6px;
@@ -428,6 +404,10 @@ main{
   margin-top:2px;
 }
 
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
 .form-group{
   margin-bottom:12px;
 }
@@ -458,10 +438,16 @@ main{
   line-height:1.4;
 }
 
-.form-input:focus,.select:focus,.form-textarea:focus{
+.form-input:focus,
+.select:focus,
+.form-textarea:focus{
   border-color:#ffb5bd;
   box-shadow:0 0 0 3px #fff0f2;
 }
+
+/* =====================================================
+   MODALES
+===================================================== */
 
 .edit-modal{
   position:fixed;
@@ -578,316 +564,177 @@ main{
   opacity:.48;
 }
 
-.edit-disabled input{
-  background:#f0f0f2;
-}
+/* =====================================================
+   NOTAS
+===================================================== */
 
-.match-card{
-  position:relative;
-}
-
-.versus{
+.notes-header{
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:18px;
-  margin:13px 0;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:13px;
 }
 
-.club{
-  width:90px;
-  text-align:center;
-  font-weight:900;
-  font-size:11px;
+.notes-count{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
 }
 
-.club-logo{
-  width:46px;
-  height:46px;
-  border-radius:13px;
-  background:#f0f0f2;
-  margin:0 auto 5px;
-  display:grid;
-  place-items:center;
-  font-size:21px;
-}
-
-.vs{
-  font-weight:950;
-  color:#888;
-}
-
-.matches-header-actions{
+.notes-filter{
   display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-}
-
-.calendar-import-card{
-  background:#fff;
-  border:1px solid #ffd8dd;
-  border-radius:18px;
-  padding:14px;
+  gap:6px;
+  overflow:auto;
   margin-bottom:12px;
+  padding-bottom:2px;
 }
 
-.calendar-import-row{
+.note-filter{
+  border:0;
+  border-radius:999px;
+  padding:9px 12px;
+  background:#e9e9ec;
+  color:#5e5e64;
+  font-size:10px;
+  font-weight:850;
+  white-space:nowrap;
+}
+
+.note-filter.active{
+  background:var(--red);
+  color:#fff;
+}
+
+.note-card{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:15px;
+  margin-bottom:10px;
+  box-shadow:0 5px 18px #1414190d;
+}
+
+.note-card-header{
   display:flex;
-  align-items:center;
-  gap:11px;
+  align-items:flex-start;
+  gap:10px;
 }
 
-.calendar-import-icon{
-  width:42px;
-  height:42px;
-  flex:0 0 42px;
-  border-radius:13px;
+.note-icon{
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+  border-radius:11px;
   background:#fff0f2;
+  color:var(--red);
   display:grid;
   place-items:center;
-  font-size:21px;
+  font-size:18px;
 }
 
-.calendar-import-content{
+.note-main{
   flex:1;
   min-width:0;
 }
 
-.calendar-import-title{
-  font-size:12px;
-  font-weight:950;
-}
-
-.calendar-import-subtitle{
-  margin-top:3px;
-  font-size:10px;
-  color:var(--muted);
-  line-height:1.35;
-}
-
-.calendar-import-button{
-  margin-top:11px;
-}
-
-.season-summary{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-  margin-bottom:12px;
-}
-
-.season-summary-card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:10px 7px;
-  text-align:center;
-}
-
-.season-summary-card b{
-  display:block;
-  font-size:18px;
-  font-weight:950;
-}
-
-.season-summary-card span{
-  display:block;
-  font-size:9px;
-  color:var(--muted);
-  font-weight:800;
-  margin-top:2px;
-}
-
-.match-round{
-  font-size:9px;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.7px;
-  font-weight:950;
-  margin-bottom:4px;
-}
-
-.match-date{
-  font-size:12px;
-  color:#77777e;
-  font-weight:750;
-}
-
-.match-teams{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-}
-
-.match-team{
-  font-size:12px;
+.note-title{
+  font-size:13px;
   font-weight:950;
   line-height:1.2;
 }
 
-.match-team.home{
-  text-align:right;
+.note-category{
+  display:inline-block;
+  margin-top:5px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#f0f0f2;
+  color:#666;
+  font-size:8px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.4px;
 }
 
-.match-team.away{
-  text-align:left;
-}
-
-.match-score{
-  min-width:58px;
-  text-align:center;
-  font-size:17px;
-  font-weight:950;
-  color:#8a8a90;
-}
-
-.match-score.played{
-  color:#17171a;
-}
-
-.match-status{
-  margin-top:9px;
+.note-actions{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
+  gap:5px;
 }
 
-.match-location{
-  font-size:9px;
-  color:var(--muted);
-  font-weight:750;
-}
-
-.match-result-button{
+.note-action{
+  width:30px;
+  height:30px;
   border:0;
   border-radius:9px;
-  padding:7px 9px;
   background:#f0f0f2;
-  color:#444;
-  font-size:9px;
-  font-weight:900;
+  color:#666;
+  display:grid;
+  place-items:center;
+  font-size:13px;
 }
 
-.match-result-button:hover{
+.note-action.delete{
+  color:var(--red);
   background:#fff0f2;
-  color:var(--red);
 }
 
-.match-upcoming{
-  border:2px solid #ffe0e4;
-}
-
-.match-upcoming .match-round{
-  color:var(--red);
-}
-
-.match-past{
-  opacity:.94;
-}
-
-.matches-empty{
-  text-align:center;
-  padding:24px 10px;
-  color:var(--muted);
+.note-text{
+  margin-top:11px;
   font-size:12px;
+  line-height:1.5;
+  color:#444;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.note-date{
+  margin-top:11px;
+  padding-top:9px;
+  border-top:1px solid #ededf0;
+  font-size:9px;
+  color:var(--muted);
   font-weight:750;
 }
 
-.calendar-preview-list{
-  margin-top:12px;
+.notes-empty{
+  text-align:center;
+  padding:34px 15px;
+}
+
+.notes-empty-icon{
+  width:54px;
+  height:54px;
+  margin:0 auto 10px;
+  border-radius:16px;
+  background:#fff0f2;
+  color:var(--red);
   display:grid;
-  gap:8px;
+  place-items:center;
+  font-size:25px;
 }
 
-.calendar-preview-row{
-  border:1px solid var(--line);
-  background:#fafafa;
-  border-radius:12px;
-  padding:10px;
+.notes-empty-title{
+  font-size:14px;
+  font-weight:950;
 }
 
-.calendar-preview-grid{
-  display:grid;
-  grid-template-columns:72px 1fr 1fr;
-  gap:7px;
-}
-
-.calendar-preview-row input{
-  width:100%;
-  min-width:0;
-  border:1px solid #dedee2;
-  background:#fff;
-  border-radius:8px;
-  padding:8px;
-  font-size:11px;
-  outline:none;
-}
-
-.calendar-preview-label{
-  font-size:8px;
-  color:var(--muted);
-  text-transform:uppercase;
-  font-weight:900;
-  margin-bottom:3px;
-}
-
-.ocr-progress{
-  margin-top:12px;
-  background:#f0f0f2;
-  border-radius:999px;
-  height:8px;
-  overflow:hidden;
-}
-
-.ocr-progress-bar{
-  width:0%;
-  height:100%;
-  background:var(--red);
-  transition:width .2s ease;
-}
-
-.ocr-status{
-  margin-top:7px;
+.notes-empty-text{
+  margin-top:4px;
   font-size:10px;
   color:var(--muted);
-  font-weight:800;
+  font-weight:700;
+  line-height:1.4;
 }
 
-.calendar-image-preview-list{
-  display:grid;
-  gap:8px;
-  margin-top:10px;
+.note-modal-textarea{
+  min-height:180px;
 }
 
-.calendar-image-preview{
-  width:100%;
-  max-height:220px;
-  object-fit:contain;
-  background:#f0f0f2;
-  border-radius:13px;
-  display:block;
-}
-
-.import-help{
-  background:#f7f7f8;
-  border-radius:12px;
-  padding:10px;
-  font-size:10px;
-  color:#666;
-  line-height:1.45;
-  margin-bottom:12px;
-}
-
-.import-help strong{
-  color:#222;
-}
-
-.import-file{
-  display:none;
-}
+/* =====================================================
+   MÁS
+===================================================== */
 
 .more-screen{
   background:var(--dark);
@@ -939,6 +786,10 @@ main{
   color:#8c8c92;
 }
 
+/* =====================================================
+   TÁCTICA
+===================================================== */
+
 .tactic-toolbar{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -976,7 +827,11 @@ main{
   aspect-ratio:68/105;
   border-radius:14px;
   overflow:hidden;
-  background:repeating-linear-gradient(0deg,#278247 0 9%,#2d8b4f 9% 18%);
+  background:repeating-linear-gradient(
+    0deg,
+    #278247 0 9%,
+    #2d8b4f 9% 18%
+  );
   touch-action:none;
   user-select:none;
   -webkit-user-select:none;
@@ -1031,8 +886,13 @@ main{
   pointer-events:none;
 }
 
-.box.top{top:2.5%}
-.box.bottom{bottom:2.5%}
+.box.top{
+  top:2.5%;
+}
+
+.box.bottom{
+  bottom:2.5%;
+}
 
 .goal{
   position:absolute;
@@ -1044,8 +904,13 @@ main{
   pointer-events:none;
 }
 
-.goal.top{top:0}
-.goal.bottom{bottom:0}
+.goal.top{
+  top:0;
+}
+
+.goal.bottom{
+  bottom:0;
+}
 
 .pitch.half-mode{
   aspect-ratio:68/70;
@@ -1337,6 +1202,10 @@ main{
   margin-bottom:12px;
 }
 
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
 nav{
   position:fixed;
   bottom:0;
@@ -1376,7 +1245,12 @@ nav .nav-icon{
   margin-bottom:2px;
 }
 
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
 @media(max-width:380px){
+
   main{
     padding-left:11px;
     padding-right:11px;
@@ -1439,20 +1313,8 @@ nav .nav-icon{
     gap:0;
   }
 
-  .match-teams{
-    gap:5px;
-  }
-
-  .match-team{
-    font-size:11px;
-  }
-
-  .match-score{
-    min-width:50px;
-  }
-
-  .calendar-preview-grid{
-    grid-template-columns:65px 1fr 1fr;
+  .note-modal-textarea{
+    min-height:150px;
   }
 }
 </style>
@@ -1464,54 +1326,33 @@ nav .nav-icon{
 
 <header>
   <div class="header-row">
+
     <div>
       <div class="brand">⚽ <span>KNATT</span></div>
-      <div class="role">Tu equipo, en una sola app</div>
+
+      <div class="role">
+        Tu equipo, en una sola app
+      </div>
     </div>
 
-    <button class="header-bell" onclick="alert('No tienes nuevas notificaciones.')">
+    <button
+      class="header-bell"
+      onclick="alert('No tienes nuevas notificaciones.')">
+
       🔔
+
     </button>
+
   </div>
 </header>
 
 <main id="content"></main>
+
 <nav id="nav"></nav>
 
 </div>
 
 <script>
-
-/* =====================================================
-   OCR
-===================================================== */
-
-let tesseractLoaded=false;
-
-function loadTesseract(){
-  return new Promise((resolve,reject)=>{
-    if(window.Tesseract){
-      tesseractLoaded=true;
-      resolve();
-      return;
-    }
-
-    const script=document.createElement('script');
-
-    script.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-
-    script.onload=()=>{
-      tesseractLoaded=true;
-      resolve();
-    };
-
-    script.onerror=()=>{
-      reject(new Error('No se pudo cargar el motor OCR.'));
-    };
-
-    document.head.appendChild(script);
-  });
-}
 
 /* =====================================================
    DATOS
@@ -1522,13 +1363,16 @@ const KEY='teamhub-v2';
 let data;
 
 try{
-  data=JSON.parse(localStorage.getItem(KEY)||'null');
+  data=JSON.parse(
+    localStorage.getItem(KEY)||'null'
+  );
 }catch(error){
   data=null;
 }
 
 if(!data || typeof data!=='object'){
   data={
+
     players:[
       {
         id:1,
@@ -1587,15 +1431,6 @@ if(!data || typeof data!=='object'){
       }
     ],
 
-    next:{
-      opponent:'CD Rival',
-      date:'Domingo, 24 de agosto',
-      time:'12:00',
-      place:'Campo Municipal'
-    },
-
-    matches:[],
-
     tactics:{
       formation:'',
       positions:{},
@@ -1609,6 +1444,8 @@ if(!data || typeof data!=='object'){
       season:'2026/27',
       category:'Primer Equipo'
     },
+
+    notes:[],
 
     activity:[]
   };
@@ -1626,7 +1463,10 @@ if(!data.tactics || typeof data.tactics!=='object'){
   data.tactics={};
 }
 
-if(!data.tactics.positions || typeof data.tactics.positions!=='object'){
+if(
+  !data.tactics.positions ||
+  typeof data.tactics.positions!=='object'
+){
   data.tactics.positions={};
 }
 
@@ -1634,7 +1474,10 @@ if(!Array.isArray(data.tactics.savedLineup)){
   data.tactics.savedLineup=[];
 }
 
-if(data.tactics.view!=='full' && data.tactics.view!=='half'){
+if(
+  data.tactics.view!=='full' &&
+  data.tactics.view!=='half'
+){
   data.tactics.view='full';
 }
 
@@ -1656,42 +1499,9 @@ if(!data.settings.season)
 if(!data.settings.category)
   data.settings.category='Primer Equipo';
 
-if(!data.next || typeof data.next!=='object'){
-  data.next={};
+if(!Array.isArray(data.notes)){
+  data.notes=[];
 }
-
-if(!data.next.opponent)
-  data.next.opponent='CD Rival';
-
-if(!data.next.date)
-  data.next.date='';
-
-if(!data.next.time)
-  data.next.time='12:00';
-
-if(!data.next.place)
-  data.next.place='';
-
-if(!Array.isArray(data.matches)){
-  data.matches=[];
-}
-
-data.matches=data.matches.map((m,index)=>({
-  id:m.id||`match-${Date.now()}-${index}`,
-  date:m.date||'',
-  dateISO:m.dateISO||'',
-  round:m.round||'',
-  roundNumber:
-    Number.isFinite(Number(m.roundNumber))
-      ?Number(m.roundNumber)
-      :extractRoundNumber(m.round),
-  home:m.home||'',
-  away:m.away||'',
-  score:m.score||'',
-  time:m.time||'',
-  place:m.place||'',
-  imported:!!m.imported
-}));
 
 if(!Array.isArray(data.activity)){
   data.activity=[];
@@ -1702,27 +1512,37 @@ if(!Array.isArray(data.activity)){
 ===================================================== */
 
 let section='home';
+
 let filter='all';
+
+let noteFilter='all';
+
 let selectedPlayerId=null;
-let importedMatches=[];
-let calendarPreviewUrls=[];
+
+let selectedNoteId=null;
 
 /* =====================================================
    ACTIVIDAD
 ===================================================== */
 
 function addActivity(icon,title){
+
   if(!Array.isArray(data.activity)){
     data.activity=[];
   }
 
   data.activity.unshift({
+
     icon:icon,
+
     title:title,
+
     time:Date.now()
+
   });
 
-  data.activity=data.activity.slice(0,6);
+  data.activity=
+    data.activity.slice(0,6);
 }
 
 /* =====================================================
@@ -1730,7 +1550,12 @@ function addActivity(icon,title){
 ===================================================== */
 
 function save(){
-  localStorage.setItem(KEY,JSON.stringify(data));
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(data)
+  );
+
 }
 
 /* =====================================================
@@ -1738,428 +1563,20 @@ function save(){
 ===================================================== */
 
 function esc(s){
+
   return String(s??'').replace(
     /[&<>"']/g,
     m=>({
+
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
       '"':'&quot;',
       "'":'&#039;'
+
     }[m])
   );
-}
 
-/* =====================================================
-   IDENTIFICACIÓN DEL EQUIPO
-===================================================== */
-
-function normalizeTeamForComparison(name){
-  return String(name||'')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g,'')
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g,' ')
-    .replace(/\s+/g,' ')
-    .trim();
-}
-
-function normalizeClubCore(name){
-  let value=normalizeTeamForComparison(name);
-
-  value=value
-    .replace(
-      /\b(c\s*f\s*u|c\s*f|f\s*c|u\s*d|u\s*e)\b/g,
-      ' '
-    )
-    .replace(
-      /\b(?:a|primer|segon|equipo)\b/g,
-      ' '
-    )
-    .replace(/\s+/g,' ')
-    .trim();
-
-  return value;
-}
-
-function compactClubName(name){
-  return normalizeClubCore(name)
-    .replace(/\s+/g,'')
-    .trim();
-}
-
-function levenshtein(a,b){
-  a=String(a||'');
-  b=String(b||'');
-
-  if(a===b)return 0;
-  if(!a.length)return b.length;
-  if(!b.length)return a.length;
-
-  const matrix=Array.from(
-    {length:a.length+1},
-    ()=>Array(b.length+1).fill(0)
-  );
-
-  for(let i=0;i<=a.length;i++)
-    matrix[i][0]=i;
-
-  for(let j=0;j<=b.length;j++)
-    matrix[0][j]=j;
-
-  for(let i=1;i<=a.length;i++){
-    for(let j=1;j<=b.length;j++){
-      const cost=a[i-1]===b[j-1]?0:1;
-
-      matrix[i][j]=Math.min(
-        matrix[i-1][j]+1,
-        matrix[i][j-1]+1,
-        matrix[i-1][j-1]+cost
-      );
-    }
-  }
-
-  return matrix[a.length][b.length];
-}
-
-function getConfiguredTeam(){
-  return String(data.settings?.team||'').trim();
-}
-
-function isConfiguredTeam(name){
-  const configured=normalizeTeamForComparison(getConfiguredTeam());
-  const candidate=normalizeTeamForComparison(name);
-
-  if(!configured||!candidate){
-    return false;
-  }
-
-  if(configured===candidate){
-    return true;
-  }
-
-  const configuredCore=normalizeClubCore(configured);
-  const candidateCore=normalizeClubCore(candidate);
-
-  if(
-    configuredCore &&
-    candidateCore &&
-    configuredCore===candidateCore
-  ){
-    return true;
-  }
-
-  const configuredCompact=compactClubName(configured);
-  const candidateCompact=compactClubName(candidate);
-
-  if(
-    configuredCompact.length>=5 &&
-    candidateCompact.length>=5
-  ){
-    if(
-      candidateCompact.includes(configuredCompact) ||
-      configuredCompact.includes(candidateCompact)
-    ){
-      return true;
-    }
-
-    const maxLength=Math.max(
-      configuredCompact.length,
-      candidateCompact.length
-    );
-
-    const distance=levenshtein(
-      configuredCompact,
-      candidateCompact
-    );
-
-    const similarity=1-(distance/maxLength);
-
-    if(
-      maxLength>=8 &&
-      similarity>=0.84
-    ){
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function getTeamMatches(){
-  return data.matches.filter(
-    match=>
-      isConfiguredTeam(match.home) ||
-      isConfiguredTeam(match.away)
-  );
-}
-
-function filterMatchesForConfiguredTeam(list){
-  return (Array.isArray(list)?list:[]).filter(
-    match=>
-      isConfiguredTeam(match.home) ||
-      isConfiguredTeam(match.away)
-  );
-}
-
-/* =====================================================
-   FECHAS
-===================================================== */
-
-function normalizeDateText(date){
-  if(!date)return '';
-
-  return String(date)
-    .replace(/\s+/g,' ')
-    .trim();
-}
-
-function getSeasonStartYear(){
-  const season=String(data.settings.season||'');
-  const match=season.match(/(\d{4})/);
-
-  if(match){
-    return Number(match[1]);
-  }
-
-  return new Date().getFullYear();
-}
-
-function dateToISO(day,month,explicitYear=null){
-  const d=Number(day);
-  const m=Number(month);
-
-  if(
-    !Number.isFinite(d) ||
-    !Number.isFinite(m) ||
-    d<1 ||
-    d>31 ||
-    m<1 ||
-    m>12
-  ){
-    return '';
-  }
-
-  let year=explicitYear
-    ?Number(explicitYear)
-    :getSeasonStartYear();
-
-  if(!explicitYear && m<=7){
-    year++;
-  }
-
-  const date=new Date(year,m-1,d);
-
-  if(
-    date.getDate()!==d ||
-    date.getMonth()!==m-1
-  ){
-    return '';
-  }
-
-  return [
-    year,
-    String(m).padStart(2,'0'),
-    String(d).padStart(2,'0')
-  ].join('-');
-}
-
-function displayDateFromISO(iso){
-  if(!iso)return '';
-
-  const parts=String(iso).split('-');
-
-  if(parts.length!==3)return '';
-
-  const d=Number(parts[2]);
-  const m=Number(parts[1]);
-
-  const months=[
-    'ENE','FEB','MAR','ABR','MAY','JUN',
-    'JUL','AGO','SEP','OCT','NOV','DIC'
-  ];
-
-  if(!d||!m||!months[m-1]){
-    return '';
-  }
-
-  return `${d} ${months[m-1]}`;
-}
-
-/* =====================================================
-   JORNADAS
-===================================================== */
-
-/*
-  IMPORTANTE:
-  Guardamos también roundNumber.
-
-  Así:
-  Jornada 1
-  Jornada 2
-  Jornada 3
-  ...
-  Jornada 10
-
-  nunca se ordenan como:
-  1,10,11,12,2,20...
-*/
-
-function extractRoundNumber(round){
-  const match=String(round||'').match(
-    /(?:jornada|jornad[ao])\s*([0-9oOiIl]{1,2})/i
-  );
-
-  if(!match){
-    return null;
-  }
-
-  const value=String(match[1])
-    .replace(/[oO]/g,'0')
-    .replace(/[iIl]/g,'1');
-
-  const number=Number(value);
-
-  return Number.isFinite(number)
-    ?number
-    :null;
-}
-
-function sortMatches(list){
-  return [...list].sort((a,b)=>{
-    const ra=Number.isFinite(Number(a.roundNumber))
-      ?Number(a.roundNumber)
-      :extractRoundNumber(a.round);
-
-    const rb=Number.isFinite(Number(b.roundNumber))
-      ?Number(b.roundNumber)
-      :extractRoundNumber(b.round);
-
-    if(
-      ra!==null &&
-      rb!==null &&
-      ra!==rb
-    ){
-      return ra-rb;
-    }
-
-    const da=a.dateISO||'';
-    const db=b.dateISO||'';
-
-    if(
-      da &&
-      db &&
-      da!==db
-    ){
-      return da.localeCompare(db);
-    }
-
-    return String(a.date||'').localeCompare(
-      String(b.date||'')
-    );
-  });
-}
-
-/* =====================================================
-   CUENTA ATRÁS
-===================================================== */
-
-function getMatchCountdown(){
-  const nextMatch=getNextUpcomingMatch();
-
-  if(nextMatch&&nextMatch.dateISO){
-    const target=new Date(
-      `${nextMatch.dateISO}T${nextMatch.time||'12:00'}:00`
-    );
-
-    const now=new Date();
-
-    const today=new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate()
-    );
-
-    const targetDay=new Date(
-      target.getFullYear(),
-      target.getMonth(),
-      target.getDate()
-    );
-
-    const days=Math.round(
-      (targetDay-today)/86400000
-    );
-
-    if(days===0)return '🔴 Partido hoy';
-    if(days===1)return '🟠 Partido mañana';
-    if(days>1)return `⏱ Faltan <strong>${days} días</strong>`;
-
-    return '';
-  }
-
-  return '';
-}
-
-/* =====================================================
-   PRÓXIMO PARTIDO
-===================================================== */
-
-function isPlayedMatch(match){
-  return !!(
-    match &&
-    String(match.score||'').trim()
-  );
-}
-
-function getNextUpcomingMatch(){
-  const now=new Date();
-
-  const todayISO=[
-    now.getFullYear(),
-    String(now.getMonth()+1).padStart(2,'0'),
-    String(now.getDate()).padStart(2,'0')
-  ].join('-');
-
-  const upcoming=getTeamMatches().filter(
-    m=>
-      !isPlayedMatch(m) &&
-      m.dateISO &&
-      m.dateISO>=todayISO
-  );
-
-  return sortMatches(upcoming)[0]||null;
-}
-
-function syncNextMatch(){
-  const next=getNextUpcomingMatch();
-
-  if(!next){
-    return;
-  }
-
-  const isHome=isConfiguredTeam(next.home);
-
-  const opponent=isHome
-    ?next.away
-    :next.home;
-
-  data.next.opponent=opponent;
-
-  data.next.date=
-    next.date||
-    displayDateFromISO(next.dateISO);
-
-  data.next.time=next.time||'12:00';
-
-  data.next.place=
-    next.place||
-    (
-      isHome
-        ?'Campo local'
-        :'Campo visitante'
-    );
-
-  save();
 }
 
 /* =====================================================
@@ -2167,22 +1584,35 @@ function syncNextMatch(){
 ===================================================== */
 
 function go(s){
+
   section=s;
+
   selectedPlayerId=null;
+
+  selectedNoteId=null;
 
   window.scrollTo(0,0);
 
   render();
+
 }
 
 function navItems(){
+
   return[
+
     ['home','⌂','Inicio'],
+
     ['team','♟','Plantilla'],
+
     ['tactic','⚽','Táctica'],
-    ['matches','🏆','Partidos'],
+
+    ['notes','📝','Notas'],
+
     ['more','☰','Más']
+
   ];
+
 }
 
 /* =====================================================
@@ -2190,9 +1620,13 @@ function navItems(){
 ===================================================== */
 
 function render(){
+
   document.getElementById('nav').innerHTML=
+
     navItems().map(
+
       x=>`
+
         <button
           class="${section===x[0]?'active':''}"
           onclick="go('${x[0]}')">
@@ -2204,27 +1638,46 @@ function render(){
           ${x[2]}
 
         </button>
+
       `
+
     ).join('');
 
-  const c=document.getElementById('content');
+  const c=
+    document.getElementById('content');
 
   c.innerHTML=
+
     section==='home'
+
       ?home()
+
     :section==='team'
+
       ?team()
+
     :section==='player'
+
       ?playerProfile()
+
     :section==='tactic'
+
       ?tactic()
-    :section==='matches'
-      ?matches()
-    :section==='more'
-      ?more()
+
+    :section==='notes'
+
+      ?notes()
+
     :section==='stats'
+
       ?stats()
+
+    :section==='more'
+
+      ?more()
+
     :settings();
+
 }
 
 /* =====================================================
@@ -2232,82 +1685,40 @@ function render(){
 ===================================================== */
 
 function home(){
-  const available=data.players.filter(p=>p.available).length;
-  const countdown=getMatchCountdown();
 
-  const activities=Array.isArray(data.activity)
-    ?data.activity.slice(0,4)
-    :[];
+  const available=
+    data.players.filter(
+      p=>p.available
+    ).length;
 
-  const teamMatches=getTeamMatches();
+  const activities=
+    Array.isArray(data.activity)
+      ?data.activity.slice(0,4)
+      :[];
+
+  const notesCount=
+    Array.isArray(data.notes)
+      ?data.notes.length
+      :0;
 
   return`
+
     <div class="title-row home-title-row">
+
       <div>
-        <div class="title">¡Buenos días!</div>
+
+        <div class="title">
+          ¡Buenos días!
+        </div>
 
         <div class="subtitle">
-          ${esc(data.settings.team||'KNATT FC')}
-        </div>
-      </div>
-    </div>
-
-    <div class="card home-match-card">
-
-      <div class="section-label">
-        PRÓXIMO PARTIDO
-      </div>
-
-      <div class="big">
-        ${esc(data.next.date||'Sin partido programado')}
-      </div>
-
-      <div class="muted small">
-        ${esc(data.next.time||'')}
-        ${
-          data.next.place
-            ?` · ${esc(data.next.place)}`
-            :''
-        }
-      </div>
-
-      <div class="versus">
-
-        <div class="club">
-          <div class="club-logo">⚽</div>
-
-          ${esc(data.settings.team||'KNATT FC')}
-        </div>
-
-        <div class="vs">
-          VS
-        </div>
-
-        <div class="club">
-          <div class="club-logo">🛡️</div>
-
-          ${esc(data.next.opponent||'—')}
+          ${esc(
+            data.settings.team||
+            'KNATT FC'
+          )}
         </div>
 
       </div>
-
-      ${
-        countdown
-          ?`
-            <div class="match-countdown">
-              ${countdown}
-            </div>
-          `
-          :''
-      }
-
-      <button
-        class="btn full"
-        onclick="go('tactic')">
-
-        Abrir Táctica
-
-      </button>
 
     </div>
 
@@ -2320,23 +1731,39 @@ function home(){
       <div class="stat-grid">
 
         <div class="stat">
-          <b>${data.players.length}</b>
-          <span>Jugadores</span>
+
+          <b>
+            ${data.players.length}
+          </b>
+
+          <span>
+            Jugadores
+          </span>
+
         </div>
 
         <div class="stat">
-          <b>${available}</b>
-          <span>Disponibles</span>
+
+          <b>
+            ${available}
+          </b>
+
+          <span>
+            Disponibles
+          </span>
+
         </div>
 
-        <div class="stat">
-          <b>${data.players.length-available}</b>
-          <span>Ausentes</span>
-        </div>
+        <div class="stat red">
 
-        <div class="stat">
-          <b>${teamMatches.length}</b>
-          <span>Partidos</span>
+          <b>
+            ${data.players.length-available}
+          </b>
+
+          <span>
+            Ausentes
+          </span>
+
         </div>
 
       </div>
@@ -2358,11 +1785,83 @@ function home(){
         </div>
 
         <div class="home-quick-subtitle">
+
           ${data.players.length}
-          ${data.players.length===1?'jugador':'jugadores'}
+
+          ${
+            data.players.length===1
+              ?'jugador'
+              :'jugadores'
+          }
+
           ·
+
           ${available}
+
           disponibles
+
+        </div>
+
+      </div>
+
+      <div class="home-quick-arrow">
+        ›
+      </div>
+
+    </div>
+
+    <div
+      class="card home-quick-card"
+      onclick="go('notes')">
+
+      <div class="home-quick-icon">
+        📝
+      </div>
+
+      <div class="home-quick-content">
+
+        <div class="home-quick-title">
+          Notas de entrenador
+        </div>
+
+        <div class="home-quick-subtitle">
+
+          ${
+            notesCount
+              ?`${notesCount} ${
+                  notesCount===1
+                    ?'nota guardada'
+                    :'notas guardadas'
+                }`
+              :'Añade observaciones del equipo'
+          }
+
+        </div>
+
+      </div>
+
+      <div class="home-quick-arrow">
+        ›
+      </div>
+
+    </div>
+
+    <div
+      class="card home-quick-card"
+      onclick="go('tactic')">
+
+      <div class="home-quick-icon">
+        ⚽
+      </div>
+
+      <div class="home-quick-content">
+
+        <div class="home-quick-title">
+          Pizarra táctica
+        </div>
+
+        <div class="home-quick-subtitle">
+          Diseña y guarda tu planteamiento
         </div>
 
       </div>
@@ -2381,8 +1880,11 @@ function home(){
 
       ${
         activities.length
+
           ?activities.map(
+
             a=>`
+
               <div class="activity-item">
 
                 <div class="activity-icon">
@@ -2402,46 +1904,76 @@ function home(){
                 </div>
 
               </div>
+
             `
+
           ).join('')
+
           :`
+
             <div class="activity-empty">
+
               Todavía no hay actividad reciente.
+
             </div>
+
           `
+
       }
 
     </div>
+
   `;
+
 }
 
 function activityTime(timestamp){
+
   if(!timestamp)return '';
 
-  const diff=Date.now()-Number(timestamp);
-  const minute=60000;
-  const hour=60*minute;
-  const day=24*hour;
+  const diff=
+    Date.now()-Number(timestamp);
 
-  if(diff<minute)return 'Ahora';
+  const minute=60000;
+
+  const hour=
+    60*minute;
+
+  const day=
+    24*hour;
+
+  if(diff<minute)
+    return 'Ahora';
 
   if(diff<hour){
-    return`Hace ${Math.floor(diff/minute)} min`;
+
+    return`Hace ${
+      Math.floor(diff/minute)
+    } min`;
+
   }
 
   if(diff<day){
-    return`Hace ${Math.floor(diff/hour)} h`;
+
+    return`Hace ${
+      Math.floor(diff/hour)
+    } h`;
+
   }
 
-  if(diff<2*day)return'Ayer';
+  if(diff<2*day)
+    return'Ayer';
 
-  return new Date(timestamp).toLocaleDateString(
+  return new Date(
+    timestamp
+  ).toLocaleDateString(
     'es-ES',
     {
       day:'numeric',
       month:'short'
     }
   );
+
 }
 
 /* =====================================================
@@ -2449,17 +1981,24 @@ function activityTime(timestamp){
 ===================================================== */
 
 function team(){
-  const list=data.players.filter(
-    p=>
-      filter==='all'||
-      (
-        filter==='available'
-          ?p.available
-          :!p.available
-      )
-  );
+
+  const list=
+    data.players.filter(
+
+      p=>
+
+        filter==='all'||
+
+        (
+          filter==='available'
+            ?p.available
+            :!p.available
+        )
+
+    );
 
   return`
+
     <div class="title-row">
 
       <div>
@@ -2469,8 +2008,10 @@ function team(){
         </div>
 
         <div class="subtitle">
+
           ${data.players.length}
           jugadores
+
         </div>
 
       </div>
@@ -2488,24 +2029,45 @@ function team(){
     <div class="tabs">
 
       <button
-        class="tab ${filter==='all'?'active':''}"
-        onclick="filter='all';render()">
+        class="tab ${
+          filter==='all'
+            ?'active'
+            :''
+        }"
+        onclick="
+          filter='all';
+          render();
+        ">
 
         Todos
 
       </button>
 
       <button
-        class="tab ${filter==='available'?'active':''}"
-        onclick="filter='available';render()">
+        class="tab ${
+          filter==='available'
+            ?'active'
+            :''
+        }"
+        onclick="
+          filter='available';
+          render();
+        ">
 
         Disponibles
 
       </button>
 
       <button
-        class="tab ${filter==='absent'?'active':''}"
-        onclick="filter='absent';render()">
+        class="tab ${
+          filter==='absent'
+            ?'active'
+            :''
+        }"
+        onclick="
+          filter='absent';
+          render();
+        ">
 
         Ausentes
 
@@ -2517,13 +2079,21 @@ function team(){
 
       ${
         list.map(
+
           p=>`
+
             <div
               class="item"
               onclick="openPlayer(${p.id})">
 
               <div class="avatar">
-                ${p.pos==='POR'?'🧤':'⚽'}
+
+                ${
+                  p.pos==='POR'
+                    ?'🧤'
+                    :'⚽'
+                }
+
               </div>
 
               <div class="grow">
@@ -2541,7 +2111,10 @@ function team(){
                   ${
                     p.available
                       ?'Disponible'
-                      :esc(p.reason||'No disponible')
+                      :esc(
+                        p.reason||
+                        'No disponible'
+                      )
                   }
 
                 </div>
@@ -2551,13 +2124,19 @@ function team(){
               <span>›</span>
 
             </div>
+
           `
+
         ).join('')||
+
         '<div class="muted">No hay jugadores.</div>'
+
       }
 
     </div>
+
   `;
+
 }
 
 /* =====================================================
@@ -2565,25 +2144,38 @@ function team(){
 ===================================================== */
 
 function openPlayer(id){
+
   selectedPlayerId=id;
+
   section='player';
+
   render();
+
 }
 
 function playerProfile(){
-  const p=data.players.find(
-    x=>String(x.id)===String(selectedPlayerId)
-  );
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(selectedPlayerId)
+    );
 
   if(!p){
+
     return`
+
       <div class="card">
         Jugador no encontrado
       </div>
+
     `;
+
   }
 
   return`
+
     <button
       class="btn light"
       onclick="go('team')">
@@ -2605,9 +2197,13 @@ function playerProfile(){
       </div>
 
       <div class="muted">
+
         ${esc(p.pos)}
+
         ·
+
         #${esc(p.num)}
+
       </div>
 
     </div>
@@ -2615,23 +2211,33 @@ function playerProfile(){
     <div class="stat-grid">
 
       <div class="stat">
+
         <b>${p.min||0}</b>
-        <span>Minutos</span>
+
+        <span>
+          Minutos
+        </span>
+
       </div>
 
       <div class="stat red">
+
         <b>${p.g||0}</b>
-        <span>Goles</span>
+
+        <span>
+          Goles
+        </span>
+
       </div>
 
       <div class="stat">
+
         <b>${p.a||0}</b>
-        <span>Asistencias</span>
-      </div>
 
-      <div class="stat">
-        <b>#${esc(p.num)}</b>
-        <span>Dorsal</span>
+        <span>
+          Asistencias
+        </span>
+
       </div>
 
     </div>
@@ -2657,7 +2263,9 @@ function playerProfile(){
       </button>
 
     </div>
+
   `;
+
 }
 
 /* =====================================================
@@ -2665,15 +2273,20 @@ function playerProfile(){
 ===================================================== */
 
 function addPlayer(){
+
   closeEditModal();
+
   closeAddModal();
 
-  const modal=document.createElement('div');
+  const modal=
+    document.createElement('div');
 
   modal.className='edit-modal';
+
   modal.id='add-player-modal';
 
   modal.innerHTML=`
+
     <div
       class="edit-modal-card"
       onclick="event.stopPropagation()">
@@ -2704,7 +2317,10 @@ function addPlayer(){
       </div>
 
       <div class="form-group">
-        <label>Nombre</label>
+
+        <label>
+          Nombre
+        </label>
 
         <input
           id="add-name"
@@ -2712,10 +2328,14 @@ function addPlayer(){
           type="text"
           placeholder="Nombre del jugador"
           autocomplete="off">
+
       </div>
 
       <div class="form-group">
-        <label>Dorsal</label>
+
+        <label>
+          Dorsal
+        </label>
 
         <input
           id="add-num"
@@ -2724,10 +2344,14 @@ function addPlayer(){
           inputmode="numeric"
           min="0"
           placeholder="Número de camiseta">
+
       </div>
 
       <div class="form-group">
-        <label>Posición</label>
+
+        <label>
+          Posición
+        </label>
 
         <input
           id="add-pos"
@@ -2735,11 +2359,14 @@ function addPlayer(){
           type="text"
           placeholder="Ej. DC, MC, DFC, POR..."
           autocomplete="off">
+
       </div>
 
       <div class="form-group">
 
-        <label>Disponibilidad</label>
+        <label>
+          Disponibilidad
+        </label>
 
         <div class="edit-status-grid">
 
@@ -2798,7 +2425,10 @@ function addPlayer(){
       <div class="edit-stats-grid">
 
         <div class="form-group">
-          <label>Minutos</label>
+
+          <label>
+            Minutos
+          </label>
 
           <input
             id="add-min"
@@ -2807,10 +2437,14 @@ function addPlayer(){
             inputmode="numeric"
             min="0"
             value="0">
+
         </div>
 
         <div class="form-group">
-          <label>Goles</label>
+
+          <label>
+            Goles
+          </label>
 
           <input
             id="add-goals"
@@ -2819,10 +2453,14 @@ function addPlayer(){
             inputmode="numeric"
             min="0"
             value="0">
+
         </div>
 
         <div class="form-group">
-          <label>Asistencias</label>
+
+          <label>
+            Asistencias
+          </label>
 
           <input
             id="add-assists"
@@ -2831,6 +2469,7 @@ function addPlayer(){
             inputmode="numeric"
             min="0"
             value="0">
+
         </div>
 
       </div>
@@ -2858,36 +2497,67 @@ function addPlayer(){
       </div>
 
     </div>
+
   `;
 
-  modal.addEventListener('click',function(event){
-    if(event.target===modal){
-      closeAddModal();
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(event.target===modal){
+        closeAddModal();
+      }
+
     }
-  });
+  );
 
   document.body.appendChild(modal);
+
   document.body.style.overflow='hidden';
 
-  const nameInput=document.getElementById('add-name');
+  const nameInput=
+    document.getElementById('add-name');
 
   if(nameInput){
+
     setTimeout(()=>{
+
       nameInput.focus();
+
     },50);
+
   }
+
 }
 
 function toggleAddReason(){
-  const available=document.querySelector('#add-available-yes');
-  const reason=document.getElementById('add-reason');
-  const group=document.getElementById('add-reason-group');
 
-  if(!available||!reason||!group)return;
+  const available=
+    document.querySelector(
+      '#add-available-yes'
+    );
 
-  const isAvailable=available.checked;
+  const reason=
+    document.getElementById(
+      'add-reason'
+    );
 
-  reason.disabled=isAvailable;
+  const group=
+    document.getElementById(
+      'add-reason-group'
+    );
+
+  if(
+    !available||
+    !reason||
+    !group
+  )return;
+
+  const isAvailable=
+    available.checked;
+
+  reason.disabled=
+    isAvailable;
 
   group.classList.toggle(
     'edit-disabled',
@@ -2897,61 +2567,143 @@ function toggleAddReason(){
   if(isAvailable){
     reason.value='';
   }
+
 }
 
 function saveNewPlayer(){
-  const name=document.getElementById('add-name');
-  const num=document.getElementById('add-num');
-  const pos=document.getElementById('add-pos');
 
-  const available=document.querySelector(
-    'input[name="add-available"]:checked'
-  );
+  const name=
+    document.getElementById(
+      'add-name'
+    );
 
-  const reason=document.getElementById('add-reason');
-  const min=document.getElementById('add-min');
-  const goals=document.getElementById('add-goals');
-  const assists=document.getElementById('add-assists');
+  const num=
+    document.getElementById(
+      'add-num'
+    );
 
-  const newName=name?name.value.trim():'';
-  const newNum=num?num.value.trim():'';
-  const newPos=pos?pos.value.trim():'';
+  const pos=
+    document.getElementById(
+      'add-pos'
+    );
+
+  const available=
+    document.querySelector(
+      'input[name="add-available"]:checked'
+    );
+
+  const reason=
+    document.getElementById(
+      'add-reason'
+    );
+
+  const min=
+    document.getElementById(
+      'add-min'
+    );
+
+  const goals=
+    document.getElementById(
+      'add-goals'
+    );
+
+  const assists=
+    document.getElementById(
+      'add-assists'
+    );
+
+  const newName=
+    name?name.value.trim():'';
+
+  const newNum=
+    num?num.value.trim():'';
+
+  const newPos=
+    pos?pos.value.trim():'';
 
   if(!newName){
-    alert('El nombre del jugador es obligatorio.');
+
+    alert(
+      'El nombre del jugador es obligatorio.'
+    );
+
     name?.focus();
+
     return;
+
   }
 
   if(!newNum){
-    alert('El dorsal es obligatorio.');
+
+    alert(
+      'El dorsal es obligatorio.'
+    );
+
     num?.focus();
+
     return;
+
   }
 
   if(!newPos){
-    alert('La posición es obligatoria.');
+
+    alert(
+      'La posición es obligatoria.'
+    );
+
     pos?.focus();
+
     return;
+
   }
 
-  const isAvailable=available
-    ?available.value==='true'
-    :true;
+  const isAvailable=
+    available
+      ?available.value==='true'
+      :true;
 
   const newPlayer={
+
     id:Date.now(),
+
     name:newName,
+
     num:newNum,
+
     pos:newPos,
+
     available:isAvailable,
-    reason:isAvailable?'':(reason?reason.value.trim():''),
-    min:Math.max(0,Number(min?.value)||0),
-    g:Math.max(0,Number(goals?.value)||0),
-    a:Math.max(0,Number(assists?.value)||0)
+
+    reason:
+      isAvailable
+        ?''
+        :(reason
+          ?reason.value.trim()
+          :''),
+
+    min:
+      Math.max(
+        0,
+        Number(min?.value)||0
+      ),
+
+    g:
+      Math.max(
+        0,
+        Number(goals?.value)||0
+      ),
+
+    a:
+      Math.max(
+        0,
+        Number(assists?.value)||0
+      )
+
   };
 
-  data.players.push(newPlayer);
+  data.players.push(
+    newPlayer
+  );
 
   addActivity(
     '👤',
@@ -2959,8 +2711,11 @@ function saveNewPlayer(){
   );
 
   save();
+
   closeAddModal();
+
   render();
+
 }
 
 /* =====================================================
@@ -2968,18 +2723,25 @@ function saveNewPlayer(){
 ===================================================== */
 
 function editPlayer(){
-  const p=data.players.find(
-    x=>String(x.id)===String(selectedPlayerId)
-  );
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(selectedPlayerId)
+    );
 
   if(!p)return;
 
-  const modal=document.createElement('div');
+  const modal=
+    document.createElement('div');
 
   modal.className='edit-modal';
+
   modal.id='edit-player-modal';
 
   modal.innerHTML=`
+
     <div
       class="edit-modal-card"
       onclick="event.stopPropagation()">
@@ -3010,7 +2772,10 @@ function editPlayer(){
       </div>
 
       <div class="form-group">
-        <label>Nombre</label>
+
+        <label>
+          Nombre
+        </label>
 
         <input
           id="edit-name"
@@ -3018,10 +2783,14 @@ function editPlayer(){
           type="text"
           value="${esc(p.name)}"
           autocomplete="off">
+
       </div>
 
       <div class="form-group">
-        <label>Dorsal</label>
+
+        <label>
+          Dorsal
+        </label>
 
         <input
           id="edit-num"
@@ -3029,10 +2798,14 @@ function editPlayer(){
           type="number"
           inputmode="numeric"
           value="${esc(p.num)}">
+
       </div>
 
       <div class="form-group">
-        <label>Posición</label>
+
+        <label>
+          Posición
+        </label>
 
         <input
           id="edit-pos"
@@ -3040,11 +2813,14 @@ function editPlayer(){
           type="text"
           value="${esc(p.pos)}"
           autocomplete="off">
+
       </div>
 
       <div class="form-group">
 
-        <label>Disponibilidad</label>
+        <label>
+          Disponibilidad
+        </label>
 
         <div class="edit-status-grid">
 
@@ -3086,7 +2862,11 @@ function editPlayer(){
 
       <div
         id="edit-reason-group"
-        class="form-group ${p.available?'edit-disabled':''}">
+        class="form-group ${
+          p.available
+            ?'edit-disabled'
+            :''
+        }">
 
         <label>
           Motivo de ausencia
@@ -3105,7 +2885,10 @@ function editPlayer(){
       <div class="edit-stats-grid">
 
         <div class="form-group">
-          <label>Minutos</label>
+
+          <label>
+            Minutos
+          </label>
 
           <input
             id="edit-min"
@@ -3114,10 +2897,14 @@ function editPlayer(){
             inputmode="numeric"
             min="0"
             value="${Number(p.min)||0}">
+
         </div>
 
         <div class="form-group">
-          <label>Goles</label>
+
+          <label>
+            Goles
+          </label>
 
           <input
             id="edit-goals"
@@ -3126,10 +2913,14 @@ function editPlayer(){
             inputmode="numeric"
             min="0"
             value="${Number(p.g)||0}">
+
         </div>
 
         <div class="form-group">
-          <label>Asistencias</label>
+
+          <label>
+            Asistencias
+          </label>
 
           <input
             id="edit-assists"
@@ -3138,6 +2929,7 @@ function editPlayer(){
             inputmode="numeric"
             min="0"
             value="${Number(p.a)||0}">
+
         </div>
 
       </div>
@@ -3165,37 +2957,71 @@ function editPlayer(){
       </div>
 
     </div>
+
   `;
 
-  modal.addEventListener('click',function(event){
-    if(event.target===modal){
-      closeEditModal();
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(event.target===modal){
+        closeEditModal();
+      }
+
     }
-  });
+  );
 
   document.body.appendChild(modal);
+
   document.body.style.overflow='hidden';
 
-  const nameInput=document.getElementById('edit-name');
+  const nameInput=
+    document.getElementById(
+      'edit-name'
+    );
 
   if(nameInput){
+
     setTimeout(()=>{
+
       nameInput.focus();
+
       nameInput.select();
+
     },50);
+
   }
+
 }
 
 function toggleEditReason(){
-  const available=document.querySelector('#edit-available-yes');
-  const reason=document.getElementById('edit-reason');
-  const group=document.getElementById('edit-reason-group');
 
-  if(!available||!reason||!group)return;
+  const available=
+    document.querySelector(
+      '#edit-available-yes'
+    );
 
-  const isAvailable=available.checked;
+  const reason=
+    document.getElementById(
+      'edit-reason'
+    );
 
-  reason.disabled=isAvailable;
+  const group=
+    document.getElementById(
+      'edit-reason-group'
+    );
+
+  if(
+    !available||
+    !reason||
+    !group
+  )return;
+
+  const isAvailable=
+    available.checked;
+
+  reason.disabled=
+    isAvailable;
 
   group.classList.toggle(
     'edit-disabled',
@@ -3205,68 +3031,152 @@ function toggleEditReason(){
   if(isAvailable){
     reason.value='';
   }
+
 }
 
 function saveEditedPlayer(){
-  const p=data.players.find(
-    x=>String(x.id)===String(selectedPlayerId)
-  );
+
+  const p=
+    data.players.find(
+      x=>
+        String(x.id)===
+        String(selectedPlayerId)
+    );
 
   if(!p){
+
     closeEditModal();
+
     return;
+
   }
 
-  const name=document.getElementById('edit-name');
-  const num=document.getElementById('edit-num');
-  const pos=document.getElementById('edit-pos');
+  const name=
+    document.getElementById(
+      'edit-name'
+    );
 
-  const available=document.querySelector(
-    'input[name="edit-available"]:checked'
-  );
+  const num=
+    document.getElementById(
+      'edit-num'
+    );
 
-  const reason=document.getElementById('edit-reason');
-  const min=document.getElementById('edit-min');
-  const goals=document.getElementById('edit-goals');
-  const assists=document.getElementById('edit-assists');
+  const pos=
+    document.getElementById(
+      'edit-pos'
+    );
 
-  const newName=name?name.value.trim():p.name;
-  const newNum=num?num.value.trim():p.num;
-  const newPos=pos?pos.value.trim():p.pos;
+  const available=
+    document.querySelector(
+      'input[name="edit-available"]:checked'
+    );
+
+  const reason=
+    document.getElementById(
+      'edit-reason'
+    );
+
+  const min=
+    document.getElementById(
+      'edit-min'
+    );
+
+  const goals=
+    document.getElementById(
+      'edit-goals'
+    );
+
+  const assists=
+    document.getElementById(
+      'edit-assists'
+    );
+
+  const newName=
+    name
+      ?name.value.trim()
+      :p.name;
+
+  const newNum=
+    num
+      ?num.value.trim()
+      :p.num;
+
+  const newPos=
+    pos
+      ?pos.value.trim()
+      :p.pos;
 
   if(!newName){
-    alert('El nombre del jugador es obligatorio.');
+
+    alert(
+      'El nombre del jugador es obligatorio.'
+    );
+
     name?.focus();
+
     return;
+
   }
 
   if(!newNum){
-    alert('El dorsal es obligatorio.');
+
+    alert(
+      'El dorsal es obligatorio.'
+    );
+
     num?.focus();
+
     return;
+
   }
 
   if(!newPos){
-    alert('La posición es obligatoria.');
+
+    alert(
+      'La posición es obligatoria.'
+    );
+
     pos?.focus();
+
     return;
+
   }
 
   p.name=newName;
+
   p.num=newNum;
+
   p.pos=newPos;
 
-  p.available=available
-    ?available.value==='true'
-    :p.available;
+  p.available=
+    available
+      ?available.value==='true'
+      :p.available;
 
-  p.reason=p.available
-    ?''
-    :(reason?reason.value.trim():p.reason);
+  p.reason=
+    p.available
+      ?''
+      :(reason
+        ?reason.value.trim()
+        :p.reason);
 
-  p.min=Math.max(0,Number(min?.value)||0);
-  p.g=Math.max(0,Number(goals?.value)||0);
-  p.a=Math.max(0,Number(assists?.value)||0);
+  p.min=
+    Math.max(
+      0,
+      Number(min?.value)||0
+    );
+
+  p.g=
+    Math.max(
+      0,
+      Number(goals?.value)||0
+    );
+
+  p.a=
+    Math.max(
+      0,
+      Number(assists?.value)||0
+    );
 
   addActivity(
     '✏️',
@@ -3274,42 +3184,67 @@ function saveEditedPlayer(){
   );
 
   save();
+
   closeEditModal();
+
   render();
+
 }
 
 /* =====================================================
-   MODALES
+   MODALES JUGADORES
 ===================================================== */
 
 function closeEditModal(){
-  const modal=document.getElementById('edit-player-modal');
+
+  const modal=
+    document.getElementById(
+      'edit-player-modal'
+    );
 
   if(modal){
     modal.remove();
   }
 
   if(
-    !document.getElementById('add-player-modal') &&
-    !document.getElementById('calendar-import-modal')
+    !document.getElementById(
+      'add-player-modal'
+    )&&
+    !document.getElementById(
+      'note-modal'
+    )
   ){
+
     document.body.style.overflow='';
+
   }
+
 }
 
 function closeAddModal(){
-  const modal=document.getElementById('add-player-modal');
+
+  const modal=
+    document.getElementById(
+      'add-player-modal'
+    );
 
   if(modal){
     modal.remove();
   }
 
   if(
-    !document.getElementById('edit-player-modal') &&
-    !document.getElementById('calendar-import-modal')
+    !document.getElementById(
+      'edit-player-modal'
+    )&&
+    !document.getElementById(
+      'note-modal'
+    )
   ){
+
     document.body.style.overflow='';
+
   }
+
 }
 
 /* =====================================================
@@ -3317,370 +3252,326 @@ function closeAddModal(){
 ===================================================== */
 
 function deletePlayer(id){
-  const player=data.players.find(
-    p=>String(p.id)===String(id)
-  );
 
-  if(!confirm('¿Eliminar este jugador?')){
+  const player=
+    data.players.find(
+      p=>String(p.id)===String(id)
+    );
+
+  if(
+    !confirm(
+      '¿Eliminar este jugador?'
+    )
+  ){
     return;
   }
 
-  data.players=data.players.filter(
-    p=>String(p.id)!==String(id)
-  );
+  data.players=
+    data.players.filter(
+      p=>String(p.id)!==
+        String(id)
+    );
 
-  removePlayerFromTactic(id,true);
+  removePlayerFromTactic(
+    id,
+    true
+  );
 
   addActivity(
     '🗑️',
-    `Jugador eliminado: ${player?player.name:'Jugador'}`
+    `Jugador eliminado: ${
+      player
+        ?player.name
+        :'Jugador'
+    }`
   );
 
   save();
+
   go('team');
+
 }
 
 /* =====================================================
-   PARTIDOS
+   NOTAS DE ENTRENADOR
 ===================================================== */
 
-function matches(){
-  const teamMatches=getTeamMatches();
-  const sorted=sortMatches(teamMatches);
+function noteCategoryIcon(category){
 
-  const played=sorted.filter(
-    m=>isPlayedMatch(m)
-  ).length;
+  const icons={
 
-  const upcoming=sorted.filter(
-    m=>!isPlayedMatch(m)
-  ).length;
+    'General':'📝',
 
-  const next=getNextUpcomingMatch();
+    'Táctica':'⚽',
+
+    'Jugadores':'👤',
+
+    'Partido':'🎯',
+
+    'Otros':'📌'
+
+  };
+
+  return icons[category]||'📝';
+
+}
+
+function formatNoteDate(timestamp){
+
+  if(!timestamp){
+    return '';
+  }
+
+  return new Date(
+    timestamp
+  ).toLocaleDateString(
+    'es-ES',
+    {
+      day:'numeric',
+      month:'short',
+      year:'numeric',
+      hour:'2-digit',
+      minute:'2-digit'
+    }
+  );
+
+}
+
+function notes(){
+
+  const filtered=
+    data.notes.filter(
+
+      note=>
+
+        noteFilter==='all'||
+
+        note.category===
+          noteFilter
+
+    );
 
   return`
-    <div class="title-row">
+
+    <div class="notes-header">
 
       <div>
 
         <div class="title">
-          Partidos
+          Notas de entrenador
         </div>
 
         <div class="subtitle">
-          ${data.settings.season||'2026/27'}
-        </div>
-
-      </div>
-
-      <div class="matches-header-actions">
-
-        <button
-          class="btn red-soft"
-          onclick="openCalendarImport()">
-
-          📅 Importar
-
-        </button>
-
-      </div>
-
-    </div>
-
-    <div class="calendar-import-card">
-
-      <div class="calendar-import-row">
-
-        <div class="calendar-import-icon">
-          📅
-        </div>
-
-        <div class="calendar-import-content">
-
-          <div class="calendar-import-title">
-            Calendario de temporada
-          </div>
-
-          <div class="calendar-import-subtitle">
-
-            Selecciona las páginas del calendario
-            y KNATT leerá las jornadas y únicamente
-            los partidos de tu equipo.
-
-          </div>
-
+          Observaciones e ideas para el equipo
         </div>
 
       </div>
 
       <button
-        class="btn full calendar-import-button"
-        onclick="openCalendarImport()">
+        class="btn red-soft"
+        onclick="openNoteModal()">
 
-        🖼️ Cargar calendario
+        ＋
 
       </button>
 
     </div>
 
-    ${
-      sorted.length
-        ?`
-          <div class="season-summary">
+    <div class="notes-filter">
 
-            <div class="season-summary-card">
-              <b>${sorted.length}</b>
-              <span>Total</span>
-            </div>
+      ${[
+        'all',
+        'General',
+        'Táctica',
+        'Jugadores',
+        'Partido',
+        'Otros'
+      ].map(
 
-            <div class="season-summary-card">
-              <b>${upcoming}</b>
-              <span>Pendientes</span>
-            </div>
+        category=>`
 
-            <div class="season-summary-card">
-              <b>${played}</b>
-              <span>Jugados</span>
-            </div>
+          <button
+            class="note-filter ${
+              noteFilter===category
+                ?'active'
+                :''
+            }"
+            onclick="
+              noteFilter='${category}';
+              render();
+            ">
 
-          </div>
+            ${
+              category==='all'
+                ?'Todas'
+                :category
+            }
+
+          </button>
+
         `
-        :''
-    }
+
+      ).join('')}
+
+    </div>
 
     ${
-      next
-        ?`
-          <div class="card match-card match-upcoming">
+      filtered.length
 
-            <div class="section-label">
-              PRÓXIMO PARTIDO
-            </div>
-
-            <div class="match-round">
-              ${
-                next.round
-                  ?esc(next.round)
-                  :'Próxima jornada'
-              }
-            </div>
-
-            <div class="match-date">
-
-              ${esc(
-                next.date||
-                displayDateFromISO(next.dateISO)
-              )}
-
-              ${
-                next.time
-                  ?` · ${esc(next.time)}`
-                  :''
-              }
-
-            </div>
-
-            <div class="match-teams">
-
-              <div class="match-team home">
-                ${esc(next.home)}
-              </div>
-
-              <div class="match-score">
-                VS
-              </div>
-
-              <div class="match-team away">
-                ${esc(next.away)}
-              </div>
-
-            </div>
-
-            <div class="match-status">
-
-              <div class="match-location">
-                ${esc(next.place||'')}
-              </div>
-
-            </div>
-
-          </div>
-        `
-        :''
-    }
-
-    ${
-      sorted.length
-        ?sorted.map(
-          m=>matchCardHtml(
-            m,
-            next
-              ?String(m.id)===String(next.id)
-              :false
-          )
+        ?filtered.map(
+          note=>noteCard(note)
         ).join('')
-        :`
-          <div class="card">
 
-            <div class="matches-empty">
+        :`
+
+          <div class="card notes-empty">
+
+            <div class="notes-empty-icon">
+              📝
+            </div>
+
+            <div class="notes-empty-title">
 
               ${
-                getConfiguredTeam()
-                  ?`No hay partidos registrados de <strong>${esc(getConfiguredTeam())}</strong>.`
-                  :'Configura primero el nombre de tu equipo.'
+                noteFilter==='all'
+                  ?'No hay notas todavía'
+                  :'No hay notas en esta categoría'
               }
-
-              <br><br>
-
-              Pulsa
-              <strong>“Cargar calendario”</strong>
-              para importar el calendario.
 
             </div>
 
+            <div class="notes-empty-text">
+
+              Añade observaciones sobre
+              jugadores, táctica, entrenamientos
+              o cualquier aspecto del equipo.
+
+            </div>
+
+            <br>
+
+            <button
+              class="btn"
+              onclick="openNoteModal()">
+
+              ＋ Nueva nota
+
+            </button>
+
           </div>
+
         `
+
     }
+
   `;
+
 }
 
-function matchCardHtml(match,isNext){
-  const played=isPlayedMatch(match);
+function noteCard(note){
 
   return`
-    <div class="card ${isNext?'match-upcoming':'match-past'}">
 
-      <div class="match-round">
-        ${match.round?esc(match.round):'PARTIDO'}
+    <div class="note-card">
+
+      <div class="note-card-header">
+
+        <div class="note-icon">
+
+          ${noteCategoryIcon(
+            note.category
+          )}
+
+        </div>
+
+        <div class="note-main">
+
+          <div class="note-title">
+            ${esc(note.title)}
+          </div>
+
+          <span class="note-category">
+            ${esc(note.category)}
+          </span>
+
+        </div>
+
+        <div class="note-actions">
+
+          <button
+            class="note-action"
+            onclick="
+              event.stopPropagation();
+              openNoteModal('${esc(note.id)}');
+            ">
+
+            ✏️
+
+          </button>
+
+          <button
+            class="note-action delete"
+            onclick="
+              event.stopPropagation();
+              deleteNote('${esc(note.id)}');
+            ">
+
+            🗑️
+
+          </button>
+
+        </div>
+
       </div>
 
-      <div class="match-date">
+      <div class="note-text">
+        ${esc(note.text)}
+      </div>
 
-        ${esc(
-          match.date||
-          displayDateFromISO(match.dateISO)
-        )}
+      <div class="note-date">
+
+        ${formatNoteDate(note.updatedAt||note.createdAt)}
 
         ${
-          match.time
-            ?` · ${esc(match.time)}`
+          note.updatedAt &&
+          note.createdAt &&
+          note.updatedAt!==note.createdAt
+            ?' · Editada'
             :''
         }
 
       </div>
 
-      <div class="match-teams">
-
-        <div class="match-team home">
-          ${esc(match.home)}
-        </div>
-
-        <div class="match-score ${played?'played':''}">
-          ${played?esc(match.score):'VS'}
-        </div>
-
-        <div class="match-team away">
-          ${esc(match.away)}
-        </div>
-
-      </div>
-
-      <div class="match-status">
-
-        <div class="match-location">
-          ${esc(match.place||'')}
-        </div>
-
-        <button
-          class="match-result-button"
-          onclick="
-            event.stopPropagation();
-            editMatchResult('${esc(match.id)}')
-          ">
-
-          ${played?'✏️ Resultado':'📝 Añadir resultado'}
-
-        </button>
-
-      </div>
-
     </div>
+
   `;
+
 }
 
 /* =====================================================
-   RESULTADO
+   CREAR / EDITAR NOTA
 ===================================================== */
 
-function editMatchResult(id){
-  const match=data.matches.find(
-    m=>String(m.id)===String(id)
-  );
+function openNoteModal(id=null){
 
-  if(!match)return;
+  const existing=
+    id!==null
+      ?data.notes.find(
+        note=>
+          String(note.id)===
+          String(id)
+      )
+      :null;
 
-  if(
-    !isConfiguredTeam(match.home) &&
-    !isConfiguredTeam(match.away)
-  ){
-    alert(
-      'Este partido no pertenece al equipo configurado.'
-    );
-    return;
-  }
-
-  const current=String(match.score||'');
-
-  const result=prompt(
-    `Resultado de ${match.home} - ${match.away}\n\nEjemplo: 2 - 1\n\nDeja vacío para borrar el resultado.`,
-    current
-  );
-
-  if(result===null)return;
-
-  match.score=result.trim();
-
-  if(match.score){
-    addActivity(
-      '🏆',
-      `Resultado añadido: ${match.home} ${match.score} ${match.away}`
-    );
-  }else{
-    addActivity(
-      '↩️',
-      `Resultado eliminado: ${match.home} - ${match.away}`
-    );
-  }
-
-  save();
-  syncNextMatch();
-  render();
-}
-
-/* =====================================================
-   IMPORTAR CALENDARIO
-===================================================== */
-
-function openCalendarImport(){
-  closeEditModal();
-  closeAddModal();
-
-  importedMatches=[];
-
-  calendarPreviewUrls.forEach(url=>{
-    try{
-      URL.revokeObjectURL(url);
-    }catch(error){}
-  });
-
-  calendarPreviewUrls=[];
-
-  const modal=document.createElement('div');
+  const modal=
+    document.createElement('div');
 
   modal.className='edit-modal';
-  modal.id='calendar-import-modal';
+
+  modal.id='note-modal';
 
   modal.innerHTML=`
+
     <div
       class="edit-modal-card"
       onclick="event.stopPropagation()">
@@ -3690,15 +3581,22 @@ function openCalendarImport(){
         <div>
 
           <div class="edit-modal-title">
-            Importar calendario
+
+            ${
+              existing
+                ?'Editar nota'
+                :'Nueva nota'
+            }
+
           </div>
 
           <div class="edit-modal-subtitle">
 
-            Solo se guardarán los partidos de
-            <strong>
-              ${esc(getConfiguredTeam()||'tu equipo')}
-            </strong>
+            ${
+              existing
+                ?'Actualiza la observación del equipo'
+                :'Guarda una observación para consultarla después'
+            }
 
           </div>
 
@@ -3707,7 +3605,7 @@ function openCalendarImport(){
         <button
           type="button"
           class="edit-modal-close"
-          onclick="closeCalendarImport()">
+          onclick="closeNoteModal()">
 
           ×
 
@@ -3715,1529 +3613,357 @@ function openCalendarImport(){
 
       </div>
 
-      <div class="import-help">
+      <div class="form-group">
 
-        <strong>Cómo funciona:</strong><br>
+        <label>
+          Título
+        </label>
 
-        Selecciona las páginas del calendario.
-        KNATT separará automáticamente las dos
-        columnas de cada página.
-
-        <br><br>
-
-        Cada cabecera
-        <strong>Jornada + fecha</strong>
-        se asignará a todos los partidos que
-        aparecen debajo hasta la siguiente jornada.
-
-        <br><br>
-
-        Después KNATT buscará únicamente los
-        partidos donde aparezca tu equipo.
-
-        <br><br>
-
-        Equipo configurado:
-        <strong>
-          ${esc(getConfiguredTeam()||'No configurado')}
-        </strong>
+        <input
+          id="note-title-input"
+          class="form-input"
+          type="text"
+          maxlength="80"
+          placeholder="Ej. Presión tras pérdida"
+          value="${
+            existing
+              ?esc(existing.title)
+              :''
+          }">
 
       </div>
 
-      <input
-        id="calendar-file"
-        class="import-file"
-        type="file"
-        accept="image/*"
-        multiple
-        onchange="handleCalendarImage(event)">
+      <div class="form-group">
 
-      <button
-        id="calendar-select-button"
-        class="btn full"
-        onclick="
-          document
-            .getElementById('calendar-file')
-            .click()
-        ">
+        <label>
+          Categoría
+        </label>
 
-        🖼️ Seleccionar páginas del calendario
+        <select
+          id="note-category-input"
+          class="select">
 
-      </button>
+          ${[
+            'General',
+            'Táctica',
+            'Jugadores',
+            'Partido',
+            'Otros'
+          ].map(
 
-      <div
-        id="calendar-image-previews"
-        class="calendar-image-preview-list">
+            category=>`
+
+              <option
+                value="${category}"
+                ${
+                  existing &&
+                  existing.category===category
+                    ?'selected'
+                    :''
+                }>
+
+                ${category}
+
+              </option>
+
+            `
+
+          ).join('')}
+
+        </select>
+
       </div>
 
-      <div
-        id="ocr-progress"
-        class="ocr-progress"
-        style="display:none">
+      <div class="form-group">
 
-        <div
-          id="ocr-progress-bar"
-          class="ocr-progress-bar">
-        </div>
+        <label>
+          Nota
+        </label>
+
+        <textarea
+          id="note-text-input"
+          class="form-textarea note-modal-textarea"
+          maxlength="2000"
+          placeholder="Escribe aquí tus observaciones...">${
+            existing
+              ?esc(existing.text)
+              :''
+          }</textarea>
 
       </div>
 
-      <div
-        id="ocr-status"
-        class="ocr-status"
-        style="display:none">
-      </div>
-
-      <div
-        id="ocr-results"
-        style="display:none">
-      </div>
-
-      <div
-        id="calendar-import-actions"
-        style="display:none;margin-top:12px">
+      <div class="edit-modal-actions">
 
         <button
-          class="btn full"
-          onclick="saveImportedCalendar()">
-
-          💾 Guardar calendario
-
-        </button>
-
-      </div>
-
-      <div style="margin-top:8px">
-
-        <button
-          class="btn light full"
-          onclick="closeCalendarImport()">
+          type="button"
+          class="btn light"
+          onclick="closeNoteModal()">
 
           Cancelar
 
         </button>
 
+        <button
+          type="button"
+          class="btn"
+          onclick="
+            saveNote(
+              ${existing?`'${esc(existing.id)}'`:'null'}
+            )
+          ">
+
+          ${
+            existing
+              ?'Guardar cambios'
+              :'Guardar nota'
+          }
+
+        </button>
+
       </div>
 
     </div>
+
   `;
 
-  modal.addEventListener('click',function(event){
-    if(event.target===modal){
-      closeCalendarImport();
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(event.target===modal){
+        closeNoteModal();
+      }
+
     }
-  });
+  );
 
   document.body.appendChild(modal);
+
   document.body.style.overflow='hidden';
+
+  const titleInput=
+    document.getElementById(
+      'note-title-input'
+    );
+
+  if(titleInput){
+
+    setTimeout(()=>{
+
+      titleInput.focus();
+
+      if(existing){
+        titleInput.select();
+      }
+
+    },50);
+
+  }
+
 }
 
-/* =====================================================
-   CERRAR IMPORTACIÓN
-===================================================== */
+function saveNote(id=null){
 
-function closeCalendarImport(){
-  const modal=document.getElementById(
-    'calendar-import-modal'
-  );
+  const title=
+    document.getElementById(
+      'note-title-input'
+    );
+
+  const category=
+    document.getElementById(
+      'note-category-input'
+    );
+
+  const text=
+    document.getElementById(
+      'note-text-input'
+    );
+
+  const noteTitle=
+    title
+      ?title.value.trim()
+      :'';
+
+  const noteText=
+    text
+      ?text.value.trim()
+      :'';
+
+  const noteCategory=
+    category
+      ?category.value
+      :'General';
+
+  if(!noteTitle){
+
+    alert(
+      'Escribe un título para la nota.'
+    );
+
+    title?.focus();
+
+    return;
+
+  }
+
+  if(!noteText){
+
+    alert(
+      'Escribe el contenido de la nota.'
+    );
+
+    text?.focus();
+
+    return;
+
+  }
+
+  if(id!==null){
+
+    const note=
+      data.notes.find(
+        n=>
+          String(n.id)===
+          String(id)
+      );
+
+    if(!note){
+
+      closeNoteModal();
+
+      return;
+
+    }
+
+    note.title=
+      noteTitle;
+
+    note.category=
+      noteCategory;
+
+    note.text=
+      noteText;
+
+    note.updatedAt=
+      Date.now();
+
+    addActivity(
+      '✏️',
+      `Nota actualizada: ${note.title}`
+    );
+
+  }else{
+
+    const now=
+      Date.now();
+
+    const newNote={
+
+      id:
+        `note-${now}-${Math.random()
+          .toString(36)
+          .slice(2,8)}`,
+
+      title:
+        noteTitle,
+
+      category:
+        noteCategory,
+
+      text:
+        noteText,
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now
+
+    };
+
+    data.notes.unshift(
+      newNote
+    );
+
+    addActivity(
+      '📝',
+      `Nueva nota: ${newNote.title}`
+    );
+
+  }
+
+  save();
+
+  closeNoteModal();
+
+  render();
+
+}
+
+function closeNoteModal(){
+
+  const modal=
+    document.getElementById(
+      'note-modal'
+    );
 
   if(modal){
     modal.remove();
   }
 
-  calendarPreviewUrls.forEach(url=>{
-    try{
-      URL.revokeObjectURL(url);
-    }catch(error){}
-  });
-
-  calendarPreviewUrls=[];
-
   if(
-    !document.getElementById('edit-player-modal') &&
-    !document.getElementById('add-player-modal')
+    !document.getElementById(
+      'edit-player-modal'
+    )&&
+    !document.getElementById(
+      'add-player-modal'
+    )
   ){
+
     document.body.style.overflow='';
-  }
-}
 
-/* =====================================================
-   CARGA DE IMAGEN
-===================================================== */
-
-function loadImageForOCR(file){
-  return new Promise((resolve,reject)=>{
-    const url=URL.createObjectURL(file);
-    const img=new Image();
-
-    img.onload=()=>{
-      URL.revokeObjectURL(url);
-      resolve(img);
-    };
-
-    img.onerror=()=>{
-      URL.revokeObjectURL(url);
-      reject(new Error('No se pudo cargar la imagen.'));
-    };
-
-    img.src=url;
-  });
-}
-
-function canvasToBlob(canvas){
-  return new Promise((resolve,reject)=>{
-    canvas.toBlob(
-      blob=>{
-        if(blob){
-          resolve(blob);
-        }else{
-          reject(new Error('No se pudo preparar la imagen.'));
-        }
-      },
-      'image/png',
-      1
-    );
-  });
-}
-
-/*
-  Cada página del calendario tiene DOS columnas.
-  Se procesa cada columna independientemente.
-*/
-
-async function createOCRColumn(img,columnIndex){
-  const originalWidth=img.naturalWidth||img.width;
-  const originalHeight=img.naturalHeight||img.height;
-
-  const isSingleColumn=
-    originalWidth/originalHeight<0.62;
-
-  let sx=0;
-  let sw=originalWidth;
-
-  if(!isSingleColumn){
-    if(columnIndex===0){
-      sx=0;
-      sw=Math.floor(originalWidth/2);
-    }else{
-      sx=Math.floor(originalWidth/2);
-      sw=originalWidth-sx;
-    }
   }
 
-  const scale=1.8;
-
-  const canvas=document.createElement('canvas');
-
-  canvas.width=Math.max(
-    1,
-    Math.round(sw*scale)
-  );
-
-  canvas.height=Math.max(
-    1,
-    Math.round(originalHeight*scale)
-  );
-
-  const ctx=canvas.getContext('2d');
-
-  ctx.imageSmoothingEnabled=true;
-  ctx.imageSmoothingQuality='high';
-
-  ctx.fillStyle='#fff';
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  ctx.drawImage(
-    img,
-    sx,
-    0,
-    sw,
-    originalHeight,
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  return canvasToBlob(canvas);
 }
 
-async function recognizeOCRImage(
-  imageBlob,
-  progressCallback
-){
-  const result=await Tesseract.recognize(
-    imageBlob,
-    'spa',
-    {
-      logger:message=>{
-        if(message.status==='recognizing text'){
-          const progress=Math.round(
-            (Number(message.progress)||0)*100
-          );
+function deleteNote(id){
 
-          if(progressCallback){
-            progressCallback(progress);
-          }
-        }
-      },
-
-      config:{
-        tessedit_pageseg_mode:'6',
-        preserve_interword_spaces:'1'
-      }
-    }
-  );
-
-  return result?.data?.text||'';
-}
-
-async function readCalendarPage(
-  file,
-  pageIndex,
-  totalPages,
-  globalProgress
-){
-  const img=await loadImageForOCR(file);
-
-  const width=img.naturalWidth||img.width;
-  const height=img.naturalHeight||img.height;
-
-  const isSingleColumn=width/height<0.62;
-  const columnCount=isSingleColumn?1:2;
-
-  const texts=[];
-
-  for(
-    let column=0;
-    column<columnCount;
-    column++
-  ){
-    const status=document.getElementById('ocr-status');
-
-    if(status){
-      status.textContent=
-        `Leyendo página ${pageIndex+1} de ${totalPages} · columna ${column+1} de ${columnCount}...`;
-    }
-
-    const blob=await createOCRColumn(
-      img,
-      column
+  const note=
+    data.notes.find(
+      n=>
+        String(n.id)===
+        String(id)
     );
 
-    const text=await recognizeOCRImage(
-      blob,
-      percent=>{
-        const completedSegments=
-          pageIndex*columnCount+
-          column;
-
-        const totalSegments=
-          totalPages*columnCount;
-
-        const segmentProgress=
-          (
-            completedSegments+
-            percent/100
-          )/
-          totalSegments;
-
-        globalProgress(
-          Math.min(
-            99,
-            Math.round(segmentProgress*100)
-          )
-        );
-      }
-    );
-
-    texts.push(text);
-  }
-
-  return texts;
-}
-
-async function handleCalendarImage(event){
-  const files=Array.from(
-    event.target.files||[]
-  );
-
-  if(!files.length){
+  if(!note){
     return;
   }
 
-  const previewContainer=document.getElementById(
-    'calendar-image-previews'
-  );
+  const confirmed=
+    confirm(
+      `¿Eliminar la nota "${note.title}"?`
+    );
 
-  const status=document.getElementById(
-    'ocr-status'
-  );
-
-  const progress=document.getElementById(
-    'ocr-progress'
-  );
-
-  const bar=document.getElementById(
-    'ocr-progress-bar'
-  );
-
-  const results=document.getElementById(
-    'ocr-results'
-  );
-
-  const actions=document.getElementById(
-    'calendar-import-actions'
-  );
-
-  if(
-    !previewContainer||
-    !status||
-    !progress||
-    !bar
-  ){
+  if(!confirmed){
     return;
   }
 
-  importedMatches=[];
-
-  if(results){
-    results.style.display='none';
-    results.innerHTML='';
-  }
-
-  if(actions){
-    actions.style.display='none';
-  }
-
-  previewContainer.innerHTML='';
-  calendarPreviewUrls=[];
-
-  files.forEach(file=>{
-    const url=URL.createObjectURL(file);
-
-    calendarPreviewUrls.push(url);
-
-    const img=document.createElement('img');
-
-    img.className='calendar-image-preview';
-    img.src=url;
-    img.alt='Página del calendario';
-
-    previewContainer.appendChild(img);
-  });
-
-  status.style.display='block';
-  progress.style.display='block';
-  bar.style.width='0%';
-
-  status.textContent=
-    `Preparando ${files.length} página${files.length===1?'':'s'}...`;
-
-  try{
-    await loadTesseract();
-
-    const allTexts=[];
-
-    for(
-      let i=0;
-      i<files.length;
-      i++
-    ){
-      const texts=await readCalendarPage(
-        files[i],
-        i,
-        files.length,
-        percent=>{
-          bar.style.width=`${percent}%`;
-        }
-      );
-
-      allTexts.push(...texts);
-    }
-
-    bar.style.width='100%';
-
-    status.textContent=
-      'Analizando jornadas y partidos...';
-
-    const parsed=parseCalendarTexts(allTexts);
-
-    importedMatches=
-      filterMatchesForConfiguredTeam(parsed);
-
-    if(!importedMatches.length){
-      status.textContent=
-        `No se han detectado partidos de ${getConfiguredTeam()||'tu equipo'}.`;
-
-      showOCRFallback(
-        allTexts.join(
-          '\n\n================ COLUMNA ================\n\n'
-        )
-      );
-
-      return;
-    }
-
-    status.textContent=
-      `${importedMatches.length} partidos de ${getConfiguredTeam()||'tu equipo'} detectados.`;
-
-    showImportedPreview();
-
-  }catch(error){
-    console.error(
-      'Error OCR calendario:',
-      error
+  data.notes=
+    data.notes.filter(
+      n=>
+        String(n.id)!==
+        String(id)
     );
-
-    status.textContent=
-      'No se pudo leer automáticamente el calendario.';
-
-    showOCRFallback('');
-  }
-
-  event.target.value='';
-}
-
-/* =====================================================
-   NORMALIZAR OCR
-===================================================== */
-
-function cleanOCRText(text){
-  return String(text||'')
-    .replace(/\r/g,'\n')
-    .replace(/\u00a0/g,' ')
-    .replace(/[|]/g,' ')
-    .replace(/[“”]/g,'"')
-    .replace(/[‘’]/g,"'")
-    .replace(/\t+/g,' ')
-    .split('\n')
-    .map(line=>
-      line
-        .replace(/[ ]{2,}/g,' ')
-        .trim()
-    )
-    .filter(Boolean);
-}
-
-/* =====================================================
-   DETECTAR JORNADA Y FECHA
-===================================================== */
-
-function normalizeRoundHeaderOCR(line){
-  return String(line||'')
-    .replace(
-      /\b(jornad[ao])\s*([0-9oOiIl]{1,2})/gi,
-      (full,word,number)=>{
-        const fixed=String(number)
-          .replace(/[oO]/g,'0')
-          .replace(/[iIl]/g,'1');
-
-        return `${word} ${fixed}`;
-      }
-    );
-}
-
-function parseRoundHeader(line){
-  let value=normalizeRoundHeaderOCR(line)
-    .replace(/\s+/g,' ')
-    .trim();
-
-  /*
-    Formato normal:
-    Jornada 10 (22-11-2026)
-  */
-
-  let match=value.match(
-    /jornada\s*([0-9]{1,2})\s*\(\s*(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})\s*\)/i
-  );
-
-  if(match){
-    const roundNumber=Number(match[1]);
-
-    return{
-      round:`Jornada ${roundNumber}`,
-      roundNumber,
-      dateISO:dateToISO(
-        Number(match[2]),
-        Number(match[3]),
-        Number(match[4])
-      )
-    };
-  }
-
-  /*
-    Fallback sin paréntesis.
-  */
-
-  match=value.match(
-    /jornada\s*([0-9]{1,2}).*?(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})/i
-  );
-
-  if(match){
-    const roundNumber=Number(match[1]);
-
-    return{
-      round:`Jornada ${roundNumber}`,
-      roundNumber,
-      dateISO:dateToISO(
-        Number(match[2]),
-        Number(match[3]),
-        Number(match[4])
-      )
-    };
-  }
-
-  /*
-    Jornada sin fecha.
-  */
-
-  match=value.match(
-    /jornada\s*([0-9]{1,2})/i
-  );
-
-  if(match){
-    const roundNumber=Number(match[1]);
-
-    return{
-      round:`Jornada ${roundNumber}`,
-      roundNumber,
-      dateISO:''
-    };
-  }
-
-  return null;
-}
-
-function extractStandaloneDate(line){
-  const value=String(line||'');
-
-  let match=value.match(
-    /(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})/
-  );
-
-  if(match){
-    return dateToISO(
-      Number(match[1]),
-      Number(match[2]),
-      Number(match[3])
-    );
-  }
-
-  match=value.match(
-    /(\d{1,2})\s*[-\/.]\s*(\d{1,2})/
-  );
-
-  if(match){
-    return dateToISO(
-      Number(match[1]),
-      Number(match[2])
-    );
-  }
-
-  return '';
-}
-
-/* =====================================================
-   IDENTIFICAR PARTIDO
-===================================================== */
-
-function containsMatchSeparator(text){
-  return /(?:\s+(?:vs\.?|v|x)\s+|\s+[-–—]\s+)/i.test(
-    String(text||'')
-  );
-}
-
-function splitTeams(text){
-  const value=String(text||'')
-    .replace(/\s+/g,' ')
-    .trim();
-
-  const separators=[
-    /\s+vs\.?\s+/i,
-    /\s+v\s+/i,
-    /\s+–\s+/,
-    /\s+—\s+/,
-    /\s+x\s+/i,
-    /\s+-\s+/
-  ];
-
-  for(const regex of separators){
-    const parts=value.split(regex);
-
-    if(parts.length>=2){
-      const home=parts[0].trim();
-
-      const away=parts
-        .slice(1)
-        .join(' ')
-        .trim();
-
-      if(home&&away){
-        return{
-          home,
-          away
-        };
-      }
-    }
-  }
-
-  return null;
-}
-
-function normalizeTeamName(name){
-  let result=String(name||'')
-
-    .replace(
-      /\b(jornada|fecha|campo|hora|domingo|lunes|martes|miércoles|miercoles|jueves|viernes|sábado|sabado)\b/gi,
-      ''
-    )
-
-    .replace(
-      /^\d{1,2}[:.)-]?\s*/,
-      ''
-    )
-
-    .replace(
-      /\s{2,}/g,
-      ' '
-    )
-
-    .trim();
-
-  return result;
-}
-
-function isNoiseLine(line){
-  const value=normalizeTeamForComparison(line);
-
-  if(!value){
-    return true;
-  }
-
-  const noiseWords=[
-    'federacio catalana de futbol',
-    'calendari de competicions',
-    'calendari',
-    'primera volta',
-    'segona volta',
-    'temporada',
-    'primera catalana',
-    'grup',
-    'classificacio',
-    'clasificacion',
-    'categoria',
-    'competicio'
-  ];
-
-  if(
-    noiseWords.some(
-      word=>value.includes(word)
-    )
-  ){
-    return true;
-  }
-
-  if(
-    /jornada\s*[0-9]/i.test(
-      normalizeRoundHeaderOCR(line)
-    )
-  ){
-    return true;
-  }
-
-  return false;
-}
-
-function isValidTeamPair(teams){
-  if(!teams){
-    return false;
-  }
-
-  const home=normalizeTeamName(teams.home);
-  const away=normalizeTeamName(teams.away);
-
-  if(
-    !home||
-    !away||
-    home.length<3||
-    away.length<3
-  ){
-    return false;
-  }
-
-  if(
-    /jornada|calendari|federacio|temporada|clasificacio|classificacio/i.test(home)
-  ){
-    return false;
-  }
-
-  if(
-    /jornada|calendari|federacio|temporada|clasificacio|classificacio/i.test(away)
-  ){
-    return false;
-  }
-
-  return true;
-}
-
-function isLikelyTeamLine(line){
-  const value=String(line||'')
-    .replace(/\s+/g,' ')
-    .trim();
-
-  if(!value||value.length<3){
-    return false;
-  }
-
-  if(isNoiseLine(value)){
-    return false;
-  }
-
-  if(
-    /\d{1,2}\s*[-\/.]\s*\d{1,2}(?:\s*[-\/.]\s*\d{2,4})?/.test(value)
-  ){
-    return false;
-  }
-
-  return true;
-}
-
-/* =====================================================
-   CREAR PARTIDO
-===================================================== */
-
-function createParsedMatch(
-  teams,
-  currentRound,
-  currentRoundNumber,
-  currentDateISO
-){
-  if(!isValidTeamPair(teams)){
-    return null;
-  }
-
-  return{
-    id:
-      `import-${Date.now()}-${Math.random()
-        .toString(36)
-        .slice(2,10)}`,
-
-    date:
-      displayDateFromISO(
-        currentDateISO
-      ),
-
-    dateISO:
-      currentDateISO,
-
-    round:
-      currentRound,
-
-    roundNumber:
-      currentRoundNumber,
-
-    home:
-      normalizeTeamName(
-        teams.home
-      ),
-
-    away:
-      normalizeTeamName(
-        teams.away
-      ),
-
-    score:'',
-    time:'',
-    place:'',
-    imported:true
-  };
-}
-
-/* =====================================================
-   PARSER POR COLUMNA
-===================================================== */
-
-/*
-  ESTA ES LA PARTE PRINCIPAL CORREGIDA.
-
-  Cada columna puede contener:
-
-  Jornada 10 (22-11-2026)
-  EQUIPO A - EQUIPO B
-  EQUIPO C - EQUIPO D
-  ...
-
-  Jornada 11 (29-11-2026)
-  EQUIPO A - EQUIPO B
-  ...
-
-  La jornada activa permanece hasta encontrar
-  la siguiente cabecera.
-*/
-
-function parseCalendarColumnText(text){
-  const lines=cleanOCRText(text);
-
-  const results=[];
-
-  let currentRound='';
-  let currentRoundNumber=null;
-  let currentDateISO='';
-
-  let pendingTeamLine='';
-
-  for(
-    let i=0;
-    i<lines.length;
-    i++
-  ){
-    const originalLine=lines[i];
-    const line=originalLine
-      .replace(/\s+/g,' ')
-      .trim();
-
-    if(!line){
-      continue;
-    }
-
-    /* 1. CABECERA DE JORNADA */
-
-    const header=parseRoundHeader(line);
-
-    if(header){
-      currentRound=header.round;
-      currentRoundNumber=header.roundNumber;
-      currentDateISO=header.dateISO||'';
-
-      pendingTeamLine='';
-
-      /*
-        Si la fecha aparece en la línea siguiente,
-        la asociamos a esta jornada.
-      */
-
-      if(
-        !currentDateISO &&
-        lines[i+1]
-      ){
-        const possibleDate=
-          extractStandaloneDate(
-            lines[i+1]
-          );
-
-        if(possibleDate){
-          currentDateISO=possibleDate;
-          i++;
-        }
-      }
-
-      continue;
-    }
-
-    /*
-      2. No procesamos partidos antes de encontrar
-         una jornada real.
-    */
-
-    if(!currentRound){
-      continue;
-    }
-
-    /*
-      3. Fecha aislada.
-    */
-
-    const possibleDate=
-      extractStandaloneDate(line);
-
-    if(
-      possibleDate &&
-      (
-        /^\s*\d{1,2}\s*[-\/.]\s*\d{1,2}(?:\s*[-\/.]\s*\d{4})?\s*$/.test(line)
-      )
-    ){
-      currentDateISO=possibleDate;
-      pendingTeamLine='';
-      continue;
-    }
-
-    /*
-      4. Si aparece otra cabecera de texto o ruido,
-         no lo convertimos en equipo.
-    */
-
-    if(isNoiseLine(line)){
-      pendingTeamLine='';
-      continue;
-    }
-
-    /*
-      5. CASO IDEAL:
-         los dos equipos están en la misma línea.
-    */
-
-    if(containsMatchSeparator(line)){
-      const teams=splitTeams(line);
-
-      if(isValidTeamPair(teams)){
-        const match=createParsedMatch(
-          teams,
-          currentRound,
-          currentRoundNumber,
-          currentDateISO
-        );
-
-        if(match){
-          results.push(match);
-        }
-
-        pendingTeamLine='';
-        continue;
-      }
-    }
-
-    /*
-      6. CASO OCR:
-         un partido aparece en dos líneas.
-
-         EQUIPO LOCAL
-         EQUIPO VISITANTE
-    */
-
-    if(!isLikelyTeamLine(line)){
-      pendingTeamLine='';
-      continue;
-    }
-
-    if(!pendingTeamLine){
-      pendingTeamLine=line;
-      continue;
-    }
-
-    /*
-      Si ya teníamos una línea pendiente,
-      intentamos formar un partido con las dos.
-    */
-
-    const combined=
-      `${pendingTeamLine} - ${line}`;
-
-    const teams=splitTeams(combined);
-
-    if(isValidTeamPair(teams)){
-      const match=createParsedMatch(
-        teams,
-        currentRound,
-        currentRoundNumber,
-        currentDateISO
-      );
-
-      if(match){
-        results.push(match);
-      }
-
-      pendingTeamLine='';
-    }else{
-      /*
-        Si no forman pareja, la línea actual
-        pasa a ser el nuevo candidato.
-      */
-      pendingTeamLine=line;
-    }
-  }
-
-  return results;
-}
-
-/* =====================================================
-   PARSER GENERAL
-===================================================== */
-
-function parseCalendarTexts(texts){
-  const list=Array.isArray(texts)
-    ?texts
-    :[];
-
-  const results=[];
-
-  list.forEach(text=>{
-    results.push(
-      ...parseCalendarColumnText(text)
-    );
-  });
-
-  const unique=[];
-  const seen=new Set();
-
-  results.forEach(match=>{
-    const key=[
-      match.dateISO||'',
-      Number.isFinite(Number(match.roundNumber))
-        ?Number(match.roundNumber)
-        :'',
-      normalizeTeamForComparison(match.home),
-      normalizeTeamForComparison(match.away)
-    ].join('|');
-
-    if(
-      !seen.has(key) &&
-      match.home &&
-      match.away
-    ){
-      seen.add(key);
-      unique.push(match);
-    }
-  });
-
-  return sortMatches(unique);
-}
-
-function parseCalendarText(text){
-  return parseCalendarColumnText(text);
-}
-
-/* =====================================================
-   FALLBACK OCR
-===================================================== */
-
-function showOCRFallback(text){
-  const container=document.getElementById(
-    'ocr-results'
-  );
-
-  if(!container)return;
-
-  container.style.display='block';
-
-  container.innerHTML=`
-    <div class="form-group">
-
-      <label>
-        Texto detectado
-      </label>
-
-      <textarea
-        id="ocr-manual-text"
-        class="form-textarea"
-        placeholder="El texto reconocido aparecerá aquí...">${esc(text)}</textarea>
-
-    </div>
-
-    <button
-      class="btn full"
-      onclick="parseManualOCRText()">
-
-      🔎 Intentar detectar partidos
-
-    </button>
-  `;
-}
-
-/* =====================================================
-   PARSEAR TEXTO MANUAL
-===================================================== */
-
-function parseManualOCRText(){
-  const textarea=document.getElementById(
-    'ocr-manual-text'
-  );
-
-  if(!textarea)return;
-
-  importedMatches=
-    filterMatchesForConfiguredTeam(
-      parseCalendarText(
-        textarea.value
-      )
-    );
-
-  if(!importedMatches.length){
-    alert(
-      `No se han podido detectar partidos de ${getConfiguredTeam()||'tu equipo'}.
-
-Comprueba que el nombre del equipo en Configuración coincide con el calendario.`
-    );
-
-    return;
-  }
-
-  showImportedPreview();
-
-  const status=document.getElementById(
-    'ocr-status'
-  );
-
-  if(status){
-    status.textContent=
-      `${importedMatches.length} partidos de ${getConfiguredTeam()||'tu equipo'} detectados.`;
-  }
-}
-
-/* =====================================================
-   PREVISUALIZACIÓN
-===================================================== */
-
-function showImportedPreview(){
-  const container=document.getElementById(
-    'ocr-results'
-  );
-
-  const actions=document.getElementById(
-    'calendar-import-actions'
-  );
-
-  if(!container)return;
-
-  container.style.display='block';
-
-  container.innerHTML=`
-    <div
-      style="
-        font-size:12px;
-        font-weight:950;
-        margin-top:14px;
-      ">
-
-      Partidos de
-      ${esc(getConfiguredTeam()||'tu equipo')}
-
-    </div>
-
-    <div
-      style="
-        font-size:10px;
-        color:#777;
-        font-weight:700;
-        margin-top:3px;
-      ">
-
-      KNATT ha leído las jornadas y ha
-      descartado automáticamente los partidos
-      de los demás equipos.
-
-      <br><br>
-
-      Revisa los nombres antes de guardar.
-
-    </div>
-
-    <div class="calendar-preview-list">
-
-      ${
-        importedMatches.map(
-          (m,index)=>
-            importedPreviewRow(m,index)
-        ).join('')
-      }
-
-    </div>
-  `;
-
-  if(actions){
-    actions.style.display=
-      importedMatches.length
-        ?'block'
-        :'none';
-  }
-}
-
-function importedPreviewRow(match,index){
-  return`
-    <div class="calendar-preview-row">
-
-      <div class="calendar-preview-grid">
-
-        <div>
-
-          <div class="calendar-preview-label">
-            Jornada
-          </div>
-
-          <input
-            id="preview-round-${index}"
-            value="${esc(match.round||'')}"
-            placeholder="J1">
-
-        </div>
-
-        <div>
-
-          <div class="calendar-preview-label">
-            Local
-          </div>
-
-          <input
-            id="preview-home-${index}"
-            value="${esc(match.home)}"
-            placeholder="Equipo local">
-
-        </div>
-
-        <div>
-
-          <div class="calendar-preview-label">
-            Visitante
-          </div>
-
-          <input
-            id="preview-away-${index}"
-            value="${esc(match.away)}"
-            placeholder="Equipo visitante">
-
-        </div>
-
-      </div>
-
-      <div
-        style="
-          margin-top:7px;
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:7px;
-        ">
-
-        <div>
-
-          <div class="calendar-preview-label">
-            Fecha
-          </div>
-
-          <input
-            id="preview-date-${index}"
-            value="${esc(match.date)}"
-            placeholder="24 AGO">
-
-        </div>
-
-        <div>
-
-          <div class="calendar-preview-label">
-            Hora
-          </div>
-
-          <input
-            id="preview-time-${index}"
-            value="${esc(match.time||'')}"
-            placeholder="12:00">
-
-        </div>
-
-      </div>
-
-    </div>
-  `;
-}
-
-/* =====================================================
-   GUARDAR CALENDARIO
-===================================================== */
-
-function saveImportedCalendar(){
-  if(
-    !Array.isArray(importedMatches)||
-    !importedMatches.length
-  ){
-    alert('No hay partidos para guardar.');
-    return;
-  }
-
-  const finalMatches=[];
-
-  importedMatches.forEach((match,index)=>{
-    const round=document.getElementById(
-      `preview-round-${index}`
-    );
-
-    const home=document.getElementById(
-      `preview-home-${index}`
-    );
-
-    const away=document.getElementById(
-      `preview-away-${index}`
-    );
-
-    const date=document.getElementById(
-      `preview-date-${index}`
-    );
-
-    const time=document.getElementById(
-      `preview-time-${index}`
-    );
-
-    const updated={
-      ...match,
-
-      round:
-        round
-          ?round.value.trim()
-          :match.round,
-
-      roundNumber:
-        extractRoundNumber(
-          round
-            ?round.value.trim()
-            :match.round
-        ),
-
-      home:
-        home
-          ?home.value.trim()
-          :match.home,
-
-      away:
-        away
-          ?away.value.trim()
-          :match.away,
-
-      date:
-        date
-          ?date.value.trim()
-          :match.date,
-
-      time:
-        time
-          ?time.value.trim()
-          :match.time,
-
-      score:'',
-      imported:true
-    };
-
-    if(
-      !updated.home||
-      !updated.away
-    ){
-      return;
-    }
-
-    if(
-      !isConfiguredTeam(updated.home)&&
-      !isConfiguredTeam(updated.away)
-    ){
-      return;
-    }
-
-    finalMatches.push(updated);
-  });
-
-  if(!finalMatches.length){
-    alert(
-      `No hay partidos válidos de ${getConfiguredTeam()||'tu equipo'} para guardar.`
-    );
-
-    return;
-  }
-
-  /*
-    Conservamos únicamente los partidos manuales.
-  */
-
-  const manualMatches=data.matches.filter(
-    m=>!m.imported
-  );
-
-  /*
-    Conservamos resultados existentes.
-  */
-
-  finalMatches.forEach(imported=>{
-    const importedHome=normalizeClubCore(
-      imported.home
-    );
-
-    const importedAway=normalizeClubCore(
-      imported.away
-    );
-
-    const existing=data.matches.find(old=>{
-      const oldHome=normalizeClubCore(
-        old.home
-      );
-
-      const oldAway=normalizeClubCore(
-        old.away
-      );
-
-      return(
-        oldHome===importedHome&&
-        oldAway===importedAway&&
-        (
-          !imported.dateISO||
-          !old.dateISO||
-          imported.dateISO===old.dateISO
-        )
-      );
-    });
-
-    if(existing){
-      imported.id=
-        existing.id||
-        imported.id;
-
-      imported.score=
-        existing.score||
-        '';
-
-      imported.place=
-        existing.place||
-        imported.place||
-        '';
-
-      if(
-        !Number.isFinite(Number(imported.roundNumber)) &&
-        Number.isFinite(Number(existing.roundNumber))
-      ){
-        imported.roundNumber=
-          Number(existing.roundNumber);
-      }
-    }
-  });
-
-  data.matches=[
-    ...manualMatches,
-    ...finalMatches
-  ];
-
-  data.matches=data.matches.filter(
-    m=>
-      isConfiguredTeam(m.home)||
-      isConfiguredTeam(m.away)
-  );
-
-  data.matches=data.matches.map(m=>({
-    ...m,
-    roundNumber:
-      Number.isFinite(Number(m.roundNumber))
-        ?Number(m.roundNumber)
-        :extractRoundNumber(m.round)
-  }));
-
-  data.matches=sortMatches(data.matches);
 
   addActivity(
-    '📅',
-    `Calendario importado: ${finalMatches.length} partidos de ${getConfiguredTeam()}`
+    '🗑️',
+    `Nota eliminada: ${note.title}`
   );
-
-  syncNextMatch();
 
   save();
 
-  importedMatches=[];
+  render();
 
-  closeCalendarImport();
-
-  go('matches');
-
-  alert(
-    `Calendario guardado correctamente.\n\n${finalMatches.length} partidos de ${getConfiguredTeam()} añadidos a KNATT.`
-  );
 }
 
 /* =====================================================
@@ -5245,7 +3971,9 @@ function saveImportedCalendar(){
 ===================================================== */
 
 function more(){
+
   return`
+
     <div class="more-screen">
 
       <div class="title">
@@ -5264,6 +3992,24 @@ function more(){
 
           <div class="more-text">
             Estadísticas
+          </div>
+
+          <div class="more-arrow">
+            ›
+          </div>
+
+        </button>
+
+        <button
+          class="more-row"
+          onclick="go('notes')">
+
+          <div class="more-icon">
+            📝
+          </div>
+
+          <div class="more-text">
+            Notas de entrenador
           </div>
 
           <div class="more-arrow">
@@ -5311,7 +4057,9 @@ function more(){
       </div>
 
     </div>
+
   `;
+
 }
 
 /* =====================================================
@@ -5319,19 +4067,23 @@ function more(){
 ===================================================== */
 
 function stats(){
-  const goals=data.players.reduce(
-    (sum,p)=>sum+(Number(p.g)||0),
-    0
-  );
 
-  const assists=data.players.reduce(
-    (sum,p)=>sum+(Number(p.a)||0),
-    0
-  );
+  const goals=
+    data.players.reduce(
+      (sum,p)=>
+        sum+(Number(p.g)||0),
+      0
+    );
 
-  const teamMatches=getTeamMatches();
+  const assists=
+    data.players.reduce(
+      (sum,p)=>
+        sum+(Number(p.a)||0),
+      0
+    );
 
   return`
+
     <div class="title">
       Estadísticas
     </div>
@@ -5339,23 +4091,39 @@ function stats(){
     <div class="stat-grid">
 
       <div class="stat red">
-        <b>${goals}</b>
-        <span>Goles</span>
+
+        <b>
+          ${goals}
+        </b>
+
+        <span>
+          Goles
+        </span>
+
       </div>
 
       <div class="stat">
-        <b>${assists}</b>
-        <span>Asistencias</span>
+
+        <b>
+          ${assists}
+        </b>
+
+        <span>
+          Asistencias
+        </span>
+
       </div>
 
       <div class="stat">
-        <b>${data.players.length}</b>
-        <span>Jugadores</span>
-      </div>
 
-      <div class="stat">
-        <b>${teamMatches.length}</b>
-        <span>Partidos</span>
+        <b>
+          ${data.players.length}
+        </b>
+
+        <span>
+          Jugadores
+        </span>
+
       </div>
 
     </div>
@@ -5364,7 +4132,9 @@ function stats(){
 
       ${
         data.players.map(
+
           p=>`
+
             <div class="item">
 
               <div class="avatar">
@@ -5396,12 +4166,17 @@ function stats(){
               </div>
 
             </div>
+
           `
+
         ).join('')
+
       }
 
     </div>
+
   `;
+
 }
 
 /* =====================================================
@@ -5409,7 +4184,9 @@ function stats(){
 ===================================================== */
 
 function settings(){
+
   return`
+
     <div class="title">
       Configuración
     </div>
@@ -5425,7 +4202,9 @@ function settings(){
         <input
           id="coach"
           class="form-input"
-          value="${esc(data.settings.coach||'')}">
+          value="${esc(
+            data.settings.coach||''
+          )}">
 
       </div>
 
@@ -5438,7 +4217,10 @@ function settings(){
         <input
           id="team"
           class="form-input"
-          value="${esc(data.settings.team||'KNATT FC')}">
+          value="${esc(
+            data.settings.team||
+            'KNATT FC'
+          )}">
 
       </div>
 
@@ -5451,7 +4233,10 @@ function settings(){
         <input
           id="season"
           class="form-input"
-          value="${esc(data.settings.season||'2026/27')}">
+          value="${esc(
+            data.settings.season||
+            '2026/27'
+          )}">
 
       </div>
 
@@ -5464,28 +4249,49 @@ function settings(){
       </button>
 
     </div>
+
   `;
+
 }
 
 function saveSettings(){
-  const coach=document.getElementById('coach');
-  const team=document.getElementById('team');
-  const season=document.getElementById('season');
+
+  const coach=
+    document.getElementById(
+      'coach'
+    );
+
+  const team=
+    document.getElementById(
+      'team'
+    );
+
+  const season=
+    document.getElementById(
+      'season'
+    );
 
   if(coach){
-    data.settings.coach=coach.value.trim();
+
+    data.settings.coach=
+      coach.value.trim();
+
   }
 
   if(team){
+
     data.settings.team=
       team.value.trim()||
       'KNATT FC';
+
   }
 
   if(season){
+
     data.settings.season=
       season.value.trim()||
       '2026/27';
+
   }
 
   addActivity(
@@ -5494,8 +4300,9 @@ function saveSettings(){
   );
 
   save();
-  syncNextMatch();
+
   go('home');
+
 }
 
 /* =====================================================
@@ -5503,30 +4310,45 @@ function saveSettings(){
 ===================================================== */
 
 function tactic(){
-  const view=data.tactics.view==='half'
-    ?'half'
-    :'full';
 
-  const positions=data.tactics.positions||{};
+  const view=
+    data.tactics.view==='half'
+      ?'half'
+      :'full';
 
-  const placedIds=new Set(
-    Object.values(positions)
+  const positions=
+    data.tactics.positions||{};
+
+  const placedIds=
+    new Set(
+
+      Object.values(
+        positions
+      )
       .map(
-        p=>String(
-          p?.playerId||
-          ''
-        )
+        p=>
+          String(
+            p?.playerId||
+            ''
+          )
       )
       .filter(Boolean)
-  );
 
-  const availablePlayers=data.players.filter(
-    p=>
-      p.available!==false&&
-      !placedIds.has(String(p.id))
-  );
+    );
+
+  const availablePlayers=
+    data.players.filter(
+
+      p=>
+        p.available!==false&&
+        !placedIds.has(
+          String(p.id)
+        )
+
+    );
 
   return`
+
     <div class="title-row">
 
       <div>
@@ -5547,8 +4369,14 @@ function tactic(){
 
       <button
         type="button"
-        class="tactic-view-btn ${view==='full'?'active':''}"
-        onclick="changeTacticView('full')">
+        class="tactic-view-btn ${
+          view==='full'
+            ?'active'
+            :''
+        }"
+        onclick="
+          changeTacticView('full')
+        ">
 
         🟢 Campo entero
 
@@ -5556,8 +4384,14 @@ function tactic(){
 
       <button
         type="button"
-        class="tactic-view-btn ${view==='half'?'active':''}"
-        onclick="changeTacticView('half')">
+        class="tactic-view-btn ${
+          view==='half'
+            ?'active'
+            :''
+        }"
+        onclick="
+          changeTacticView('half')
+        ">
 
         🟢 Medio campo
 
@@ -5566,33 +4400,48 @@ function tactic(){
     </div>
 
     <div class="tactic-help">
-      Arrastra un jugador desde abajo y colócalo donde quieras.
+
+      Arrastra un jugador desde abajo
+      y colócalo donde quieras.
+
     </div>
 
     <div class="pitch-wrap">
 
       <div
         id="tactic-pitch"
-        class="pitch ${view==='half'?'half-mode':''}">
+        class="pitch ${
+          view==='half'
+            ?'half-mode'
+            :''
+        }">
 
         <div class="pitch-line"></div>
+
         <div class="pitch-circle"></div>
+
         <div class="pitch-center"></div>
+
         <div class="box top"></div>
+
         <div class="box bottom"></div>
+
         <div class="goal top"></div>
+
         <div class="goal bottom"></div>
 
         ${
-          Object.entries(positions)
-            .map(
-              ([key,value])=>
-                boardPlayerHtml(
-                  key,
-                  value
-                )
-            )
-            .join('')
+          Object.entries(
+            positions
+          )
+          .map(
+            ([key,value])=>
+              boardPlayerHtml(
+                key,
+                value
+              )
+          )
+          .join('')
         }
 
       </div>
@@ -5608,8 +4457,11 @@ function tactic(){
         </strong>
 
         <span class="player-tray-count">
+
           ${availablePlayers.length}
+
           disponibles para colocar
+
         </span>
 
       </div>
@@ -5618,14 +4470,22 @@ function tactic(){
 
         ${
           availablePlayers.length
+
             ?availablePlayers.map(
               p=>trayPlayerHtml(p)
             ).join('')
+
             :`
+
               <div class="tray-empty">
-                Todos los jugadores disponibles están en el campo.
+
+                Todos los jugadores disponibles
+                están en el campo.
+
               </div>
+
             `
+
         }
 
       </div>
@@ -5651,16 +4511,25 @@ function tactic(){
       </button>
 
     </div>
+
   `;
+
 }
 
 function trayPlayerHtml(player){
+
   return`
+
     <div
       class="tray-player"
       data-player-id="${esc(player.id)}"
       data-drag-source="tray"
-      onpointerdown="startTrayDrag(event,${player.id})">
+      onpointerdown="
+        startTrayDrag(
+          event,
+          ${player.id}
+        )
+      ">
 
       <div class="tray-player-top">
 
@@ -5679,28 +4548,53 @@ function trayPlayerHtml(player){
       </div>
 
     </div>
+
   `;
+
 }
 
-function boardPlayerHtml(key,value){
-  const player=data.players.find(
-    p=>String(p.id)===String(value?.playerId||'')
-  );
+function boardPlayerHtml(
+  key,
+  value
+){
+
+  const player=
+    data.players.find(
+      p=>
+        String(p.id)===
+        String(
+          value?.playerId||''
+        )
+    );
 
   if(!player){
     return '';
   }
 
   let x=Number(value.x);
+
   let y=Number(value.y);
 
-  if(!Number.isFinite(x))x=50;
-  if(!Number.isFinite(y))y=50;
+  if(!Number.isFinite(x))
+    x=50;
 
-  x=Math.max(4,Math.min(96,x));
-  y=Math.max(3,Math.min(97,y));
+  if(!Number.isFinite(y))
+    y=50;
+
+  x=
+    Math.max(
+      4,
+      Math.min(96,x)
+    );
+
+  y=
+    Math.max(
+      3,
+      Math.min(97,y)
+    );
 
   return`
+
     <div
       class="board-player"
       id="board-player-${esc(player.id)}"
@@ -5730,7 +4624,10 @@ function boardPlayerHtml(key,value){
           </div>
 
           <div class="board-player-pos">
-            ${esc(player.pos||'Jugador')}
+            ${esc(
+              player.pos||
+              'Jugador'
+            )}
           </div>
 
         </div>
@@ -5740,7 +4637,9 @@ function boardPlayerHtml(key,value){
           class="board-player-remove"
           onclick="
             event.stopPropagation();
-            removePlayerFromTactic('${esc(player.id)}')
+            removePlayerFromTactic(
+              '${esc(player.id)}'
+            )
           ">
 
           ×
@@ -5750,22 +4649,31 @@ function boardPlayerHtml(key,value){
       </div>
 
     </div>
+
   `;
+
 }
 
 function changeTacticView(view){
-  if(view!=='full'&&view!=='half'){
+
+  if(
+    view!=='full'&&
+    view!=='half'
+  ){
     return;
   }
 
-  data.tactics.view=view;
+  data.tactics.view=
+    view;
 
   save();
+
   render();
+
 }
 
 /* =====================================================
-   AÑADIR TÁCTICA
+   AÑADIR JUGADOR A TÁCTICA
 ===================================================== */
 
 function addPlayerToTactic(
@@ -5773,20 +4681,30 @@ function addPlayerToTactic(
   x,
   y
 ){
-  const id=String(playerId);
 
-  const player=data.players.find(
-    p=>String(p.id)===id
-  );
+  const id=
+    String(playerId);
+
+  const player=
+    data.players.find(
+      p=>
+        String(p.id)===id
+    );
 
   if(!player)return;
 
-  const positions=data.tactics.positions||{};
+  const positions=
+    data.tactics.positions||{};
 
-  const already=Object.entries(positions).find(
-    ([key,value])=>
-      String(value?.playerId||'')===id
-  );
+  const already=
+    Object.entries(
+      positions
+    ).find(
+      ([key,value])=>
+        String(
+          value?.playerId||''
+        )===id
+    );
 
   if(already)return;
 
@@ -5794,29 +4712,36 @@ function addPlayerToTactic(
     'p_'+
     Date.now()+
     '_'+
-    Math.floor(Math.random()*10000);
+    Math.floor(
+      Math.random()*10000
+    );
 
   positions[key]={
+
     playerId:id,
 
-    x:Math.max(
-      4,
-      Math.min(
-        96,
-        Number(x)
-      )
-    ),
+    x:
+      Math.max(
+        4,
+        Math.min(
+          96,
+          Number(x)
+        )
+      ),
 
-    y:Math.max(
-      3,
-      Math.min(
-        97,
-        Number(y)
+    y:
+      Math.max(
+        3,
+        Math.min(
+          97,
+          Number(y)
+        )
       )
-    )
+
   };
 
-  data.tactics.positions=positions;
+  data.tactics.positions=
+    positions;
 
   addActivity(
     '⚽',
@@ -5824,56 +4749,78 @@ function addPlayerToTactic(
   );
 
   save();
+
   render();
+
 }
 
 /* =====================================================
-   ELIMINAR TÁCTICA
+   ELIMINAR DE TÁCTICA
 ===================================================== */
 
 function removePlayerFromTactic(
   playerId,
   silent=false
 ){
-  const id=String(playerId);
 
-  const positions=data.tactics.positions||{};
+  const id=
+    String(playerId);
+
+  const positions=
+    data.tactics.positions||{};
 
   let removed=false;
 
-  Object.entries(positions).forEach(
+  Object.entries(
+    positions
+  ).forEach(
+
     ([key,value])=>{
+
       if(
-        String(value?.playerId||'')===id
+        String(
+          value?.playerId||''
+        )===id
       ){
+
         delete positions[key];
+
         removed=true;
+
       }
+
     }
+
   );
 
   if(!removed)return;
 
-  const player=data.players.find(
-    p=>String(p.id)===id
-  );
+  const player=
+    data.players.find(
+      p=>
+        String(p.id)===id
+    );
 
   if(!silent){
+
     addActivity(
       '↩️',
       player
         ?`${player.name} retirado de la pizarra`
         :'Jugador retirado de la pizarra'
     );
+
   }
 
-  data.tactics.positions=positions;
+  data.tactics.positions=
+    positions;
 
   save();
 
   if(!silent){
     render();
   }
+
 }
 
 /* =====================================================
@@ -5881,18 +4828,25 @@ function removePlayerFromTactic(
 ===================================================== */
 
 let dragState=null;
+
 let dragGhost=null;
 
 function createDragGhost(player){
+
   if(dragGhost){
     dragGhost.remove();
   }
 
-  dragGhost=document.createElement('div');
+  dragGhost=
+    document.createElement(
+      'div'
+    );
 
-  dragGhost.className='drag-ghost';
+  dragGhost.className=
+    'drag-ghost';
 
   dragGhost.innerHTML=`
+
     <div class="board-player-card">
 
       <div class="board-player-ball">
@@ -5906,40 +4860,59 @@ function createDragGhost(player){
         </div>
 
         <div class="board-player-pos">
-          ${esc(player.pos||'Jugador')}
+          ${esc(
+            player.pos||
+            'Jugador'
+          )}
         </div>
 
       </div>
 
     </div>
+
   `;
 
-  document.body.appendChild(dragGhost);
+  document.body.appendChild(
+    dragGhost
+  );
 
-  dragGhost.style.display='block';
+  dragGhost.style.display=
+    'block';
+
 }
 
 function updateDragGhost(event){
-  if(!dragGhost||!dragState)return;
+
+  if(
+    !dragGhost||
+    !dragState
+  )return;
 
   dragGhost.style.left=
     `${event.clientX}px`;
 
   dragGhost.style.top=
     `${event.clientY}px`;
+
 }
 
 function destroyDragGhost(){
+
   if(dragGhost){
+
     dragGhost.remove();
+
     dragGhost=null;
+
   }
+
 }
 
 function startTrayDrag(
   event,
   playerId
 ){
+
   if(
     event.pointerType==='mouse'&&
     event.button!==0
@@ -5948,32 +4921,58 @@ function startTrayDrag(
   }
 
   event.preventDefault();
+
   event.stopPropagation();
 
-  const player=data.players.find(
-    p=>String(p.id)===String(playerId)
-  );
+  const player=
+    data.players.find(
+      p=>
+        String(p.id)===
+        String(playerId)
+    );
 
   if(!player)return;
 
-  const source=event.currentTarget;
+  const source=
+    event.currentTarget;
 
   dragState={
+
     type:'tray',
-    playerId:String(playerId),
+
+    playerId:
+      String(playerId),
+
     source,
+
     moved:false,
-    startX:event.clientX,
-    startY:event.clientY
+
+    startX:
+      event.clientX,
+
+    startY:
+      event.clientY
+
   };
 
-  source.classList.add('dragging');
+  source.classList.add(
+    'dragging'
+  );
 
-  createDragGhost(player);
-  updateDragGhost(event);
+  createDragGhost(
+    player
+  );
+
+  updateDragGhost(
+    event
+  );
 
   try{
-    source.setPointerCapture(event.pointerId);
+
+    source.setPointerCapture(
+      event.pointerId
+    );
+
   }catch(error){}
 
   document.addEventListener(
@@ -5993,12 +4992,14 @@ function startTrayDrag(
     handleGlobalPointerCancel,
     {once:true}
   );
+
 }
 
 function startBoardDrag(
   event,
   playerId
 ){
+
   if(
     event.target.closest(
       '.board-player-remove'
@@ -6015,41 +5016,65 @@ function startBoardDrag(
   }
 
   event.preventDefault();
+
   event.stopPropagation();
 
-  const id=String(playerId);
+  const id=
+    String(playerId);
 
-  const entry=Object.entries(
-    data.tactics.positions||{}
-  ).find(
-    ([key,value])=>
-      String(value?.playerId||'')===id
-  );
+  const entry=
+    Object.entries(
+      data.tactics.positions||{}
+    ).find(
+      ([key,value])=>
+        String(
+          value?.playerId||''
+        )===id
+    );
 
   if(!entry)return;
 
-  const player=data.players.find(
-    p=>String(p.id)===id
-  );
+  const player=
+    data.players.find(
+      p=>
+        String(p.id)===id
+    );
 
   if(!player)return;
 
-  const source=event.currentTarget;
+  const source=
+    event.currentTarget;
 
   dragState={
+
     type:'board',
+
     playerId:id,
+
     key:entry[0],
+
     source,
+
     moved:false,
-    startX:event.clientX,
-    startY:event.clientY
+
+    startX:
+      event.clientX,
+
+    startY:
+      event.clientY
+
   };
 
-  source.classList.add('dragging');
+  source.classList.add(
+    'dragging'
+  );
 
   try{
-    source.setPointerCapture(event.pointerId);
+
+    source.setPointerCapture(
+      event.pointerId
+    );
+
   }catch(error){}
 
   document.addEventListener(
@@ -6069,20 +5094,30 @@ function startBoardDrag(
     handleGlobalPointerCancel,
     {once:true}
   );
+
 }
 
-function handleGlobalPointerMove(event){
+function handleGlobalPointerMove(
+  event
+){
+
   if(!dragState)return;
 
   event.preventDefault();
 
   const dx=
     event.clientX-
-    (dragState.startX||event.clientX);
+    (
+      dragState.startX||
+      event.clientX
+    );
 
   const dy=
     event.clientY-
-    (dragState.startY||event.clientY);
+    (
+      dragState.startY||
+      event.clientY
+    );
 
   if(
     Math.abs(dx)>4||
@@ -6091,19 +5126,24 @@ function handleGlobalPointerMove(event){
     dragState.moved=true;
   }
 
-  if(dragState.type==='tray'){
+  if(
+    dragState.type==='tray'
+  ){
     updateDragGhost(event);
   }
 
-  const pitch=document.getElementById(
-    'tactic-pitch'
-  );
+  const pitch=
+    document.getElementById(
+      'tactic-pitch'
+    );
 
   if(!pitch)return;
 
-  const rect=pitch.getBoundingClientRect();
+  const rect=
+    pitch.getBoundingClientRect();
 
   const inside=
+
     event.clientX>=rect.left&&
     event.clientX<=rect.right&&
     event.clientY>=rect.top&&
@@ -6118,50 +5158,69 @@ function handleGlobalPointerMove(event){
     dragState.type==='board'&&
     inside
   ){
-    const x=(
-      (
-        event.clientX-
-        rect.left
-      )/
-      rect.width
-    )*100;
 
-    const y=(
+    const x=
       (
-        event.clientY-
-        rect.top
-      )/
-      rect.height
-    )*100;
+        (
+          event.clientX-
+          rect.left
+        )/
+        rect.width
+      )*100;
+
+    const y=
+      (
+        (
+          event.clientY-
+          rect.top
+        )/
+        rect.height
+      )*100;
 
     const playerElement=
       dragState.source;
 
     playerElement.style.left=
-      `${Math.max(4,Math.min(96,x))}%`;
+      `${Math.max(
+        4,
+        Math.min(96,x)
+      )}%`;
 
     playerElement.style.top=
-      `${Math.max(3,Math.min(97,y))}%`;
+      `${Math.max(
+        3,
+        Math.min(97,y)
+      )}%`;
+
   }
+
 }
 
-function handleGlobalPointerUp(event){
+function handleGlobalPointerUp(
+  event
+){
+
   if(!dragState)return;
 
   event.preventDefault();
 
-  const state=dragState;
+  const state=
+    dragState;
 
-  const pitch=document.getElementById(
-    'tactic-pitch'
-  );
+  const pitch=
+    document.getElementById(
+      'tactic-pitch'
+    );
 
   let dropped=false;
 
   if(pitch){
-    const rect=pitch.getBoundingClientRect();
+
+    const rect=
+      pitch.getBoundingClientRect();
 
     const inside=
+
       event.clientX>=rect.left&&
       event.clientX<=rect.right&&
       event.clientY>=rect.top&&
@@ -6172,21 +5231,24 @@ function handleGlobalPointerUp(event){
       inside&&
       state.moved
     ){
-      const x=(
-        (
-          event.clientX-
-          rect.left
-        )/
-        rect.width
-      )*100;
 
-      const y=(
+      const x=
         (
-          event.clientY-
-          rect.top
-        )/
-        rect.height
-      )*100;
+          (
+            event.clientX-
+            rect.left
+          )/
+          rect.width
+        )*100;
+
+      const y=
+        (
+          (
+            event.clientY-
+            rect.top
+          )/
+          rect.height
+        )*100;
 
       destroyDragGhost();
 
@@ -6197,6 +5259,7 @@ function handleGlobalPointerUp(event){
       );
 
       dropped=true;
+
     }
 
     if(
@@ -6204,21 +5267,24 @@ function handleGlobalPointerUp(event){
       inside&&
       state.moved
     ){
-      const x=(
-        (
-          event.clientX-
-          rect.left
-        )/
-        rect.width
-      )*100;
 
-      const y=(
+      const x=
         (
-          event.clientY-
-          rect.top
-        )/
-        rect.height
-      )*100;
+          (
+            event.clientX-
+            rect.left
+          )/
+          rect.width
+        )*100;
+
+      const y=
+        (
+          (
+            event.clientY-
+            rect.top
+          )/
+          rect.height
+        )*100;
 
       updateBoardPlayerPosition(
         state.key,
@@ -6227,7 +5293,9 @@ function handleGlobalPointerUp(event){
       );
 
       dropped=true;
+
     }
+
   }
 
   cleanupDrag();
@@ -6235,11 +5303,15 @@ function handleGlobalPointerUp(event){
   if(!dropped){
     render();
   }
+
 }
 
 function handleGlobalPointerCancel(){
+
   cleanupDrag();
+
   render();
+
 }
 
 function updateBoardPlayerPosition(
@@ -6247,30 +5319,38 @@ function updateBoardPlayerPosition(
   x,
   y
 ){
+
   const position=
     data.tactics.positions[key];
 
   if(!position)return;
 
-  position.x=Math.max(
-    4,
-    Math.min(
-      96,
-      Number(x)
-    )
-  );
+  position.x=
+    Math.max(
+      4,
+      Math.min(
+        96,
+        Number(x)
+      )
+    );
 
-  position.y=Math.max(
-    3,
-    Math.min(
-      97,
-      Number(y)
-    )
-  );
+  position.y=
+    Math.max(
+      3,
+      Math.min(
+        97,
+        Number(y)
+      )
+    );
 
-  const player=data.players.find(
-    p=>String(p.id)===String(position.playerId)
-  );
+  const player=
+    data.players.find(
+      p=>
+        String(p.id)===
+        String(
+          position.playerId
+        )
+    );
 
   addActivity(
     '📍',
@@ -6280,25 +5360,36 @@ function updateBoardPlayerPosition(
   );
 
   save();
+
 }
 
 function cleanupDrag(){
+
   document.querySelectorAll(
     '.tray-player.dragging'
   ).forEach(
-    el=>el.classList.remove('dragging')
+    el=>
+      el.classList.remove(
+        'dragging'
+      )
   );
 
   document.querySelectorAll(
     '.board-player.dragging'
   ).forEach(
-    el=>el.classList.remove('dragging')
+    el=>
+      el.classList.remove(
+        'dragging'
+      )
   );
 
   document.querySelectorAll(
     '.pitch.drop-active'
   ).forEach(
-    el=>el.classList.remove('drop-active')
+    el=>
+      el.classList.remove(
+        'drop-active'
+      )
   );
 
   destroyDragGhost();
@@ -6309,13 +5400,15 @@ function cleanupDrag(){
   );
 
   dragState=null;
+
 }
 
 /* =====================================================
-   TÁCTICA GUARDAR/VACIAR
+   TÁCTICA GUARDAR / VACIAR
 ===================================================== */
 
 function clearTactic(){
+
   data.tactics.positions={};
 
   addActivity(
@@ -6324,19 +5417,32 @@ function clearTactic(){
   );
 
   save();
+
   render();
+
 }
 
 function saveTactic(){
+
   data.tactics.savedLineup=
+
     Object.values(
       data.tactics.positions||{}
     ).map(
+
       v=>({
-        playerId:String(v.playerId),
-        x:Number(v.x),
-        y:Number(v.y)
+
+        playerId:
+          String(v.playerId),
+
+        x:
+          Number(v.x),
+
+        y:
+          Number(v.y)
+
       })
+
     );
 
   addActivity(
@@ -6349,14 +5455,15 @@ function saveTactic(){
   alert(
     'Pizarra táctica guardada correctamente.'
   );
+
 }
 
 /* =====================================================
    ARRANQUE
 ===================================================== */
 
-syncNextMatch();
 save();
+
 render();
 
 </script>
