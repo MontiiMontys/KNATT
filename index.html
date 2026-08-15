@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0b0d">
+<meta name="theme-color" content="#0a0a0c">
 <title>KNATT</title>
 
 <style>
@@ -14,28 +14,54 @@
 
 :root{
   --red:#e21d2f;
-  --red2:#b90f20;
-  --dark:#0b0b0d;
-  --dark2:#17171a;
-  --bg:#f5f5f6;
-  --card:#fff;
-  --text:#17171a;
-  --muted:#77777e;
-  --line:#e6e6e9;
+  --red-dark:#bd1425;
+  --red-soft:#fff1f3;
+
+  --black:#09090b;
+  --black-2:#121216;
+  --black-3:#1b1b20;
+
+  --bg:#f3f3f5;
+  --card:#ffffff;
+
+  --text:#111114;
+  --text-2:#37373d;
+  --muted:#85858d;
+
+  --line:#e5e5e9;
+  --line-dark:#29292e;
+
+  --radius:16px;
+  --radius-small:11px;
+
+  --shadow:0 8px 28px rgba(15,15,20,.055);
+  --shadow-strong:0 14px 40px rgba(15,15,20,.10);
 }
 
-html,body{
+html,
+body{
   margin:0;
   min-height:100%;
   background:var(--bg);
 }
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
   color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -43,104 +69,134 @@ button{
   cursor:pointer;
 }
 
+button:active{
+  transform:scale(.98);
+}
+
 .app{
   width:min(560px,100%);
   min-height:100vh;
   margin:auto;
-  padding-bottom:82px;
+  padding-bottom:92px;
+  background:var(--bg);
 }
+
+/* =====================================================
+   CABECERA
+===================================================== */
 
 header{
-  background:var(--dark);
+  background:var(--black);
   color:#fff;
-  padding:calc(12px + env(safe-area-inset-top)) 18px 14px;
+  padding:
+    calc(15px + env(safe-area-inset-top))
+    18px
+    16px;
+  border-bottom:1px solid #202025;
 }
 
-.header-row,.row{
+.header-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:15px;
 }
 
 .brand{
-  font-size:27px;
+  font-size:25px;
+  line-height:1;
   font-weight:950;
-  letter-spacing:-1px;
+  letter-spacing:-1.1px;
 }
 
 .brand span{
-  color:#ff3b4d;
-}
-
-.role{
-  font-size:11px;
-  color:#aaa;
-  margin-top:2px;
-  font-weight:700;
-}
-
-.header-bell{
-  width:38px;
-  height:38px;
-  border-radius:12px;
-  background:#ffffff10;
-  border:1px solid #ffffff12;
   color:#fff;
 }
 
+.role{
+  font-size:10px;
+  color:#898991;
+  margin-top:6px;
+  font-weight:700;
+  letter-spacing:.15px;
+}
+
+.header-bell{
+  min-width:68px;
+  height:34px;
+  padding:0 12px;
+  border-radius:9px;
+  background:#18181c;
+  border:1px solid #2a2a30;
+  color:#bdbdc4;
+  font-size:10px;
+  font-weight:850;
+}
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
 main{
-  padding:14px 14px 24px;
+  padding:18px 14px 28px;
 }
 
 .title{
   font-size:25px;
+  line-height:1.08;
   font-weight:950;
-  letter-spacing:-.7px;
+  letter-spacing:-.75px;
 }
 
 .subtitle{
-  font-size:12px;
+  font-size:11px;
   color:var(--muted);
   font-weight:700;
-  margin-top:2px;
+  margin-top:5px;
+  line-height:1.35;
 }
 
 .title-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
-  margin:3px 2px 13px;
+  gap:12px;
+  margin:1px 2px 15px;
 }
 
 .card{
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:var(--radius);
   padding:16px;
   margin-bottom:12px;
-  box-shadow:0 7px 24px #14141914;
+  box-shadow:var(--shadow);
 }
 
 .card-dark{
-  background:var(--dark2);
+  background:var(--black-2);
   color:#fff;
-  border-color:#2b2b30;
+  border-color:var(--black-3);
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
 }
 
 .section-label{
-  font-size:10px;
+  font-size:9px;
   text-transform:uppercase;
-  letter-spacing:.8px;
-  font-weight:900;
+  letter-spacing:1.1px;
+  font-weight:950;
   color:var(--muted);
-  margin-bottom:7px;
+  margin-bottom:9px;
+}
+
+.card-dark .section-label{
+  color:#85858c;
 }
 
 .big{
   font-size:21px;
   font-weight:950;
+  letter-spacing:-.4px;
 }
 
 .muted{
@@ -148,27 +204,34 @@ main{
 }
 
 .small{
-  font-size:12px;
+  font-size:11px;
 }
+
+/* =====================================================
+   BOTONES
+===================================================== */
 
 .btn{
   border:0;
-  border-radius:11px;
-  padding:12px 14px;
+  border-radius:10px;
+  min-height:42px;
+  padding:0 15px;
   background:var(--red);
   color:#fff;
   font-weight:900;
-  font-size:13px;
+  font-size:11px;
+  letter-spacing:.05px;
+  box-shadow:0 5px 14px rgba(226,29,47,.18);
 }
 
 .btn.light{
-  background:#f0f0f2;
-  color:#222;
+  background:#eeeeF1;
+  color:#25252a;
   box-shadow:none;
 }
 
 .btn.red-soft{
-  background:#fff0f2;
+  background:var(--red-soft);
   color:var(--red);
   box-shadow:none;
 }
@@ -178,47 +241,56 @@ main{
 }
 
 .btn:disabled{
-  opacity:.5;
+  opacity:.45;
   cursor:not-allowed;
 }
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
 
 .stat-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:7px;
+  gap:8px;
   margin-bottom:13px;
 }
 
 .stat{
-  background:#fff;
+  background:#fafafa;
   border:1px solid var(--line);
-  border-radius:15px;
-  padding:12px 8px;
+  border-radius:13px;
+  padding:13px 8px;
   text-align:center;
 }
 
 .card-dark .stat{
-  background:#202024;
-  border-color:#303036;
+  background:#18181c;
+  border-color:#29292e;
 }
 
 .stat b{
   display:block;
   font-size:21px;
   font-weight:950;
+  letter-spacing:-.4px;
 }
 
 .stat span{
   display:block;
   color:var(--muted);
-  font-size:10px;
-  font-weight:800;
-  margin-top:2px;
+  font-size:9px;
+  font-weight:850;
+  margin-top:4px;
+}
+
+.card-dark .stat span{
+  color:#898991;
 }
 
 .stat.red{
-  background:#fff0f2;
-  border-color:#ffd7dc;
+  background:var(--red-soft);
+  border-color:#ffd6db;
 }
 
 .stat.red b{
@@ -231,7 +303,7 @@ main{
 
 .home-title-row{
   margin-top:0;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
 .home-title-row .title{
@@ -239,8 +311,7 @@ main{
 }
 
 .home-title-row .subtitle{
-  font-size:13px;
-  margin-top:3px;
+  font-size:12px;
 }
 
 .home-team-heading{
@@ -251,16 +322,16 @@ main{
 }
 
 .home-team-logo{
-  width:58px;
-  height:58px;
-  flex:0 0 58px;
-  border-radius:16px;
+  width:56px;
+  height:56px;
+  flex:0 0 56px;
+  border-radius:14px;
   background:#fff;
   border:1px solid var(--line);
   display:grid;
   place-items:center;
   overflow:hidden;
-  box-shadow:0 5px 15px #14141912;
+  box-shadow:0 5px 16px rgba(15,15,20,.07);
 }
 
 .home-team-logo img{
@@ -271,8 +342,22 @@ main{
 }
 
 .home-team-logo-placeholder{
-  font-size:26px;
-  color:#b5b5ba;
+  width:26px;
+  height:26px;
+  border:2px solid #c7c7cc;
+  border-radius:7px;
+  position:relative;
+}
+
+.home-team-logo-placeholder:after{
+  content:"";
+  position:absolute;
+  left:5px;
+  right:5px;
+  bottom:5px;
+  height:2px;
+  background:#c7c7cc;
+  border-radius:2px;
 }
 
 .home-team-info{
@@ -287,46 +372,76 @@ main{
   text-overflow:ellipsis;
 }
 
-.home-team-season{
-  font-size:10px;
-  color:var(--muted);
-  font-weight:800;
-  margin-top:3px;
-  line-height:1.45;
-}
-
-.home-team-division{
-  font-size:10px;
-  color:var(--muted);
-  font-weight:800;
-  margin-top:1px;
-}
-
+.home-team-season,
+.home-team-division,
 .home-team-category{
-  font-size:10px;
+  font-size:9px;
   color:var(--muted);
   font-weight:800;
   margin-top:3px;
+  line-height:1.35;
 }
+
+/* =====================================================
+   SALUDO
+===================================================== */
+
+.home-title-row + .card{
+  padding:18px;
+  border-radius:17px;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fafafa 100%
+    );
+}
+
+.home-title-row + .card .title{
+  font-size:19px;
+}
+
+.home-title-row + .card .subtitle{
+  margin-top:6px;
+}
+
+/* =====================================================
+   ACCESOS RÁPIDOS
+===================================================== */
 
 .home-quick-card{
+  position:relative;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:13px;
   padding:14px 15px;
   cursor:pointer;
+  overflow:hidden;
+}
+
+.home-quick-card:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:var(--red);
+  opacity:0;
+  transition:.2s ease;
+}
+
+.home-quick-card:active:before{
+  opacity:1;
 }
 
 .home-quick-icon{
-  width:42px;
-  height:42px;
-  flex:0 0 42px;
-  border-radius:13px;
-  background:#fff0f2;
-  color:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:21px;
+  width:7px;
+  height:36px;
+  flex:0 0 7px;
+  border-radius:5px;
+  background:var(--red);
+  font-size:0;
 }
 
 .home-quick-content{
@@ -335,21 +450,33 @@ main{
 }
 
 .home-quick-title{
-  font-size:13px;
+  font-size:12px;
   font-weight:950;
+  letter-spacing:.05px;
 }
 
 .home-quick-subtitle{
-  font-size:10px;
+  font-size:9px;
   color:var(--muted);
   font-weight:750;
-  margin-top:2px;
+  margin-top:4px;
 }
 
 .home-quick-arrow{
-  font-size:22px;
-  color:#99999f;
+  width:25px;
+  height:25px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#77777e;
+  font-size:16px;
+  line-height:1;
 }
+
+/* =====================================================
+   ACTIVIDAD
+===================================================== */
 
 .home-activity-card{
   padding:16px;
@@ -358,8 +485,8 @@ main{
 .activity-item{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:10px 0;
+  gap:11px;
+  padding:11px 0;
   border-bottom:1px solid #ededf0;
 }
 
@@ -373,14 +500,7 @@ main{
 }
 
 .activity-icon{
-  width:34px;
-  height:34px;
-  flex:0 0 34px;
-  border-radius:10px;
-  background:#f0f0f2;
-  display:grid;
-  place-items:center;
-  font-size:16px;
+  display:none;
 }
 
 .activity-content{
@@ -389,19 +509,20 @@ main{
 }
 
 .activity-title{
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
+  line-height:1.3;
 }
 
 .activity-time{
-  font-size:9px;
+  font-size:8px;
   color:var(--muted);
-  margin-top:2px;
+  margin-top:3px;
 }
 
 .activity-empty{
   padding:7px 0 2px;
-  font-size:11px;
+  font-size:10px;
   color:var(--muted);
   font-weight:700;
 }
@@ -420,19 +541,19 @@ main{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:12px;
+  margin-bottom:13px;
 }
 
 .home-last-match-label{
-  font-size:10px;
+  font-size:9px;
   text-transform:uppercase;
-  letter-spacing:.8px;
+  letter-spacing:1px;
   color:var(--muted);
-  font-weight:900;
+  font-weight:950;
 }
 
 .home-last-match-date{
-  font-size:9px;
+  font-size:8px;
   color:var(--muted);
   font-weight:750;
 }
@@ -440,7 +561,7 @@ main{
 .home-last-match-body{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
 .home-last-match-teams{
@@ -449,9 +570,9 @@ main{
 }
 
 .home-last-match-team{
-  font-size:13px;
+  font-size:12px;
   font-weight:950;
-  line-height:1.2;
+  line-height:1.25;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -463,25 +584,26 @@ main{
 
 .home-last-match-vs{
   color:#aaa;
-  font-size:9px;
-  font-weight:800;
+  font-size:8px;
+  font-weight:850;
   margin-right:4px;
 }
 
 .home-last-match-result{
-  min-width:64px;
+  min-width:66px;
   padding:10px 8px;
-  border-radius:13px;
-  background:#fff0f2;
-  color:var(--red);
+  border-radius:12px;
+  background:var(--black);
+  color:#fff;
   text-align:center;
-  font-size:19px;
+  font-size:18px;
   font-weight:950;
+  letter-spacing:-.4px;
 }
 
 .home-last-match-footer{
-  margin-top:11px;
-  padding-top:9px;
+  margin-top:12px;
+  padding-top:10px;
   border-top:1px solid #ededf0;
   display:flex;
   align-items:center;
@@ -490,13 +612,13 @@ main{
 }
 
 .home-last-match-footer-text{
-  font-size:9px;
+  font-size:8px;
   color:var(--muted);
   font-weight:750;
 }
 
 .home-last-match-arrow{
-  font-size:20px;
+  font-size:18px;
   color:#99999f;
 }
 
@@ -507,17 +629,17 @@ main{
 .match-card{
   background:#fff;
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:16px;
   padding:15px;
   margin-bottom:10px;
-  box-shadow:0 5px 18px #1414190d;
+  box-shadow:var(--shadow);
 }
 
 .match-card-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:12px;
 }
 
 .match-teams{
@@ -527,30 +649,30 @@ main{
 
 .match-home,
 .match-away{
-  font-size:13px;
+  font-size:12px;
   font-weight:950;
-  line-height:1.2;
+  line-height:1.25;
 }
 
 .match-away{
-  margin-top:4px;
+  margin-top:5px;
 }
 
 .match-vs{
   color:#aaa;
-  font-size:10px;
-  font-weight:800;
-  margin:0 3px;
+  font-size:8px;
+  font-weight:850;
+  margin:0 4px;
 }
 
 .match-result{
   min-width:62px;
   padding:9px 8px;
-  border-radius:12px;
-  background:#fff0f2;
-  color:var(--red);
+  border-radius:11px;
+  background:var(--black);
+  color:#fff;
   text-align:center;
-  font-size:18px;
+  font-size:17px;
   font-weight:950;
 }
 
@@ -563,9 +685,9 @@ main{
 }
 
 .match-detail{
-  font-size:10px;
+  font-size:9px;
   color:#555;
-  line-height:1.4;
+  line-height:1.45;
 }
 
 .match-detail b{
@@ -575,7 +697,7 @@ main{
 
 .match-date{
   margin-top:10px;
-  font-size:9px;
+  font-size:8px;
   color:var(--muted);
   font-weight:750;
 }
@@ -589,34 +711,55 @@ main{
 .match-action{
   width:32px;
   height:32px;
-  border:0;
+  border:1px solid var(--line);
   border-radius:9px;
-  background:#f0f0f2;
+  background:#fafafa;
   color:#666;
   display:grid;
   place-items:center;
+  font-size:0;
+}
+
+.match-action:before{
+  content:"Editar";
+  font-size:8px;
+  font-weight:900;
+}
+
+.match-action.delete:before{
+  content:"Eliminar";
 }
 
 .match-action.delete{
   color:var(--red);
-  background:#fff0f2;
+  background:var(--red-soft);
+  border-color:#ffd9de;
 }
 
 .matches-empty{
   text-align:center;
-  padding:38px 15px;
+  padding:42px 18px;
 }
 
 .matches-empty-icon{
-  width:58px;
-  height:58px;
-  margin:0 auto 11px;
-  border-radius:17px;
-  background:#fff0f2;
-  color:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:27px;
+  width:52px;
+  height:52px;
+  margin:0 auto 13px;
+  border-radius:15px;
+  background:var(--black);
+  position:relative;
+  font-size:0;
+}
+
+.matches-empty-icon:after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  top:24px;
+  height:2px;
+  background:#fff;
+  border-radius:2px;
 }
 
 .matches-empty-title{
@@ -625,11 +768,11 @@ main{
 }
 
 .matches-empty-text{
-  margin-top:5px;
-  font-size:10px;
+  margin-top:6px;
+  font-size:9px;
   color:var(--muted);
   font-weight:700;
-  line-height:1.4;
+  line-height:1.5;
 }
 
 /* =====================================================
@@ -637,10 +780,10 @@ main{
 ===================================================== */
 
 .match-stats-card{
-  background:#fff;
+  background:#fafafa;
   border:1px solid var(--line);
-  border-radius:17px;
-  padding:10px;
+  border-radius:14px;
+  padding:11px;
   margin-bottom:12px;
 }
 
@@ -649,24 +792,31 @@ main{
   align-items:center;
   justify-content:space-between;
   gap:8px;
-  padding:3px 4px 9px;
+  padding:3px 4px 10px;
 }
 
 .match-stats-title{
-  font-size:14px;
+  font-size:12px;
   font-weight:950;
 }
 
 .match-stats-help{
-  font-size:10px;
+  font-size:8px;
   color:var(--muted);
   font-weight:800;
   text-align:right;
 }
 
 /* =====================================================
-   GOLEADORES - SELECTOR
+   SELECTORES
 ===================================================== */
+
+.select,
+.form-input,
+.form-textarea{
+  appearance:none;
+  -webkit-appearance:none;
+}
 
 .scorer-selector{
   display:flex;
@@ -694,9 +844,9 @@ main{
   flex:1;
   min-width:0;
   height:45px;
-  border:1px solid #e1e1e4;
-  border-radius:12px;
-  background:#fafafa;
+  border:1px solid #dedee2;
+  border-radius:11px;
+  background:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -705,7 +855,7 @@ main{
 }
 
 .scorer-selected-name{
-  font-size:11px;
+  font-size:10px;
   font-weight:950;
   white-space:nowrap;
   overflow:hidden;
@@ -713,7 +863,7 @@ main{
 }
 
 .scorer-selected-count{
-  font-size:10px;
+  font-size:9px;
   color:var(--muted);
   font-weight:800;
   margin-left:5px;
@@ -730,27 +880,19 @@ main{
   align-items:center;
   gap:8px;
   padding:8px 9px;
-  background:#f8f8f9;
-  border:1px solid #e7e7e9;
-  border-radius:11px;
+  background:#fff;
+  border:1px solid #e5e5e8;
+  border-radius:10px;
 }
 
 .scorer-selected-icon{
-  width:27px;
-  height:27px;
-  border-radius:8px;
-  background:#fff0f2;
-  color:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:13px;
-  flex:0 0 27px;
+  display:none;
 }
 
 .scorer-selected-name-list{
   flex:1;
   min-width:0;
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
   white-space:nowrap;
   overflow:hidden;
@@ -758,13 +900,13 @@ main{
 }
 
 .scorer-selected-goals{
-  min-width:30px;
+  min-width:29px;
   padding:4px 7px;
-  border-radius:8px;
-  background:#fff0f2;
+  border-radius:7px;
+  background:var(--red-soft);
   color:var(--red);
   text-align:center;
-  font-size:11px;
+  font-size:10px;
   font-weight:950;
 }
 
@@ -779,7 +921,7 @@ main{
   gap:8px;
   padding:10px 6px;
   border:1px solid #e1e1e4;
-  border-radius:14px;
+  border-radius:12px;
   background:#fff;
 }
 
@@ -789,7 +931,7 @@ main{
 }
 
 .scorer-name{
-  font-size:12px;
+  font-size:11px;
   font-weight:950;
   white-space:nowrap;
   overflow:hidden;
@@ -797,7 +939,7 @@ main{
 }
 
 .scorer-pos{
-  font-size:9px;
+  font-size:8px;
   color:var(--muted);
   font-weight:800;
   margin-top:2px;
@@ -814,27 +956,27 @@ main{
   width:38px;
   height:38px;
   border:0;
-  border-radius:11px;
+  border-radius:10px;
   display:grid;
   place-items:center;
-  font-size:22px;
+  font-size:20px;
   font-weight:950;
 }
 
 .scorer-minus{
-  background:#f0f0f2;
+  background:#ededf0;
   color:#555;
 }
 
 .scorer-plus{
-  background:#fff0f2;
+  background:var(--red-soft);
   color:var(--red);
 }
 
 .scorer-count{
   min-width:20px;
   text-align:center;
-  font-size:15px;
+  font-size:14px;
   font-weight:950;
 }
 
@@ -862,20 +1004,20 @@ main{
 
 .card-add-btn{
   border:0;
-  border-radius:12px;
-  min-height:45px;
-  font-size:12px;
+  border-radius:10px;
+  min-height:44px;
+  font-size:10px;
   font-weight:950;
 }
 
 .card-yellow{
-  background:#fff7d8;
-  color:#7d6613;
+  background:#f5f0dc;
+  color:#665a25;
 }
 
 .card-red{
-  background:#fff0f2;
-  color:#c51f2f;
+  background:var(--red-soft);
+  color:var(--red);
 }
 
 .selected-cards{
@@ -889,19 +1031,26 @@ main{
   align-items:center;
   gap:8px;
   padding:8px 9px;
-  background:#f8f8f9;
-  border:1px solid #e7e7e9;
-  border-radius:11px;
+  background:#fff;
+  border:1px solid #e5e5e8;
+  border-radius:10px;
 }
 
 .selected-card-badge{
-  font-size:15px;
+  width:7px;
+  height:24px;
+  border-radius:4px;
+  background:#d5bf51;
+  font-size:0;
+}
+
+.selected-card-row:has(.selected-card-badge){
 }
 
 .selected-card-name{
   flex:1;
   min-width:0;
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
 }
 
@@ -909,18 +1058,10 @@ main{
   width:25px;
   height:25px;
   border:0;
-  border-radius:8px;
-  background:#ececef;
+  border-radius:7px;
+  background:#ededf0;
   color:#666;
   font-weight:950;
-}
-
-.cards-empty{
-  text-align:center;
-  padding:10px 4px 3px;
-  color:var(--muted);
-  font-size:10px;
-  font-weight:750;
 }
 
 /* =====================================================
@@ -933,22 +1074,22 @@ main{
   gap:13px;
   padding:12px;
   border:1px solid var(--line);
-  border-radius:15px;
+  border-radius:14px;
   background:#fafafa;
   margin-bottom:12px;
 }
 
 .team-logo-preview{
-  width:76px;
-  height:76px;
-  flex:0 0 76px;
-  border-radius:17px;
+  width:72px;
+  height:72px;
+  flex:0 0 72px;
+  border-radius:14px;
   background:#fff;
   border:1px solid #dedee2;
   display:grid;
   place-items:center;
   overflow:hidden;
-  box-shadow:0 4px 14px #1414190d;
+  box-shadow:0 4px 14px rgba(15,15,20,.05);
 }
 
 .team-logo-preview img{
@@ -959,12 +1100,11 @@ main{
 }
 
 .team-logo-placeholder{
-  display:grid;
-  place-items:center;
-  width:100%;
-  height:100%;
-  color:#b5b5ba;
-  font-size:30px;
+  width:27px;
+  height:27px;
+  border:2px solid #b9b9bf;
+  border-radius:7px;
+  font-size:0;
 }
 
 .team-logo-info{
@@ -973,15 +1113,15 @@ main{
 }
 
 .team-logo-title{
-  font-size:13px;
+  font-size:12px;
   font-weight:950;
 }
 
 .team-logo-subtitle{
-  font-size:10px;
+  font-size:9px;
   color:var(--muted);
-  line-height:1.35;
-  margin-top:3px;
+  line-height:1.4;
+  margin-top:4px;
 }
 
 .team-logo-actions{
@@ -1004,28 +1144,35 @@ main{
   gap:6px;
   overflow:auto;
   margin-bottom:12px;
+  padding-bottom:2px;
+  scrollbar-width:none;
+}
+
+.tabs::-webkit-scrollbar{
+  display:none;
 }
 
 .tab{
-  border:0;
-  border-radius:999px;
+  border:1px solid #dedee2;
+  border-radius:9px;
   padding:9px 13px;
-  background:#e9e9ec;
-  color:#5e5e64;
-  font-size:11px;
-  font-weight:850;
+  background:#fff;
+  color:#67676e;
+  font-size:9px;
+  font-weight:900;
   white-space:nowrap;
 }
 
 .tab.active{
-  background:var(--red);
+  background:var(--black);
+  border-color:var(--black);
   color:#fff;
 }
 
 .item{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:11px;
   padding:12px 0;
   border-bottom:1px solid #ededf0;
 }
@@ -1035,14 +1182,24 @@ main{
 }
 
 .avatar{
-  width:42px;
-  height:42px;
-  flex:0 0 42px;
-  border-radius:13px;
-  background:#ececef;
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  border-radius:11px;
+  background:#f0f0f2;
+  border:1px solid #e1e1e4;
   display:grid;
   place-items:center;
-  font-size:20px;
+  font-size:0;
+  position:relative;
+}
+
+.avatar:after{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#bdbdc3;
 }
 
 .grow{
@@ -1051,12 +1208,13 @@ main{
 }
 
 .item b{
-  font-size:13px;
+  font-size:12px;
+  font-weight:950;
 }
 
 .item .muted{
-  font-size:10px;
-  margin-top:2px;
+  font-size:9px;
+  margin-top:3px;
 }
 
 /* =====================================================
@@ -1064,40 +1222,49 @@ main{
 ===================================================== */
 
 .form-group{
-  margin-bottom:12px;
+  margin-bottom:13px;
 }
 
 .form-group label{
   display:block;
-  font-size:10px;
+  font-size:9px;
   text-transform:uppercase;
-  letter-spacing:.7px;
-  font-weight:900;
+  letter-spacing:.8px;
+  font-weight:950;
   color:var(--muted);
   margin-bottom:6px;
 }
 
-.form-input,.select,.form-textarea{
+.form-input,
+.select,
+.form-textarea{
   width:100%;
   border:1px solid var(--line);
   background:#fafafa;
-  border-radius:11px;
+  border-radius:10px;
   padding:11px;
-  font-size:14px;
+  font-size:13px;
   outline:none;
+  color:var(--text);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder{
+  color:#aaaab0;
 }
 
 .form-textarea{
   min-height:130px;
   resize:vertical;
-  line-height:1.4;
+  line-height:1.45;
 }
 
 .form-input:focus,
 .select:focus,
 .form-textarea:focus{
-  border-color:#ffb5bd;
-  box-shadow:0 0 0 3px #fff0f2;
+  border-color:#e89aa3;
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(226,29,47,.08);
 }
 
 /* =====================================================
@@ -1111,10 +1278,13 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:calc(18px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
-  background:rgba(0,0,0,.52);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    14px
+    calc(18px + env(safe-area-inset-bottom));
+  background:rgba(5,5,7,.58);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 
 .edit-modal-card{
@@ -1122,8 +1292,8 @@ main{
   max-height:calc(100vh - 36px);
   overflow-y:auto;
   background:#fff;
-  border-radius:22px;
-  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  border-radius:20px;
+  box-shadow:0 25px 70px rgba(0,0,0,.32);
   padding:20px;
   -webkit-overflow-scrolling:touch;
 }
@@ -1133,32 +1303,53 @@ main{
   align-items:flex-start;
   justify-content:space-between;
   gap:12px;
-  margin-bottom:18px;
+  margin-bottom:19px;
 }
 
 .edit-modal-title{
-  font-size:22px;
+  font-size:21px;
   font-weight:950;
-  letter-spacing:-.5px;
+  letter-spacing:-.55px;
 }
 
 .edit-modal-subtitle{
-  font-size:11px;
+  font-size:9px;
   color:var(--muted);
   font-weight:700;
-  margin-top:3px;
+  margin-top:5px;
+  line-height:1.4;
 }
 
 .edit-modal-close{
   width:34px;
   height:34px;
   flex:0 0 34px;
-  border:0;
-  border-radius:10px;
-  background:#f0f0f2;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#f3f3f5;
   color:#555;
-  font-size:20px;
+  font-size:0;
   line-height:34px;
+  position:relative;
+}
+
+.edit-modal-close:before,
+.edit-modal-close:after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:1.5px;
+  background:#666;
+  left:10px;
+  top:16px;
+}
+
+.edit-modal-close:before{
+  transform:rotate(45deg);
+}
+
+.edit-modal-close:after{
+  transform:rotate(-45deg);
 }
 
 .edit-status-grid{
@@ -1182,19 +1373,19 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:45px;
+  min-height:44px;
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:10px;
   background:#fafafa;
   color:#666;
-  font-size:12px;
+  font-size:10px;
   font-weight:900;
   cursor:pointer;
 }
 
 .edit-status-option input:checked + label{
-  background:#fff0f2;
-  border-color:#ffb5bd;
+  background:var(--red-soft);
+  border-color:#f0aab2;
   color:var(--red);
 }
 
@@ -1228,11 +1419,11 @@ main{
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  margin-bottom:13px;
+  margin-bottom:14px;
 }
 
 .notes-count{
-  font-size:10px;
+  font-size:9px;
   color:var(--muted);
   font-weight:800;
 }
@@ -1243,21 +1434,27 @@ main{
   overflow:auto;
   margin-bottom:12px;
   padding-bottom:2px;
+  scrollbar-width:none;
+}
+
+.notes-filter::-webkit-scrollbar{
+  display:none;
 }
 
 .note-filter{
-  border:0;
-  border-radius:999px;
+  border:1px solid #dedee2;
+  border-radius:9px;
   padding:9px 12px;
-  background:#e9e9ec;
+  background:#fff;
   color:#5e5e64;
-  font-size:10px;
-  font-weight:850;
+  font-size:9px;
+  font-weight:900;
   white-space:nowrap;
 }
 
 .note-filter.active{
-  background:var(--red);
+  background:var(--black);
+  border-color:var(--black);
   color:#fff;
 }
 
@@ -1265,10 +1462,10 @@ main{
   position:relative;
   background:#fff;
   border:1px solid var(--line);
-  border-radius:17px;
+  border-radius:15px;
   padding:15px;
   margin-bottom:10px;
-  box-shadow:0 5px 18px #1414190d;
+  box-shadow:var(--shadow);
 }
 
 .note-card-header{
@@ -1278,15 +1475,12 @@ main{
 }
 
 .note-icon{
-  width:38px;
-  height:38px;
-  flex:0 0 38px;
-  border-radius:11px;
-  background:#fff0f2;
-  color:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:18px;
+  width:4px;
+  height:36px;
+  flex:0 0 4px;
+  border-radius:3px;
+  background:var(--red);
+  font-size:0;
 }
 
 .note-main{
@@ -1295,22 +1489,22 @@ main{
 }
 
 .note-title{
-  font-size:13px;
+  font-size:12px;
   font-weight:950;
-  line-height:1.2;
+  line-height:1.25;
 }
 
 .note-category{
   display:inline-block;
   margin-top:5px;
   padding:4px 7px;
-  border-radius:999px;
+  border-radius:6px;
   background:#f0f0f2;
   color:#666;
-  font-size:8px;
-  font-weight:900;
+  font-size:7px;
+  font-weight:950;
   text-transform:uppercase;
-  letter-spacing:.4px;
+  letter-spacing:.5px;
 }
 
 .note-actions{
@@ -1321,24 +1515,34 @@ main{
 .note-action{
   width:30px;
   height:30px;
-  border:0;
-  border-radius:9px;
-  background:#f0f0f2;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fafafa;
   color:#666;
   display:grid;
   place-items:center;
-  font-size:13px;
+  font-size:0;
+}
+
+.note-action:before{
+  content:"Editar";
+  font-size:7px;
+  font-weight:900;
 }
 
 .note-action.delete{
   color:var(--red);
-  background:#fff0f2;
+  background:var(--red-soft);
+}
+
+.note-action.delete:before{
+  content:"Eliminar";
 }
 
 .note-text{
   margin-top:11px;
-  font-size:12px;
-  line-height:1.5;
+  font-size:11px;
+  line-height:1.55;
   color:#444;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
@@ -1348,26 +1552,45 @@ main{
   margin-top:11px;
   padding-top:9px;
   border-top:1px solid #ededf0;
-  font-size:9px;
+  font-size:8px;
   color:var(--muted);
   font-weight:750;
 }
 
 .notes-empty{
   text-align:center;
-  padding:34px 15px;
+  padding:38px 18px;
 }
 
 .notes-empty-icon{
-  width:54px;
-  height:54px;
-  margin:0 auto 10px;
-  border-radius:16px;
-  background:#fff0f2;
-  color:var(--red);
-  display:grid;
-  place-items:center;
-  font-size:25px;
+  width:48px;
+  height:48px;
+  margin:0 auto 12px;
+  border-radius:14px;
+  background:var(--black);
+  position:relative;
+  font-size:0;
+}
+
+.notes-empty-icon:before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:15px;
+  border:1.5px solid #fff;
+  border-radius:3px;
+  left:13px;
+  top:12px;
+}
+
+.notes-empty-icon:after{
+  content:"";
+  position:absolute;
+  width:14px;
+  height:1.5px;
+  background:#fff;
+  left:17px;
+  top:19px;
 }
 
 .notes-empty-title{
@@ -1376,11 +1599,11 @@ main{
 }
 
 .notes-empty-text{
-  margin-top:4px;
-  font-size:10px;
+  margin-top:5px;
+  font-size:9px;
   color:var(--muted);
   font-weight:700;
-  line-height:1.4;
+  line-height:1.5;
 }
 
 .note-modal-textarea{
@@ -1392,10 +1615,10 @@ main{
 ===================================================== */
 
 .more-screen{
-  background:var(--dark);
+  background:var(--black);
   min-height:calc(100vh - 80px);
-  margin:-16px -14px -28px;
-  padding:16px 14px 30px;
+  margin:-18px -14px -28px;
+  padding:20px 14px 30px;
   color:#fff;
 }
 
@@ -1405,44 +1628,50 @@ main{
 
 .more-menu{
   display:grid;
-  gap:8px;
+  gap:7px;
+  margin-top:19px;
 }
 
 .more-row{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:12px;
   width:100%;
-  border:1px solid #2b2b30;
-  background:#17171a;
+  border:1px solid #29292e;
+  background:#121216;
   color:#fff;
-  border-radius:13px;
+  border-radius:12px;
   padding:13px;
   text-align:left;
 }
 
+.more-row:active{
+  background:#1a1a1f;
+}
+
 .more-icon{
-  width:30px;
-  height:30px;
-  border-radius:9px;
-  background:#242428;
-  display:grid;
-  place-items:center;
-  flex:0 0 30px;
+  width:4px;
+  height:25px;
+  border-radius:3px;
+  background:var(--red);
+  flex:0 0 4px;
+  font-size:0;
 }
 
 .more-text{
   flex:1;
-  font-size:12px;
-  font-weight:850;
+  font-size:10px;
+  font-weight:900;
 }
 
 .more-arrow{
-  color:#8c8c92;
+  color:#77777f;
+  font-size:18px;
 }
 
 /* =====================================================
    TÁCTICA
+   LA LÓGICA Y ESTRUCTURA DEL CAMPO SE MANTIENE
 ===================================================== */
 
 .tactic-toolbar{
@@ -1454,11 +1683,11 @@ main{
 
 .tactic-view-btn{
   border:0;
-  border-radius:12px;
+  border-radius:11px;
   min-height:44px;
   background:#e9e9ec;
   color:#666;
-  font-size:12px;
+  font-size:10px;
   font-weight:900;
 }
 
@@ -1638,11 +1867,20 @@ main{
   color:#fff;
   display:grid;
   place-items:center;
-  font-size:20px;
+  font-size:0;
   line-height:1;
   font-weight:950;
   box-shadow:0 3px 8px rgba(0,0,0,.22);
   border:2px solid #fff;
+  position:relative;
+}
+
+.board-player-ball:after{
+  content:"";
+  width:13px;
+  height:13px;
+  border:2px solid #fff;
+  border-radius:50%;
 }
 
 .board-player-info{
@@ -1692,17 +1930,21 @@ main{
   color:#fff;
   display:grid;
   place-items:center;
-  font-size:12px;
-  font-weight:900;
+  font-size:0;
   line-height:1;
   padding:0;
   z-index:5;
   box-shadow:0 2px 6px rgba(0,0,0,.35);
 }
 
+.board-player-remove:after{
+  content:"×";
+  font-size:12px;
+}
+
 .tactic-help{
   text-align:center;
-  font-size:11px;
+  font-size:9px;
   color:var(--muted);
   font-weight:750;
   margin:-2px 0 10px;
@@ -1711,10 +1953,10 @@ main{
 .player-tray{
   background:#fff;
   border:1px solid var(--line);
-  border-radius:17px;
+  border-radius:15px;
   padding:12px;
   margin-bottom:12px;
-  box-shadow:0 5px 18px #14141910;
+  box-shadow:var(--shadow);
 }
 
 .player-tray-title{
@@ -1726,12 +1968,12 @@ main{
 }
 
 .player-tray-title strong{
-  font-size:12px;
+  font-size:11px;
   font-weight:950;
 }
 
 .player-tray-count{
-  font-size:10px;
+  font-size:8px;
   color:var(--muted);
   font-weight:800;
 }
@@ -1756,7 +1998,7 @@ main{
   width:86px;
   min-height:54px;
   border:1px solid #dedee2;
-  border-radius:12px;
+  border-radius:11px;
   background:#fafafa;
   padding:7px 6px;
   touch-action:none;
@@ -1813,7 +2055,7 @@ main{
   padding:8px 2px;
   text-align:center;
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
   font-weight:800;
 }
 
@@ -1844,7 +2086,7 @@ main{
   display:grid;
   place-items:center;
   color:#fff;
-  font-size:14px;
+  font-size:13px;
   font-weight:950;
   background:#00000012;
   pointer-events:none;
@@ -1858,7 +2100,7 @@ main{
 }
 
 /* =====================================================
-   NAVEGACIÓN
+   NAVEGACIÓN INFERIOR
 ===================================================== */
 
 nav{
@@ -1869,35 +2111,46 @@ nav{
   width:min(560px,100%);
   display:flex;
   justify-content:space-around;
-  background:#fffefeed;
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
   border-top:1px solid #dedee2;
-  padding:7px 3px calc(7px + env(safe-area-inset-bottom));
+  padding:7px 6px calc(7px + env(safe-area-inset-bottom));
   z-index:30;
-  box-shadow:0 -8px 25px #14141914;
+  box-shadow:0 -8px 25px rgba(15,15,20,.07);
 }
 
 nav button{
+  position:relative;
   background:none;
   border:0;
-  color:#77777e;
-  font-size:10px;
+  color:#85858d;
+  font-size:9px;
   font-weight:850;
-  padding:6px 4px;
-  min-width:52px;
-  border-radius:11px;
+  padding:8px 7px 7px;
+  min-width:58px;
+  border-radius:9px;
 }
 
 nav button.active{
   color:var(--red);
-  background:#fff0f2;
+  background:transparent;
+}
+
+nav button.active:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:22px;
+  height:2px;
+  border-radius:2px;
+  background:var(--red);
 }
 
 nav .nav-icon{
-  font-size:18px;
-  line-height:18px;
-  margin-bottom:2px;
+  display:none;
 }
 
 /* =====================================================
@@ -1934,7 +2187,6 @@ nav .nav-icon{
     width:34px;
     height:34px;
     flex-basis:34px;
-    font-size:18px;
   }
 
   .board-player-name{
@@ -1948,7 +2200,6 @@ nav .nav-icon{
   .board-player-remove{
     width:19px;
     height:19px;
-    font-size:11px;
   }
 
   .drag-ghost{
@@ -2023,10 +2274,12 @@ nav .nav-icon{
   <div class="header-row">
 
     <div>
-      <div class="brand">⚽ <span>KNATT</span></div>
+      <div class="brand">
+        <span>KNATT</span>
+      </div>
 
       <div class="role">
-        Tu equipo, en una sola app
+        Gestión deportiva de tu equipo
       </div>
     </div>
 
@@ -2034,7 +2287,7 @@ nav .nav-icon{
       class="header-bell"
       onclick="alert('No tienes nuevas notificaciones.')">
 
-      🔔
+      Avisos
 
     </button>
 
@@ -2219,10 +2472,6 @@ if(!Array.isArray(data.activity)){
   data.activity=[];
 }
 
-/*
-  Compatibilidad con partidos antiguos.
-*/
-
 data.matches.forEach(match=>{
 
   if(!match.away && match.rival){
@@ -2246,10 +2495,6 @@ let selectedPlayerId=null;
 let selectedNoteId=null;
 
 let selectedMatchId=null;
-
-/*
-  Estado temporal del formulario de partido.
-*/
 
 let matchScorerCounts={};
 
@@ -2348,11 +2593,11 @@ function go(s){
 function navItems(){
 
   return[
-    ['home','⌂','Inicio'],
-    ['team','♟','Plantilla'],
-    ['tactic','⚽','Táctica'],
-    ['matches','🏟️','Partidos'],
-    ['more','☰','Más']
+    ['home','','Inicio'],
+    ['team','','Plantilla'],
+    ['tactic','','Táctica'],
+    ['matches','','Partidos'],
+    ['more','','Más']
   ];
 
 }
@@ -2444,9 +2689,7 @@ function homeTeamLogoHtml(){
 
     <div class="home-team-logo">
 
-      <div class="home-team-logo-placeholder">
-        🛡️
-      </div>
+      <div class="home-team-logo-placeholder"></div>
 
     </div>
 
@@ -2476,24 +2719,13 @@ function settingsLogoHtml(){
 
     <div class="team-logo-preview">
 
-      <div class="team-logo-placeholder">
-        🛡️
-      </div>
+      <div class="team-logo-placeholder"></div>
 
     </div>
 
   `;
 
 }
-
-/*
-  Actualiza únicamente la zona del escudo.
-
-  IMPORTANTE:
-  No hacemos render() después de subir/eliminar el escudo.
-  Así los campos del Perfil que el usuario esté escribiendo
-  permanecen intactos.
-*/
 
 function refreshSettingsLogoUI(){
 
@@ -2518,8 +2750,8 @@ function refreshSettingsLogoUI(){
 
     changeButton.innerHTML=
       data.settings.logo
-        ?'🔄 Cambiar escudo'
-        :'🛡️ Subir escudo';
+        ?'Cambiar escudo'
+        :'Subir escudo';
 
   }
 
@@ -2615,7 +2847,7 @@ function home(){
 
                   ${
                     season
-                      ?` ${esc(season)}`
+                      ?` · ${esc(season)}`
                       :''
                   }
 
@@ -2654,7 +2886,7 @@ function home(){
       </div>
 
       <div class="subtitle">
-        Qué quieres hacer hoy?
+        ¿Qué quieres hacer hoy?
       </div>
 
     </div>
@@ -2717,9 +2949,7 @@ function home(){
       class="card home-quick-card"
       onclick="go('team')">
 
-      <div class="home-quick-icon">
-        ♟
-      </div>
+      <div class="home-quick-icon"></div>
 
       <div class="home-quick-content">
 
@@ -2757,9 +2987,7 @@ function home(){
       class="card home-quick-card"
       onclick="go('matches')">
 
-      <div class="home-quick-icon">
-        🏟️
-      </div>
+      <div class="home-quick-icon"></div>
 
       <div class="home-quick-content">
 
@@ -2793,9 +3021,7 @@ function home(){
       class="card home-quick-card"
       onclick="go('notes')">
 
-      <div class="home-quick-icon">
-        📝
-      </div>
+      <div class="home-quick-icon"></div>
 
       <div class="home-quick-content">
 
@@ -2829,9 +3055,7 @@ function home(){
       class="card home-quick-card"
       onclick="go('tactic')">
 
-      <div class="home-quick-icon">
-        ⚽
-      </div>
+      <div class="home-quick-icon"></div>
 
       <div class="home-quick-content">
 
@@ -2867,7 +3091,7 @@ function home(){
               <div class="activity-item">
 
                 <div class="activity-icon">
-                  ${esc(a.icon||'•')}
+                  ${esc(a.icon||'')}
                 </div>
 
                 <div class="activity-content">
@@ -3078,7 +3302,7 @@ function team(){
         class="btn red-soft"
         onclick="addPlayer()">
 
-        ＋
+        Añadir
 
       </button>
 
@@ -3144,15 +3368,7 @@ function team(){
               class="item"
               onclick="openPlayer(${p.id})">
 
-              <div class="avatar">
-
-                ${
-                  p.pos==='POR'
-                    ?'🧤'
-                    :'⚽'
-                }
-
-              </div>
+              <div class="avatar"></div>
 
               <div class="grow">
 
@@ -3238,7 +3454,7 @@ function playerProfile(){
       class="btn light"
       onclick="go('team')">
 
-      ← Plantilla
+      Volver a plantilla
 
     </button>
 
@@ -3306,7 +3522,7 @@ function playerProfile(){
         class="btn full"
         onclick="editPlayer()">
 
-        ✏️ Editar jugador
+        Editar jugador
 
       </button>
 
@@ -3316,7 +3532,7 @@ function playerProfile(){
         class="btn light full"
         onclick="deletePlayer(${p.id})">
 
-        🗑️ Eliminar jugador
+        Eliminar jugador
 
       </button>
 
@@ -3430,7 +3646,7 @@ function addPlayer(){
               onchange="toggleAddReason()">
 
             <label for="add-available-yes">
-              ✓ Disponible
+              Disponible
             </label>
 
           </div>
@@ -3445,7 +3661,7 @@ function addPlayer(){
               onchange="toggleAddReason()">
 
             <label for="add-available-no">
-              ✕ No disponible
+              No disponible
             </label>
 
           </div>
@@ -3678,7 +3894,7 @@ function saveNewPlayer(){
   data.players.push(newPlayer);
 
   addActivity(
-    '👤',
+    'player',
     `Jugador añadido: ${newPlayer.name}`
   );
 
@@ -3797,7 +4013,7 @@ function editPlayer(){
               onchange="toggleEditReason()">
 
             <label for="edit-available-yes">
-              ✓ Disponible
+              Disponible
             </label>
 
           </div>
@@ -3813,7 +4029,7 @@ function editPlayer(){
               onchange="toggleEditReason()">
 
             <label for="edit-available-no">
-              ✕ No disponible
+              No disponible
             </label>
 
           </div>
@@ -4053,7 +4269,7 @@ function saveEditedPlayer(){
   );
 
   addActivity(
-    '✏️',
+    'player',
     `Jugador actualizado: ${p.name}`
   );
 
@@ -4129,7 +4345,7 @@ function deletePlayer(id){
   removePlayerFromTactic(id,true);
 
   addActivity(
-    '🗑️',
+    'delete',
     `Jugador eliminado: ${
       player?player.name:'Jugador'
     }`
@@ -4180,7 +4396,7 @@ function matches(){
         class="btn red-soft"
         onclick="openMatchModal()">
 
-        ＋
+        Añadir
 
       </button>
 
@@ -4197,9 +4413,7 @@ function matches(){
 
           <div class="card matches-empty">
 
-            <div class="matches-empty-icon">
-              🏟️
-            </div>
+            <div class="matches-empty-icon"></div>
 
             <div class="matches-empty-title">
               No hay partidos todavía
@@ -4218,7 +4432,7 @@ function matches(){
               class="btn"
               onclick="openMatchModal()">
 
-              ＋ Añadir partido
+              Añadir partido
 
             </button>
 
@@ -4282,7 +4496,7 @@ function matchCard(match){
 
                     <div class="match-detail">
 
-                      <b>⚽ Goleadores:</b>
+                      <b>Goleadores:</b>
 
                       ${esc(match.scorers)}
 
@@ -4298,7 +4512,7 @@ function matchCard(match){
 
                     <div class="match-detail">
 
-                      <b>🟨 Tarjetas:</b>
+                      <b>Tarjetas:</b>
 
                       ${esc(match.cards)}
 
@@ -4329,8 +4543,6 @@ function matchCard(match){
             openMatchModal('${esc(match.id)}')
           ">
 
-          ✏️
-
         </button>
 
         <button
@@ -4339,8 +4551,6 @@ function matchCard(match){
             event.stopPropagation();
             deleteMatch('${esc(match.id)}')
           ">
-
-          🗑️
 
         </button>
 
@@ -4586,7 +4796,7 @@ function initMatchStats(existing){
 }
 
 /* =====================================================
-   GOLEADORES DEL PARTIDO
+   GOLEADORES
 ===================================================== */
 
 function changeMatchScorer(
@@ -4690,9 +4900,7 @@ function renderMatchScorers(){
 
           <div class="scorer-selected-row">
 
-            <div class="scorer-selected-icon">
-              ⚽
-            </div>
+            <div class="scorer-selected-icon"></div>
 
             <div class="scorer-selected-name-list">
 
@@ -4940,21 +5148,33 @@ function renderMatchCards(){
         if(!player)
           return '';
 
-        const emoji=
-          card.color==='red'
-            ?'🟥'
-            :'🟨';
-
         return`
 
           <div class="selected-card-row">
 
-            <div class="selected-card-badge">
-              ${emoji}
+            <div
+              class="selected-card-badge"
+              style="
+                background:${
+                  card.color==='red'
+                    ?'var(--red)'
+                    :'#d5bf51'
+                };
+              ">
             </div>
 
             <div class="selected-card-name">
+
               ${esc(player.name)}
+
+              ·
+
+              ${
+                card.color==='red'
+                  ?'Roja'
+                  :'Amarilla'
+              }
+
             </div>
 
             <button
@@ -5167,7 +5387,7 @@ function openMatchModal(id=null){
         <div class="match-stats-header">
 
           <div class="match-stats-title">
-            ⚽ Goleadores
+            Goleadores
           </div>
 
           <div class="match-stats-help">
@@ -5189,7 +5409,7 @@ function openMatchModal(id=null){
         <div class="match-stats-header">
 
           <div class="match-stats-title">
-            🟨 🟥 Tarjetas
+            Tarjetas
           </div>
 
           <div class="match-stats-help">
@@ -5239,7 +5459,7 @@ function openMatchModal(id=null){
               addMatchCard('yellow')
             ">
 
-            🟨 Añadir amarilla
+            Añadir amarilla
 
           </button>
 
@@ -5250,7 +5470,7 @@ function openMatchModal(id=null){
               addMatchCard('red')
             ">
 
-            🟥 Añadir roja
+            Añadir roja
 
           </button>
 
@@ -5500,7 +5720,7 @@ function saveMatch(id=null){
       Date.now();
 
     addActivity(
-      '🏟️',
+      'match',
       `Partido actualizado: ${matchHome} ${matchResult} ${matchAway}`
     );
 
@@ -5556,7 +5776,7 @@ function saveMatch(id=null){
       matchHome;
 
     addActivity(
-      '🏟️',
+      'match',
       `Partido añadido: ${matchHome} ${matchResult} ${matchAway}`
     );
 
@@ -5626,7 +5846,7 @@ function deleteMatch(id){
     );
 
   addActivity(
-    '🗑️',
+    'delete',
     `Partido eliminado: ${match.home} vs ${away}`
   );
 
@@ -5644,15 +5864,15 @@ function noteCategoryIcon(category){
 
   const icons={
 
-    'General':'📝',
-    'Táctica':'⚽',
-    'Jugadores':'👤',
-    'Partido':'🎯',
-    'Otros':'📌'
+    'General':'',
+    'Táctica':'',
+    'Jugadores':'',
+    'Partido':'',
+    'Otros':''
 
   };
 
-  return icons[category]||'📝';
+  return icons[category]||'';
 
 }
 
@@ -5704,7 +5924,7 @@ function notes(){
         class="btn red-soft"
         onclick="openNoteModal()">
 
-        ＋
+        Añadir
 
       </button>
 
@@ -5759,9 +5979,7 @@ function notes(){
 
           <div class="card notes-empty">
 
-            <div class="notes-empty-icon">
-              📝
-            </div>
+            <div class="notes-empty-icon"></div>
 
             <div class="notes-empty-title">
 
@@ -5787,7 +6005,7 @@ function notes(){
               class="btn"
               onclick="openNoteModal()">
 
-              ＋ Nueva nota
+              Nueva nota
 
             </button>
 
@@ -5809,13 +6027,7 @@ function noteCard(note){
 
       <div class="note-card-header">
 
-        <div class="note-icon">
-
-          ${noteCategoryIcon(
-            note.category
-          )}
-
-        </div>
+        <div class="note-icon"></div>
 
         <div class="note-main">
 
@@ -5838,8 +6050,6 @@ function noteCard(note){
               openNoteModal('${esc(note.id)}');
             ">
 
-            ✏️
-
           </button>
 
           <button
@@ -5848,8 +6058,6 @@ function noteCard(note){
               event.stopPropagation();
               deleteNote('${esc(note.id)}');
             ">
-
-            🗑️
 
           </button>
 
@@ -6164,7 +6372,7 @@ function saveNote(id=null){
     note.updatedAt=Date.now();
 
     addActivity(
-      '✏️',
+      'note',
       `Nota actualizada: ${note.title}`
     );
 
@@ -6194,7 +6402,7 @@ function saveNote(id=null){
     data.notes.unshift(newNote);
 
     addActivity(
-      '📝',
+      'note',
       `Nueva nota: ${newNote.title}`
     );
 
@@ -6259,7 +6467,7 @@ function deleteNote(id){
     );
 
   addActivity(
-    '🗑️',
+    'delete',
     `Nota eliminada: ${note.title}`
   );
 
@@ -6289,9 +6497,7 @@ function more(){
           class="more-row"
           onclick="go('stats')">
 
-          <div class="more-icon">
-            📊
-          </div>
+          <div class="more-icon"></div>
 
           <div class="more-text">
             Estadísticas
@@ -6307,9 +6513,7 @@ function more(){
           class="more-row"
           onclick="go('notes')">
 
-          <div class="more-icon">
-            📝
-          </div>
+          <div class="more-icon"></div>
 
           <div class="more-text">
             Notas de entrenador
@@ -6325,9 +6529,7 @@ function more(){
           class="more-row"
           onclick="go('settings')">
 
-          <div class="more-icon">
-            👤
-          </div>
+          <div class="more-icon"></div>
 
           <div class="more-text">
             Perfil
@@ -6371,6 +6573,10 @@ function stats(){
 
     <div class="title">
       Estadísticas
+    </div>
+
+    <div class="subtitle" style="margin-bottom:14px;">
+      Rendimiento acumulado de la plantilla
     </div>
 
     <div class="stat-grid">
@@ -6422,9 +6628,7 @@ function stats(){
 
             <div class="item">
 
-              <div class="avatar">
-                ⚽
-              </div>
+              <div class="avatar"></div>
 
               <div class="grow">
 
@@ -6441,11 +6645,11 @@ function stats(){
               <div>
 
                 <b>
-                  ${p.g||0} ⚽
+                  ${p.g||0} goles
                 </b>
 
                 <div class="muted">
-                  ${p.a||0} 🎯
+                  ${p.a||0} asistencias
                 </div>
 
               </div>
@@ -6622,8 +6826,8 @@ function settings(){
 
             ${
               data.settings.logo
-                ?'🔄 Cambiar escudo'
-                :'🛡️ Subir escudo'
+                ?'Cambiar escudo'
+                :'Subir escudo'
             }
 
           </button>
@@ -6638,7 +6842,7 @@ function settings(){
                 :'disabled'
             }>
 
-            🗑️ Eliminar
+            Eliminar
 
           </button>
 
@@ -6650,7 +6854,7 @@ function settings(){
         class="btn full"
         onclick="saveSettings()">
 
-        💾 Guardar perfil
+        Guardar perfil
 
       </button>
 
@@ -6782,18 +6986,9 @@ function handleTeamLogoUpload(event){
       data.settings.logo=logoData;
 
       addActivity(
-        '🛡️',
+        'logo',
         'Escudo del equipo actualizado'
       );
-
-      /*
-        Guardamos únicamente el escudo y la actividad.
-        NO hacemos render() aquí.
-
-        Esto evita que los campos Entrenador,
-        Equipo, Temporada, Categoría y División
-        que el usuario esté escribiendo se borren.
-      */
 
       save();
 
@@ -6847,16 +7042,9 @@ function removeTeamLogo(){
   data.settings.logo='';
 
   addActivity(
-    '🗑️',
+    'delete',
     'Escudo del equipo eliminado'
   );
-
-  /*
-    Igual que al subirlo:
-    no hacemos render() para no perder
-    los datos que puedan estar escritos
-    en el Perfil.
-  */
 
   save();
 
@@ -6910,7 +7098,7 @@ function saveSettings(){
   }
 
   addActivity(
-    '👤',
+    'profile',
     'Perfil del equipo actualizado'
   );
 
@@ -6985,7 +7173,7 @@ function tactic(){
           changeTacticView('full')
         ">
 
-        🟢 Campo entero
+        Campo entero
 
       </button>
 
@@ -6998,7 +7186,7 @@ function tactic(){
           changeTacticView('half')
         ">
 
-        🟢 Medio campo
+        Medio campo
 
       </button>
 
@@ -7096,7 +7284,7 @@ function tactic(){
         class="btn"
         onclick="saveTactic()">
 
-        💾 Guardar
+        Guardar
 
       </button>
 
@@ -7104,7 +7292,7 @@ function tactic(){
         class="btn light"
         onclick="clearTactic()">
 
-        🧹 Vaciar
+        Vaciar
 
       </button>
 
@@ -7198,9 +7386,7 @@ function boardPlayerHtml(
 
       <div class="board-player-card">
 
-        <div class="board-player-ball">
-          👤
-        </div>
+        <div class="board-player-ball"></div>
 
         <div class="board-player-info">
 
@@ -7309,7 +7495,7 @@ function addPlayerToTactic(
   data.tactics.positions=positions;
 
   addActivity(
-    '⚽',
+    'tactic',
     `Jugador colocado: ${player.name}`
   );
 
@@ -7358,7 +7544,7 @@ function removePlayerFromTactic(
   if(!silent){
 
     addActivity(
-      '↩️',
+      'tactic',
       player
         ?`${player.name} retirado de la pizarra`
         :'Jugador retirado de la pizarra'
@@ -7398,9 +7584,7 @@ function createDragGhost(player){
 
     <div class="board-player-card">
 
-      <div class="board-player-ball">
-        👤
-      </div>
+      <div class="board-player-ball"></div>
 
       <div class="board-player-info">
 
@@ -7871,7 +8055,7 @@ function updateBoardPlayerPosition(
     );
 
   addActivity(
-    '📍',
+    'tactic',
     player
       ?`Posición actualizada: ${player.name}`
       :'Posición actualizada'
@@ -7930,7 +8114,7 @@ function clearTactic(){
   data.tactics.positions={};
 
   addActivity(
-    '🧹',
+    'tactic',
     'Pizarra táctica vaciada'
   );
 
@@ -7961,7 +8145,7 @@ function saveTactic(){
     );
 
   addActivity(
-    '💾',
+    'tactic',
     'Pizarra táctica guardada'
   );
 
