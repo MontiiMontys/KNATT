@@ -44,7 +44,8 @@ body{
 
 button,
 input,
-select{
+select,
+textarea{
   font:inherit;
 }
 
@@ -198,6 +199,11 @@ main{
 
 .btn.full{
   width:100%;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 
@@ -496,7 +502,8 @@ main{
 }
 
 .form-input,
-.select{
+.select,
+.form-textarea{
   width:100%;
   border:1px solid var(--line);
   background:#fafafa;
@@ -506,15 +513,22 @@ main{
   outline:none;
 }
 
+.form-textarea{
+  min-height:130px;
+  resize:vertical;
+  line-height:1.4;
+}
+
 .form-input:focus,
-.select:focus{
+.select:focus,
+.form-textarea:focus{
   border-color:#ffb5bd;
   box-shadow:0 0 0 3px #fff0f2;
 }
 
 
 /* =====================================================
-   MODAL JUGADOR
+   MODAL
 ===================================================== */
 
 .edit-modal{
@@ -681,6 +695,285 @@ main{
 
 
 /* =====================================================
+   NUEVO SISTEMA DE CALENDARIO
+===================================================== */
+
+.matches-header-actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.calendar-import-card{
+  background:#fff;
+  border:1px solid #ffd8dd;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:12px;
+}
+
+.calendar-import-row{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.calendar-import-icon{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:13px;
+  background:#fff0f2;
+  display:grid;
+  place-items:center;
+  font-size:21px;
+}
+
+.calendar-import-content{
+  flex:1;
+  min-width:0;
+}
+
+.calendar-import-title{
+  font-size:12px;
+  font-weight:950;
+}
+
+.calendar-import-subtitle{
+  margin-top:3px;
+  font-size:10px;
+  color:var(--muted);
+  line-height:1.35;
+}
+
+.calendar-import-button{
+  margin-top:11px;
+}
+
+.season-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-bottom:12px;
+}
+
+.season-summary-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 7px;
+  text-align:center;
+}
+
+.season-summary-card b{
+  display:block;
+  font-size:18px;
+  font-weight:950;
+}
+
+.season-summary-card span{
+  display:block;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:800;
+  margin-top:2px;
+}
+
+.match-round{
+  font-size:9px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  font-weight:950;
+  margin-bottom:4px;
+}
+
+.match-date{
+  font-size:12px;
+  color:#77777e;
+  font-weight:750;
+}
+
+.match-teams{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+}
+
+.match-team{
+  font-size:12px;
+  font-weight:950;
+  line-height:1.2;
+}
+
+.match-team.home{
+  text-align:right;
+}
+
+.match-team.away{
+  text-align:left;
+}
+
+.match-score{
+  min-width:58px;
+  text-align:center;
+  font-size:17px;
+  font-weight:950;
+  color:#8a8a90;
+}
+
+.match-score.played{
+  color:#17171a;
+}
+
+.match-status{
+  margin-top:9px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.match-location{
+  font-size:9px;
+  color:var(--muted);
+  font-weight:750;
+}
+
+.match-result-button{
+  border:0;
+  border-radius:9px;
+  padding:7px 9px;
+  background:#f0f0f2;
+  color:#444;
+  font-size:9px;
+  font-weight:900;
+}
+
+.match-result-button:hover{
+  background:#fff0f2;
+  color:var(--red);
+}
+
+.match-upcoming{
+  border:2px solid #ffe0e4;
+}
+
+.match-upcoming .match-round{
+  color:var(--red);
+}
+
+.match-past{
+  opacity:.94;
+}
+
+.matches-empty{
+  text-align:center;
+  padding:24px 10px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:750;
+}
+
+.calendar-preview-list{
+  margin-top:12px;
+  display:grid;
+  gap:8px;
+}
+
+.calendar-preview-row{
+  border:1px solid var(--line);
+  background:#fafafa;
+  border-radius:12px;
+  padding:10px;
+}
+
+.calendar-preview-grid{
+  display:grid;
+  grid-template-columns:72px 1fr 1fr;
+  gap:7px;
+}
+
+.calendar-preview-row input{
+  width:100%;
+  min-width:0;
+  border:1px solid #dedee2;
+  background:#fff;
+  border-radius:8px;
+  padding:8px;
+  font-size:11px;
+  outline:none;
+}
+
+.calendar-preview-label{
+  font-size:8px;
+  color:var(--muted);
+  text-transform:uppercase;
+  font-weight:900;
+  margin-bottom:3px;
+}
+
+.calendar-preview-actions{
+  margin-top:9px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.ocr-progress{
+  margin-top:12px;
+  background:#f0f0f2;
+  border-radius:999px;
+  height:8px;
+  overflow:hidden;
+}
+
+.ocr-progress-bar{
+  width:0%;
+  height:100%;
+  background:var(--red);
+  transition:width .2s ease;
+}
+
+.ocr-status{
+  margin-top:7px;
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.calendar-image-preview{
+  width:100%;
+  max-height:260px;
+  object-fit:contain;
+  background:#f0f0f2;
+  border-radius:13px;
+  display:none;
+  margin-top:10px;
+}
+
+.import-help{
+  background:#f7f7f8;
+  border-radius:12px;
+  padding:10px;
+  font-size:10px;
+  color:#666;
+  line-height:1.45;
+  margin-bottom:12px;
+}
+
+.import-help strong{
+  color:#222;
+}
+
+.import-file{
+  display:none;
+}
+
+
+/* =====================================================
    MÁS
 ===================================================== */
 
@@ -736,7 +1029,7 @@ main{
 
 
 /* =====================================================
-   TÁCTICA — PIZARRA
+   TÁCTICA
 ===================================================== */
 
 .tactic-toolbar{
@@ -899,27 +1192,19 @@ main{
 
 
 /* =====================================================
-   JUGADORES EN LA PIZARRA
-   DISEÑO COMPACTO
+   JUGADORES PIZARRA
 ===================================================== */
 
 .board-player{
   position:absolute;
   transform:translate(-50%,-50%);
   z-index:30;
-
-  /*
-    Marcador compacto.
-    Ya no utiliza una tarjeta blanca.
-  */
   width:78px;
   min-height:66px;
-
   touch-action:none;
   user-select:none;
   -webkit-user-select:none;
   cursor:grab;
-
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -934,168 +1219,98 @@ main{
     scale(1.08);
 }
 
-
-/* =====================================================
-   CÍRCULO DEL JUGADOR
-===================================================== */
-
 .board-player-card{
   position:relative;
-
   width:100%;
   min-height:66px;
-
   padding:0;
-
   border:0;
   background:transparent;
   box-shadow:none;
-
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:flex-start;
-
   gap:3px;
 }
-
-
-/* =====================================================
-   ICONO ROJO DEL JUGADOR
-===================================================== */
 
 .board-player-ball{
   width:38px;
   height:38px;
   flex:0 0 38px;
-
   border-radius:50%;
-
   background:var(--red);
   color:#fff;
-
   display:grid;
   place-items:center;
-
   font-size:20px;
   line-height:1;
-
   font-weight:950;
-
-  box-shadow:
-    0 3px 8px rgba(0,0,0,.22);
-
+  box-shadow:0 3px 8px rgba(0,0,0,.22);
   border:2px solid #fff;
 }
-
-
-/* =====================================================
-   INFORMACIÓN DEBAJO DEL CÍRCULO
-===================================================== */
 
 .board-player-info{
   width:100%;
   min-width:0;
-
   display:flex;
   flex-direction:column;
   align-items:center;
-
   text-align:center;
 }
-
-
-/* =====================================================
-   NOMBRE
-===================================================== */
 
 .board-player-name{
   width:100%;
-
   font-size:10px;
   line-height:1.08;
-
   font-weight:950;
-
   color:#fff;
-
   text-shadow:
     0 1px 3px rgba(0,0,0,.85),
     0 0 4px rgba(0,0,0,.55);
-
   white-space:normal;
   overflow-wrap:anywhere;
   word-break:break-word;
-
   display:-webkit-box;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2;
-
   overflow:hidden;
 }
 
-
-/* =====================================================
-   POSICIÓN
-===================================================== */
-
 .board-player-pos{
   margin-top:2px;
-
   font-size:8px;
-
   line-height:1;
-
   color:#fff;
-
   font-weight:900;
-
   text-shadow:
     0 1px 3px rgba(0,0,0,.85);
-
   text-align:center;
 }
 
-
-/* =====================================================
-   BOTÓN ELIMINAR
-===================================================== */
-
 .board-player-remove{
   position:absolute;
-
   top:-5px;
   right:4px;
-
   width:20px;
   height:20px;
-
   border:2px solid #fff;
-
   border-radius:50%;
-
   background:var(--dark);
   color:#fff;
-
   display:grid;
   place-items:center;
-
   font-size:12px;
   font-weight:900;
-
   line-height:1;
-
   padding:0;
-
   z-index:5;
-
-  box-shadow:
-    0 2px 6px rgba(0,0,0,.35);
+  box-shadow:0 2px 6px rgba(0,0,0,.35);
 }
 
 
 /* =====================================================
-   BANDEJA DE JUGADORES
+   BANDEJA
 ===================================================== */
 
 .tactic-help{
@@ -1217,39 +1432,24 @@ main{
 
 
 /* =====================================================
-   INDICADOR DE ARRASTRE
+   DRAG
 ===================================================== */
 
 .drag-ghost{
   position:fixed;
   z-index:10000;
   pointer-events:none;
-
   transform:
     translate(-50%,-50%)
     scale(1.08);
-
   width:78px;
-
   opacity:.94;
-
   display:none;
 }
-
-
-/*
-  El fantasma de arrastre utiliza
-  exactamente el mismo diseño compacto.
-*/
 
 .drag-ghost .board-player-card{
   width:100%;
 }
-
-
-/* =====================================================
-   ZONA DE CAMPO AL ARRASTRAR
-===================================================== */
 
 .pitch.drop-active{
   box-shadow:
@@ -1271,11 +1471,6 @@ main{
   background:#00000012;
   pointer-events:none;
 }
-
-
-/* =====================================================
-   ACCIONES TÁCTICA
-===================================================== */
 
 .tactic-actions{
   display:grid;
@@ -1400,6 +1595,22 @@ nav .nav-icon{
     gap:0;
   }
 
+  .match-teams{
+    gap:5px;
+  }
+
+  .match-team{
+    font-size:11px;
+  }
+
+  .match-score{
+    min-width:50px;
+  }
+
+  .calendar-preview-grid{
+    grid-template-columns:65px 1fr 1fr;
+  }
+
 }
 
 </style>
@@ -1446,6 +1657,68 @@ onclick="alert('No tienes nuevas notificaciones.')">
 
 
 <script>
+
+/* =====================================================
+   OCR
+===================================================== */
+
+/*
+  KNATT utiliza Tesseract.js para leer el texto
+  de la imagen del calendario.
+
+  Se carga únicamente cuando el usuario importa
+  un calendario.
+*/
+
+let tesseractLoaded=false;
+
+function loadTesseract(){
+
+  return new Promise(
+    (resolve,reject)=>{
+
+      if(
+        window.Tesseract
+      ){
+
+        tesseractLoaded=true;
+        resolve();
+        return;
+
+      }
+
+      const script=
+        document.createElement('script');
+
+      script.src=
+        'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+
+      script.onload=()=>{
+
+        tesseractLoaded=true;
+        resolve();
+
+      };
+
+      script.onerror=()=>{
+
+        reject(
+          new Error(
+            'No se pudo cargar el motor OCR.'
+          )
+        );
+
+      };
+
+      document.head.appendChild(
+        script
+      );
+
+    }
+  );
+
+}
+
 
 /* =====================================================
    DATOS
@@ -1553,17 +1826,21 @@ if(
     matches:[
 
       {
+        id:'old-1',
         date:'17 AGO',
         home:'KNATT FC',
         away:'UD Ejemplo',
-        score:'2 - 1'
+        score:'2 - 1',
+        round:''
       },
 
       {
+        id:'old-2',
         date:'10 AGO',
         home:'CD Prueba',
         away:'KNATT FC',
-        score:'0 - 3'
+        score:'0 - 3',
+        round:''
       }
 
     ],
@@ -1658,6 +1935,7 @@ if(!data.settings.season)
 if(!data.settings.category)
   data.settings.category='Primer Equipo';
 
+
 if(
   !data.next ||
   typeof data.next!=='object'
@@ -1679,9 +1957,57 @@ if(!data.next.time)
 if(!data.next.place)
   data.next.place='Campo Municipal';
 
+
 if(!Array.isArray(data.matches)){
   data.matches=[];
 }
+
+data.matches =
+  data.matches.map(
+    (m,index)=>({
+
+      id:
+        m.id ||
+        `match-${Date.now()}-${index}`,
+
+      date:
+        m.date ||
+        '',
+
+      dateISO:
+        m.dateISO ||
+        '',
+
+      round:
+        m.round ||
+        '',
+
+      home:
+        m.home ||
+        '',
+
+      away:
+        m.away ||
+        '',
+
+      score:
+        m.score ||
+        '',
+
+      time:
+        m.time ||
+        '',
+
+      place:
+        m.place ||
+        '',
+
+      imported:
+        !!m.imported
+
+    })
+  );
+
 
 if(!Array.isArray(data.activity)){
   data.activity=[];
@@ -1697,6 +2023,8 @@ let section='home';
 let filter='all';
 
 let selectedPlayerId=null;
+
+let importedMatches=[];
 
 
 /* =====================================================
@@ -1741,7 +2069,7 @@ function save(){
 
 
 /* =====================================================
-   ESCAPE HTML
+   ESCAPE
 ===================================================== */
 
 function esc(s){
@@ -1767,66 +2095,190 @@ function esc(s){
 
 
 /* =====================================================
-   FORMATO ACTIVIDAD
+   FECHAS
 ===================================================== */
 
-function activityTime(timestamp){
+function normalizeDateText(date){
 
-  if(!timestamp){
+  if(!date){
     return '';
   }
 
-  const diff =
-    Date.now() -
-    Number(timestamp);
+  return String(date)
+    .replace(/\s+/g,' ')
+    .trim();
 
-  const minute =
-    60 * 1000;
+}
 
-  const hour =
-    60 * minute;
 
-  const day =
-    24 * hour;
+function getSeasonStartYear(){
 
-  if(diff < minute){
-    return 'Ahora';
+  const season =
+    String(
+      data.settings.season ||
+      ''
+    );
+
+  const match =
+    season.match(
+      /(\d{4})/
+    );
+
+  if(match){
+    return Number(match[1]);
   }
 
-  if(diff < hour){
+  return new Date().getFullYear();
 
-    const n =
-      Math.floor(
-        diff / minute
+}
+
+
+function dateToISO(
+  day,
+  month
+){
+
+  const d=
+    Number(day);
+
+  const m=
+    Number(month);
+
+  if(
+    !Number.isFinite(d) ||
+    !Number.isFinite(m) ||
+    d<1 ||
+    d>31 ||
+    m<1 ||
+    m>12
+  ){
+
+    return '';
+
+  }
+
+  let year=
+    getSeasonStartYear();
+
+  /*
+    Agosto-Diciembre pertenece al
+    primer año de la temporada.
+    Enero-Julio al segundo.
+  */
+
+  if(m<=7){
+    year++;
+  }
+
+  const date=
+    new Date(
+      year,
+      m-1,
+      d
+    );
+
+  if(
+    date.getDate()!==d ||
+    date.getMonth()!==m-1
+  ){
+
+    return '';
+
+  }
+
+  return [
+    year,
+    String(m).padStart(2,'0'),
+    String(d).padStart(2,'0')
+  ].join('-');
+
+}
+
+
+function displayDateFromISO(
+  iso
+){
+
+  if(!iso){
+    return '';
+  }
+
+  const parts=
+    String(iso).split('-');
+
+  if(parts.length!==3){
+    return '';
+  }
+
+  const d=
+    Number(parts[2]);
+
+  const m=
+    Number(parts[1]);
+
+  const months=[
+    'ENE',
+    'FEB',
+    'MAR',
+    'ABR',
+    'MAY',
+    'JUN',
+    'JUL',
+    'AGO',
+    'SEP',
+    'OCT',
+    'NOV',
+    'DIC'
+  ];
+
+  if(
+    !d ||
+    !m ||
+    !months[m-1]
+  ){
+
+    return '';
+
+  }
+
+  return `${d} ${months[m-1]}`;
+
+}
+
+
+function sortMatches(
+  list
+){
+
+  return [...list].sort(
+    (a,b)=>{
+
+      const da=
+        a.dateISO ||
+        '';
+
+      const db=
+        b.dateISO ||
+        '';
+
+      if(
+        da &&
+        db &&
+        da!==db
+      ){
+
+        return da.localeCompare(db);
+
+      }
+
+      return String(
+        a.date || ''
+      ).localeCompare(
+        String(
+          b.date || ''
+        )
       );
 
-    return `Hace ${n} min`;
-
-  }
-
-  if(diff < day){
-
-    const n =
-      Math.floor(
-        diff / hour
-      );
-
-    return `Hace ${n} h`;
-
-  }
-
-  if(diff < 2 * day){
-    return 'Ayer';
-  }
-
-  const date =
-    new Date(timestamp);
-
-  return date.toLocaleDateString(
-    'es-ES',
-    {
-      day:'numeric',
-      month:'short'
     }
   );
 
@@ -1839,12 +2291,71 @@ function activityTime(timestamp){
 
 function getMatchCountdown(){
 
-  const text =
+  const nextMatch=
+    getNextUpcomingMatch();
+
+  if(
+    nextMatch &&
+    nextMatch.dateISO
+  ){
+
+    const target=
+      new Date(
+        `${nextMatch.dateISO}T${
+          nextMatch.time ||
+          '12:00'
+        }:00`
+      );
+
+    const now=
+      new Date();
+
+    const today=
+      new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+      );
+
+    const targetDay=
+      new Date(
+        target.getFullYear(),
+        target.getMonth(),
+        target.getDate()
+      );
+
+    const days=
+      Math.round(
+        (
+          targetDay -
+          today
+        ) /
+        86400000
+      );
+
+    if(days===0){
+      return '🔴 Partido hoy';
+    }
+
+    if(days===1){
+      return '🟠 Partido mañana';
+    }
+
+    if(days>1){
+      return `⏱ Faltan <strong>${days} días</strong>`;
+    }
+
+    return '';
+
+  }
+
+
+  const text=
     String(
       data.next?.date || ''
     );
 
-  const match =
+  const match=
     text.match(
       /(\d{1,2})\s+de\s+([a-záéíóúñ]+)/i
     );
@@ -1853,7 +2364,7 @@ function getMatchCountdown(){
     return '';
   }
 
-  const day =
+  const day=
     Number(match[1]);
 
   const months={
@@ -1873,7 +2384,7 @@ function getMatchCountdown(){
 
   };
 
-  const monthName =
+  const monthName=
     match[2]
       .toLowerCase();
 
@@ -1885,13 +2396,13 @@ function getMatchCountdown(){
 
   }
 
-  const now =
+  const now=
     new Date();
 
-  let year =
+  let year=
     now.getFullYear();
 
-  let target =
+  let target=
     new Date(
       year,
       months[monthName],
@@ -1910,9 +2421,9 @@ function getMatchCountdown(){
     )
   ){
 
-    target =
+    target=
       new Date(
-        year + 1,
+        year+1,
         months[monthName],
         day,
         12,
@@ -1922,21 +2433,21 @@ function getMatchCountdown(){
 
   }
 
-  const startToday =
+  const startToday=
     new Date(
       now.getFullYear(),
       now.getMonth(),
       now.getDate()
     );
 
-  const startTarget =
+  const startTarget=
     new Date(
       target.getFullYear(),
       target.getMonth(),
       target.getDate()
     );
 
-  const days =
+  const days=
     Math.round(
       (
         startTarget -
@@ -1945,19 +2456,143 @@ function getMatchCountdown(){
       86400000
     );
 
-  if(days < 0){
+  if(days<0){
     return '';
   }
 
-  if(days === 0){
+  if(days===0){
     return '🔴 Partido hoy';
   }
 
-  if(days === 1){
+  if(days===1){
     return '🟠 Partido mañana';
   }
 
   return `⏱ Faltan <strong>${days} días</strong>`;
+
+}
+
+
+/* =====================================================
+   PRÓXIMO PARTIDO
+===================================================== */
+
+function isPlayedMatch(match){
+
+  return !!(
+    match &&
+    String(
+      match.score ||
+      ''
+    ).trim()
+  );
+
+}
+
+
+function getNextUpcomingMatch(){
+
+  const now=
+    new Date();
+
+  const todayISO=
+    [
+      now.getFullYear(),
+      String(
+        now.getMonth()+1
+      ).padStart(2,'0'),
+      String(
+        now.getDate()
+      ).padStart(2,'0')
+    ].join('-');
+
+
+  const upcoming=
+    data.matches
+      .filter(
+        m =>
+          !isPlayedMatch(m) &&
+          m.dateISO &&
+          m.dateISO>=todayISO
+      );
+
+
+  const sorted=
+    sortMatches(
+      upcoming
+    );
+
+
+  return sorted[0] || null;
+
+}
+
+
+function syncNextMatch(){
+
+  const next=
+    getNextUpcomingMatch();
+
+  if(!next){
+    return;
+  }
+
+  data.next.opponent=
+    data.next.opponent ||
+    next.away;
+
+  /*
+    El equipo configurado determina
+    automáticamente cuál es nuestro
+    lado del partido.
+  */
+
+  const team=
+    String(
+      data.settings.team ||
+      'KNATT FC'
+    ).trim();
+
+
+  const isHome=
+    String(
+      next.home
+    ).toLowerCase() ===
+    team.toLowerCase();
+
+
+  const opponent=
+    isHome
+      ?next.away
+      :next.home;
+
+
+  data.next.opponent=
+    opponent;
+
+
+  data.next.date=
+    next.date ||
+    displayDateFromISO(
+      next.dateISO
+    );
+
+
+  data.next.time=
+    next.time ||
+    '12:00';
+
+
+  data.next.place=
+    next.place ||
+    (
+      isHome
+        ?'Campo local'
+        :'Campo visitante'
+    );
+
+
+  save();
 
 }
 
@@ -2039,13 +2674,13 @@ function render(){
       .join('');
 
 
-  const c =
+  const c=
     document.getElementById(
       'content'
     );
 
 
-  c.innerHTML =
+  c.innerHTML=
 
     section==='home'
       ?home()
@@ -2079,15 +2714,15 @@ function render(){
 
 function home(){
 
-  const available =
+  const available=
     data.players.filter(
       p=>p.available
     ).length;
 
-  const countdown =
+  const countdown=
     getMatchCountdown();
 
-  const activities =
+  const activities=
     Array.isArray(data.activity)
       ?data.activity.slice(0,4)
       :[];
@@ -2357,12 +2992,79 @@ function home(){
 
 
 /* =====================================================
+   ACTIVIDAD TIME
+===================================================== */
+
+function activityTime(timestamp){
+
+  if(!timestamp){
+    return '';
+  }
+
+  const diff=
+    Date.now() -
+    Number(timestamp);
+
+  const minute=
+    60*1000;
+
+  const hour=
+    60*minute;
+
+  const day=
+    24*hour;
+
+  if(diff<minute){
+    return 'Ahora';
+  }
+
+  if(diff<hour){
+
+    const n=
+      Math.floor(
+        diff/minute
+      );
+
+    return `Hace ${n} min`;
+
+  }
+
+  if(diff<day){
+
+    const n=
+      Math.floor(
+        diff/hour
+      );
+
+    return `Hace ${n} h`;
+
+  }
+
+  if(diff<2*day){
+    return 'Ayer';
+  }
+
+  const date=
+    new Date(timestamp);
+
+  return date.toLocaleDateString(
+    'es-ES',
+    {
+      day:'numeric',
+      month:'short'
+    }
+  );
+
+}
+
+
+/* =====================================================
    PLANTILLA
 ===================================================== */
 
 function team(){
 
-  const list =
+  const list=
     data.players.filter(
 
       p =>
@@ -2552,10 +3254,10 @@ function openPlayer(id){
 
 function playerProfile(){
 
-  const p =
+  const p=
     data.players.find(
       x =>
-        String(x.id) ===
+        String(x.id)===
         String(selectedPlayerId)
     );
 
@@ -2704,7 +3406,7 @@ function addPlayer(){
   closeAddModal();
 
 
-  const modal =
+  const modal=
     document.createElement('div');
 
   modal.className='edit-modal';
@@ -2712,7 +3414,7 @@ function addPlayer(){
   modal.id='add-player-modal';
 
 
-  modal.innerHTML = `
+  modal.innerHTML=`
 
     <div
       class="edit-modal-card"
@@ -2746,9 +3448,7 @@ function addPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Nombre
-        </label>
+        <label>Nombre</label>
 
         <input
           id="add-name"
@@ -2762,9 +3462,7 @@ function addPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Dorsal
-        </label>
+        <label>Dorsal</label>
 
         <input
           id="add-num"
@@ -2779,9 +3477,7 @@ function addPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Posición
-        </label>
+        <label>Posición</label>
 
         <input
           id="add-pos"
@@ -2795,9 +3491,7 @@ function addPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Disponibilidad
-        </label>
+        <label>Disponibilidad</label>
 
         <div class="edit-status-grid">
 
@@ -2860,9 +3554,7 @@ function addPlayer(){
 
         <div class="form-group">
 
-          <label>
-            Minutos
-          </label>
+          <label>Minutos</label>
 
           <input
             id="add-min"
@@ -2877,9 +3569,7 @@ function addPlayer(){
 
         <div class="form-group">
 
-          <label>
-            Goles
-          </label>
+          <label>Goles</label>
 
           <input
             id="add-goals"
@@ -2894,9 +3584,7 @@ function addPlayer(){
 
         <div class="form-group">
 
-          <label>
-            Asistencias
-          </label>
+          <label>Asistencias</label>
 
           <input
             id="add-assists"
@@ -2944,7 +3632,7 @@ function addPlayer(){
     function(event){
 
       if(
-        event.target === modal
+        event.target===modal
       ){
 
         closeAddModal();
@@ -2959,11 +3647,10 @@ function addPlayer(){
     modal
   );
 
-
   document.body.style.overflow='hidden';
 
 
-  const nameInput =
+  const nameInput=
     document.getElementById(
       'add-name'
     );
@@ -2973,9 +3660,7 @@ function addPlayer(){
 
     setTimeout(
       ()=>{
-
         nameInput.focus();
-
       },
       50
     );
@@ -2985,23 +3670,19 @@ function addPlayer(){
 }
 
 
-/* =====================================================
-   ACTIVAR / DESACTIVAR MOTIVO AÑADIR
-===================================================== */
-
 function toggleAddReason(){
 
-  const available =
+  const available=
     document.querySelector(
       '#add-available-yes'
     );
 
-  const reason =
+  const reason=
     document.getElementById(
       'add-reason'
     );
 
-  const group =
+  const group=
     document.getElementById(
       'add-reason-group'
     );
@@ -3012,19 +3693,16 @@ function toggleAddReason(){
     !reason ||
     !group
   ){
-
     return;
-
   }
 
 
-  const isAvailable =
+  const isAvailable=
     available.checked;
 
 
-  reason.disabled =
+  reason.disabled=
     isAvailable;
-
 
   group.classList.toggle(
     'edit-disabled',
@@ -3033,74 +3711,66 @@ function toggleAddReason(){
 
 
   if(isAvailable){
-
     reason.value='';
-
   }
 
 }
 
 
-/* =====================================================
-   GUARDAR NUEVO JUGADOR
-===================================================== */
-
 function saveNewPlayer(){
 
-  const name =
+  const name=
     document.getElementById(
       'add-name'
     );
 
-  const num =
+  const num=
     document.getElementById(
       'add-num'
     );
 
-  const pos =
+  const pos=
     document.getElementById(
       'add-pos'
     );
 
-  const available =
+  const available=
     document.querySelector(
       'input[name="add-available"]:checked'
     );
 
-  const reason =
+  const reason=
     document.getElementById(
       'add-reason'
     );
 
-  const min =
+  const min=
     document.getElementById(
       'add-min'
     );
 
-  const goals =
+  const goals=
     document.getElementById(
       'add-goals'
     );
 
-  const assists =
+  const assists=
     document.getElementById(
       'add-assists'
     );
 
 
-  const newName =
+  const newName=
     name
       ?name.value.trim()
       :'';
 
-
-  const newNum =
+  const newNum=
     num
       ?num.value.trim()
       :'';
 
-
-  const newPos =
+  const newPos=
     pos
       ?pos.value.trim()
       :'';
@@ -3112,9 +3782,7 @@ function saveNewPlayer(){
       'El nombre del jugador es obligatorio.'
     );
 
-    if(name){
-      name.focus();
-    }
+    name?.focus();
 
     return;
 
@@ -3127,9 +3795,7 @@ function saveNewPlayer(){
       'El dorsal es obligatorio.'
     );
 
-    if(num){
-      num.focus();
-    }
+    num?.focus();
 
     return;
 
@@ -3142,18 +3808,16 @@ function saveNewPlayer(){
       'La posición es obligatoria.'
     );
 
-    if(pos){
-      pos.focus();
-    }
+    pos?.focus();
 
     return;
 
   }
 
 
-  const isAvailable =
+  const isAvailable=
     available
-      ?available.value === 'true'
+      ?available.value==='true'
       :true;
 
 
@@ -3179,28 +3843,22 @@ function saveNewPlayer(){
     min:Math.max(
       0,
       Number(
-        min
-          ?min.value
-          :0
-      ) || 0
+        min?.value
+      )||0
     ),
 
     g:Math.max(
       0,
       Number(
-        goals
-          ?goals.value
-          :0
-      ) || 0
+        goals?.value
+      )||0
     ),
 
     a:Math.max(
       0,
       Number(
-        assists
-          ?assists.value
-          :0
-      ) || 0
+        assists?.value
+      )||0
     )
 
   };
@@ -3232,10 +3890,10 @@ function saveNewPlayer(){
 
 function editPlayer(){
 
-  const p =
+  const p=
     data.players.find(
       x =>
-        String(x.id) ===
+        String(x.id)===
         String(selectedPlayerId)
     );
 
@@ -3245,7 +3903,7 @@ function editPlayer(){
   }
 
 
-  const modal =
+  const modal=
     document.createElement('div');
 
   modal.className='edit-modal';
@@ -3253,7 +3911,7 @@ function editPlayer(){
   modal.id='edit-player-modal';
 
 
-  modal.innerHTML = `
+  modal.innerHTML=`
 
     <div
       class="edit-modal-card"
@@ -3287,9 +3945,7 @@ function editPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Nombre
-        </label>
+        <label>Nombre</label>
 
         <input
           id="edit-name"
@@ -3303,9 +3959,7 @@ function editPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Dorsal
-        </label>
+        <label>Dorsal</label>
 
         <input
           id="edit-num"
@@ -3319,9 +3973,7 @@ function editPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Posición
-        </label>
+        <label>Posición</label>
 
         <input
           id="edit-pos"
@@ -3335,9 +3987,7 @@ function editPlayer(){
 
       <div class="form-group">
 
-        <label>
-          Disponibilidad
-        </label>
+        <label>Disponibilidad</label>
 
         <div class="edit-status-grid">
 
@@ -3418,9 +4068,7 @@ function editPlayer(){
 
         <div class="form-group">
 
-          <label>
-            Minutos
-          </label>
+          <label>Minutos</label>
 
           <input
             id="edit-min"
@@ -3435,9 +4083,7 @@ function editPlayer(){
 
         <div class="form-group">
 
-          <label>
-            Goles
-          </label>
+          <label>Goles</label>
 
           <input
             id="edit-goals"
@@ -3452,9 +4098,7 @@ function editPlayer(){
 
         <div class="form-group">
 
-          <label>
-            Asistencias
-          </label>
+          <label>Asistencias</label>
 
           <input
             id="edit-assists"
@@ -3502,7 +4146,7 @@ function editPlayer(){
     function(event){
 
       if(
-        event.target === modal
+        event.target===modal
       ){
 
         closeEditModal();
@@ -3517,14 +4161,14 @@ function editPlayer(){
     modal
   );
 
-
   document.body.style.overflow='hidden';
 
 
-  const nameInput =
+  const nameInput=
     document.getElementById(
       'edit-name'
     );
+
 
   if(nameInput){
 
@@ -3543,23 +4187,19 @@ function editPlayer(){
 }
 
 
-/* =====================================================
-   ACTIVAR / DESACTIVAR MOTIVO EDICIÓN
-===================================================== */
-
 function toggleEditReason(){
 
-  const available =
+  const available=
     document.querySelector(
       '#edit-available-yes'
     );
 
-  const reason =
+  const reason=
     document.getElementById(
       'edit-reason'
     );
 
-  const group =
+  const group=
     document.getElementById(
       'edit-reason-group'
     );
@@ -3576,13 +4216,12 @@ function toggleEditReason(){
   }
 
 
-  const isAvailable =
+  const isAvailable=
     available.checked;
 
 
-  reason.disabled =
+  reason.disabled=
     isAvailable;
-
 
   group.classList.toggle(
     'edit-disabled',
@@ -3591,24 +4230,18 @@ function toggleEditReason(){
 
 
   if(isAvailable){
-
     reason.value='';
-
   }
 
 }
 
 
-/* =====================================================
-   GUARDAR EDICIÓN
-===================================================== */
-
 function saveEditedPlayer(){
 
-  const p =
+  const p=
     data.players.find(
       x =>
-        String(x.id) ===
+        String(x.id)===
         String(selectedPlayerId)
     );
 
@@ -3622,60 +4255,58 @@ function saveEditedPlayer(){
   }
 
 
-  const name =
+  const name=
     document.getElementById(
       'edit-name'
     );
 
-  const num =
+  const num=
     document.getElementById(
       'edit-num'
     );
 
-  const pos =
+  const pos=
     document.getElementById(
       'edit-pos'
     );
 
-  const available =
+  const available=
     document.querySelector(
       'input[name="edit-available"]:checked'
     );
 
-  const reason =
+  const reason=
     document.getElementById(
       'edit-reason'
     );
 
-  const min =
+  const min=
     document.getElementById(
       'edit-min'
     );
 
-  const goals =
+  const goals=
     document.getElementById(
       'edit-goals'
     );
 
-  const assists =
+  const assists=
     document.getElementById(
       'edit-assists'
     );
 
 
-  const newName =
+  const newName=
     name
       ?name.value.trim()
       :p.name;
 
-
-  const newNum =
+  const newNum=
     num
       ?num.value.trim()
       :p.num;
 
-
-  const newPos =
+  const newPos=
     pos
       ?pos.value.trim()
       :p.pos;
@@ -3687,9 +4318,7 @@ function saveEditedPlayer(){
       'El nombre del jugador es obligatorio.'
     );
 
-    if(name){
-      name.focus();
-    }
+    name?.focus();
 
     return;
 
@@ -3702,9 +4331,7 @@ function saveEditedPlayer(){
       'El dorsal es obligatorio.'
     );
 
-    if(num){
-      num.focus();
-    }
+    num?.focus();
 
     return;
 
@@ -3717,32 +4344,25 @@ function saveEditedPlayer(){
       'La posición es obligatoria.'
     );
 
-    if(pos){
-      pos.focus();
-    }
+    pos?.focus();
 
     return;
 
   }
 
 
-  p.name =
-    newName;
-
-  p.num =
-    newNum;
-
-  p.pos =
-    newPos;
+  p.name=newName;
+  p.num=newNum;
+  p.pos=newPos;
 
 
-  p.available =
+  p.available=
     available
-      ?available.value === 'true'
+      ?available.value==='true'
       :p.available;
 
 
-  p.reason =
+  p.reason=
     p.available
       ?''
       :(reason
@@ -3750,36 +4370,30 @@ function saveEditedPlayer(){
         :p.reason);
 
 
-  p.min =
+  p.min=
     Math.max(
       0,
       Number(
-        min
-          ?min.value
-          :p.min
-      ) || 0
+        min?.value
+      )||0
     );
 
 
-  p.g =
+  p.g=
     Math.max(
       0,
       Number(
-        goals
-          ?goals.value
-          :p.g
-      ) || 0
+        goals?.value
+      )||0
     );
 
 
-  p.a =
+  p.a=
     Math.max(
       0,
       Number(
-        assists
-          ?assists.value
-          :p.a
-      ) || 0
+        assists?.value
+      )||0
     );
 
 
@@ -3804,22 +4418,23 @@ function saveEditedPlayer(){
 
 function closeEditModal(){
 
-  const modal =
+  const modal=
     document.getElementById(
       'edit-player-modal'
     );
 
 
   if(modal){
-
     modal.remove();
-
   }
 
 
   if(
     !document.getElementById(
       'add-player-modal'
+    ) &&
+    !document.getElementById(
+      'calendar-import-modal'
     )
   ){
 
@@ -3832,22 +4447,23 @@ function closeEditModal(){
 
 function closeAddModal(){
 
-  const modal =
+  const modal=
     document.getElementById(
       'add-player-modal'
     );
 
 
   if(modal){
-
     modal.remove();
-
   }
 
 
   if(
     !document.getElementById(
       'edit-player-modal'
+    ) &&
+    !document.getElementById(
+      'calendar-import-modal'
     )
   ){
 
@@ -3864,10 +4480,10 @@ function closeAddModal(){
 
 function deletePlayer(id){
 
-  const player =
+  const player=
     data.players.find(
       p =>
-        String(p.id) ===
+        String(p.id)===
         String(id)
     );
 
@@ -3883,15 +4499,18 @@ function deletePlayer(id){
   }
 
 
-  data.players =
+  data.players=
     data.players.filter(
       p =>
-        String(p.id) !==
+        String(p.id)!==
         String(id)
     );
 
 
-  removePlayerFromTactic(id);
+  removePlayerFromTactic(
+    id,
+    true
+  );
 
 
   addActivity(
@@ -3902,6 +4521,7 @@ function deletePlayer(id){
         :'Jugador'
     }`
   );
+
 
   save();
 
@@ -3916,60 +4536,1545 @@ function deletePlayer(id){
 
 function matches(){
 
+  const sorted=
+    sortMatches(
+      data.matches
+    );
+
+
+  const played=
+    sorted.filter(
+      m =>
+        isPlayedMatch(m)
+    ).length;
+
+
+  const upcoming=
+    sorted.filter(
+      m =>
+        !isPlayedMatch(m)
+    ).length;
+
+
+  const next=
+    getNextUpcomingMatch();
+
+
   return `
 
-  <div class="title">
-    Partidos
+  <div class="title-row">
+
+    <div>
+
+      <div class="title">
+        Partidos
+      </div>
+
+      <div class="subtitle">
+        ${data.settings.season || '2026/27'}
+      </div>
+
+    </div>
+
+
+    <div class="matches-header-actions">
+
+      <button
+        class="btn red-soft"
+        onclick="openCalendarImport()">
+
+        📅 Importar
+
+      </button>
+
+    </div>
+
   </div>
 
 
-  <div class="card match-card">
+  <div class="calendar-import-card">
 
-    <div class="section-label">
-      PRÓXIMO PARTIDO
-    </div>
+    <div class="calendar-import-row">
 
-    <div class="muted small">
+      <div class="calendar-import-icon">
+        📅
+      </div>
 
-      ${esc(data.next.date)}
+      <div class="calendar-import-content">
 
-      ·
-
-      ${esc(data.next.time)}
-
-    </div>
-
-
-    <div class="versus">
-
-      <div class="club">
-
-        <div class="club-logo">
-          ⚽
+        <div class="calendar-import-title">
+          Calendario de temporada
         </div>
 
-        ${esc(
-          data.settings.team ||
-          'KNATT FC'
-        )}
+        <div class="calendar-import-subtitle">
+
+          Sube una foto del calendario completo
+          y KNATT intentará convertirlo
+          automáticamente en partidos.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn full calendar-import-button"
+      onclick="openCalendarImport()">
+
+      🖼️ Cargar imagen del calendario
+
+    </button>
+
+  </div>
+
+
+  ${
+    data.matches.length
+
+    ?
+
+    `
+
+    <div class="season-summary">
+
+      <div class="season-summary-card">
+
+        <b>
+          ${data.matches.length}
+        </b>
+
+        <span>
+          Total
+        </span>
 
       </div>
 
 
-      <div class="vs">
-        VS
+      <div class="season-summary-card">
+
+        <b>
+          ${upcoming}
+        </b>
+
+        <span>
+          Pendientes
+        </span>
+
       </div>
 
 
-      <div class="club">
+      <div class="season-summary-card">
 
-        <div class="club-logo">
-          🛡️
+        <b>
+          ${played}
+        </b>
+
+        <span>
+          Jugados
+        </span>
+
+      </div>
+
+    </div>
+
+    `
+
+    :
+
+    ''
+
+  }
+
+
+  ${
+    next
+
+    ?
+
+    `
+
+    <div class="card match-card match-upcoming">
+
+      <div class="section-label">
+        PRÓXIMO PARTIDO
+      </div>
+
+      <div class="match-round">
+
+        ${
+          next.round
+            ?esc(next.round)
+            :'Próxima jornada'
+        }
+
+      </div>
+
+      <div class="match-date">
+
+        ${
+          esc(
+            next.date ||
+            displayDateFromISO(
+              next.dateISO
+            )
+          )
+        }
+
+        ${
+          next.time
+            ?` · ${esc(next.time)}`
+            :''
+        }
+
+      </div>
+
+
+      <div class="match-teams">
+
+        <div class="match-team home">
+
+          ${esc(next.home)}
+
         </div>
 
-        ${esc(
-          data.next.opponent
-        )}
+
+        <div class="match-score">
+          VS
+        </div>
+
+
+        <div class="match-team away">
+
+          ${esc(next.away)}
+
+        </div>
+
+      </div>
+
+
+      <div class="match-status">
+
+        <div class="match-location">
+
+          ${
+            next.place
+              ?esc(next.place)
+              :''
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+    `
+
+    :
+
+    ''
+
+  }
+
+
+  ${
+    sorted.length
+
+    ?
+
+    sorted
+      .map(
+        m =>
+          matchCardHtml(
+            m,
+            next
+              ?String(m.id)===
+                String(next.id)
+              :false
+          )
+      )
+      .join('')
+
+    :
+
+    `
+
+    <div class="card">
+
+      <div class="matches-empty">
+
+        Todavía no hay partidos de temporada.
+
+        <br><br>
+
+        Pulsa
+        <strong>“Cargar imagen del calendario”</strong>
+        para importar el calendario.
+
+      </div>
+
+    </div>
+
+    `
+
+  }
+
+  `;
+
+}
+
+
+function matchCardHtml(
+  match,
+  isNext
+){
+
+  const played=
+    isPlayedMatch(match);
+
+
+  return `
+
+  <div class="card ${
+    isNext
+      ?'match-upcoming'
+      :'match-past'
+  }">
+
+    <div class="match-round">
+
+      ${
+        match.round
+          ?esc(match.round)
+          :'PARTIDO'
+      }
+
+    </div>
+
+
+    <div class="match-date">
+
+      ${
+        esc(
+          match.date ||
+          displayDateFromISO(
+            match.dateISO
+          )
+        )
+      }
+
+      ${
+        match.time
+          ?` · ${esc(match.time)}`
+          :''
+      }
+
+    </div>
+
+
+    <div class="match-teams">
+
+      <div class="match-team home">
+
+        ${esc(match.home)}
+
+      </div>
+
+
+      <div class="match-score ${
+        played
+          ?'played'
+          :''
+      }">
+
+        ${
+          played
+            ?esc(match.score)
+            :'VS'
+        }
+
+      </div>
+
+
+      <div class="match-team away">
+
+        ${esc(match.away)}
+
+      </div>
+
+    </div>
+
+
+    <div class="match-status">
+
+      <div class="match-location">
+
+        ${
+          match.place
+            ?esc(match.place)
+            :''
+        }
+
+      </div>
+
+
+      <button
+        class="match-result-button"
+        onclick="
+          event.stopPropagation();
+          editMatchResult('${esc(match.id)}')
+        ">
+
+        ${
+          played
+            ?'✏️ Resultado'
+            :'📝 Añadir resultado'
+        }
+
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   RESULTADO PARTIDO
+===================================================== */
+
+function editMatchResult(
+  id
+){
+
+  const match=
+    data.matches.find(
+      m =>
+        String(m.id)===
+        String(id)
+    );
+
+
+  if(!match){
+    return;
+  }
+
+
+  const current=
+    String(
+      match.score ||
+      ''
+    );
+
+
+  const result=
+    prompt(
+      `Resultado de ${match.home} - ${match.away}\n\nEjemplo: 2 - 1\n\nDeja vacío para borrar el resultado.`,
+      current
+    );
+
+
+  if(result===null){
+    return;
+  }
+
+
+  match.score=
+    result.trim();
+
+
+  if(match.score){
+
+    addActivity(
+      '🏆',
+      `Resultado añadido: ${match.home} ${match.score} ${match.away}`
+    );
+
+  }else{
+
+    addActivity(
+      '↩️',
+      `Resultado eliminado: ${match.home} - ${match.away}`
+    );
+
+  }
+
+
+  save();
+
+  syncNextMatch();
+
+  render();
+
+}
+
+
+/* =====================================================
+   IMPORTAR CALENDARIO
+===================================================== */
+
+function openCalendarImport(){
+
+  closeEditModal();
+  closeAddModal();
+
+
+  importedMatches=[];
+
+
+  const modal=
+    document.createElement('div');
+
+  modal.className='edit-modal';
+
+  modal.id='calendar-import-modal';
+
+
+  modal.innerHTML=`
+
+    <div
+      class="edit-modal-card"
+      onclick="event.stopPropagation()">
+
+      <div class="edit-modal-header">
+
+        <div>
+
+          <div class="edit-modal-title">
+            Importar calendario
+          </div>
+
+          <div class="edit-modal-subtitle">
+            Carga una imagen con el calendario de la temporada
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="edit-modal-close"
+          onclick="closeCalendarImport()">
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <div class="import-help">
+
+        <strong>Cómo funciona:</strong><br>
+
+        Selecciona una captura o fotografía
+        donde aparezcan las jornadas del calendario.
+        KNATT leerá el texto y preparará los partidos
+        automáticamente.
+
+        <br><br>
+
+        Antes de guardarlos podrás revisar
+        y corregir los nombres si el reconocimiento
+        de la imagen comete algún error.
+
+      </div>
+
+
+      <input
+        id="calendar-file"
+        class="import-file"
+        type="file"
+        accept="image/*"
+        onchange="handleCalendarImage(event)">
+
+
+      <button
+        id="calendar-select-button"
+        class="btn full"
+        onclick="
+          document
+            .getElementById('calendar-file')
+            .click()
+        ">
+
+        🖼️ Seleccionar imagen
+
+      </button>
+
+
+      <img
+        id="calendar-image-preview"
+        class="calendar-image-preview"
+        alt="Vista previa del calendario">
+
+
+      <div
+        id="ocr-progress"
+        class="ocr-progress"
+        style="display:none">
+
+        <div
+          id="ocr-progress-bar"
+          class="ocr-progress-bar">
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="ocr-status"
+        class="ocr-status"
+        style="display:none">
+
+      </div>
+
+
+      <div
+        id="ocr-results"
+        style="display:none">
+
+      </div>
+
+
+      <div
+        id="calendar-import-actions"
+        style="display:none;margin-top:12px">
+
+        <button
+          class="btn full"
+          onclick="saveImportedCalendar()">
+
+          💾 Guardar calendario
+
+        </button>
+
+      </div>
+
+
+      <div style="margin-top:8px">
+
+        <button
+          class="btn light full"
+          onclick="closeCalendarImport()">
+
+          Cancelar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(
+        event.target===modal
+      ){
+
+        closeCalendarImport();
+
+      }
+
+    }
+  );
+
+
+  document.body.appendChild(
+    modal
+  );
+
+
+  document.body.style.overflow='hidden';
+
+}
+
+
+/* =====================================================
+   CERRAR IMPORTACIÓN
+===================================================== */
+
+function closeCalendarImport(){
+
+  const modal=
+    document.getElementById(
+      'calendar-import-modal'
+    );
+
+
+  if(modal){
+    modal.remove();
+  }
+
+
+  if(
+    !document.getElementById(
+      'edit-player-modal'
+    ) &&
+    !document.getElementById(
+      'add-player-modal'
+    )
+  ){
+
+    document.body.style.overflow='';
+
+  }
+
+}
+
+
+/* =====================================================
+   IMAGEN
+===================================================== */
+
+async function handleCalendarImage(
+  event
+){
+
+  const file=
+    event.target.files?.[0];
+
+
+  if(!file){
+    return;
+  }
+
+
+  const preview=
+    document.getElementById(
+      'calendar-image-preview'
+    );
+
+  const status=
+    document.getElementById(
+      'ocr-status'
+    );
+
+  const progress=
+    document.getElementById(
+      'ocr-progress'
+    );
+
+  const bar=
+    document.getElementById(
+      'ocr-progress-bar'
+    );
+
+
+  if(!preview || !status){
+    return;
+  }
+
+
+  preview.src=
+    URL.createObjectURL(file);
+
+  preview.style.display='block';
+
+
+  status.style.display='block';
+
+  progress.style.display='block';
+
+  bar.style.width='0%';
+
+
+  status.textContent=
+    'Preparando imagen...';
+
+
+  try{
+
+    await loadTesseract();
+
+
+    status.textContent=
+      'Leyendo calendario...';
+
+
+    const result=
+      await Tesseract.recognize(
+        file,
+        'spa',
+        {
+          logger:message=>{
+
+            if(
+              message.status==='recognizing text'
+            ){
+
+              const percent=
+                Math.round(
+                  (
+                    Number(
+                      message.progress
+                    )||0
+                  )*100
+                );
+
+              bar.style.width=
+                `${percent}%`;
+
+              status.textContent=
+                `Analizando calendario... ${percent}%`;
+
+            }
+
+          }
+        }
+      );
+
+
+    bar.style.width='100%';
+
+    status.textContent=
+      'Analizando los partidos detectados...';
+
+
+    const text=
+      result?.data?.text ||
+      '';
+
+
+    const parsed=
+      parseCalendarText(
+        text
+      );
+
+
+    importedMatches=
+      parsed;
+
+
+    if(!importedMatches.length){
+
+      status.textContent=
+        'No se han detectado partidos automáticamente.';
+
+
+      showOCRFallback(
+        text
+      );
+
+      return;
+
+    }
+
+
+    status.textContent=
+      `${importedMatches.length} partidos detectados. Revisa los datos antes de guardar.`;
+
+
+    showImportedPreview();
+
+  }catch(error){
+
+    console.error(error);
+
+
+    status.textContent=
+      'No se pudo leer la imagen automáticamente.';
+
+
+    showOCRFallback('');
+
+  }
+
+}
+
+
+/* =====================================================
+   NORMALIZAR OCR
+===================================================== */
+
+function cleanOCRText(
+  text
+){
+
+  return String(
+    text || ''
+  )
+    .replace(/\r/g,'\n')
+    .replace(/[|]/g,' ')
+    .replace(/[“”]/g,'"')
+    .replace(/[‘’]/g,"'")
+    .replace(/\t+/g,' ')
+    .replace(/[ ]{2,}/g,' ')
+    .split('\n')
+    .map(
+      line =>
+        line
+          .trim()
+    )
+    .filter(Boolean);
+
+}
+
+
+function normalizeTeamName(
+  name
+){
+
+  let result=
+    String(
+      name || ''
+    )
+      .replace(
+        /\b(jornada|fecha|campo|hora|domingo|lunes|martes|miércoles|jueves|viernes|sábado)\b/gi,
+        ''
+      )
+      .replace(
+        /^\d{1,2}[:.)-]?\s*/,
+        ''
+      )
+      .replace(
+        /\s{2,}/g,
+        ' '
+      )
+      .trim();
+
+
+  return result;
+
+}
+
+
+/* =====================================================
+   PARSER CALENDARIO
+===================================================== */
+
+function parseCalendarText(
+  text
+){
+
+  const lines=
+    cleanOCRText(
+      text
+    );
+
+
+  const results=[];
+
+  let currentRound='';
+
+
+  /*
+    Formatos de fecha admitidos:
+
+    24/08
+    24-08
+    24.08
+    24/08/2026
+    24 agosto
+    24 de agosto
+  */
+
+  const dateRegex=
+    /(?:^|\s)(\d{1,2})[\/\-.](\d{1,2})(?:[\/\-.](\d{4}))?(?:\s|$)/;
+
+  const monthRegex=
+    /(?:^|\s)(\d{1,2})\s*(?:de\s*)?(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\b/i;
+
+
+  const monthNumbers={
+
+    enero:1,
+    febrero:2,
+    marzo:3,
+    abril:4,
+    mayo:5,
+    junio:6,
+    julio:7,
+    agosto:8,
+    septiembre:9,
+    octubre:10,
+    noviembre:11,
+    diciembre:12
+
+  };
+
+
+  for(
+    let i=0;
+    i<lines.length;
+    i++
+  ){
+
+    let line=
+      lines[i];
+
+
+    const roundMatch=
+      line.match(
+        /(?:jornada|jor\.?|fecha)\s*[:#-]?\s*(\d{1,3})/i
+      );
+
+
+    if(roundMatch){
+
+      currentRound=
+        `Jornada ${roundMatch[1]}`;
+
+    }
+
+
+    let day=null;
+    let month=null;
+    let year=null;
+
+
+    const numeric=
+      line.match(
+        dateRegex
+      );
+
+
+    if(numeric){
+
+      day=
+        Number(
+          numeric[1]
+        );
+
+      month=
+        Number(
+          numeric[2]
+        );
+
+      year=
+        numeric[3]
+          ?Number(numeric[3])
+          :null;
+
+    }else{
+
+      const named=
+        line.match(
+          monthRegex
+        );
+
+
+      if(named){
+
+        day=
+          Number(
+            named[1]
+          );
+
+        month=
+          monthNumbers[
+            named[2]
+              .toLowerCase()
+          ];
+
+      }
+
+    }
+
+
+    if(
+      !day ||
+      !month
+    ){
+
+      continue;
+
+    }
+
+
+    let dateISO=
+      dateToISO(
+        day,
+        month
+      );
+
+
+    if(year){
+
+      dateISO=
+        `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
+    }
+
+
+    /*
+      Intentamos obtener los equipos
+      quitando la fecha.
+    */
+
+    let teamText=
+      line
+        .replace(
+          dateRegex,
+          ' '
+        )
+        .replace(
+          monthRegex,
+          ' '
+        )
+        .replace(
+          /\b(?:jornada|jor\.?|fecha)\s*\d*\b/gi,
+          ' '
+        )
+        .trim();
+
+
+    /*
+      Si la línea no contiene los dos equipos,
+      miramos la siguiente.
+    */
+
+    if(
+      !containsMatchSeparator(
+        teamText
+      ) &&
+      lines[i+1]
+    ){
+
+      const combined=
+        `${teamText} ${lines[i+1]}`;
+
+      if(
+        containsMatchSeparator(
+          combined
+        )
+      ){
+
+        teamText=
+          combined;
+
+        i++;
+
+      }
+
+    }
+
+
+    const teams=
+      splitTeams(
+        teamText
+      );
+
+
+    if(!teams){
+      continue;
+    }
+
+
+    results.push({
+
+      id:
+        `import-${Date.now()}-${results.length}`,
+
+      date:
+        displayDateFromISO(
+          dateISO
+        ) ||
+        `${day}/${month}`,
+
+      dateISO:
+
+        dateISO,
+
+      round:
+        currentRound,
+
+      home:
+        normalizeTeamName(
+          teams.home
+        ),
+
+      away:
+        normalizeTeamName(
+          teams.away
+        ),
+
+      score:'',
+
+      time:'',
+      place:'',
+      imported:true
+
+    });
+
+  }
+
+
+  /*
+    Eliminamos duplicados.
+  */
+
+  const unique=[];
+
+  const seen=
+    new Set();
+
+
+  results.forEach(
+    match=>{
+
+      const key=
+        [
+          match.dateISO,
+          match.home
+            .toLowerCase(),
+          match.away
+            .toLowerCase()
+        ].join('|');
+
+
+      if(
+        !seen.has(key) &&
+        match.home &&
+        match.away &&
+        match.home.length>1 &&
+        match.away.length>1
+      ){
+
+        seen.add(key);
+
+        unique.push(
+          match
+        );
+
+      }
+
+    }
+  );
+
+
+  return sortMatches(
+    unique
+  );
+
+}
+
+
+function containsMatchSeparator(
+  text
+){
+
+  return /(?:\s+vs\.?\s+|\s+v\s+|\s+-\s+|\s+–\s+|\s+—\s+|\s+x\s+)/i.test(
+    String(text)
+  );
+
+}
+
+
+function splitTeams(
+  text
+){
+
+  const value=
+    String(
+      text || ''
+    )
+      .replace(
+        /\s{2,}/g,
+        ' '
+      )
+      .trim();
+
+
+  const separators=[
+    /\s+vs\.?\s+/i,
+    /\s+v\s+/i,
+    /\s+–\s+/,
+    /\s+—\s+/,
+    /\s+x\s+/i,
+    /\s+-\s+/
+  ];
+
+
+  for(
+    const regex of separators
+  ){
+
+    const parts=
+      value.split(regex);
+
+
+    if(
+      parts.length>=2
+    ){
+
+      return {
+
+        home:
+          parts[0]
+            .trim(),
+
+        away:
+          parts
+            .slice(1)
+            .join(' ')
+            .trim()
+
+      };
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+/* =====================================================
+   FALLBACK OCR
+===================================================== */
+
+function showOCRFallback(
+  text
+){
+
+  const container=
+    document.getElementById(
+      'ocr-results'
+    );
+
+
+  if(!container){
+    return;
+  }
+
+
+  container.style.display='block';
+
+
+  container.innerHTML=`
+
+    <div class="form-group">
+
+      <label>
+        Texto detectado
+      </label>
+
+      <textarea
+        id="ocr-manual-text"
+        class="form-textarea"
+        placeholder="El texto reconocido aparecerá aquí...">${esc(text)}</textarea>
+
+    </div>
+
+
+    <button
+      class="btn full"
+      onclick="parseManualOCRText()">
+
+      🔎 Intentar detectar partidos
+
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PARSEAR TEXTO MANUAL
+===================================================== */
+
+function parseManualOCRText(){
+
+  const textarea=
+    document.getElementById(
+      'ocr-manual-text'
+    );
+
+
+  if(!textarea){
+    return;
+  }
+
+
+  const parsed=
+    parseCalendarText(
+      textarea.value
+    );
+
+
+  if(!parsed.length){
+
+    alert(
+      'No se han podido detectar partidos. Prueba con una imagen donde se vean claramente las fechas y los dos equipos de cada partido.'
+    );
+
+    return;
+
+  }
+
+
+  importedMatches=
+    parsed;
+
+
+  showImportedPreview();
+
+
+  const status=
+    document.getElementById(
+      'ocr-status'
+    );
+
+
+  if(status){
+
+    status.textContent=
+      `${parsed.length} partidos detectados. Revisa los datos antes de guardar.`;
+
+  }
+
+}
+
+
+/* =====================================================
+   PREVISUALIZACIÓN
+===================================================== */
+
+function showImportedPreview(){
+
+  const container=
+    document.getElementById(
+      'ocr-results'
+    );
+
+
+  const actions=
+    document.getElementById(
+      'calendar-import-actions'
+    );
+
+
+  if(!container){
+    return;
+  }
+
+
+  container.style.display='block';
+
+
+  container.innerHTML=`
+
+    <div
+      style="
+        font-size:12px;
+        font-weight:950;
+        margin-top:14px;
+      ">
+
+      Partidos detectados
+
+    </div>
+
+
+    <div
+      style="
+        font-size:10px;
+        color:#777;
+        font-weight:700;
+        margin-top:3px;
+      ">
+
+      Puedes corregir cualquier nombre antes de guardar.
+
+    </div>
+
+
+    <div class="calendar-preview-list">
+
+      ${
+        importedMatches
+          .map(
+            (m,index)=>
+              importedPreviewRow(
+                m,
+                index
+              )
+          )
+          .join('')
+      }
+
+    </div>
+
+  `;
+
+
+  if(actions){
+
+    actions.style.display=
+      importedMatches.length
+        ?'block'
+        :'none';
+
+  }
+
+}
+
+
+function importedPreviewRow(
+  match,
+  index
+){
+
+  return `
+
+  <div class="calendar-preview-row">
+
+    <div
+      class="calendar-preview-grid">
+
+      <div>
+
+        <div class="calendar-preview-label">
+          Jornada
+        </div>
+
+        <input
+          id="preview-round-${index}"
+          value="${esc(match.round || '')}"
+          placeholder="J1">
+
+      </div>
+
+
+      <div>
+
+        <div class="calendar-preview-label">
+          Local
+        </div>
+
+        <input
+          id="preview-home-${index}"
+          value="${esc(match.home)}"
+          placeholder="Equipo local">
+
+      </div>
+
+
+      <div>
+
+        <div class="calendar-preview-label">
+          Visitante
+        </div>
+
+        <input
+          id="preview-away-${index}"
+          value="${esc(match.away)}"
+          placeholder="Equipo visitante">
 
       </div>
 
@@ -3977,51 +6082,278 @@ function matches(){
 
 
     <div
-      class="muted small"
-      style="text-align:center">
+      style="
+        margin-top:7px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:7px;
+      ">
 
-      ${esc(data.next.place)}
+      <div>
+
+        <div class="calendar-preview-label">
+          Fecha
+        </div>
+
+        <input
+          id="preview-date-${index}"
+          value="${esc(match.date)}"
+          placeholder="24 AGO">
+
+      </div>
+
+
+      <div>
+
+        <div class="calendar-preview-label">
+          Hora
+        </div>
+
+        <input
+          id="preview-time-${index}"
+          value="${esc(match.time || '')}"
+          placeholder="12:00">
+
+      </div>
 
     </div>
 
   </div>
 
+  `;
 
-  ${
-    data.matches
-      .map(
-        m => `
+}
 
-        <div class="card">
 
-          <div class="muted small">
-            ${esc(m.date)}
-          </div>
+/* =====================================================
+   GUARDAR CALENDARIO IMPORTADO
+===================================================== */
 
-          <div class="versus">
+function saveImportedCalendar(){
 
-            <div class="club">
-              ${esc(m.home)}
-            </div>
+  if(
+    !Array.isArray(
+      importedMatches
+    ) ||
+    !importedMatches.length
+  ){
 
-            <div class="vs">
-              ${esc(m.score)}
-            </div>
+    alert(
+      'No hay partidos para guardar.'
+    );
 
-            <div class="club">
-              ${esc(m.away)}
-            </div>
+    return;
 
-          </div>
-
-        </div>
-
-        `
-      )
-      .join('')
   }
 
-  `;
+
+  const finalMatches=[];
+
+
+  importedMatches.forEach(
+    (match,index)=>{
+
+      const round=
+        document.getElementById(
+          `preview-round-${index}`
+        );
+
+      const home=
+        document.getElementById(
+          `preview-home-${index}`
+        );
+
+      const away=
+        document.getElementById(
+          `preview-away-${index}`
+        );
+
+      const date=
+        document.getElementById(
+          `preview-date-${index}`
+        );
+
+      const time=
+        document.getElementById(
+          `preview-time-${index}`
+        );
+
+
+      const updated={
+
+        ...match,
+
+        round:
+          round
+            ?round.value.trim()
+            :match.round,
+
+        home:
+          home
+            ?home.value.trim()
+            :match.home,
+
+        away:
+          away
+            ?away.value.trim()
+            :match.away,
+
+        date:
+          date
+            ?date.value.trim()
+            :match.date,
+
+        time:
+          time
+            ?time.value.trim()
+            :match.time,
+
+        score:'',
+
+        imported:true
+
+      };
+
+
+      if(
+        !updated.home ||
+        !updated.away
+      ){
+
+        return;
+
+      }
+
+
+      finalMatches.push(
+        updated
+      );
+
+    }
+  );
+
+
+  if(!finalMatches.length){
+
+    alert(
+      'No hay partidos válidos para guardar.'
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Si se importa un calendario nuevo,
+    reemplazamos los partidos importados
+    anteriores, pero conservamos los
+    partidos que se hayan creado manualmente.
+  */
+
+  const manualMatches=
+    data.matches.filter(
+      m =>
+        !m.imported
+    );
+
+
+  /*
+    Intentamos conservar resultados ya
+    introducidos si el mismo partido ya
+    existía.
+  */
+
+  finalMatches.forEach(
+    imported=>{
+
+      const existing=
+        data.matches.find(
+          old =>
+
+            String(
+              old.home
+            ).toLowerCase() ===
+            String(
+              imported.home
+            ).toLowerCase()
+
+            &&
+
+            String(
+              old.away
+            ).toLowerCase() ===
+            String(
+              imported.away
+            ).toLowerCase()
+
+            &&
+
+            (
+              !imported.dateISO ||
+              !old.dateISO ||
+              imported.dateISO===old.dateISO
+            )
+
+        );
+
+
+      if(existing){
+
+        imported.id=
+          existing.id ||
+          imported.id;
+
+        imported.score=
+          existing.score ||
+          '';
+
+        imported.place=
+          existing.place ||
+          imported.place ||
+          '';
+
+      }
+
+    }
+  );
+
+
+  data.matches=
+    [
+      ...manualMatches,
+      ...finalMatches
+    ];
+
+
+  data.matches=
+    sortMatches(
+      data.matches
+    );
+
+
+  addActivity(
+    '📅',
+    `Calendario importado: ${finalMatches.length} partidos`
+  );
+
+
+  syncNextMatch();
+
+  save();
+
+
+  importedMatches=[];
+
+
+  closeCalendarImport();
+
+  go('matches');
+
+
+  alert(
+    `Calendario guardado correctamente.\n\n${finalMatches.length} partidos añadidos a KNATT.`
+  );
 
 }
 
@@ -4122,18 +6454,18 @@ function more(){
 
 function stats(){
 
-  const goals =
+  const goals=
     data.players.reduce(
-      (sum,p) =>
-        sum + (Number(p.g)||0),
+      (sum,p)=>
+        sum+(Number(p.g)||0),
       0
     );
 
 
-  const assists =
+  const assists=
     data.players.reduce(
-      (sum,p) =>
-        sum + (Number(p.a)||0),
+      (sum,p)=>
+        sum+(Number(p.a)||0),
       0
     );
 
@@ -4146,7 +6478,6 @@ function stats(){
 
 
   <div class="stat-grid">
-
 
     <div class="stat red">
 
@@ -4199,7 +6530,6 @@ function stats(){
 
     </div>
 
-
   </div>
 
 
@@ -4208,7 +6538,7 @@ function stats(){
     ${
       data.players
         .map(
-          p => `
+          p=>`
 
           <div class="item">
 
@@ -4233,11 +6563,11 @@ function stats(){
             <div>
 
               <b>
-                ${p.g || 0} ⚽
+                ${p.g||0} ⚽
               </b>
 
               <div class="muted">
-                ${p.a || 0} 🎯
+                ${p.a||0} 🎯
               </div>
 
             </div>
@@ -4271,7 +6601,6 @@ function settings(){
 
   <div class="card">
 
-
     <div class="form-group">
 
       <label>
@@ -4282,7 +6611,7 @@ function settings(){
         id="coach"
         class="form-input"
         value="${esc(
-          data.settings.coach || ''
+          data.settings.coach||''
         )}">
 
     </div>
@@ -4298,7 +6627,7 @@ function settings(){
         id="team"
         class="form-input"
         value="${esc(
-          data.settings.team ||
+          data.settings.team||
           'KNATT FC'
         )}">
 
@@ -4315,7 +6644,7 @@ function settings(){
         id="season"
         class="form-input"
         value="${esc(
-          data.settings.season ||
+          data.settings.season||
           '2026/27'
         )}">
 
@@ -4330,7 +6659,6 @@ function settings(){
 
     </button>
 
-
   </div>
 
   `;
@@ -4340,17 +6668,17 @@ function settings(){
 
 function saveSettings(){
 
-  const coach =
+  const coach=
     document.getElementById(
       'coach'
     );
 
-  const team =
+  const team=
     document.getElementById(
       'team'
     );
 
-  const season =
+  const season=
     document.getElementById(
       'season'
     );
@@ -4358,7 +6686,7 @@ function saveSettings(){
 
   if(coach){
 
-    data.settings.coach =
+    data.settings.coach=
       coach.value.trim();
 
   }
@@ -4366,7 +6694,7 @@ function saveSettings(){
 
   if(team){
 
-    data.settings.team =
+    data.settings.team=
       team.value.trim() ||
       'KNATT FC';
 
@@ -4375,7 +6703,7 @@ function saveSettings(){
 
   if(season){
 
-    data.settings.season =
+    data.settings.season=
       season.value.trim() ||
       '2026/27';
 
@@ -4387,7 +6715,10 @@ function saveSettings(){
     'Configuración actualizada'
   );
 
+
   save();
+
+  syncNextMatch();
 
   go('home');
 
@@ -4395,40 +6726,41 @@ function saveSettings(){
 
 
 /* =====================================================
-   TÁCTICA — NUEVA PIZARRA
+   TÁCTICA
 ===================================================== */
 
 function tactic(){
 
-  const view =
+  const view=
     data.tactics.view==='half'
       ?'half'
       :'full';
 
 
-  const positions =
-    data.tactics.positions ||
+  const positions=
+    data.tactics.positions||
     {};
 
 
-  const placedIds =
+  const placedIds=
     new Set(
       Object
         .values(positions)
         .map(
-          p =>
+          p=>
             String(
-              p?.playerId || ''
+              p?.playerId||
+              ''
             )
         )
         .filter(Boolean)
     );
 
 
-  const availablePlayers =
+  const availablePlayers=
     data.players.filter(
-      p =>
-        p.available !== false &&
+      p=>
+        p.available!==false &&
         !placedIds.has(
           String(p.id)
         )
@@ -4526,7 +6858,7 @@ function tactic(){
         Object
           .entries(positions)
           .map(
-            ([key,value]) =>
+            ([key,value])=>
               boardPlayerHtml(
                 key,
                 value
@@ -4567,7 +6899,7 @@ function tactic(){
 
         availablePlayers
           .map(
-            p =>
+            p=>
               trayPlayerHtml(p)
           )
           .join('')
@@ -4616,11 +6948,9 @@ function tactic(){
 }
 
 
-/* =====================================================
-   JUGADOR DE LA BANDEJA
-===================================================== */
-
-function trayPlayerHtml(player){
+function trayPlayerHtml(
+  player
+){
 
   return `
 
@@ -4645,7 +6975,7 @@ function trayPlayerHtml(player){
     </div>
 
     <div class="tray-pos">
-      ${esc(player.pos || 'Jugador')}
+      ${esc(player.pos||'Jugador')}
     </div>
 
   </div>
@@ -4655,20 +6985,19 @@ function trayPlayerHtml(player){
 }
 
 
-/* =====================================================
-   JUGADOR EN EL CAMPO
-===================================================== */
-
 function boardPlayerHtml(
   key,
   value
 ){
 
-  const player =
+  const player=
     data.players.find(
-      p =>
-        String(p.id) ===
-        String(value?.playerId || '')
+      p=>
+        String(p.id)===
+        String(
+          value?.playerId||
+          ''
+        )
     );
 
 
@@ -4677,10 +7006,10 @@ function boardPlayerHtml(
   }
 
 
-  let x =
+  let x=
     Number(value.x);
 
-  let y =
+  let y=
     Number(value.y);
 
 
@@ -4693,7 +7022,7 @@ function boardPlayerHtml(
   }
 
 
-  x =
+  x=
     Math.max(
       4,
       Math.min(
@@ -4703,7 +7032,7 @@ function boardPlayerHtml(
     );
 
 
-  y =
+  y=
     Math.max(
       3,
       Math.min(
@@ -4744,7 +7073,7 @@ function boardPlayerHtml(
         </div>
 
         <div class="board-player-pos">
-          ${esc(player.pos || 'Jugador')}
+          ${esc(player.pos||'Jugador')}
         </div>
 
       </div>
@@ -4771,10 +7100,6 @@ function boardPlayerHtml(
 }
 
 
-/* =====================================================
-   CAMBIAR VISTA
-===================================================== */
-
 function changeTacticView(
   view
 ){
@@ -4789,9 +7114,8 @@ function changeTacticView(
   }
 
 
-  data.tactics.view =
+  data.tactics.view=
     view;
-
 
   save();
 
@@ -4801,7 +7125,7 @@ function changeTacticView(
 
 
 /* =====================================================
-   CREAR POSICIÓN
+   AÑADIR TÁCTICA
 ===================================================== */
 
 function addPlayerToTactic(
@@ -4810,14 +7134,14 @@ function addPlayerToTactic(
   y
 ){
 
-  const id =
+  const id=
     String(playerId);
 
 
-  const player =
+  const player=
     data.players.find(
-      p =>
-        String(p.id) === id
+      p=>
+        String(p.id)===id
     );
 
 
@@ -4826,33 +7150,32 @@ function addPlayerToTactic(
   }
 
 
-  const positions =
-    data.tactics.positions ||
+  const positions=
+    data.tactics.positions||
     {};
 
 
-  const already =
+  const already=
     Object
       .entries(positions)
       .find(
-        ([key,value]) =>
+        ([key,value])=>
           String(
-            value?.playerId || ''
-          ) === id
+            value?.playerId||
+            ''
+          )===id
       );
 
 
   if(already){
-
     return;
-
   }
 
 
-  const key =
-    'p_' +
-    Date.now() +
-    '_' +
+  const key=
+    'p_'+
+    Date.now()+
+    '_'+
     Math.floor(
       Math.random()*10000
     );
@@ -4881,7 +7204,7 @@ function addPlayerToTactic(
   };
 
 
-  data.tactics.positions =
+  data.tactics.positions=
     positions;
 
 
@@ -4899,33 +7222,36 @@ function addPlayerToTactic(
 
 
 /* =====================================================
-   ELIMINAR JUGADOR DE LA PIZARRA
+   ELIMINAR TÁCTICA
 ===================================================== */
 
 function removePlayerFromTactic(
-  playerId
+  playerId,
+  silent=false
 ){
 
-  const id =
+  const id=
     String(playerId);
 
 
-  const positions =
-    data.tactics.positions ||
+  const positions=
+    data.tactics.positions||
     {};
 
 
   let removed=false;
 
+
   Object
     .entries(positions)
     .forEach(
-      ([key,value]) => {
+      ([key,value])=>{
 
         if(
           String(
-            value?.playerId || ''
-          ) === id
+            value?.playerId||
+            ''
+          )===id
         ){
 
           delete positions[key];
@@ -4943,34 +7269,41 @@ function removePlayerFromTactic(
   }
 
 
-  const player =
+  const player=
     data.players.find(
-      p =>
-        String(p.id) === id
+      p=>
+        String(p.id)===id
     );
 
 
-  addActivity(
-    '↩️',
-    player
-      ?`${player.name} retirado de la pizarra`
-      :'Jugador retirado de la pizarra'
-  );
+  if(!silent){
+
+    addActivity(
+      '↩️',
+      player
+        ?`${player.name} retirado de la pizarra`
+        :'Jugador retirado de la pizarra'
+    );
+
+  }
 
 
-  data.tactics.positions =
+  data.tactics.positions=
     positions;
 
 
   save();
 
-  render();
+
+  if(!silent){
+    render();
+  }
 
 }
 
 
 /* =====================================================
-   ARRASTRAR DESDE BANDEJA
+   DRAG
 ===================================================== */
 
 let dragState=null;
@@ -4983,22 +7316,21 @@ function createDragGhost(
 ){
 
   if(dragGhost){
-
     dragGhost.remove();
-
   }
 
 
-  dragGhost =
+  dragGhost=
     document.createElement(
       'div'
     );
 
 
-  dragGhost.className='drag-ghost';
+  dragGhost.className=
+    'drag-ghost';
 
 
-  dragGhost.innerHTML = `
+  dragGhost.innerHTML=`
 
     <div class="board-player-card">
 
@@ -5013,7 +7345,7 @@ function createDragGhost(
         </div>
 
         <div class="board-player-pos">
-          ${esc(player.pos || 'Jugador')}
+          ${esc(player.pos||'Jugador')}
         </div>
 
       </div>
@@ -5028,7 +7360,8 @@ function createDragGhost(
   );
 
 
-  dragGhost.style.display='block';
+  dragGhost.style.display=
+    'block';
 
 }
 
@@ -5047,10 +7380,10 @@ function updateDragGhost(
   }
 
 
-  dragGhost.style.left =
+  dragGhost.style.left=
     `${event.clientX}px`;
 
-  dragGhost.style.top =
+  dragGhost.style.top=
     `${event.clientY}px`;
 
 }
@@ -5069,10 +7402,6 @@ function destroyDragGhost(){
 }
 
 
-/* =====================================================
-   INICIAR ARRASTRE DESDE BANDEJA
-===================================================== */
-
 function startTrayDrag(
   event,
   playerId
@@ -5089,14 +7418,13 @@ function startTrayDrag(
 
 
   event.preventDefault();
-
   event.stopPropagation();
 
 
-  const player =
+  const player=
     data.players.find(
-      p =>
-        String(p.id) ===
+      p=>
+        String(p.id)===
         String(playerId)
     );
 
@@ -5106,7 +7434,7 @@ function startTrayDrag(
   }
 
 
-  const source =
+  const source=
     event.currentTarget;
 
 
@@ -5181,10 +7509,6 @@ function startTrayDrag(
 }
 
 
-/* =====================================================
-   ARRASTRAR JUGADOR YA COLOCADO
-===================================================== */
-
 function startBoardDrag(
   event,
   playerId
@@ -5212,25 +7536,25 @@ function startBoardDrag(
 
 
   event.preventDefault();
-
   event.stopPropagation();
 
 
-  const id =
+  const id=
     String(playerId);
 
 
-  const entry =
+  const entry=
     Object
       .entries(
-        data.tactics.positions ||
+        data.tactics.positions||
         {}
       )
       .find(
-        ([key,value]) =>
+        ([key,value])=>
           String(
-            value?.playerId || ''
-          ) === id
+            value?.playerId||
+            ''
+          )===id
       );
 
 
@@ -5239,10 +7563,10 @@ function startBoardDrag(
   }
 
 
-  const player =
+  const player=
     data.players.find(
-      p =>
-        String(p.id) === id
+      p=>
+        String(p.id)===id
     );
 
 
@@ -5251,7 +7575,7 @@ function startBoardDrag(
   }
 
 
-  const source =
+  const source=
     event.currentTarget;
 
 
@@ -5317,10 +7641,6 @@ function startBoardDrag(
 }
 
 
-/* =====================================================
-   MOVIMIENTO GLOBAL
-===================================================== */
-
 function handleGlobalPointerMove(
   event
 ){
@@ -5333,18 +7653,18 @@ function handleGlobalPointerMove(
   event.preventDefault();
 
 
-  const dx =
-    event.clientX -
+  const dx=
+    event.clientX-
     (
-      dragState.startX ??
+      dragState.startX||
       event.clientX
     );
 
 
-  const dy =
-    event.clientY -
+  const dy=
+    event.clientY-
     (
-      dragState.startY ??
+      dragState.startY||
       event.clientY
     );
 
@@ -5370,7 +7690,7 @@ function handleGlobalPointerMove(
   }
 
 
-  const pitch =
+  const pitch=
     document.getElementById(
       'tactic-pitch'
     );
@@ -5381,15 +7701,15 @@ function handleGlobalPointerMove(
   }
 
 
-  const rect =
+  const rect=
     pitch.getBoundingClientRect();
 
 
-  const inside =
-    event.clientX >= rect.left &&
-    event.clientX <= rect.right &&
-    event.clientY >= rect.top &&
-    event.clientY <= rect.bottom;
+  const inside=
+    event.clientX>=rect.left &&
+    event.clientX<=rect.right &&
+    event.clientY>=rect.top &&
+    event.clientY<=rect.bottom;
 
 
   pitch.classList.toggle(
@@ -5403,33 +7723,31 @@ function handleGlobalPointerMove(
     inside
   ){
 
-    const x =
+    const x=
       (
         (
-          event.clientX -
+          event.clientX-
           rect.left
-        ) /
+        )/
         rect.width
-      ) *
-      100;
+      )*100;
 
 
-    const y =
+    const y=
       (
         (
-          event.clientY -
+          event.clientY-
           rect.top
-        ) /
+        )/
         rect.height
-      ) *
-      100;
+      )*100;
 
 
-    const playerElement =
+    const playerElement=
       dragState.source;
 
 
-    playerElement.style.left =
+    playerElement.style.left=
       `${Math.max(
         4,
         Math.min(
@@ -5439,7 +7757,7 @@ function handleGlobalPointerMove(
       )}%`;
 
 
-    playerElement.style.top =
+    playerElement.style.top=
       `${Math.max(
         3,
         Math.min(
@@ -5453,10 +7771,6 @@ function handleGlobalPointerMove(
 }
 
 
-/* =====================================================
-   FIN DEL ARRASTRE
-===================================================== */
-
 function handleGlobalPointerUp(
   event
 ){
@@ -5469,11 +7783,11 @@ function handleGlobalPointerUp(
   event.preventDefault();
 
 
-  const state =
+  const state=
     dragState;
 
 
-  const pitch =
+  const pitch=
     document.getElementById(
       'tactic-pitch'
     );
@@ -5484,15 +7798,15 @@ function handleGlobalPointerUp(
 
   if(pitch){
 
-    const rect =
+    const rect=
       pitch.getBoundingClientRect();
 
 
-    const inside =
-      event.clientX >= rect.left &&
-      event.clientX <= rect.right &&
-      event.clientY >= rect.top &&
-      event.clientY <= rect.bottom;
+    const inside=
+      event.clientX>=rect.left &&
+      event.clientX<=rect.right &&
+      event.clientY>=rect.top &&
+      event.clientY<=rect.bottom;
 
 
     if(
@@ -5501,26 +7815,24 @@ function handleGlobalPointerUp(
       state.moved
     ){
 
-      const x =
+      const x=
         (
           (
-            event.clientX -
+            event.clientX-
             rect.left
-          ) /
+          )/
           rect.width
-        ) *
-        100;
+        )*100;
 
 
-      const y =
+      const y=
         (
           (
-            event.clientY -
+            event.clientY-
             rect.top
-          ) /
-          rect.height
-        ) *
-        100;
+        )/
+        rect.height
+      )*100;
 
 
       destroyDragGhost();
@@ -5544,26 +7856,24 @@ function handleGlobalPointerUp(
       state.moved
     ){
 
-      const x =
+      const x=
         (
           (
-            event.clientX -
+            event.clientX-
             rect.left
-          ) /
+          )/
           rect.width
-        ) *
-        100;
+        )*100;
 
 
-      const y =
+      const y=
         (
           (
-            event.clientY -
+            event.clientY-
             rect.top
-          ) /
+          )/
           rect.height
-        ) *
-        100;
+        )*100;
 
 
       updateBoardPlayerPosition(
@@ -5584,17 +7894,11 @@ function handleGlobalPointerUp(
 
 
   if(!dropped){
-
     render();
-
   }
 
 }
 
-
-/* =====================================================
-   CANCELAR ARRASTRE
-===================================================== */
 
 function handleGlobalPointerCancel(){
 
@@ -5605,17 +7909,13 @@ function handleGlobalPointerCancel(){
 }
 
 
-/* =====================================================
-   ACTUALIZAR POSICIÓN
-===================================================== */
-
 function updateBoardPlayerPosition(
   key,
   x,
   y
 ){
 
-  const position =
+  const position=
     data.tactics.positions[
       key
     ];
@@ -5626,7 +7926,7 @@ function updateBoardPlayerPosition(
   }
 
 
-  position.x =
+  position.x=
     Math.max(
       4,
       Math.min(
@@ -5636,7 +7936,7 @@ function updateBoardPlayerPosition(
     );
 
 
-  position.y =
+  position.y=
     Math.max(
       3,
       Math.min(
@@ -5646,10 +7946,10 @@ function updateBoardPlayerPosition(
     );
 
 
-  const player =
+  const player=
     data.players.find(
-      p =>
-        String(p.id) ===
+      p=>
+        String(p.id)===
         String(position.playerId)
     );
 
@@ -5667,10 +7967,6 @@ function updateBoardPlayerPosition(
 }
 
 
-/* =====================================================
-   LIMPIAR ARRASTRE
-===================================================== */
-
 function cleanupDrag(){
 
   document
@@ -5678,7 +7974,7 @@ function cleanupDrag(){
       '.tray-player.dragging'
     )
     .forEach(
-      el =>
+      el=>
         el.classList.remove(
           'dragging'
         )
@@ -5690,7 +7986,7 @@ function cleanupDrag(){
       '.board-player.dragging'
     )
     .forEach(
-      el =>
+      el=>
         el.classList.remove(
           'dragging'
         )
@@ -5702,7 +7998,7 @@ function cleanupDrag(){
       '.pitch.drop-active'
     )
     .forEach(
-      el =>
+      el=>
         el.classList.remove(
           'drop-active'
         )
@@ -5724,7 +8020,7 @@ function cleanupDrag(){
 
 
 /* =====================================================
-   VACIAR TÁCTICA
+   TÁCTICA GUARDAR/VACIAR
 ===================================================== */
 
 function clearTactic(){
@@ -5743,21 +8039,18 @@ function clearTactic(){
 }
 
 
-/* =====================================================
-   GUARDAR TÁCTICA
-===================================================== */
-
 function saveTactic(){
 
-  data.tactics.savedLineup =
+  data.tactics.savedLineup=
 
     Object
       .values(
-        data.tactics.positions ||
+        data.tactics.positions||
         {}
       )
       .map(
-        v => ({
+        v=>({
+
           playerId:
             String(v.playerId),
 
@@ -5776,6 +8069,7 @@ function saveTactic(){
     'Pizarra táctica guardada'
   );
 
+
   save();
 
 
@@ -5789,6 +8083,8 @@ function saveTactic(){
 /* =====================================================
    ARRANQUE
 ===================================================== */
+
+syncNextMatch();
 
 save();
 
