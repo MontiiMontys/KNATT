@@ -59,6 +59,7 @@ button{
   padding-bottom:82px;
 }
 
+
 /* =====================================================
    CABECERA
 ===================================================== */
@@ -66,7 +67,6 @@ button{
 header{
   background:var(--dark);
   color:#fff;
-
   padding:
     calc(12px + env(safe-area-inset-top))
     18px
@@ -111,6 +111,11 @@ main{
   padding:14px 14px 24px;
 }
 
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
 .title{
   font-size:25px;
   font-weight:950;
@@ -132,24 +137,6 @@ main{
   margin:3px 2px 13px;
 }
 
-/* =====================================================
-   INICIO
-===================================================== */
-
-.home-title-row{
-  margin-top:0;
-  margin-bottom:12px;
-}
-
-.home-title-row .title{
-  font-size:26px;
-}
-
-.home-title-row .subtitle{
-  font-size:13px;
-  margin-top:3px;
-}
-
 .card{
   background:var(--card);
   border:1px solid var(--line);
@@ -157,24 +144,6 @@ main{
   padding:16px;
   margin-bottom:12px;
   box-shadow:0 7px 24px #14141914;
-}
-
-.home-match-card{
-  padding:17px;
-  border-radius:20px;
-}
-
-.home-match-card .section-label{
-  margin-bottom:8px;
-}
-
-.home-match-card .big{
-  font-size:22px;
-  line-height:1.15;
-}
-
-.home-match-card .versus{
-  margin:15px 0 16px;
 }
 
 .card-dark{
@@ -231,6 +200,11 @@ main{
   width:100%;
 }
 
+
+/* =====================================================
+   ESTADÍSTICAS
+===================================================== */
+
 .stat-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -273,6 +247,174 @@ main{
 .stat.red b{
   color:var(--red);
 }
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+.home-title-row{
+  margin-top:0;
+  margin-bottom:12px;
+}
+
+.home-title-row .title{
+  font-size:26px;
+}
+
+.home-title-row .subtitle{
+  font-size:13px;
+  margin-top:3px;
+}
+
+.home-match-card{
+  padding:17px;
+  border-radius:20px;
+}
+
+.home-match-card .section-label{
+  margin-bottom:8px;
+}
+
+.home-match-card .big{
+  font-size:22px;
+  line-height:1.15;
+}
+
+.home-match-card .versus{
+  margin:15px 0 16px;
+}
+
+
+/* =====================================================
+   CUENTA ATRÁS
+===================================================== */
+
+.match-countdown{
+  text-align:center;
+  margin-top:-6px;
+  margin-bottom:14px;
+  font-size:11px;
+  font-weight:850;
+  color:var(--muted);
+}
+
+.match-countdown strong{
+  color:var(--red);
+  font-weight:950;
+}
+
+
+/* =====================================================
+   ACCESO RÁPIDO PLANTILLA
+===================================================== */
+
+.home-quick-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 15px;
+  cursor:pointer;
+}
+
+.home-quick-icon{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:13px;
+  background:#fff0f2;
+  color:var(--red);
+  display:grid;
+  place-items:center;
+  font-size:21px;
+}
+
+.home-quick-content{
+  flex:1;
+  min-width:0;
+}
+
+.home-quick-title{
+  font-size:13px;
+  font-weight:950;
+}
+
+.home-quick-subtitle{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:750;
+  margin-top:2px;
+}
+
+.home-quick-arrow{
+  font-size:22px;
+  color:#99999f;
+}
+
+
+/* =====================================================
+   ÚLTIMA ACTIVIDAD
+===================================================== */
+
+.home-activity-card{
+  padding:16px;
+}
+
+.activity-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid #ededf0;
+}
+
+.activity-item:last-child{
+  border-bottom:0;
+  padding-bottom:0;
+}
+
+.activity-item:first-child{
+  padding-top:2px;
+}
+
+.activity-icon{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  border-radius:10px;
+  background:#f0f0f2;
+  display:grid;
+  place-items:center;
+  font-size:16px;
+}
+
+.activity-content{
+  flex:1;
+  min-width:0;
+}
+
+.activity-title{
+  font-size:11px;
+  font-weight:900;
+}
+
+.activity-time{
+  font-size:9px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.activity-empty{
+  padding:7px 0 2px;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+
+/* =====================================================
+   PLANTILLA
+===================================================== */
 
 .tabs{
   display:flex;
@@ -334,6 +476,11 @@ main{
   margin-top:2px;
 }
 
+
+/* =====================================================
+   FORMULARIOS
+===================================================== */
+
 .form-group{
   margin-bottom:12px;
 }
@@ -358,6 +505,11 @@ main{
   font-size:14px;
   outline:none;
 }
+
+
+/* =====================================================
+   PARTIDOS
+===================================================== */
 
 .match-card{
   position:relative;
@@ -393,6 +545,11 @@ main{
   font-weight:950;
   color:#888;
 }
+
+
+/* =====================================================
+   MÁS
+===================================================== */
 
 .more-screen{
   background:var(--dark);
@@ -937,7 +1094,9 @@ if(
       team:'KNATT FC',
       season:'2026/27',
       category:'Primer Equipo'
-    }
+    },
+
+    activity:[]
 
   };
 
@@ -1031,6 +1190,10 @@ if(!data.next.place)
 
 if(!Array.isArray(data.matches)){
   data.matches=[];
+}
+
+if(!Array.isArray(data.activity)){
+  data.activity=[];
 }
 
 
@@ -1174,6 +1337,33 @@ function formationsHasFormation(
 
 
 /* =====================================================
+   ACTIVIDAD
+===================================================== */
+
+function addActivity(
+  icon,
+  title
+){
+
+  if(!Array.isArray(data.activity)){
+    data.activity=[];
+  }
+
+  data.activity.unshift({
+
+    icon:icon,
+    title:title,
+    time:Date.now()
+
+  });
+
+  data.activity =
+    data.activity.slice(0,6);
+
+}
+
+
+/* =====================================================
    GUARDAR
 ===================================================== */
 
@@ -1209,6 +1399,202 @@ function esc(s){
     }[m])
 
   );
+
+}
+
+
+/* =====================================================
+   FORMATO ACTIVIDAD
+===================================================== */
+
+function activityTime(timestamp){
+
+  if(!timestamp){
+    return '';
+  }
+
+  const diff =
+    Date.now() -
+    Number(timestamp);
+
+  const minute =
+    60 * 1000;
+
+  const hour =
+    60 * minute;
+
+  const day =
+    24 * hour;
+
+  if(diff < minute){
+    return 'Ahora';
+  }
+
+  if(diff < hour){
+
+    const n =
+      Math.floor(
+        diff / minute
+      );
+
+    return `Hace ${n} min`;
+
+  }
+
+  if(diff < day){
+
+    const n =
+      Math.floor(
+        diff / hour
+      );
+
+    return `Hace ${n} h`;
+
+  }
+
+  if(diff < 2 * day){
+    return 'Ayer';
+  }
+
+  const date =
+    new Date(timestamp);
+
+  return date.toLocaleDateString(
+    'es-ES',
+    {
+      day:'numeric',
+      month:'short'
+    }
+  );
+
+}
+
+
+/* =====================================================
+   CUENTA ATRÁS
+===================================================== */
+
+function getMatchCountdown(){
+
+  const text =
+    String(
+      data.next?.date || ''
+    );
+
+  const match =
+    text.match(
+      /(\d{1,2})\s+de\s+([a-záéíóúñ]+)/i
+    );
+
+  if(!match){
+    return '';
+  }
+
+  const day =
+    Number(match[1]);
+
+  const months={
+
+    enero:0,
+    febrero:1,
+    marzo:2,
+    abril:3,
+    mayo:4,
+    junio:5,
+    julio:6,
+    agosto:7,
+    septiembre:8,
+    octubre:9,
+    noviembre:10,
+    diciembre:11
+
+  };
+
+  const monthName =
+    match[2]
+      .toLowerCase();
+
+  if(
+    months[monthName] === undefined
+  ){
+
+    return '';
+
+  }
+
+  const now =
+    new Date();
+
+  let year =
+    now.getFullYear();
+
+  let target =
+    new Date(
+      year,
+      months[monthName],
+      day,
+      12,
+      0,
+      0
+    );
+
+  if(
+    target <
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    )
+  ){
+
+    target =
+      new Date(
+        year + 1,
+        months[monthName],
+        day,
+        12,
+        0,
+        0
+      );
+
+  }
+
+  const startToday =
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
+
+  const startTarget =
+    new Date(
+      target.getFullYear(),
+      target.getMonth(),
+      target.getDate()
+    );
+
+  const days =
+    Math.round(
+      (
+        startTarget -
+        startToday
+      ) /
+      86400000
+    );
+
+  if(days < 0){
+    return '';
+  }
+
+  if(days === 0){
+    return '🔴 Partido hoy';
+  }
+
+  if(days === 1){
+    return '🟠 Partido mañana';
+  }
+
+  return `⏱ Faltan <strong>${days} días</strong>`;
 
 }
 
@@ -1337,6 +1723,14 @@ function home(){
       p=>p.available
     ).length;
 
+  const countdown =
+    getMatchCountdown();
+
+  const activities =
+    Array.isArray(data.activity)
+      ?data.activity.slice(0,4)
+      :[];
+
 
   return `
 
@@ -1417,6 +1811,17 @@ function home(){
     </div>
 
 
+    ${
+      countdown
+        ?`
+          <div class="match-countdown">
+            ${countdown}
+          </div>
+        `
+        :''
+    }
+
+
     <button
       class="btn full"
       onclick="go('tactic')">
@@ -1490,6 +1895,98 @@ function home(){
       </div>
 
     </div>
+
+  </div>
+
+
+  <div
+    class="card home-quick-card"
+    onclick="go('team')">
+
+    <div class="home-quick-icon">
+      ♟
+    </div>
+
+    <div class="home-quick-content">
+
+      <div class="home-quick-title">
+        Plantilla
+      </div>
+
+      <div class="home-quick-subtitle">
+
+        ${data.players.length}
+        ${
+          data.players.length===1
+            ?'jugador'
+            :'jugadores'
+        }
+
+        ·
+
+        ${available}
+        disponibles
+
+      </div>
+
+    </div>
+
+    <div class="home-quick-arrow">
+      ›
+    </div>
+
+  </div>
+
+
+  <div class="card home-activity-card">
+
+    <div class="section-label">
+      ÚLTIMA ACTIVIDAD
+    </div>
+
+
+    ${
+      activities.length
+
+      ?
+
+      activities
+        .map(
+          a => `
+
+          <div class="activity-item">
+
+            <div class="activity-icon">
+              ${esc(a.icon || '•')}
+            </div>
+
+            <div class="activity-content">
+
+              <div class="activity-title">
+                ${esc(a.title)}
+              </div>
+
+              <div class="activity-time">
+                ${activityTime(a.time)}
+              </div>
+
+            </div>
+
+          </div>
+
+          `
+        )
+        .join('')
+
+      :
+
+      `
+      <div class="activity-empty">
+        Todavía no hay actividad reciente.
+      </div>
+      `
+
+    }
 
   </div>
 
@@ -1905,6 +2402,11 @@ function addPlayer(){
   });
 
 
+  addActivity(
+    '👤',
+    `Jugador añadido: ${name.trim()}`
+  );
+
   save();
 
   render();
@@ -1977,6 +2479,11 @@ function editPlayer(){
     pos.trim() || p.pos;
 
 
+  addActivity(
+    '✏️',
+    `Jugador actualizado: ${p.name}`
+  );
+
   save();
 
   render();
@@ -1989,6 +2496,14 @@ function editPlayer(){
 ===================================================== */
 
 function deletePlayer(id){
+
+  const player =
+    data.players.find(
+      p =>
+        String(p.id) ===
+        String(id)
+    );
+
 
   if(
     !confirm(
@@ -2034,6 +2549,15 @@ function deletePlayer(id){
       }
     );
 
+
+  addActivity(
+    '🗑️',
+    `Jugador eliminado: ${
+      player
+        ?player.name
+        :'Jugador'
+    }`
+  );
 
   save();
 
@@ -2513,6 +3037,11 @@ function saveSettings(){
 
   }
 
+
+  addActivity(
+    '⚙️',
+    'Configuración actualizada'
+  );
 
   save();
 
@@ -3088,6 +3617,11 @@ function assignPosition(
         ];
 
 
+    addActivity(
+      '⚽',
+      'Jugador retirado de la táctica'
+    );
+
     save();
 
     closePlayerMenus();
@@ -3138,6 +3672,20 @@ function assignPosition(
 
     };
 
+
+  const player =
+    data.players.find(
+      p =>
+        String(p.id) === id
+    );
+
+
+  addActivity(
+    '⚽',
+    player
+      ?`Táctica actualizada: ${player.name}`
+      :'Táctica actualizada'
+  );
 
   save();
 
@@ -3313,6 +3861,11 @@ function changeFormation(
     next;
 
 
+  addActivity(
+    '📐',
+    `Formación cambiada a ${formation}`
+  );
+
   save();
 
   render();
@@ -3401,6 +3954,11 @@ function resetTactic(){
     next;
 
 
+  addActivity(
+    '↺',
+    'Alineación restablecida'
+  );
+
   save();
 
   render();
@@ -3415,6 +3973,11 @@ function resetTactic(){
 function clearTactic(){
 
   data.tactics.positions = {};
+
+  addActivity(
+    '🧹',
+    'Táctica vaciada'
+  );
 
   save();
 
@@ -3441,6 +4004,11 @@ function saveTactic(){
           v.playerId
       );
 
+
+  addActivity(
+    '💾',
+    'Alineación guardada'
+  );
 
   save();
 
