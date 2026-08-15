@@ -506,6 +506,139 @@ main{
   outline:none;
 }
 
+.form-input:focus,
+.select:focus{
+  border-color:#ffb5bd;
+  box-shadow:0 0 0 3px #fff0f2;
+}
+
+
+/* =====================================================
+   MODAL EDITAR JUGADOR
+===================================================== */
+
+.edit-modal{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    14px
+    calc(18px + env(safe-area-inset-bottom));
+  background:rgba(0,0,0,.52);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+
+.edit-modal-card{
+  width:min(500px,100%);
+  max-height:calc(100vh - 36px);
+  overflow-y:auto;
+  background:#fff;
+  border-radius:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  padding:20px;
+  -webkit-overflow-scrolling:touch;
+}
+
+.edit-modal-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.edit-modal-title{
+  font-size:22px;
+  font-weight:950;
+  letter-spacing:-.5px;
+}
+
+.edit-modal-subtitle{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+  margin-top:3px;
+}
+
+.edit-modal-close{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  border:0;
+  border-radius:10px;
+  background:#f0f0f2;
+  color:#555;
+  font-size:20px;
+  line-height:34px;
+}
+
+.edit-status-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.edit-status-option{
+  position:relative;
+}
+
+.edit-status-option input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
+
+.edit-status-option label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:45px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fafafa;
+  color:#666;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.edit-status-option input:checked + label{
+  background:#fff0f2;
+  border-color:#ffb5bd;
+  color:var(--red);
+}
+
+.edit-stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.edit-stats-grid .form-group{
+  margin-bottom:12px;
+}
+
+.edit-modal-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:5px;
+}
+
+.edit-disabled{
+  opacity:.48;
+}
+
+.edit-disabled input{
+  background:#f0f0f2;
+}
+
 
 /* =====================================================
    PARTIDOS
@@ -913,6 +1046,25 @@ nav .nav-icon{
   .tactic-role{
     font-size:8px;
     padding:4px 6px;
+  }
+
+  .edit-modal{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .edit-modal-card{
+    padding:16px;
+    border-radius:19px;
+  }
+
+  .edit-modal-title{
+    font-size:20px;
+  }
+
+  .edit-stats-grid{
+    grid-template-columns:1fr;
+    gap:0;
   }
 
 }
@@ -1610,6 +1762,8 @@ function go(s){
   selectedPlayerId=null;
 
   closePlayerMenus();
+
+  closeEditModal();
 
   window.scrollTo(
     0,
@@ -2433,50 +2587,540 @@ function editPlayer(){
   }
 
 
-  const name =
-    prompt(
-      'Nombre del jugador:',
-      p.name
+  const modal =
+    document.createElement('div');
+
+  modal.className='edit-modal';
+
+  modal.id='edit-player-modal';
+
+
+  modal.innerHTML = `
+
+    <div
+      class="edit-modal-card"
+      onclick="event.stopPropagation()">
+
+      <div class="edit-modal-header">
+
+        <div>
+
+          <div class="edit-modal-title">
+            Editar jugador
+          </div>
+
+          <div class="edit-modal-subtitle">
+            Modifica todos los datos de una vez
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="edit-modal-close"
+          onclick="closeEditModal()">
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Nombre
+        </label>
+
+        <input
+          id="edit-name"
+          class="form-input"
+          type="text"
+          value="${esc(p.name)}"
+          autocomplete="off">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Dorsal
+        </label>
+
+        <input
+          id="edit-num"
+          class="form-input"
+          type="number"
+          inputmode="numeric"
+          value="${esc(p.num)}">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Posición
+        </label>
+
+        <input
+          id="edit-pos"
+          class="form-input"
+          type="text"
+          value="${esc(p.pos)}"
+          autocomplete="off">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Disponibilidad
+        </label>
+
+        <div class="edit-status-grid">
+
+          <div class="edit-status-option">
+
+            <input
+              type="radio"
+              id="edit-available-yes"
+              name="edit-available"
+              value="true"
+              ${
+                p.available
+                  ?'checked'
+                  :''
+              }
+              onchange="toggleEditReason()">
+
+            <label for="edit-available-yes">
+              ✓ Disponible
+            </label>
+
+          </div>
+
+
+          <div class="edit-status-option">
+
+            <input
+              type="radio"
+              id="edit-available-no"
+              name="edit-available"
+              value="false"
+              ${
+                !p.available
+                  ?'checked'
+                  :''
+              }
+              onchange="toggleEditReason()">
+
+            <label for="edit-available-no">
+              ✕ No disponible
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="edit-reason-group"
+        class="form-group ${
+          p.available
+            ?'edit-disabled'
+            :''
+        }">
+
+        <label>
+          Motivo de ausencia
+        </label>
+
+        <input
+          id="edit-reason"
+          class="form-input"
+          type="text"
+          value="${esc(p.reason || '')}"
+          placeholder="Ej. Lesión, trabajo, vacaciones..."
+          ${
+            p.available
+              ?'disabled'
+              :''
+          }>
+
+      </div>
+
+
+      <div class="edit-stats-grid">
+
+        <div class="form-group">
+
+          <label>
+            Minutos
+          </label>
+
+          <input
+            id="edit-min"
+            class="form-input"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            value="${Number(p.min)||0}">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Goles
+          </label>
+
+          <input
+            id="edit-goals"
+            class="form-input"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            value="${Number(p.g)||0}">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Asistencias
+          </label>
+
+          <input
+            id="edit-assists"
+            class="form-input"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            value="${Number(p.a)||0}">
+
+        </div>
+
+      </div>
+
+
+      <div class="edit-modal-actions">
+
+        <button
+          type="button"
+          class="btn light"
+          onclick="closeEditModal()">
+
+          Cancelar
+
+        </button>
+
+
+        <button
+          type="button"
+          class="btn"
+          onclick="saveEditedPlayer()">
+
+          Guardar cambios
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(
+        event.target === modal
+      ){
+
+        closeEditModal();
+
+      }
+
+    }
+  );
+
+
+  document.body.appendChild(
+    modal
+  );
+
+
+  document.body.style.overflow='hidden';
+
+
+  const nameInput =
+    document.getElementById(
+      'edit-name'
+    );
+
+  if(nameInput){
+
+    setTimeout(
+      ()=>{
+        nameInput.focus();
+        nameInput.select();
+      },
+      50
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   ACTIVAR / DESACTIVAR MOTIVO
+===================================================== */
+
+function toggleEditReason(){
+
+  const available =
+    document.querySelector(
+      '#edit-available-yes'
+    );
+
+  const reason =
+    document.getElementById(
+      'edit-reason'
+    );
+
+  const group =
+    document.getElementById(
+      'edit-reason-group'
     );
 
 
-  if(name===null){
+  if(
+    !available ||
+    !reason ||
+    !group
+  ){
+
     return;
+
   }
 
+
+  const isAvailable =
+    available.checked;
+
+
+  reason.disabled =
+    isAvailable;
+
+
+  group.classList.toggle(
+    'edit-disabled',
+    isAvailable
+  );
+
+
+  if(isAvailable){
+
+    reason.value='';
+
+  }
+
+}
+
+
+/* =====================================================
+   GUARDAR EDICIÓN
+===================================================== */
+
+function saveEditedPlayer(){
+
+  const p =
+    data.players.find(
+      x =>
+        String(x.id) ===
+        String(selectedPlayerId)
+    );
+
+
+  if(!p){
+
+    closeEditModal();
+
+    return;
+
+  }
+
+
+  const name =
+    document.getElementById(
+      'edit-name'
+    );
 
   const num =
-    prompt(
-      'Número de camiseta:',
-      p.num
+    document.getElementById(
+      'edit-num'
+    );
+
+  const pos =
+    document.getElementById(
+      'edit-pos'
+    );
+
+  const available =
+    document.querySelector(
+      'input[name="edit-available"]:checked'
+    );
+
+  const reason =
+    document.getElementById(
+      'edit-reason'
+    );
+
+  const min =
+    document.getElementById(
+      'edit-min'
+    );
+
+  const goals =
+    document.getElementById(
+      'edit-goals'
+    );
+
+  const assists =
+    document.getElementById(
+      'edit-assists'
     );
 
 
-  if(num===null){
+  const newName =
+    name
+      ?name.value.trim()
+      :p.name;
+
+
+  const newNum =
+    num
+      ?num.value.trim()
+      :p.num;
+
+
+  const newPos =
+    pos
+      ?pos.value.trim()
+      :p.pos;
+
+
+  if(!newName){
+
+    alert(
+      'El nombre del jugador es obligatorio.'
+    );
+
+    if(name){
+      name.focus();
+    }
+
     return;
+
   }
 
 
-  const pos =
-    prompt(
-      'Posición:',
-      p.pos
+  if(!newNum){
+
+    alert(
+      'El dorsal es obligatorio.'
     );
 
+    if(num){
+      num.focus();
+    }
 
-  if(pos===null){
     return;
+
+  }
+
+
+  if(!newPos){
+
+    alert(
+      'La posición es obligatoria.'
+    );
+
+    if(pos){
+      pos.focus();
+    }
+
+    return;
+
   }
 
 
   p.name =
-    name.trim() || p.name;
+    newName;
 
   p.num =
-    num.trim() || p.num;
+    newNum;
 
   p.pos =
-    pos.trim() || p.pos;
+    newPos;
+
+
+  p.available =
+    available
+      ?available.value === 'true'
+      :p.available;
+
+
+  p.reason =
+    p.available
+      ?''
+      :(reason
+        ?reason.value.trim()
+        :p.reason);
+
+
+  p.min =
+    Math.max(
+      0,
+      Number(
+        min
+          ?min.value
+          :p.min
+      ) || 0
+    );
+
+
+  p.g =
+    Math.max(
+      0,
+      Number(
+        goals
+          ?goals.value
+          :p.g
+      ) || 0
+    );
+
+
+  p.a =
+    Math.max(
+      0,
+      Number(
+        assists
+          ?assists.value
+          :p.a
+      ) || 0
+    );
 
 
   addActivity(
@@ -2484,9 +3128,36 @@ function editPlayer(){
     `Jugador actualizado: ${p.name}`
   );
 
+
   save();
 
+  closeEditModal();
+
   render();
+
+}
+
+
+/* =====================================================
+   CERRAR MODAL EDICIÓN
+===================================================== */
+
+function closeEditModal(){
+
+  const modal =
+    document.getElementById(
+      'edit-player-modal'
+    );
+
+
+  if(modal){
+
+    modal.remove();
+
+  }
+
+
+  document.body.style.overflow='';
 
 }
 
