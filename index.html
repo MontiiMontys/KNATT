@@ -1974,11 +1974,15 @@ function home(){
     <div class="card">
 
       <div class="title">
-        ¡Buenos días!
+        ${
+          data.settings.coach
+            ?`¡Buenos días ${esc(data.settings.coach)}!`
+            :'¡Buenos días!'
+        }
       </div>
 
       <div class="subtitle">
-        Tu equipo, en una sola app
+        Qué quieres hacer hoy?
       </div>
 
     </div>
@@ -2777,7 +2781,9 @@ function addPlayer(){
   document.body.style.overflow='hidden';
 
   const nameInput=
-    document.getElementById('add-name');
+    document.getElementById(
+      'add-name'
+    );
 
   if(nameInput){
 
