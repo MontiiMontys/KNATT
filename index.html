@@ -1662,14 +1662,6 @@ onclick="alert('No tienes nuevas notificaciones.')">
    OCR
 ===================================================== */
 
-/*
-  KNATT utiliza Tesseract.js para leer el texto
-  de la imagen del calendario.
-
-  Se carga únicamente cuando el usuario importa
-  un calendario.
-*/
-
 let tesseractLoaded=false;
 
 function loadTesseract(){
@@ -1677,9 +1669,7 @@ function loadTesseract(){
   return new Promise(
     (resolve,reject)=>{
 
-      if(
-        window.Tesseract
-      ){
+      if(window.Tesseract){
 
         tesseractLoaded=true;
         resolve();
@@ -1687,8 +1677,7 @@ function loadTesseract(){
 
       }
 
-      const script=
-        document.createElement('script');
+      const script=document.createElement('script');
 
       script.src=
         'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
@@ -1710,9 +1699,7 @@ function loadTesseract(){
 
       };
 
-      document.head.appendChild(
-        script
-      );
+      document.head.appendChild(script);
 
     }
   );
@@ -1745,10 +1732,7 @@ try{
    DATOS POR DEFECTO
 ===================================================== */
 
-if(
-  !data ||
-  typeof data!=='object'
-){
+if(!data || typeof data!=='object'){
 
   data={
 
@@ -1874,53 +1858,30 @@ if(!Array.isArray(data.players)){
   data.players=[];
 }
 
-if(
-  !data.tactics ||
-  typeof data.tactics!=='object'
-){
-
+if(!data.tactics || typeof data.tactics!=='object'){
   data.tactics={};
-
 }
 
-if(
-  !data.tactics.positions ||
-  typeof data.tactics.positions!=='object'
-){
-
+if(!data.tactics.positions || typeof data.tactics.positions!=='object'){
   data.tactics.positions={};
-
 }
 
-if(
-  !Array.isArray(
-    data.tactics.savedLineup
-  )
-){
-
+if(!Array.isArray(data.tactics.savedLineup)){
   data.tactics.savedLineup=[];
-
 }
 
 if(
   data.tactics.view!=='full' &&
   data.tactics.view!=='half'
 ){
-
   data.tactics.view='full';
-
 }
 
 data.tactics.formation='';
 
 
-if(
-  !data.settings ||
-  typeof data.settings!=='object'
-){
-
+if(!data.settings || typeof data.settings!=='object'){
   data.settings={};
-
 }
 
 if(!data.settings.coach)
@@ -1936,13 +1897,8 @@ if(!data.settings.category)
   data.settings.category='Primer Equipo';
 
 
-if(
-  !data.next ||
-  typeof data.next!=='object'
-){
-
+if(!data.next || typeof data.next!=='object'){
   data.next={};
-
 }
 
 if(!data.next.opponent)
@@ -2048,8 +2004,7 @@ function addActivity(
 
   });
 
-  data.activity =
-    data.activity.slice(0,6);
+  data.activity=data.activity.slice(0,6);
 
 }
 
@@ -2080,16 +2035,162 @@ function esc(s){
     /[&<>"']/g,
 
     m => ({
-
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
       '"':'&quot;',
       "'":'&#039;'
-
     }[m])
 
   );
+
+}
+
+
+/* =====================================================
+   IDENTIFICACIÓN DEL EQUIPO PROPIO
+===================================================== */
+
+/*
+  Normaliza los nombres para poder comparar:
+
+  Unificación Llefia
+  UNIFICACION LLEFIA
+  Unificación Llefià
+
+  como el mismo equipo.
+
+  También elimina signos que el OCR pueda introducir.
+*/
+
+function normalizeTeamForComparison(name){
+
+  return String(
+    name || ''
+  )
+    .normalize('NFD')
+    .replace(
+      /[\u0300-\u036f]/g,
+      ''
+    )
+    .toLowerCase()
+    .replace(
+      /[^a-z0-9\s]/g,
+      ' '
+    )
+    .replace(
+      /\s+/g,
+      ' '
+    )
+    .trim();
+
+}
+
+
+/*
+  Devuelve el nombre del equipo configurado.
+*/
+
+function getConfiguredTeam(){
+
+  return String(
+    data.settings?.team ||
+    ''
+  ).trim();
+
+}
+
+
+/*
+  Comprueba si un nombre corresponde
+  al equipo configurado.
+
+  Primero intenta coincidencia exacta.
+
+  Después permite que uno de los dos nombres
+  contenga al otro, útil cuando el OCR añade
+  alguna palabra o carácter extra.
+*/
+
+function isConfiguredTeam(name){
+
+  const configured=
+    normalizeTeamForComparison(
+      getConfiguredTeam()
+    );
+
+  const candidate=
+    normalizeTeamForComparison(
+      name
+    );
+
+  if(
+    !configured ||
+    !candidate
+  ){
+
+    return false;
+
+  }
+
+  if(
+    configured===
+    candidate
+  ){
+
+    return true;
+
+  }
+
+  if(
+    configured.length>=5 &&
+    candidate.length>=5 &&
+    (
+      candidate.includes(configured) ||
+      configured.includes(candidate)
+    )
+  ){
+
+    return true;
+
+  }
+
+  return false;
+
+}
+
+
+/*
+  Este es el filtro central de KNATT.
+
+  Solo devuelve partidos donde el equipo configurado
+  aparezca como local o visitante.
+*/
+
+function getTeamMatches(){
+
+  return data.matches.filter(
+    match =>
+      isConfiguredTeam(match.home) ||
+      isConfiguredTeam(match.away)
+  );
+
+}
+
+
+/*
+  Filtra una lista cualquiera de partidos
+  utilizando el mismo criterio.
+*/
+
+function filterMatchesForConfiguredTeam(list){
+
+  return (Array.isArray(list) ? list : [])
+    .filter(
+      match =>
+        isConfiguredTeam(match.home) ||
+        isConfiguredTeam(match.away)
+    );
 
 }
 
@@ -2113,13 +2214,13 @@ function normalizeDateText(date){
 
 function getSeasonStartYear(){
 
-  const season =
+  const season=
     String(
       data.settings.season ||
       ''
     );
 
-  const match =
+  const match=
     season.match(
       /(\d{4})/
     );
@@ -2138,11 +2239,8 @@ function dateToISO(
   month
 ){
 
-  const d=
-    Number(day);
-
-  const m=
-    Number(month);
+  const d=Number(day);
+  const m=Number(month);
 
   if(
     !Number.isFinite(d) ||
@@ -2157,14 +2255,7 @@ function dateToISO(
 
   }
 
-  let year=
-    getSeasonStartYear();
-
-  /*
-    Agosto-Diciembre pertenece al
-    primer año de la temporada.
-    Enero-Julio al segundo.
-  */
+  let year=getSeasonStartYear();
 
   if(m<=7){
     year++;
@@ -2195,9 +2286,7 @@ function dateToISO(
 }
 
 
-function displayDateFromISO(
-  iso
-){
+function displayDateFromISO(iso){
 
   if(!iso){
     return '';
@@ -2210,11 +2299,8 @@ function displayDateFromISO(
     return '';
   }
 
-  const d=
-    Number(parts[2]);
-
-  const m=
-    Number(parts[1]);
+  const d=Number(parts[2]);
+  const m=Number(parts[1]);
 
   const months=[
     'ENE',
@@ -2246,20 +2332,13 @@ function displayDateFromISO(
 }
 
 
-function sortMatches(
-  list
-){
+function sortMatches(list){
 
   return [...list].sort(
     (a,b)=>{
 
-      const da=
-        a.dateISO ||
-        '';
-
-      const db=
-        b.dateISO ||
-        '';
+      const da=a.dateISO || '';
+      const db=b.dateISO || '';
 
       if(
         da &&
@@ -2307,8 +2386,7 @@ function getMatchCountdown(){
         }:00`
       );
 
-    const now=
-      new Date();
+    const now=new Date();
 
     const today=
       new Date(
@@ -2364,8 +2442,7 @@ function getMatchCountdown(){
     return '';
   }
 
-  const day=
-    Number(match[1]);
+  const day=Number(match[1]);
 
   const months={
 
@@ -2385,22 +2462,15 @@ function getMatchCountdown(){
   };
 
   const monthName=
-    match[2]
-      .toLowerCase();
+    match[2].toLowerCase();
 
-  if(
-    months[monthName] === undefined
-  ){
-
+  if(months[monthName]===undefined){
     return '';
-
   }
 
-  const now=
-    new Date();
+  const now=new Date();
 
-  let year=
-    now.getFullYear();
+  let year=now.getFullYear();
 
   let target=
     new Date(
@@ -2492,23 +2562,27 @@ function isPlayedMatch(match){
 
 function getNextUpcomingMatch(){
 
-  const now=
-    new Date();
+  const now=new Date();
 
-  const todayISO=
-    [
-      now.getFullYear(),
-      String(
-        now.getMonth()+1
-      ).padStart(2,'0'),
-      String(
-        now.getDate()
-      ).padStart(2,'0')
-    ].join('-');
+  const todayISO=[
+    now.getFullYear(),
+    String(
+      now.getMonth()+1
+    ).padStart(2,'0'),
+    String(
+      now.getDate()
+    ).padStart(2,'0')
+  ].join('-');
 
+
+  /*
+    IMPORTANTE:
+    solo buscamos entre los partidos
+    del equipo configurado.
+  */
 
   const upcoming=
-    data.matches
+    getTeamMatches()
       .filter(
         m =>
           !isPlayedMatch(m) &&
@@ -2528,37 +2602,35 @@ function getNextUpcomingMatch(){
 }
 
 
+/* =====================================================
+   SINCRONIZAR PRÓXIMO PARTIDO
+===================================================== */
+
 function syncNextMatch(){
 
   const next=
     getNextUpcomingMatch();
 
   if(!next){
+
+    /*
+      Si no hay próximo partido del equipo,
+      no inventamos uno.
+    */
+
     return;
+
   }
 
-  data.next.opponent=
-    data.next.opponent ||
-    next.away;
-
-  /*
-    El equipo configurado determina
-    automáticamente cuál es nuestro
-    lado del partido.
-  */
-
   const team=
-    String(
-      data.settings.team ||
-      'KNATT FC'
-    ).trim();
+    getConfiguredTeam() ||
+    'KNATT FC';
 
 
   const isHome=
-    String(
+    isConfiguredTeam(
       next.home
-    ).toLowerCase() ===
-    team.toLowerCase();
+    );
 
 
   const opponent=
@@ -2727,6 +2799,14 @@ function home(){
       ?data.activity.slice(0,4)
       :[];
 
+  /*
+    El contador de partidos ahora muestra
+    únicamente los partidos del equipo.
+  */
+
+  const teamMatches=
+    getTeamMatches();
+
 
   return `
 
@@ -2881,7 +2961,7 @@ function home(){
       <div class="stat">
 
         <b>
-          ${data.matches.length}
+          ${teamMatches.length}
         </b>
 
         <span>
@@ -3005,14 +3085,9 @@ function activityTime(timestamp){
     Date.now() -
     Number(timestamp);
 
-  const minute=
-    60*1000;
-
-  const hour=
-    60*minute;
-
-  const day=
-    24*hour;
+  const minute=60*1000;
+  const hour=60*minute;
+  const day=24*hour;
 
   if(diff<minute){
     return 'Ahora';
@@ -3405,14 +3480,11 @@ function addPlayer(){
   closeEditModal();
   closeAddModal();
 
-
   const modal=
     document.createElement('div');
 
   modal.className='edit-modal';
-
   modal.id='add-player-modal';
-
 
   modal.innerHTML=`
 
@@ -3631,21 +3703,15 @@ function addPlayer(){
     'click',
     function(event){
 
-      if(
-        event.target===modal
-      ){
-
+      if(event.target===modal){
         closeAddModal();
-
       }
 
     }
   );
 
 
-  document.body.appendChild(
-    modal
-  );
+  document.body.appendChild(modal);
 
   document.body.style.overflow='hidden';
 
@@ -3701,8 +3767,7 @@ function toggleAddReason(){
     available.checked;
 
 
-  reason.disabled=
-    isAvailable;
+  reason.disabled=isAvailable;
 
   group.classList.toggle(
     'edit-disabled',
@@ -3719,20 +3784,9 @@ function toggleAddReason(){
 
 function saveNewPlayer(){
 
-  const name=
-    document.getElementById(
-      'add-name'
-    );
-
-  const num=
-    document.getElementById(
-      'add-num'
-    );
-
-  const pos=
-    document.getElementById(
-      'add-pos'
-    );
+  const name=document.getElementById('add-name');
+  const num=document.getElementById('add-num');
+  const pos=document.getElementById('add-pos');
 
   const available=
     document.querySelector(
@@ -3740,40 +3794,20 @@ function saveNewPlayer(){
     );
 
   const reason=
-    document.getElementById(
-      'add-reason'
-    );
+    document.getElementById('add-reason');
 
-  const min=
-    document.getElementById(
-      'add-min'
-    );
-
-  const goals=
-    document.getElementById(
-      'add-goals'
-    );
-
-  const assists=
-    document.getElementById(
-      'add-assists'
-    );
-
+  const min=document.getElementById('add-min');
+  const goals=document.getElementById('add-goals');
+  const assists=document.getElementById('add-assists');
 
   const newName=
-    name
-      ?name.value.trim()
-      :'';
+    name ? name.value.trim() : '';
 
   const newNum=
-    num
-      ?num.value.trim()
-      :'';
+    num ? num.value.trim() : '';
 
   const newPos=
-    pos
-      ?pos.value.trim()
-      :'';
+    pos ? pos.value.trim() : '';
 
 
   if(!newName){
@@ -3842,31 +3876,23 @@ function saveNewPlayer(){
 
     min:Math.max(
       0,
-      Number(
-        min?.value
-      )||0
+      Number(min?.value)||0
     ),
 
     g:Math.max(
       0,
-      Number(
-        goals?.value
-      )||0
+      Number(goals?.value)||0
     ),
 
     a:Math.max(
       0,
-      Number(
-        assists?.value
-      )||0
+      Number(assists?.value)||0
     )
 
   };
 
 
-  data.players.push(
-    newPlayer
-  );
+  data.players.push(newPlayer);
 
 
   addActivity(
@@ -3907,7 +3933,6 @@ function editPlayer(){
     document.createElement('div');
 
   modal.className='edit-modal';
-
   modal.id='edit-player-modal';
 
 
@@ -4145,21 +4170,15 @@ function editPlayer(){
     'click',
     function(event){
 
-      if(
-        event.target===modal
-      ){
-
+      if(event.target===modal){
         closeEditModal();
-
       }
 
     }
   );
 
 
-  document.body.appendChild(
-    modal
-  );
+  document.body.appendChild(modal);
 
   document.body.style.overflow='hidden';
 
@@ -4220,8 +4239,7 @@ function toggleEditReason(){
     available.checked;
 
 
-  reason.disabled=
-    isAvailable;
+  reason.disabled=isAvailable;
 
   group.classList.toggle(
     'edit-disabled',
@@ -4255,61 +4273,29 @@ function saveEditedPlayer(){
   }
 
 
-  const name=
-    document.getElementById(
-      'edit-name'
-    );
-
-  const num=
-    document.getElementById(
-      'edit-num'
-    );
-
-  const pos=
-    document.getElementById(
-      'edit-pos'
-    );
+  const name=document.getElementById('edit-name');
+  const num=document.getElementById('edit-num');
+  const pos=document.getElementById('edit-pos');
 
   const available=
     document.querySelector(
       'input[name="edit-available"]:checked'
     );
 
-  const reason=
-    document.getElementById(
-      'edit-reason'
-    );
-
-  const min=
-    document.getElementById(
-      'edit-min'
-    );
-
-  const goals=
-    document.getElementById(
-      'edit-goals'
-    );
-
-  const assists=
-    document.getElementById(
-      'edit-assists'
-    );
+  const reason=document.getElementById('edit-reason');
+  const min=document.getElementById('edit-min');
+  const goals=document.getElementById('edit-goals');
+  const assists=document.getElementById('edit-assists');
 
 
   const newName=
-    name
-      ?name.value.trim()
-      :p.name;
+    name ? name.value.trim() : p.name;
 
   const newNum=
-    num
-      ?num.value.trim()
-      :p.num;
+    num ? num.value.trim() : p.num;
 
   const newPos=
-    pos
-      ?pos.value.trim()
-      :p.pos;
+    pos ? pos.value.trim() : p.pos;
 
 
   if(!newName){
@@ -4373,27 +4359,21 @@ function saveEditedPlayer(){
   p.min=
     Math.max(
       0,
-      Number(
-        min?.value
-      )||0
+      Number(min?.value)||0
     );
 
 
   p.g=
     Math.max(
       0,
-      Number(
-        goals?.value
-      )||0
+      Number(goals?.value)||0
     );
 
 
   p.a=
     Math.max(
       0,
-      Number(
-        assists?.value
-      )||0
+      Number(assists?.value)||0
     );
 
 
@@ -4536,9 +4516,17 @@ function deletePlayer(id){
 
 function matches(){
 
+  /*
+    AQUÍ también usamos únicamente
+    los partidos del equipo configurado.
+  */
+
+  const teamMatches=
+    getTeamMatches();
+
   const sorted=
     sortMatches(
-      data.matches
+      teamMatches
     );
 
 
@@ -4609,8 +4597,8 @@ function matches(){
         <div class="calendar-import-subtitle">
 
           Sube una foto del calendario completo
-          y KNATT intentará convertirlo
-          automáticamente en partidos.
+          y KNATT leerá únicamente los partidos
+          de tu equipo.
 
         </div>
 
@@ -4631,7 +4619,7 @@ function matches(){
 
 
   ${
-    data.matches.length
+    sorted.length
 
     ?
 
@@ -4642,7 +4630,7 @@ function matches(){
       <div class="season-summary-card">
 
         <b>
-          ${data.matches.length}
+          ${sorted.length}
         </b>
 
         <span>
@@ -4805,7 +4793,11 @@ function matches(){
 
       <div class="matches-empty">
 
-        Todavía no hay partidos de temporada.
+        ${
+          getConfiguredTeam()
+            ?`No hay partidos registrados de <strong>${esc(getConfiguredTeam())}</strong>.`
+            :'Configura primero el nombre de tu equipo.'
+        }
 
         <br><br>
 
@@ -4948,9 +4940,7 @@ function matchCardHtml(
    RESULTADO PARTIDO
 ===================================================== */
 
-function editMatchResult(
-  id
-){
+function editMatchResult(id){
 
   const match=
     data.matches.find(
@@ -4962,6 +4952,26 @@ function editMatchResult(
 
   if(!match){
     return;
+  }
+
+
+  /*
+    Seguridad adicional:
+    aunque alguien llegue a llamar esta función
+    con un partido ajeno, KNATT no lo modifica.
+  */
+
+  if(
+    !isConfiguredTeam(match.home) &&
+    !isConfiguredTeam(match.away)
+  ){
+
+    alert(
+      'Este partido no pertenece al equipo configurado.'
+    );
+
+    return;
+
   }
 
 
@@ -5023,7 +5033,6 @@ function openCalendarImport(){
   closeEditModal();
   closeAddModal();
 
-
   importedMatches=[];
 
 
@@ -5050,7 +5059,15 @@ function openCalendarImport(){
           </div>
 
           <div class="edit-modal-subtitle">
-            Carga una imagen con el calendario de la temporada
+
+            Solo se guardarán los partidos de
+            <strong>
+              ${esc(
+                getConfiguredTeam() ||
+                'tu equipo'
+              )}
+            </strong>
+
           </div>
 
         </div>
@@ -5074,8 +5091,20 @@ function openCalendarImport(){
 
         Selecciona una captura o fotografía
         donde aparezcan las jornadas del calendario.
-        KNATT leerá el texto y preparará los partidos
-        automáticamente.
+
+        KNATT leerá todos los partidos de la imagen,
+        pero <strong>solo guardará los que tengan como
+        local o visitante al equipo configurado</strong>.
+
+        <br><br>
+
+        Equipo configurado:
+        <strong>
+          ${esc(
+            getConfiguredTeam() ||
+            'No configurado'
+          )}
+        </strong>
 
         <br><br>
 
@@ -5179,22 +5208,15 @@ function openCalendarImport(){
     'click',
     function(event){
 
-      if(
-        event.target===modal
-      ){
-
+      if(event.target===modal){
         closeCalendarImport();
-
       }
 
     }
   );
 
 
-  document.body.appendChild(
-    modal
-  );
-
+  document.body.appendChild(modal);
 
   document.body.style.overflow='hidden';
 
@@ -5238,9 +5260,7 @@ function closeCalendarImport(){
    IMAGEN
 ===================================================== */
 
-async function handleCalendarImage(
-  event
-){
+async function handleCalendarImage(event){
 
   const file=
     event.target.files?.[0];
@@ -5281,7 +5301,6 @@ async function handleCalendarImage(
     URL.createObjectURL(file);
 
   preview.style.display='block';
-
 
   status.style.display='block';
 
@@ -5353,14 +5372,26 @@ async function handleCalendarImage(
       );
 
 
+    /*
+      AQUÍ está una de las claves:
+      parseCalendarText detecta los partidos
+      de la imagen y después los filtra
+      automáticamente por nuestro equipo.
+    */
+
     importedMatches=
-      parsed;
+      filterMatchesForConfiguredTeam(
+        parsed
+      );
 
 
     if(!importedMatches.length){
 
       status.textContent=
-        'No se han detectado partidos automáticamente.';
+        `No se han detectado partidos de ${
+          getConfiguredTeam() ||
+          'tu equipo'
+        } automáticamente.`;
 
 
       showOCRFallback(
@@ -5373,7 +5404,10 @@ async function handleCalendarImage(
 
 
     status.textContent=
-      `${importedMatches.length} partidos detectados. Revisa los datos antes de guardar.`;
+      `${importedMatches.length} partidos de ${
+        getConfiguredTeam() ||
+        'tu equipo'
+      } detectados. Revisa los datos antes de guardar.`;
 
 
     showImportedPreview();
@@ -5398,9 +5432,7 @@ async function handleCalendarImage(
    NORMALIZAR OCR
 ===================================================== */
 
-function cleanOCRText(
-  text
-){
+function cleanOCRText(text){
 
   return String(
     text || ''
@@ -5414,17 +5446,14 @@ function cleanOCRText(
     .split('\n')
     .map(
       line =>
-        line
-          .trim()
+        line.trim()
     )
     .filter(Boolean);
 
 }
 
 
-function normalizeTeamName(
-  name
-){
+function normalizeTeamName(name){
 
   let result=
     String(
@@ -5454,9 +5483,7 @@ function normalizeTeamName(
    PARSER CALENDARIO
 ===================================================== */
 
-function parseCalendarText(
-  text
-){
+function parseCalendarText(text){
 
   const lines=
     cleanOCRText(
@@ -5468,17 +5495,6 @@ function parseCalendarText(
 
   let currentRound='';
 
-
-  /*
-    Formatos de fecha admitidos:
-
-    24/08
-    24-08
-    24.08
-    24/08/2026
-    24 agosto
-    24 de agosto
-  */
 
   const dateRegex=
     /(?:^|\s)(\d{1,2})[\/\-.](\d{1,2})(?:[\/\-.](\d{4}))?(?:\s|$)/;
@@ -5511,8 +5527,7 @@ function parseCalendarText(
     i++
   ){
 
-    let line=
-      lines[i];
+    let line=lines[i];
 
 
     const roundMatch=
@@ -5542,15 +5557,8 @@ function parseCalendarText(
 
     if(numeric){
 
-      day=
-        Number(
-          numeric[1]
-        );
-
-      month=
-        Number(
-          numeric[2]
-        );
+      day=Number(numeric[1]);
+      month=Number(numeric[2]);
 
       year=
         numeric[3]
@@ -5567,15 +5575,11 @@ function parseCalendarText(
 
       if(named){
 
-        day=
-          Number(
-            named[1]
-          );
+        day=Number(named[1]);
 
         month=
           monthNumbers[
-            named[2]
-              .toLowerCase()
+            named[2].toLowerCase()
           ];
 
       }
@@ -5583,13 +5587,8 @@ function parseCalendarText(
     }
 
 
-    if(
-      !day ||
-      !month
-    ){
-
+    if(!day || !month){
       continue;
-
     }
 
 
@@ -5608,11 +5607,6 @@ function parseCalendarText(
     }
 
 
-    /*
-      Intentamos obtener los equipos
-      quitando la fecha.
-    */
-
     let teamText=
       line
         .replace(
@@ -5630,15 +5624,8 @@ function parseCalendarText(
         .trim();
 
 
-    /*
-      Si la línea no contiene los dos equipos,
-      miramos la siguiente.
-    */
-
     if(
-      !containsMatchSeparator(
-        teamText
-      ) &&
+      !containsMatchSeparator(teamText) &&
       lines[i+1]
     ){
 
@@ -5646,13 +5633,10 @@ function parseCalendarText(
         `${teamText} ${lines[i+1]}`;
 
       if(
-        containsMatchSeparator(
-          combined
-        )
+        containsMatchSeparator(combined)
       ){
 
-        teamText=
-          combined;
+        teamText=combined;
 
         i++;
 
@@ -5662,9 +5646,7 @@ function parseCalendarText(
 
 
     const teams=
-      splitTeams(
-        teamText
-      );
+      splitTeams(teamText);
 
 
     if(!teams){
@@ -5678,17 +5660,12 @@ function parseCalendarText(
         `import-${Date.now()}-${results.length}`,
 
       date:
-        displayDateFromISO(
-          dateISO
-        ) ||
+        displayDateFromISO(dateISO) ||
         `${day}/${month}`,
 
-      dateISO:
+      dateISO:dateISO,
 
-        dateISO,
-
-      round:
-        currentRound,
+      round:currentRound,
 
       home:
         normalizeTeamName(
@@ -5711,14 +5688,9 @@ function parseCalendarText(
   }
 
 
-  /*
-    Eliminamos duplicados.
-  */
-
   const unique=[];
 
-  const seen=
-    new Set();
+  const seen=new Set();
 
 
   results.forEach(
@@ -5727,10 +5699,8 @@ function parseCalendarText(
       const key=
         [
           match.dateISO,
-          match.home
-            .toLowerCase(),
-          match.away
-            .toLowerCase()
+          match.home.toLowerCase(),
+          match.away.toLowerCase()
         ].join('|');
 
 
@@ -5744,9 +5714,7 @@ function parseCalendarText(
 
         seen.add(key);
 
-        unique.push(
-          match
-        );
+        unique.push(match);
 
       }
 
@@ -5754,16 +5722,12 @@ function parseCalendarText(
   );
 
 
-  return sortMatches(
-    unique
-  );
+  return sortMatches(unique);
 
 }
 
 
-function containsMatchSeparator(
-  text
-){
+function containsMatchSeparator(text){
 
   return /(?:\s+vs\.?\s+|\s+v\s+|\s+-\s+|\s+–\s+|\s+—\s+|\s+x\s+)/i.test(
     String(text)
@@ -5772,9 +5736,7 @@ function containsMatchSeparator(
 }
 
 
-function splitTeams(
-  text
-){
+function splitTeams(text){
 
   const value=
     String(
@@ -5805,15 +5767,12 @@ function splitTeams(
       value.split(regex);
 
 
-    if(
-      parts.length>=2
-    ){
+    if(parts.length>=2){
 
       return {
 
         home:
-          parts[0]
-            .trim(),
+          parts[0].trim(),
 
         away:
           parts
@@ -5837,9 +5796,7 @@ function splitTeams(
    FALLBACK OCR
 ===================================================== */
 
-function showOCRFallback(
-  text
-){
+function showOCRFallback(text){
 
   const container=
     document.getElementById(
@@ -5907,19 +5864,28 @@ function parseManualOCRText(){
     );
 
 
-  if(!parsed.length){
+  /*
+    También aplicamos el filtro al reconocimiento manual.
+  */
+
+  importedMatches=
+    filterMatchesForConfiguredTeam(
+      parsed
+    );
+
+
+  if(!importedMatches.length){
 
     alert(
-      'No se han podido detectar partidos. Prueba con una imagen donde se vean claramente las fechas y los dos equipos de cada partido.'
+      `No se han podido detectar partidos de ${
+        getConfiguredTeam() ||
+        'tu equipo'
+      }. Comprueba que el nombre del equipo en Configuración coincide con el calendario.`
     );
 
     return;
 
   }
-
-
-  importedMatches=
-    parsed;
 
 
   showImportedPreview();
@@ -5934,7 +5900,10 @@ function parseManualOCRText(){
   if(status){
 
     status.textContent=
-      `${parsed.length} partidos detectados. Revisa los datos antes de guardar.`;
+      `${importedMatches.length} partidos de ${
+        getConfiguredTeam() ||
+        'tu equipo'
+      } detectados. Revisa los datos antes de guardar.`;
 
   }
 
@@ -5951,7 +5920,6 @@ function showImportedPreview(){
     document.getElementById(
       'ocr-results'
     );
-
 
   const actions=
     document.getElementById(
@@ -5976,7 +5944,11 @@ function showImportedPreview(){
         margin-top:14px;
       ">
 
-      Partidos detectados
+      Partidos de
+      ${esc(
+        getConfiguredTeam() ||
+        'tu equipo'
+      )}
 
     </div>
 
@@ -5988,6 +5960,8 @@ function showImportedPreview(){
         font-weight:700;
         margin-top:3px;
       ">
+
+      Los partidos de otros equipos han sido descartados automáticamente.
 
       Puedes corregir cualquier nombre antes de guardar.
 
@@ -6132,9 +6106,7 @@ function importedPreviewRow(
 function saveImportedCalendar(){
 
   if(
-    !Array.isArray(
-      importedMatches
-    ) ||
+    !Array.isArray(importedMatches) ||
     !importedMatches.length
   ){
 
@@ -6225,9 +6197,24 @@ function saveImportedCalendar(){
       }
 
 
-      finalMatches.push(
-        updated
-      );
+      /*
+        SEGURIDAD:
+        incluso si modificamos un nombre en la
+        previsualización, solo permitimos guardar
+        partidos donde aparezca nuestro equipo.
+      */
+
+      if(
+        !isConfiguredTeam(updated.home) &&
+        !isConfiguredTeam(updated.away)
+      ){
+
+        return;
+
+      }
+
+
+      finalMatches.push(updated);
 
     }
   );
@@ -6236,7 +6223,10 @@ function saveImportedCalendar(){
   if(!finalMatches.length){
 
     alert(
-      'No hay partidos válidos para guardar.'
+      `No hay partidos válidos de ${
+        getConfiguredTeam() ||
+        'tu equipo'
+      } para guardar.`
     );
 
     return;
@@ -6245,10 +6235,10 @@ function saveImportedCalendar(){
 
 
   /*
-    Si se importa un calendario nuevo,
-    reemplazamos los partidos importados
-    anteriores, pero conservamos los
-    partidos que se hayan creado manualmente.
+    Los partidos importados anteriores se sustituyen.
+
+    Conservamos únicamente los partidos manuales
+    que ya existieran.
   */
 
   const manualMatches=
@@ -6259,9 +6249,8 @@ function saveImportedCalendar(){
 
 
   /*
-    Intentamos conservar resultados ya
-    introducidos si el mismo partido ya
-    existía.
+    Conservamos resultados ya introducidos
+    si coincide el mismo partido.
   */
 
   finalMatches.forEach(
@@ -6273,7 +6262,7 @@ function saveImportedCalendar(){
 
             String(
               old.home
-            ).toLowerCase() ===
+            ).toLowerCase()===
             String(
               imported.home
             ).toLowerCase()
@@ -6282,7 +6271,7 @@ function saveImportedCalendar(){
 
             String(
               old.away
-            ).toLowerCase() ===
+            ).toLowerCase()===
             String(
               imported.away
             ).toLowerCase()
@@ -6319,11 +6308,24 @@ function saveImportedCalendar(){
   );
 
 
+  /*
+    También filtramos los partidos manuales:
+    KNATT nunca mostrará un partido ajeno.
+  */
+
   data.matches=
     [
       ...manualMatches,
       ...finalMatches
     ];
+
+
+  data.matches=
+    data.matches.filter(
+      m =>
+        isConfiguredTeam(m.home) ||
+        isConfiguredTeam(m.away)
+    );
 
 
   data.matches=
@@ -6334,7 +6336,7 @@ function saveImportedCalendar(){
 
   addActivity(
     '📅',
-    `Calendario importado: ${finalMatches.length} partidos`
+    `Calendario importado: ${finalMatches.length} partidos de ${getConfiguredTeam()}`
   );
 
 
@@ -6352,7 +6354,7 @@ function saveImportedCalendar(){
 
 
   alert(
-    `Calendario guardado correctamente.\n\n${finalMatches.length} partidos añadidos a KNATT.`
+    `Calendario guardado correctamente.\n\n${finalMatches.length} partidos de ${getConfiguredTeam()} añadidos a KNATT.`
   );
 
 }
@@ -6470,6 +6472,10 @@ function stats(){
     );
 
 
+  const teamMatches=
+    getTeamMatches();
+
+
   return `
 
   <div class="title">
@@ -6521,7 +6527,7 @@ function stats(){
     <div class="stat">
 
       <b>
-        ${data.matches.length}
+        ${teamMatches.length}
       </b>
 
       <span>
@@ -6709,6 +6715,11 @@ function saveSettings(){
 
   }
 
+
+  /*
+    Al cambiar el equipo, volvemos a sincronizar
+    el próximo partido usando el nuevo equipo.
+  */
 
   addActivity(
     '⚙️',
@@ -6948,9 +6959,7 @@ function tactic(){
 }
 
 
-function trayPlayerHtml(
-  player
-){
+function trayPlayerHtml(player){
 
   return `
 
@@ -7006,11 +7015,8 @@ function boardPlayerHtml(
   }
 
 
-  let x=
-    Number(value.x);
-
-  let y=
-    Number(value.y);
+  let x=Number(value.x);
+  let y=Number(value.y);
 
 
   if(!Number.isFinite(x)){
@@ -7100,9 +7106,7 @@ function boardPlayerHtml(
 }
 
 
-function changeTacticView(
-  view
-){
+function changeTacticView(view){
 
   if(
     view!=='full' &&
@@ -7114,8 +7118,7 @@ function changeTacticView(
   }
 
 
-  data.tactics.view=
-    view;
+  data.tactics.view=view;
 
   save();
 
@@ -7134,8 +7137,7 @@ function addPlayerToTactic(
   y
 ){
 
-  const id=
-    String(playerId);
+  const id=String(playerId);
 
 
   const player=
@@ -7204,8 +7206,7 @@ function addPlayerToTactic(
   };
 
 
-  data.tactics.positions=
-    positions;
+  data.tactics.positions=positions;
 
 
   addActivity(
@@ -7230,14 +7231,11 @@ function removePlayerFromTactic(
   silent=false
 ){
 
-  const id=
-    String(playerId);
-
+  const id=String(playerId);
 
   const positions=
     data.tactics.positions||
     {};
-
 
   let removed=false;
 
@@ -7288,9 +7286,7 @@ function removePlayerFromTactic(
   }
 
 
-  data.tactics.positions=
-    positions;
-
+  data.tactics.positions=positions;
 
   save();
 
@@ -7311,9 +7307,7 @@ let dragState=null;
 let dragGhost=null;
 
 
-function createDragGhost(
-  player
-){
+function createDragGhost(player){
 
   if(dragGhost){
     dragGhost.remove();
@@ -7321,13 +7315,9 @@ function createDragGhost(
 
 
   dragGhost=
-    document.createElement(
-      'div'
-    );
+    document.createElement('div');
 
-
-  dragGhost.className=
-    'drag-ghost';
+  dragGhost.className='drag-ghost';
 
 
   dragGhost.innerHTML=`
@@ -7355,20 +7345,14 @@ function createDragGhost(
   `;
 
 
-  document.body.appendChild(
-    dragGhost
-  );
+  document.body.appendChild(dragGhost);
 
-
-  dragGhost.style.display=
-    'block';
+  dragGhost.style.display='block';
 
 }
 
 
-function updateDragGhost(
-  event
-){
+function updateDragGhost(event){
 
   if(
     !dragGhost ||
@@ -7442,8 +7426,7 @@ function startTrayDrag(
 
     type:'tray',
 
-    playerId:
-      String(playerId),
+    playerId:String(playerId),
 
     source:source,
 
@@ -7456,19 +7439,12 @@ function startTrayDrag(
   };
 
 
-  source.classList.add(
-    'dragging'
-  );
+  source.classList.add('dragging');
 
 
-  createDragGhost(
-    player
-  );
+  createDragGhost(player);
 
-
-  updateDragGhost(
-    event
-  );
+  updateDragGhost(event);
 
 
   try{
@@ -7539,8 +7515,7 @@ function startBoardDrag(
   event.stopPropagation();
 
 
-  const id=
-    String(playerId);
+  const id=String(playerId);
 
 
   const entry=
@@ -7598,9 +7573,7 @@ function startBoardDrag(
   };
 
 
-  source.classList.add(
-    'dragging'
-  );
+  source.classList.add('dragging');
 
 
   try{
@@ -7641,9 +7614,7 @@ function startBoardDrag(
 }
 
 
-function handleGlobalPointerMove(
-  event
-){
+function handleGlobalPointerMove(event){
 
   if(!dragState){
     return;
@@ -7683,9 +7654,7 @@ function handleGlobalPointerMove(
     dragState.type==='tray'
   ){
 
-    updateDragGhost(
-      event
-    );
+    updateDragGhost(event);
 
   }
 
@@ -7771,9 +7740,7 @@ function handleGlobalPointerMove(
 }
 
 
-function handleGlobalPointerUp(
-  event
-){
+function handleGlobalPointerUp(event){
 
   if(!dragState){
     return;
@@ -7783,8 +7750,7 @@ function handleGlobalPointerUp(
   event.preventDefault();
 
 
-  const state=
-    dragState;
+  const state=dragState;
 
 
   const pitch=
@@ -7830,9 +7796,9 @@ function handleGlobalPointerUp(
           (
             event.clientY-
             rect.top
-        )/
-        rect.height
-      )*100;
+          )/
+          rect.height
+        )*100;
 
 
       destroyDragGhost();
@@ -7916,9 +7882,7 @@ function updateBoardPlayerPosition(
 ){
 
   const position=
-    data.tactics.positions[
-      key
-    ];
+    data.tactics.positions[key];
 
 
   if(!position){
@@ -8083,6 +8047,15 @@ function saveTactic(){
 /* =====================================================
    ARRANQUE
 ===================================================== */
+
+/*
+  Limpiamos de la vista cualquier partido que
+  no pertenezca al equipo configurado.
+
+  Los datos antiguos se mantienen en localStorage,
+  pero KNATT solo trabajará con los que correspondan
+  al equipo actual.
+*/
 
 syncNextMatch();
 
