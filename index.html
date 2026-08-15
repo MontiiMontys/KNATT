@@ -649,6 +649,110 @@ main{
   text-align:right;
 }
 
+/* =====================================================
+   GOLEADORES - SELECTOR
+===================================================== */
+
+.scorer-selector{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+
+.scorer-selector .select{
+  flex:1;
+  min-width:0;
+}
+
+.scorer-controls-selected{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:8px;
+}
+
+.scorer-controls-selected .scorer-btn{
+  flex:0 0 45px;
+}
+
+.scorer-selected-info{
+  flex:1;
+  min-width:0;
+  height:45px;
+  border:1px solid #e1e1e4;
+  border-radius:12px;
+  background:#fafafa;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 8px;
+  text-align:center;
+}
+
+.scorer-selected-name{
+  font-size:11px;
+  font-weight:950;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.scorer-selected-count{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+  margin-left:5px;
+}
+
+.scorer-selected-list{
+  margin-top:10px;
+  display:grid;
+  gap:6px;
+}
+
+.scorer-selected-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 9px;
+  background:#f8f8f9;
+  border:1px solid #e7e7e9;
+  border-radius:11px;
+}
+
+.scorer-selected-icon{
+  width:27px;
+  height:27px;
+  border-radius:8px;
+  background:#fff0f2;
+  color:var(--red);
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  flex:0 0 27px;
+}
+
+.scorer-selected-name-list{
+  flex:1;
+  min-width:0;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.scorer-selected-goals{
+  min-width:30px;
+  padding:4px 7px;
+  border-radius:8px;
+  background:#fff0f2;
+  color:var(--red);
+  text-align:center;
+  font-size:11px;
+  font-weight:950;
+}
+
 .scorer-list{
   display:grid;
   gap:7px;
@@ -2129,6 +2233,8 @@ let selectedMatchId=null;
 */
 
 let matchScorerCounts={};
+
+let matchScorerPlayerId='';
 
 let matchCardEntries=[];
 
@@ -4305,6 +4411,8 @@ function initMatchStats(existing){
 
   matchScorerCounts={};
 
+  matchScorerPlayerId='';
+
   matchCardEntries=[];
 
   matchCardPlayerId='';
@@ -4375,6 +4483,10 @@ function initMatchStats(existing){
 
 }
 
+/* =====================================================
+   GOLEADORES DEL PARTIDO
+===================================================== */
+
 function changeMatchScorer(
   playerId,
   amount
@@ -4394,10 +4506,23 @@ function changeMatchScorer(
     );
 
   if(next===0){
+
     delete matchScorerCounts[id];
+
   }else{
+
     matchScorerCounts[id]=next;
+
   }
+
+  renderMatchScorers();
+
+}
+
+function selectMatchScorer(playerId){
+
+  matchScorerPlayerId=
+    String(playerId||'');
 
   renderMatchScorers();
 
@@ -4413,51 +4538,160 @@ function renderMatchScorers(){
   if(!container)
     return;
 
-  container.innerHTML=
-    data.players.map(player=>{
+  const selectedId=
+    String(
+      matchScorerPlayerId||''
+    );
 
-      const count=
-        Number(
-          matchScorerCounts[
-            String(player.id)
-          ]||0
-        );
+  const selectedPlayer=
+    selectedId
+      ?getPlayerById(selectedId)
+      :null;
 
-      return`
+  const selectedCount=
+    selectedPlayer
+      ?Number(
+          matchScorerCounts[selectedId]||0
+        )
+      :0;
 
-        <div class="scorer-row">
+  const selectedRows=
+    Object.entries(
+      matchScorerCounts
+    )
+    .filter(
+      ([id,count])=>
+        Number(count)>0&&
+        getPlayerById(id)
+    )
+    .sort(
+      ([a],[b])=>{
 
-          <div class="scorer-info">
+        const pa=getPlayerById(a);
+        const pb=getPlayerById(b);
 
-            <div class="scorer-name">
-              ${esc(player.name)}
+        return String(pa?.name||'')
+          .localeCompare(
+            String(pb?.name||''),
+            'es'
+          );
+
+      }
+    )
+    .map(
+      ([id,count])=>{
+
+        const player=
+          getPlayerById(id);
+
+        return`
+
+          <div class="scorer-selected-row">
+
+            <div class="scorer-selected-icon">
+              ⚽
             </div>
 
-            <div class="scorer-pos">
-              ${esc(player.pos||'Jugador')}
+            <div class="scorer-selected-name-list">
+
+              ${esc(player.name)}
+
+            </div>
+
+            <div class="scorer-selected-goals">
+
+              ${Number(count)}
+
             </div>
 
           </div>
 
-          <div class="scorer-controls">
+        `;
+
+      }
+    )
+    .join('');
+
+  container.innerHTML=`
+
+    <div class="scorer-selector">
+
+      <select
+        id="match-scorer-player"
+        class="select"
+        onchange="
+          selectMatchScorer(this.value)
+        ">
+
+        <option value="">
+          Seleccionar jugador...
+        </option>
+
+        ${
+          data.players.map(
+            player=>`
+
+              <option
+                value="${esc(player.id)}"
+                ${
+                  selectedId===
+                  String(player.id)
+                    ?'selected'
+                    :''
+                }>
+
+                ${esc(player.name)}
+
+              </option>
+
+            `
+          ).join('')
+        }
+
+      </select>
+
+    </div>
+
+    ${
+      selectedPlayer
+
+        ?`
+
+          <div class="scorer-controls-selected">
 
             <button
               type="button"
               class="scorer-btn scorer-minus"
               onclick="
                 changeMatchScorer(
-                  '${esc(player.id)}',
+                  '${esc(selectedPlayer.id)}',
                   -1
                 )
               "
-              ${count<=0?'disabled':''}>
+              ${selectedCount<=0?'disabled':''}>
 
               −
 
             </button>
 
-            <div class="scorer-count">
-              ${count}
+            <div class="scorer-selected-info">
+
+              <div class="scorer-selected-name">
+
+                ${esc(selectedPlayer.name)}
+
+                <span class="scorer-selected-count">
+
+                  · ${selectedCount} ${
+                    selectedCount===1
+                      ?'gol'
+                      :'goles'
+                  }
+
+                </span>
+
+              </div>
+
             </div>
 
             <button
@@ -4465,7 +4699,7 @@ function renderMatchScorers(){
               class="scorer-btn scorer-plus"
               onclick="
                 changeMatchScorer(
-                  '${esc(player.id)}',
+                  '${esc(selectedPlayer.id)}',
                   1
                 )
               ">
@@ -4476,11 +4710,26 @@ function renderMatchScorers(){
 
           </div>
 
-        </div>
+        `
+        :''
+    }
 
-      `;
+    ${
+      selectedRows
 
-    }).join('');
+        ?`
+
+          <div class="scorer-selected-list">
+
+            ${selectedRows}
+
+          </div>
+
+        `
+        :''
+    }
+
+  `;
 
 }
 
@@ -4822,7 +5071,7 @@ function openMatchModal(id=null){
           </div>
 
           <div class="match-stats-help">
-            Pulsa + por cada gol
+            Selecciona jugador
           </div>
 
         </div>
