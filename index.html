@@ -292,6 +292,14 @@ main{
   color:var(--muted);
   font-weight:800;
   margin-top:3px;
+  line-height:1.45;
+}
+
+.home-team-division{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+  margin-top:1px;
 }
 
 .home-quick-card{
@@ -965,7 +973,6 @@ main{
 .team-logo-subtitle{
   font-size:10px;
   color:var(--muted);
-  font-weight:700;
   line-height:1.35;
   margin-top:3px;
 }
@@ -2124,6 +2131,7 @@ if(!data || typeof data!=='object'){
       team:'KNATT FC',
       season:'2026/27',
       category:'Primer Equipo',
+      division:'',
       logo:''
     },
 
@@ -2182,6 +2190,10 @@ if(!data.settings.season)
 
 if(typeof data.settings.category!=='string'){
   data.settings.category='Primer Equipo';
+}
+
+if(typeof data.settings.division!=='string'){
+  data.settings.division='';
 }
 
 if(typeof data.settings.logo!=='string'){
@@ -2467,6 +2479,57 @@ function settingsLogoHtml(){
 
 }
 
+/*
+  Actualiza únicamente la zona del escudo.
+
+  IMPORTANTE:
+  No hacemos render() después de subir/eliminar el escudo.
+  Así los campos del Perfil que el usuario esté escribiendo
+  permanecen intactos.
+*/
+
+function refreshSettingsLogoUI(){
+
+  const preview=
+    document.querySelector(
+      '.team-logo-preview'
+    );
+
+  if(preview){
+
+    preview.outerHTML=
+      settingsLogoHtml();
+
+  }
+
+  const changeButton=
+    document.querySelector(
+      '.team-logo-actions .btn:not(.light)'
+    );
+
+  if(changeButton){
+
+    changeButton.innerHTML=
+      data.settings.logo
+        ?'🔄 Cambiar escudo'
+        :'🛡️ Subir escudo';
+
+  }
+
+  const removeButton=
+    document.querySelector(
+      '.team-logo-actions .btn.light'
+    );
+
+  if(removeButton){
+
+    removeButton.disabled=
+      !data.settings.logo;
+
+  }
+
+}
+
 /* =====================================================
    INICIO
 ===================================================== */
@@ -2498,6 +2561,18 @@ function home(){
       ?data.matches[0]
       :null;
 
+  const season=
+    data.settings.season||
+    '2026/27';
+
+  const category=
+    data.settings.category||
+    'Primer Equipo';
+
+  const division=
+    data.settings.division||
+    '';
+
   return`
 
     <div class="title-row home-title-row">
@@ -2519,19 +2594,27 @@ function home(){
 
           <div class="home-team-season">
 
-            ${esc(
-              data.settings.season||
-              '2026/27'
-            )}
+            ${esc(season)}
 
             ·
 
-            ${esc(
-              data.settings.category||
-              'Primer Equipo'
-            )}
+            ${esc(category)}
 
           </div>
+
+          ${
+            division
+              ?`
+
+                <div class="home-team-division">
+
+                  ${esc(division)}
+
+                </div>
+
+              `
+              :''
+          }
 
         </div>
 
@@ -3096,7 +3179,7 @@ function team(){
 }
 
 /* =====================================================
-   PERFIL
+   PERFIL DE JUGADOR
 ===================================================== */
 
 function openPlayer(id){
@@ -5060,8 +5143,6 @@ function openMatchModal(id=null){
 
       </div>
 
-      <!-- GOLEADORES -->
-
       <div class="match-stats-card">
 
         <div class="match-stats-header">
@@ -5083,8 +5164,6 @@ function openMatchModal(id=null){
         </div>
 
       </div>
-
-      <!-- TARJETAS -->
 
       <div class="match-stats-card cards-panel">
 
@@ -6246,11 +6325,11 @@ function more(){
           onclick="go('settings')">
 
           <div class="more-icon">
-            ⚙️
+            👤
           </div>
 
           <div class="more-text">
-            Configuración
+            Perfil
           </div>
 
           <div class="more-arrow">
@@ -6385,7 +6464,7 @@ function stats(){
 }
 
 /* =====================================================
-   CONFIGURACIÓN
+   PERFIL DEL EQUIPO
 ===================================================== */
 
 function settings(){
@@ -6393,7 +6472,11 @@ function settings(){
   return`
 
     <div class="title">
-      Configuración
+      Perfil
+    </div>
+
+    <div class="subtitle" style="margin-bottom:13px;">
+      Datos principales de tu equipo
     </div>
 
     <div class="card">
@@ -6407,9 +6490,11 @@ function settings(){
         <input
           id="coach"
           class="form-input"
+          type="text"
           value="${esc(
             data.settings.coach||''
-          )}">
+          )}"
+          autocomplete="off">
 
       </div>
 
@@ -6422,10 +6507,12 @@ function settings(){
         <input
           id="team"
           class="form-input"
+          type="text"
           value="${esc(
             data.settings.team||
             'KNATT FC'
-          )}">
+          )}"
+          autocomplete="off">
 
       </div>
 
@@ -6438,10 +6525,51 @@ function settings(){
         <input
           id="season"
           class="form-input"
+          type="text"
           value="${esc(
             data.settings.season||
             '2026/27'
-          )}">
+          )}"
+          placeholder="Ej. 2026/27"
+          autocomplete="off">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Categoría
+        </label>
+
+        <input
+          id="category"
+          class="form-input"
+          type="text"
+          value="${esc(
+            data.settings.category||
+            'Primer Equipo'
+          )}"
+          placeholder="Ej. Primer Equipo, Juvenil A..."
+          autocomplete="off">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          División
+        </label>
+
+        <input
+          id="division"
+          class="form-input"
+          type="text"
+          value="${esc(
+            data.settings.division||
+            ''
+          )}"
+          placeholder="Ej. Primera Catalana"
+          autocomplete="off">
 
       </div>
 
@@ -6521,7 +6649,7 @@ function settings(){
         class="btn full"
         onclick="saveSettings()">
 
-        💾 Guardar
+        💾 Guardar perfil
 
       </button>
 
@@ -6657,9 +6785,20 @@ function handleTeamLogoUpload(event){
         'Escudo del equipo actualizado'
       );
 
+      /*
+        Guardamos únicamente el escudo y la actividad.
+        NO hacemos render() aquí.
+
+        Esto evita que los campos Entrenador,
+        Equipo, Temporada, Categoría y División
+        que el usuario esté escribiendo se borren.
+      */
+
       save();
 
-      render();
+      refreshSettingsLogoUI();
+
+      input.value='';
 
     };
 
@@ -6711,9 +6850,16 @@ function removeTeamLogo(){
     'Escudo del equipo eliminado'
   );
 
+  /*
+    Igual que al subirlo:
+    no hacemos render() para no perder
+    los datos que puedan estar escritos
+    en el Perfil.
+  */
+
   save();
 
-  render();
+  refreshSettingsLogoUI();
 
 }
 
@@ -6727,6 +6873,12 @@ function saveSettings(){
 
   const season=
     document.getElementById('season');
+
+  const category=
+    document.getElementById('category');
+
+  const division=
+    document.getElementById('division');
 
   if(coach){
     data.settings.coach=
@@ -6745,9 +6897,20 @@ function saveSettings(){
       '2026/27';
   }
 
+  if(category){
+    data.settings.category=
+      category.value.trim()||
+      'Primer Equipo';
+  }
+
+  if(division){
+    data.settings.division=
+      division.value.trim();
+  }
+
   addActivity(
-    '⚙️',
-    'Configuración actualizada'
+    '👤',
+    'Perfil del equipo actualizado'
   );
 
   save();
