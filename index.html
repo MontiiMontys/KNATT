@@ -762,19 +762,6 @@ main{
   border-radius:2px;
 }
 
-.matches-empty-title{
-  font-size:14px;
-  font-weight:950;
-}
-
-.matches-empty-text{
-  margin-top:6px;
-  font-size:9px;
-  color:var(--muted);
-  font-weight:700;
-  line-height:1.5;
-}
-
 /* =====================================================
    GOLEADORES / TARJETAS
 ===================================================== */
@@ -1042,9 +1029,6 @@ main{
   border-radius:4px;
   background:#d5bf51;
   font-size:0;
-}
-
-.selected-card-row:has(.selected-card-badge){
 }
 
 .selected-card-name{
@@ -1720,6 +1704,8 @@ main{
   -webkit-user-select:none;
 }
 
+/* Líneas exteriores del campo */
+
 .pitch:before{
   content:"";
   position:absolute;
@@ -1795,30 +1781,84 @@ main{
   bottom:0;
 }
 
+/* =====================================================
+   MEDIO CAMPO CORREGIDO
+===================================================== */
+
+/*
+  El medio campo usa aproximadamente la mitad
+  de la longitud de un campo reglamentario:
+
+  Campo completo: 68 x 105
+  Medio campo:   68 x 52.5
+
+  Así el campo mantiene la proporción real.
+*/
+
 .pitch.half-mode{
-  aspect-ratio:68/70;
+  aspect-ratio:68/52.5;
 }
+
+/*
+  No necesitamos la línea central completa
+  porque el extremo inferior representa
+  precisamente la zona del centro del campo.
+*/
 
 .pitch.half-mode .pitch-line{
   display:none;
 }
 
+/*
+  El círculo central se coloca en el extremo
+  inferior para mostrar únicamente el arco
+  correspondiente a la mitad de campo.
+*/
+
 .pitch.half-mode .pitch-circle{
-  top:58%;
+  width:27%;
+  left:36.5%;
+  top:82.5%;
 }
 
-.pitch.half-mode .box.bottom,
-.pitch.half-mode .goal.bottom{
-  display:none;
-}
+/*
+  En medio campo solo existe el área
+  correspondiente a la portería superior.
+*/
 
 .pitch.half-mode .box.top{
   top:2.5%;
+  height:32%;
 }
+
+.pitch.half-mode .box.bottom{
+  display:none;
+}
+
+/*
+  Una sola portería.
+*/
 
 .pitch.half-mode .goal.top{
   top:0;
 }
+
+.pitch.half-mode .goal.bottom{
+  display:none;
+}
+
+/*
+  El punto central queda fuera de la zona
+  visible del medio campo.
+*/
+
+.pitch.half-mode .pitch-center{
+  display:none;
+}
+
+/* =====================================================
+   JUGADORES SOBRE EL CAMPO
+===================================================== */
 
 .board-player{
   position:absolute;
@@ -1917,6 +1957,11 @@ main{
   text-align:center;
 }
 
+/*
+  CORRECCIÓN:
+  Antes utilizaba --dark, variable que no existe.
+*/
+
 .board-player-remove{
   position:absolute;
   top:-5px;
@@ -1925,7 +1970,7 @@ main{
   height:20px;
   border:2px solid #fff;
   border-radius:50%;
-  background:var(--dark);
+  background:var(--black);
   color:#fff;
   display:grid;
   place-items:center;
@@ -2100,7 +2145,6 @@ main{
 
 /* =====================================================
    NAVEGACIÓN INFERIOR
-   ICONOS MODERNOS SVG
 ===================================================== */
 
 nav{
@@ -2334,9 +2378,7 @@ nav button:active{
     <button
       class="header-bell"
       onclick="alert('No tienes nuevas notificaciones.')">
-
       Avisos
-
     </button>
 
   </div>
@@ -2533,23 +2575,15 @@ data.matches.forEach(match=>{
 ===================================================== */
 
 let section='home';
-
 let filter='all';
-
 let noteFilter='all';
-
 let selectedPlayerId=null;
-
 let selectedNoteId=null;
-
 let selectedMatchId=null;
 
 let matchScorerCounts={};
-
 let matchScorerPlayerId='';
-
 let matchCardEntries=[];
-
 let matchCardPlayerId='';
 
 /* =====================================================
@@ -2627,9 +2661,7 @@ function go(s){
   section=s;
 
   selectedPlayerId=null;
-
   selectedNoteId=null;
-
   selectedMatchId=null;
 
   window.scrollTo(0,0);
@@ -2646,19 +2678,10 @@ function navItems(){
       'home',
 
       `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true">
-
-          <path
-            d="M3.5 10.8 12 3.8l8.5 7"/>
-
-          <path
-            d="M5.5 9.8v9.7h13V9.8"/>
-
-          <path
-            d="M9.5 19.5v-5.8h5v5.8"/>
-
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.5 10.8 12 3.8l8.5 7"/>
+          <path d="M5.5 9.8v9.7h13V9.8"/>
+          <path d="M9.5 19.5v-5.8h5v5.8"/>
         </svg>
       `,
 
@@ -2669,24 +2692,11 @@ function navItems(){
       'team',
 
       `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true">
-
-          <circle
-            cx="9"
-            cy="8"
-            r="3"/>
-
-          <path
-            d="M3.8 19.2c.6-3 2.3-4.6 5.2-4.6s4.6 1.6 5.2 4.6"/>
-
-          <path
-            d="M15.5 5.8a2.8 2.8 0 0 1 0 5.4"/>
-
-          <path
-            d="M16 14.8c2.3.2 3.7 1.6 4.2 4.4"/>
-
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="9" cy="8" r="3"/>
+          <path d="M3.8 19.2c.6-3 2.3-4.6 5.2-4.6s4.6 1.6 5.2 4.6"/>
+          <path d="M15.5 5.8a2.8 2.8 0 0 1 0 5.4"/>
+          <path d="M16 14.8c2.3.2 3.7 1.6 4.2 4.4"/>
         </svg>
       `,
 
@@ -2697,31 +2707,12 @@ function navItems(){
       'tactic',
 
       `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true">
-
-          <rect
-            x="4"
-            y="3.5"
-            width="16"
-            height="17"
-            rx="2.5"/>
-
-          <path
-            d="M4 12h16"/>
-
-          <circle
-            cx="12"
-            cy="12"
-            r="2.4"/>
-
-          <path
-            d="M8 6.5h8"/>
-
-          <path
-            d="M8 17.5h8"/>
-
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="3.5" width="16" height="17" rx="2.5"/>
+          <path d="M4 12h16"/>
+          <circle cx="12" cy="12" r="2.4"/>
+          <path d="M8 6.5h8"/>
+          <path d="M8 17.5h8"/>
         </svg>
       `,
 
@@ -2732,30 +2723,13 @@ function navItems(){
       'matches',
 
       `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true">
-
-          <circle
-            cx="12"
-            cy="12"
-            r="8.5"/>
-
-          <path
-            d="m12 7.5 2.2 1.6-.8 2.6h-2.8l-.8-2.6L12 7.5Z"/>
-
-          <path
-            d="m4.5 10 4.1 1.7"/>
-
-          <path
-            d="m15.4 11.7 4.1-1.7"/>
-
-          <path
-            d="m9.2 16.8 1.2-3.8"/>
-
-          <path
-            d="m14.8 16.8-1.2-3.8"/>
-
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5"/>
+          <path d="m12 7.5 2.2 1.6-.8 2.6h-2.8l-.8-2.6L12 7.5Z"/>
+          <path d="m4.5 10 4.1 1.7"/>
+          <path d="m15.4 11.7 4.1-1.7"/>
+          <path d="m9.2 16.8 1.2-3.8"/>
+          <path d="m14.8 16.8-1.2-3.8"/>
         </svg>
       `,
 
@@ -2766,31 +2740,10 @@ function navItems(){
       'more',
 
       `
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true">
-
-          <circle
-            cx="5"
-            cy="12"
-            r="1.2"
-            fill="currentColor"
-            stroke="none"/>
-
-          <circle
-            cx="12"
-            cy="12"
-            r="1.2"
-            fill="currentColor"
-            stroke="none"/>
-
-          <circle
-            cx="19"
-            cy="12"
-            r="1.2"
-            fill="currentColor"
-            stroke="none"/>
-
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="5" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+          <circle cx="19" cy="12" r="1.2" fill="currentColor" stroke="none"/>
         </svg>
       `,
 
@@ -2871,27 +2824,19 @@ function homeTeamLogoHtml(){
   if(data.settings.logo){
 
     return`
-
       <div class="home-team-logo">
-
         <img
           src="${data.settings.logo}"
           alt="Escudo del equipo">
-
       </div>
-
     `;
 
   }
 
   return`
-
     <div class="home-team-logo">
-
       <div class="home-team-logo-placeholder"></div>
-
     </div>
-
   `;
 
 }
@@ -2901,27 +2846,19 @@ function settingsLogoHtml(){
   if(data.settings.logo){
 
     return`
-
       <div class="team-logo-preview">
-
         <img
           src="${data.settings.logo}"
           alt="Escudo del equipo">
-
       </div>
-
     `;
 
   }
 
   return`
-
     <div class="team-logo-preview">
-
       <div class="team-logo-placeholder"></div>
-
     </div>
-
   `;
 
 }
@@ -2929,15 +2866,10 @@ function settingsLogoHtml(){
 function refreshSettingsLogoUI(){
 
   const preview=
-    document.querySelector(
-      '.team-logo-preview'
-    );
+    document.querySelector('.team-logo-preview');
 
   if(preview){
-
-    preview.outerHTML=
-      settingsLogoHtml();
-
+    preview.outerHTML=settingsLogoHtml();
   }
 
   const changeButton=
@@ -2946,12 +2878,10 @@ function refreshSettingsLogoUI(){
     );
 
   if(changeButton){
-
     changeButton.innerHTML=
       data.settings.logo
         ?'Cambiar escudo'
         :'Subir escudo';
-
   }
 
   const removeButton=
@@ -2960,10 +2890,8 @@ function refreshSettingsLogoUI(){
     );
 
   if(removeButton){
-
     removeButton.disabled=
       !data.settings.logo;
-
   }
 
 }
@@ -3022,46 +2950,33 @@ function home(){
         <div class="home-team-info">
 
           <div class="home-team-name">
-
             ${esc(
               data.settings.team||
               'KNATT FC'
             )}
-
           </div>
 
           <div class="home-team-category">
-
             ${esc(category)}
-
           </div>
 
           ${
             division
               ?`
-
                 <div class="home-team-division">
-
                   ${esc(division)}
-
                   ${
                     season
                       ?` · ${esc(season)}`
                       :''
                   }
-
                 </div>
-
               `
               :season
                 ?`
-
                   <div class="home-team-division">
-
                     ${esc(season)}
-
                   </div>
-
                 `
                 :''
           }
@@ -3105,39 +3020,18 @@ function home(){
       <div class="stat-grid">
 
         <div class="stat">
-
-          <b>
-            ${data.players.length}
-          </b>
-
-          <span>
-            Jugadores
-          </span>
-
+          <b>${data.players.length}</b>
+          <span>Jugadores</span>
         </div>
 
         <div class="stat">
-
-          <b>
-            ${available}
-          </b>
-
-          <span>
-            Disponibles
-          </span>
-
+          <b>${available}</b>
+          <span>Disponibles</span>
         </div>
 
         <div class="stat red">
-
-          <b>
-            ${data.players.length-available}
-          </b>
-
-          <span>
-            Ausentes
-          </span>
-
+          <b>${data.players.length-available}</b>
+          <span>Ausentes</span>
         </div>
 
       </div>
@@ -3159,17 +3053,13 @@ function home(){
         <div class="home-quick-subtitle">
 
           ${data.players.length}
-
           ${
             data.players.length===1
               ?'jugador'
               :'jugadores'
           }
-
           ·
-
           ${available}
-
           disponibles
 
         </div>
@@ -3314,13 +3204,10 @@ function home(){
           :`
 
             <div class="activity-empty">
-
               Todavía no hay actividad reciente.
-
             </div>
 
           `
-
       }
 
     </div>
@@ -3353,11 +3240,7 @@ function homeLastMatchCard(match){
         </div>
 
         <div class="home-last-match-date">
-
-          ${formatMatchDate(
-            match.createdAt
-          )}
-
+          ${formatMatchDate(match.createdAt)}
         </div>
 
       </div>
@@ -3367,12 +3250,7 @@ function homeLastMatchCard(match){
         <div class="home-last-match-teams">
 
           <div class="home-last-match-team">
-
-            ${esc(
-              match.home||
-              ''
-            )}
-
+            ${esc(match.home||'')}
           </div>
 
           <div class="home-last-match-team">
@@ -3388,12 +3266,7 @@ function homeLastMatchCard(match){
         </div>
 
         <div class="home-last-match-result">
-
-          ${esc(
-            match.result||
-            '-'
-          )}
-
+          ${esc(match.result||'-')}
         </div>
 
       </div>
@@ -3431,29 +3304,24 @@ function activityTime(timestamp){
     return 'Ahora';
 
   if(diff<hour){
-    return`Hace ${
-      Math.floor(diff/minute)
-    } min`;
+    return`Hace ${Math.floor(diff/minute)} min`;
   }
 
   if(diff<day){
-    return`Hace ${
-      Math.floor(diff/hour)
-    } h`;
+    return`Hace ${Math.floor(diff/hour)} h`;
   }
 
   if(diff<2*day)
     return'Ayer';
 
-  return new Date(
-    timestamp
-  ).toLocaleDateString(
-    'es-ES',
-    {
-      day:'numeric',
-      month:'short'
-    }
-  );
+  return new Date(timestamp)
+    .toLocaleDateString(
+      'es-ES',
+      {
+        day:'numeric',
+        month:'short'
+      }
+    );
 
 }
 
@@ -3489,10 +3357,7 @@ function team(){
         </div>
 
         <div class="subtitle">
-
-          ${data.players.length}
-          jugadores
-
+          ${data.players.length} jugadores
         </div>
 
       </div>
@@ -3510,11 +3375,7 @@ function team(){
     <div class="tabs">
 
       <button
-        class="tab ${
-          filter==='all'
-            ?'active'
-            :''
-        }"
+        class="tab ${filter==='all'?'active':''}"
         onclick="
           filter='all';
           render();
@@ -3525,11 +3386,7 @@ function team(){
       </button>
 
       <button
-        class="tab ${
-          filter==='available'
-            ?'active'
-            :''
-        }"
+        class="tab ${filter==='available'?'active':''}"
         onclick="
           filter='available';
           render();
@@ -3540,11 +3397,7 @@ function team(){
       </button>
 
       <button
-        class="tab ${
-          filter==='absent'
-            ?'active'
-            :''
-        }"
+        class="tab ${filter==='absent'?'active':''}"
         onclick="
           filter='absent';
           render();
@@ -3571,9 +3424,7 @@ function team(){
 
               <div class="grow">
 
-                <b>
-                  ${esc(p.name)}
-                </b>
+                <b>${esc(p.name)}</b>
 
                 <div class="muted">
 
@@ -3619,9 +3470,7 @@ function team(){
 function openPlayer(id){
 
   selectedPlayerId=id;
-
   section='player';
-
   render();
 
 }
@@ -3638,11 +3487,9 @@ function playerProfile(){
   if(!p){
 
     return`
-
       <div class="card">
         Jugador no encontrado
       </div>
-
     `;
 
   }
@@ -3672,9 +3519,7 @@ function playerProfile(){
       <div class="muted">
 
         ${esc(p.pos)}
-
         ·
-
         #${esc(p.num)}
 
       </div>
@@ -3684,33 +3529,18 @@ function playerProfile(){
     <div class="stat-grid">
 
       <div class="stat">
-
         <b>${p.min||0}</b>
-
-        <span>
-          Minutos
-        </span>
-
+        <span>Minutos</span>
       </div>
 
       <div class="stat red">
-
         <b>${p.g||0}</b>
-
-        <span>
-          Goles
-        </span>
-
+        <span>Goles</span>
       </div>
 
       <div class="stat">
-
         <b>${p.a||0}</b>
-
-        <span>
-          Asistencias
-        </span>
-
+        <span>Asistencias</span>
       </div>
 
     </div>
@@ -3748,7 +3578,6 @@ function playerProfile(){
 function addPlayer(){
 
   closeEditModal();
-
   closeAddModal();
 
   const modal=
@@ -4021,9 +3850,11 @@ function saveNewPlayer(){
   const name=document.getElementById('add-name');
   const num=document.getElementById('add-num');
   const pos=document.getElementById('add-pos');
+
   const available=document.querySelector(
     'input[name="add-available"]:checked'
   );
+
   const reason=document.getElementById('add-reason');
   const min=document.getElementById('add-min');
   const goals=document.getElementById('add-goals');
@@ -4364,14 +4195,10 @@ function toggleEditReason(){
     );
 
   const reason=
-    document.getElementById(
-      'edit-reason'
-    );
+    document.getElementById('edit-reason');
 
   const group=
-    document.getElementById(
-      'edit-reason-group'
-    );
+    document.getElementById('edit-reason-group');
 
   if(!available||!reason||!group)
     return;
@@ -4408,9 +4235,11 @@ function saveEditedPlayer(){
   const name=document.getElementById('edit-name');
   const num=document.getElementById('edit-num');
   const pos=document.getElementById('edit-pos');
+
   const available=document.querySelector(
     'input[name="edit-available"]:checked'
   );
+
   const reason=document.getElementById('edit-reason');
   const min=document.getElementById('edit-min');
   const goals=document.getElementById('edit-goals');
@@ -4638,7 +4467,6 @@ function matches(){
           </div>
 
         `
-
     }
 
   `;
@@ -4728,9 +4556,7 @@ function matchCard(match){
       }
 
       <div class="match-date">
-
         ${formatMatchDate(match.createdAt)}
-
       </div>
 
       <div class="match-actions">
@@ -4741,7 +4567,6 @@ function matchCard(match){
             event.stopPropagation();
             openMatchModal('${esc(match.id)}')
           ">
-
         </button>
 
         <button
@@ -4750,7 +4575,6 @@ function matchCard(match){
             event.stopPropagation();
             deleteMatch('${esc(match.id)}')
           ">
-
         </button>
 
       </div>
@@ -4921,11 +4745,8 @@ function parseOldCards(text){
 function initMatchStats(existing){
 
   matchScorerCounts={};
-
   matchScorerPlayerId='';
-
   matchCardEntries=[];
-
   matchCardPlayerId='';
 
   if(!existing)
@@ -5017,13 +4838,9 @@ function changeMatchScorer(
     );
 
   if(next===0){
-
     delete matchScorerCounts[id];
-
   }else{
-
     matchScorerCounts[id]=next;
-
   }
 
   renderMatchScorers();
@@ -5102,15 +4919,11 @@ function renderMatchScorers(){
             <div class="scorer-selected-icon"></div>
 
             <div class="scorer-selected-name-list">
-
               ${esc(player.name)}
-
             </div>
 
             <div class="scorer-selected-goals">
-
               ${Number(count)}
-
             </div>
 
           </div>
@@ -5598,7 +5411,6 @@ function openMatchModal(id=null){
         <div
           id="match-scorers-list"
           class="scorer-list">
-
         </div>
 
       </div>
@@ -5678,7 +5490,6 @@ function openMatchModal(id=null){
         <div
           id="selected-cards"
           class="selected-cards">
-
         </div>
 
       </div>
@@ -5733,7 +5544,6 @@ function openMatchModal(id=null){
   document.body.style.overflow='hidden';
 
   renderMatchScorers();
-
   renderMatchCards();
 
   const awayInput=
@@ -5760,34 +5570,22 @@ function openMatchModal(id=null){
 function saveMatch(id=null){
 
   const home=
-    document.getElementById(
-      'match-home'
-    );
+    document.getElementById('match-home');
 
   const away=
-    document.getElementById(
-      'match-away'
-    );
+    document.getElementById('match-away');
 
   const result=
-    document.getElementById(
-      'match-result'
-    );
+    document.getElementById('match-result');
 
   const matchHome=
-    home
-      ?home.value.trim()
-      :'';
+    home?home.value.trim():'';
 
   const matchAway=
-    away
-      ?away.value.trim()
-      :'';
+    away?away.value.trim():'';
 
   const matchResult=
-    result
-      ?result.value.trim()
-      :'';
+    result?result.value.trim():'';
 
   if(!matchHome){
 
@@ -5796,7 +5594,6 @@ function saveMatch(id=null){
     );
 
     home?.focus();
-
     return;
 
   }
@@ -5808,7 +5605,6 @@ function saveMatch(id=null){
     );
 
     away?.focus();
-
     return;
 
   }
@@ -5820,7 +5616,6 @@ function saveMatch(id=null){
     );
 
     result?.focus();
-
     return;
 
   }
@@ -5886,37 +5681,19 @@ function saveMatch(id=null){
     if(!match){
 
       closeMatchModal();
-
       return;
 
     }
 
-    match.home=
-      matchHome;
-
-    match.away=
-      matchAway;
-
-    match.rival=
-      matchAway;
-
-    match.result=
-      matchResult;
-
-    match.scorers=
-      matchScorers;
-
-    match.cards=
-      matchCards;
-
-    match.scorerCounts=
-      cleanScorerCounts;
-
-    match.cardEntries=
-      cleanCards;
-
-    match.updatedAt=
-      Date.now();
+    match.home=matchHome;
+    match.away=matchAway;
+    match.rival=matchAway;
+    match.result=matchResult;
+    match.scorers=matchScorers;
+    match.cards=matchCards;
+    match.scorerCounts=cleanScorerCounts;
+    match.cardEntries=cleanCards;
+    match.updatedAt=Date.now();
 
     addActivity(
       'match',
@@ -5925,8 +5702,7 @@ function saveMatch(id=null){
 
   }else{
 
-    const now=
-      Date.now();
+    const now=Date.now();
 
     const newMatch={
 
@@ -5935,35 +5711,25 @@ function saveMatch(id=null){
           .toString(36)
           .slice(2,8)}`,
 
-      home:
-        matchHome,
+      home:matchHome,
 
-      away:
-        matchAway,
+      away:matchAway,
 
-      rival:
-        matchAway,
+      rival:matchAway,
 
-      result:
-        matchResult,
+      result:matchResult,
 
-      scorers:
-        matchScorers,
+      scorers:matchScorers,
 
-      cards:
-        matchCards,
+      cards:matchCards,
 
-      scorerCounts:
-        cleanScorerCounts,
+      scorerCounts:cleanScorerCounts,
 
-      cardEntries:
-        cleanCards,
+      cardEntries:cleanCards,
 
-      createdAt:
-        now,
+      createdAt:now,
 
-      updatedAt:
-        now
+      updatedAt:now
 
     };
 
@@ -5982,9 +5748,7 @@ function saveMatch(id=null){
   }
 
   save();
-
   closeMatchModal();
-
   render();
 
 }
@@ -6005,9 +5769,7 @@ function closeMatchModal(){
     !document.getElementById('add-player-modal')&&
     !document.getElementById('note-modal')
   ){
-
     document.body.style.overflow='';
-
   }
 
 }
@@ -6050,7 +5812,6 @@ function deleteMatch(id){
   );
 
   save();
-
   render();
 
 }
@@ -6062,13 +5823,11 @@ function deleteMatch(id){
 function noteCategoryIcon(category){
 
   const icons={
-
     'General':'',
     'Táctica':'',
     'Jugadores':'',
     'Partido':'',
     'Otros':''
-
   };
 
   return icons[category]||'';
@@ -6211,7 +5970,6 @@ function notes(){
           </div>
 
         `
-
     }
 
   `;
@@ -6248,7 +6006,6 @@ function noteCard(note){
               event.stopPropagation();
               openNoteModal('${esc(note.id)}');
             ">
-
           </button>
 
           <button
@@ -6257,7 +6014,6 @@ function noteCard(note){
               event.stopPropagation();
               deleteNote('${esc(note.id)}');
             ">
-
           </button>
 
         </div>
@@ -6481,11 +6237,13 @@ function openNoteModal(id=null){
       );
 
     if(input){
+
       input.focus();
 
       if(existing){
         input.select();
       }
+
     }
 
   },50);
@@ -6510,19 +6268,13 @@ function saveNote(id=null){
     );
 
   const noteTitle=
-    title
-      ?title.value.trim()
-      :'';
+    title?title.value.trim():'';
 
   const noteText=
-    text
-      ?text.value.trim()
-      :'';
+    text?text.value.trim():'';
 
   const noteCategory=
-    category
-      ?category.value
-      :'General';
+    category?category.value:'General';
 
   if(!noteTitle){
 
@@ -6531,7 +6283,6 @@ function saveNote(id=null){
     );
 
     title?.focus();
-
     return;
 
   }
@@ -6543,7 +6294,6 @@ function saveNote(id=null){
     );
 
     text?.focus();
-
     return;
 
   }
@@ -6560,7 +6310,6 @@ function saveNote(id=null){
     if(!note){
 
       closeNoteModal();
-
       return;
 
     }
@@ -6608,9 +6357,7 @@ function saveNote(id=null){
   }
 
   save();
-
   closeNoteModal();
-
   render();
 
 }
@@ -6631,9 +6378,7 @@ function closeNoteModal(){
     !document.getElementById('add-player-modal')&&
     !document.getElementById('match-modal')
   ){
-
     document.body.style.overflow='';
-
   }
 
 }
@@ -6671,7 +6416,6 @@ function deleteNote(id){
   );
 
   save();
-
   render();
 
 }
@@ -6774,17 +6518,19 @@ function stats(){
       Estadísticas
     </div>
 
-    <div class="subtitle" style="margin-bottom:14px;">
+    <div
+      class="subtitle"
+      style="margin-bottom:14px;">
+
       Rendimiento acumulado de la plantilla
+
     </div>
 
     <div class="stat-grid">
 
       <div class="stat red">
 
-        <b>
-          ${goals}
-        </b>
+        <b>${goals}</b>
 
         <span>
           Goles
@@ -6794,9 +6540,7 @@ function stats(){
 
       <div class="stat">
 
-        <b>
-          ${assists}
-        </b>
+        <b>${assists}</b>
 
         <span>
           Asistencias
@@ -6806,9 +6550,7 @@ function stats(){
 
       <div class="stat">
 
-        <b>
-          ${data.players.length}
-        </b>
+        <b>${data.players.length}</b>
 
         <span>
           Jugadores
@@ -6879,8 +6621,12 @@ function settings(){
       Perfil
     </div>
 
-    <div class="subtitle" style="margin-bottom:13px;">
+    <div
+      class="subtitle"
+      style="margin-bottom:13px;">
+
       Datos principales de tu equipo
+
     </div>
 
     <div class="card">
@@ -7444,7 +7190,6 @@ function tactic(){
         <span class="player-tray-count">
 
           ${availablePlayers.length}
-
           disponibles para colocar
 
         </span>
@@ -7470,7 +7215,6 @@ function tactic(){
               </div>
 
             `
-
         }
 
       </div>
@@ -7765,7 +7509,6 @@ function removePlayerFromTactic(
 ===================================================== */
 
 let dragState=null;
-
 let dragGhost=null;
 
 function createDragGhost(player){
@@ -8361,7 +8104,6 @@ function saveTactic(){
 ===================================================== */
 
 save();
-
 render();
 
 </script>
