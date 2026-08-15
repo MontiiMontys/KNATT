@@ -7,7 +7,6 @@
 <title>KNATT</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
@@ -25,27 +24,18 @@
   --line:#e6e6e9;
 }
 
-html,
-body{
+html,body{
   margin:0;
   min-height:100%;
   background:var(--bg);
 }
 
 body{
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
   color:var(--text);
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -60,19 +50,13 @@ button{
   padding-bottom:82px;
 }
 
-/* CABECERA */
-
 header{
   background:var(--dark);
   color:#fff;
-  padding:
-    calc(12px + env(safe-area-inset-top))
-    18px
-    14px;
+  padding:calc(12px + env(safe-area-inset-top)) 18px 14px;
 }
 
-.header-row,
-.row{
+.header-row,.row{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -108,8 +92,6 @@ header{
 main{
   padding:14px 14px 24px;
 }
-
-/* GENERAL */
 
 .title{
   font-size:25px;
@@ -200,8 +182,6 @@ main{
   cursor:not-allowed;
 }
 
-/* ESTADÍSTICAS */
-
 .stat-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -245,8 +225,6 @@ main{
   color:var(--red);
 }
 
-/* INICIO */
-
 .home-title-row{
   margin-top:0;
   margin-bottom:12px;
@@ -279,8 +257,6 @@ main{
   margin:15px 0 16px;
 }
 
-/* CUENTA ATRÁS */
-
 .match-countdown{
   text-align:center;
   margin-top:-6px;
@@ -294,8 +270,6 @@ main{
   color:var(--red);
   font-weight:950;
 }
-
-/* ACCESO RÁPIDO */
 
 .home-quick-card{
   display:flex;
@@ -338,8 +312,6 @@ main{
   font-size:22px;
   color:#99999f;
 }
-
-/* ACTIVIDAD */
 
 .home-activity-card{
   padding:16px;
@@ -395,8 +367,6 @@ main{
   color:var(--muted);
   font-weight:700;
 }
-
-/* PLANTILLA */
 
 .tabs{
   display:flex;
@@ -458,8 +428,6 @@ main{
   margin-top:2px;
 }
 
-/* FORMULARIOS */
-
 .form-group{
   margin-bottom:12px;
 }
@@ -474,9 +442,7 @@ main{
   margin-bottom:6px;
 }
 
-.form-input,
-.select,
-.form-textarea{
+.form-input,.select,.form-textarea{
   width:100%;
   border:1px solid var(--line);
   background:#fafafa;
@@ -492,14 +458,10 @@ main{
   line-height:1.4;
 }
 
-.form-input:focus,
-.select:focus,
-.form-textarea:focus{
+.form-input:focus,.select:focus,.form-textarea:focus{
   border-color:#ffb5bd;
   box-shadow:0 0 0 3px #fff0f2;
 }
-
-/* MODAL */
 
 .edit-modal{
   position:fixed;
@@ -508,10 +470,7 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:
-    calc(18px + env(safe-area-inset-top))
-    14px
-    calc(18px + env(safe-area-inset-bottom));
+  padding:calc(18px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
   background:rgba(0,0,0,.52);
   backdrop-filter:blur(7px);
   -webkit-backdrop-filter:blur(7px);
@@ -623,8 +582,6 @@ main{
   background:#f0f0f2;
 }
 
-/* PARTIDOS */
-
 .match-card{
   position:relative;
 }
@@ -659,8 +616,6 @@ main{
   font-weight:950;
   color:#888;
 }
-
-/* CALENDARIO */
 
 .matches-header-actions{
   display:flex;
@@ -879,13 +834,6 @@ main{
   margin-bottom:3px;
 }
 
-.calendar-preview-actions{
-  margin-top:9px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7px;
-}
-
 .ocr-progress{
   margin-top:12px;
   background:#f0f0f2;
@@ -941,8 +889,6 @@ main{
   display:none;
 }
 
-/* MÁS */
-
 .more-screen{
   background:var(--dark);
   min-height:calc(100vh - 80px);
@@ -993,8 +939,6 @@ main{
   color:#8c8c92;
 }
 
-/* TÁCTICA */
-
 .tactic-toolbar{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1017,8 +961,6 @@ main{
   color:#fff;
 }
 
-/* PIZARRA */
-
 .pitch-wrap{
   position:relative;
   z-index:5;
@@ -1034,12 +976,7 @@ main{
   aspect-ratio:68/105;
   border-radius:14px;
   overflow:hidden;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      #278247 0 9%,
-      #2d8b4f 9% 18%
-    );
+  background:repeating-linear-gradient(0deg,#278247 0 9%,#2d8b4f 9% 18%);
   touch-action:none;
   user-select:none;
   -webkit-user-select:none;
@@ -1094,13 +1031,8 @@ main{
   pointer-events:none;
 }
 
-.box.top{
-  top:2.5%;
-}
-
-.box.bottom{
-  bottom:2.5%;
-}
+.box.top{top:2.5%}
+.box.bottom{bottom:2.5%}
 
 .goal{
   position:absolute;
@@ -1112,15 +1044,8 @@ main{
   pointer-events:none;
 }
 
-.goal.top{
-  top:0;
-}
-
-.goal.bottom{
-  bottom:0;
-}
-
-/* MEDIO CAMPO */
+.goal.top{top:0}
+.goal.bottom{bottom:0}
 
 .pitch.half-mode{
   aspect-ratio:68/70;
@@ -1147,8 +1072,6 @@ main{
   top:0;
 }
 
-/* JUGADORES */
-
 .board-player{
   position:absolute;
   transform:translate(-50%,-50%);
@@ -1168,9 +1091,7 @@ main{
 .board-player.dragging{
   z-index:1000;
   cursor:grabbing;
-  transform:
-    translate(-50%,-50%)
-    scale(1.08);
+  transform:translate(-50%,-50%) scale(1.08);
 }
 
 .board-player-card{
@@ -1219,9 +1140,7 @@ main{
   line-height:1.08;
   font-weight:950;
   color:#fff;
-  text-shadow:
-    0 1px 3px rgba(0,0,0,.85),
-    0 0 4px rgba(0,0,0,.55);
+  text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 4px rgba(0,0,0,.55);
   white-space:normal;
   overflow-wrap:anywhere;
   word-break:break-word;
@@ -1237,8 +1156,7 @@ main{
   line-height:1;
   color:#fff;
   font-weight:900;
-  text-shadow:
-    0 1px 3px rgba(0,0,0,.85);
+  text-shadow:0 1px 3px rgba(0,0,0,.85);
   text-align:center;
 }
 
@@ -1261,8 +1179,6 @@ main{
   z-index:5;
   box-shadow:0 2px 6px rgba(0,0,0,.35);
 }
-
-/* BANDEJA */
 
 .tactic-help{
   text-align:center;
@@ -1381,15 +1297,11 @@ main{
   font-weight:800;
 }
 
-/* DRAG */
-
 .drag-ghost{
   position:fixed;
   z-index:10000;
   pointer-events:none;
-  transform:
-    translate(-50%,-50%)
-    scale(1.08);
+  transform:translate(-50%,-50%) scale(1.08);
   width:78px;
   opacity:.94;
   display:none;
@@ -1400,9 +1312,7 @@ main{
 }
 
 .pitch.drop-active{
-  box-shadow:
-    0 0 0 4px #fff,
-    0 0 0 7px #e21d2f88;
+  box-shadow:0 0 0 4px #fff,0 0 0 7px #e21d2f88;
 }
 
 .pitch.drop-active:after{
@@ -1427,8 +1337,6 @@ main{
   margin-bottom:12px;
 }
 
-/* NAV */
-
 nav{
   position:fixed;
   bottom:0;
@@ -1441,10 +1349,7 @@ nav{
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
   border-top:1px solid #dedee2;
-  padding:
-    7px
-    3px
-    calc(7px + env(safe-area-inset-bottom));
+  padding:7px 3px calc(7px + env(safe-area-inset-bottom));
   z-index:30;
   box-shadow:0 -8px 25px #14141914;
 }
@@ -1471,10 +1376,7 @@ nav .nav-icon{
   margin-bottom:2px;
 }
 
-/* MÓVIL */
-
 @media(max-width:380px){
-
   main{
     padding-left:11px;
     padding-right:11px;
@@ -1552,9 +1454,7 @@ nav .nav-icon{
   .calendar-preview-grid{
     grid-template-columns:65px 1fr 1fr;
   }
-
 }
-
 </style>
 </head>
 
@@ -1563,35 +1463,19 @@ nav .nav-icon{
 <div class="app">
 
 <header>
+  <div class="header-row">
+    <div>
+      <div class="brand">⚽ <span>KNATT</span></div>
+      <div class="role">Tu equipo, en una sola app</div>
+    </div>
 
-<div class="header-row">
-
-<div>
-
-<div class="brand">
-⚽ <span>KNATT</span>
-</div>
-
-<div class="role">
-Tu equipo, en una sola app
-</div>
-
-</div>
-
-<button
-class="header-bell"
-onclick="alert('No tienes nuevas notificaciones.')">
-
-🔔
-
-</button>
-
-</div>
-
+    <button class="header-bell" onclick="alert('No tienes nuevas notificaciones.')">
+      🔔
+    </button>
+  </div>
 </header>
 
 <main id="content"></main>
-
 <nav id="nav"></nav>
 
 </div>
@@ -1605,43 +1489,28 @@ onclick="alert('No tienes nuevas notificaciones.')">
 let tesseractLoaded=false;
 
 function loadTesseract(){
-
   return new Promise((resolve,reject)=>{
-
     if(window.Tesseract){
-
       tesseractLoaded=true;
       resolve();
       return;
-
     }
 
     const script=document.createElement('script');
 
-    script.src=
-      'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+    script.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
 
     script.onload=()=>{
-
       tesseractLoaded=true;
       resolve();
-
     };
 
     script.onerror=()=>{
-
-      reject(
-        new Error(
-          'No se pudo cargar el motor OCR.'
-        )
-      );
-
+      reject(new Error('No se pudo cargar el motor OCR.'));
     };
 
     document.head.appendChild(script);
-
   });
-
 }
 
 /* =====================================================
@@ -1653,23 +1522,14 @@ const KEY='teamhub-v2';
 let data;
 
 try{
-
-  data=JSON.parse(
-    localStorage.getItem(KEY)||'null'
-  );
-
+  data=JSON.parse(localStorage.getItem(KEY)||'null');
 }catch(error){
-
   data=null;
-
 }
 
 if(!data || typeof data!=='object'){
-
   data={
-
     players:[
-
       {
         id:1,
         name:'Montiimontys',
@@ -1681,7 +1541,6 @@ if(!data || typeof data!=='object'){
         g:12,
         a:6
       },
-
       {
         id:2,
         name:'Marc',
@@ -1693,7 +1552,6 @@ if(!data || typeof data!=='object'){
         g:5,
         a:8
       },
-
       {
         id:3,
         name:'Juan',
@@ -1705,7 +1563,6 @@ if(!data || typeof data!=='object'){
         g:4,
         a:3
       },
-
       {
         id:4,
         name:'Alex',
@@ -1717,7 +1574,6 @@ if(!data || typeof data!=='object'){
         g:0,
         a:1
       },
-
       {
         id:5,
         name:'Pedro',
@@ -1729,7 +1585,6 @@ if(!data || typeof data!=='object'){
         g:1,
         a:2
       }
-
     ],
 
     next:{
@@ -1756,9 +1611,7 @@ if(!data || typeof data!=='object'){
     },
 
     activity:[]
-
   };
-
 }
 
 /* =====================================================
@@ -1781,10 +1634,7 @@ if(!Array.isArray(data.tactics.savedLineup)){
   data.tactics.savedLineup=[];
 }
 
-if(
-  data.tactics.view!=='full' &&
-  data.tactics.view!=='half'
-){
+if(data.tactics.view!=='full' && data.tactics.view!=='half'){
   data.tactics.view='full';
 }
 
@@ -1826,50 +1676,22 @@ if(!Array.isArray(data.matches)){
   data.matches=[];
 }
 
-data.matches=data.matches.map(
-  (m,index)=>({
-
-    id:
-      m.id ||
-      `match-${Date.now()}-${index}`,
-
-    date:
-      m.date ||
-      '',
-
-    dateISO:
-      m.dateISO ||
-      '',
-
-    round:
-      m.round ||
-      '',
-
-    home:
-      m.home ||
-      '',
-
-    away:
-      m.away ||
-      '',
-
-    score:
-      m.score ||
-      '',
-
-    time:
-      m.time ||
-      '',
-
-    place:
-      m.place ||
-      '',
-
-    imported:
-      !!m.imported
-
-  })
-);
+data.matches=data.matches.map((m,index)=>({
+  id:m.id||`match-${Date.now()}-${index}`,
+  date:m.date||'',
+  dateISO:m.dateISO||'',
+  round:m.round||'',
+  roundNumber:
+    Number.isFinite(Number(m.roundNumber))
+      ?Number(m.roundNumber)
+      :extractRoundNumber(m.round),
+  home:m.home||'',
+  away:m.away||'',
+  score:m.score||'',
+  time:m.time||'',
+  place:m.place||'',
+  imported:!!m.imported
+}));
 
 if(!Array.isArray(data.activity)){
   data.activity=[];
@@ -1880,13 +1702,9 @@ if(!Array.isArray(data.activity)){
 ===================================================== */
 
 let section='home';
-
 let filter='all';
-
 let selectedPlayerId=null;
-
 let importedMatches=[];
-
 let calendarPreviewUrls=[];
 
 /* =====================================================
@@ -1894,21 +1712,17 @@ let calendarPreviewUrls=[];
 ===================================================== */
 
 function addActivity(icon,title){
-
   if(!Array.isArray(data.activity)){
     data.activity=[];
   }
 
   data.activity.unshift({
-
     icon:icon,
     title:title,
     time:Date.now()
-
   });
 
   data.activity=data.activity.slice(0,6);
-
 }
 
 /* =====================================================
@@ -1916,12 +1730,7 @@ function addActivity(icon,title){
 ===================================================== */
 
 function save(){
-
-  localStorage.setItem(
-    KEY,
-    JSON.stringify(data)
-  );
-
+  localStorage.setItem(KEY,JSON.stringify(data));
 }
 
 /* =====================================================
@@ -1929,12 +1738,8 @@ function save(){
 ===================================================== */
 
 function esc(s){
-
-  return String(
-    s ?? ''
-  ).replace(
+  return String(s??'').replace(
     /[&<>"']/g,
-
     m=>({
       '&':'&amp;',
       '<':'&lt;',
@@ -1942,9 +1747,7 @@ function esc(s){
       '"':'&quot;',
       "'":'&#039;'
     }[m])
-
   );
-
 }
 
 /* =====================================================
@@ -1952,255 +1755,151 @@ function esc(s){
 ===================================================== */
 
 function normalizeTeamForComparison(name){
-
-  return String(
-    name || ''
-  )
+  return String(name||'')
     .normalize('NFD')
-    .replace(
-      /[\u0300-\u036f]/g,
-      ''
-    )
+    .replace(/[\u0300-\u036f]/g,'')
     .toLowerCase()
-    .replace(
-      /[^a-z0-9\s]/g,
-      ' '
-    )
-    .replace(
-      /\s+/g,
-      ' '
-    )
+    .replace(/[^a-z0-9\s]/g,' ')
+    .replace(/\s+/g,' ')
     .trim();
-
 }
 
-/*
-  El calendario de la Federación utiliza muchas variantes:
-
-  UNIFICACION LLEFIA,CF. "A"
-  UNIFICACION LLEFIA CF A
-  UNIFICACIÓ LLEFIÀ
-  etc.
-
-  Eliminamos los sufijos federativos para comparar
-  únicamente la identidad real del club.
-*/
-
 function normalizeClubCore(name){
-
-  let value=
-    normalizeTeamForComparison(
-      name
-    );
+  let value=normalizeTeamForComparison(name);
 
   value=value
     .replace(
-      /\b(c\s*f\s*u\s*e|c\s*f\s*u|c\s*f|f\s*c|u\s*d|u\s*e)\b/g,
+      /\b(c\s*f\s*u|c\s*f|f\s*c|u\s*d|u\s*e)\b/g,
       ' '
     )
     .replace(
       /\b(?:a|primer|segon|equipo)\b/g,
       ' '
     )
-    .replace(
-      /\s+/g,
-      ' '
-    )
+    .replace(/\s+/g,' ')
     .trim();
 
   return value;
-
 }
 
 function compactClubName(name){
-
   return normalizeClubCore(name)
     .replace(/\s+/g,'')
     .trim();
-
 }
 
 function levenshtein(a,b){
-
   a=String(a||'');
   b=String(b||'');
 
-  if(a===b){
-    return 0;
-  }
+  if(a===b)return 0;
+  if(!a.length)return b.length;
+  if(!b.length)return a.length;
 
-  if(!a.length){
-    return b.length;
-  }
+  const matrix=Array.from(
+    {length:a.length+1},
+    ()=>Array(b.length+1).fill(0)
+  );
 
-  if(!b.length){
-    return a.length;
-  }
-
-  const matrix=
-    Array.from(
-      {length:a.length+1},
-      ()=>Array(b.length+1).fill(0)
-    );
-
-  for(let i=0;i<=a.length;i++){
+  for(let i=0;i<=a.length;i++)
     matrix[i][0]=i;
-  }
 
-  for(let j=0;j<=b.length;j++){
+  for(let j=0;j<=b.length;j++)
     matrix[0][j]=j;
-  }
 
   for(let i=1;i<=a.length;i++){
-
     for(let j=1;j<=b.length;j++){
-
-      const cost=
-        a[i-1]===b[j-1]
-          ?0
-          :1;
+      const cost=a[i-1]===b[j-1]?0:1;
 
       matrix[i][j]=Math.min(
-
         matrix[i-1][j]+1,
-
         matrix[i][j-1]+1,
-
         matrix[i-1][j-1]+cost
-
       );
-
     }
-
   }
 
   return matrix[a.length][b.length];
-
 }
 
 function getConfiguredTeam(){
-
-  return String(
-    data.settings?.team ||
-    ''
-  ).trim();
-
+  return String(data.settings?.team||'').trim();
 }
 
 function isConfiguredTeam(name){
+  const configured=normalizeTeamForComparison(getConfiguredTeam());
+  const candidate=normalizeTeamForComparison(name);
 
-  const configured=
-    normalizeTeamForComparison(
-      getConfiguredTeam()
-    );
-
-  const candidate=
-    normalizeTeamForComparison(
-      name
-    );
-
-  if(
-    !configured ||
-    !candidate
-  ){
-
+  if(!configured||!candidate){
     return false;
-
   }
 
   if(configured===candidate){
     return true;
   }
 
-  const configuredCore=
-    normalizeClubCore(configured);
-
-  const candidateCore=
-    normalizeClubCore(candidate);
+  const configuredCore=normalizeClubCore(configured);
+  const candidateCore=normalizeClubCore(candidate);
 
   if(
     configuredCore &&
     candidateCore &&
     configuredCore===candidateCore
   ){
-
     return true;
-
   }
 
-  const configuredCompact=
-    compactClubName(configured);
-
-  const candidateCompact=
-    compactClubName(candidate);
+  const configuredCompact=compactClubName(configured);
+  const candidateCompact=compactClubName(candidate);
 
   if(
     configuredCompact.length>=5 &&
     candidateCompact.length>=5
   ){
-
     if(
-      candidateCompact.includes(
-        configuredCompact
-      ) ||
-      configuredCompact.includes(
-        candidateCompact
-      )
+      candidateCompact.includes(configuredCompact) ||
+      configuredCompact.includes(candidateCompact)
     ){
-
       return true;
-
     }
 
-    const maxLength=
-      Math.max(
-        configuredCompact.length,
-        candidateCompact.length
-      );
+    const maxLength=Math.max(
+      configuredCompact.length,
+      candidateCompact.length
+    );
 
-    const distance=
-      levenshtein(
-        configuredCompact,
-        candidateCompact
-      );
+    const distance=levenshtein(
+      configuredCompact,
+      candidateCompact
+    );
 
-    const similarity=
-      1-(distance/maxLength);
+    const similarity=1-(distance/maxLength);
 
     if(
       maxLength>=8 &&
       similarity>=0.84
     ){
-
       return true;
-
     }
-
   }
 
   return false;
-
 }
 
 function getTeamMatches(){
-
   return data.matches.filter(
-    match =>
+    match=>
       isConfiguredTeam(match.home) ||
       isConfiguredTeam(match.away)
   );
-
 }
 
 function filterMatchesForConfiguredTeam(list){
-
-  return (Array.isArray(list)?list:[])
-    .filter(
-      match =>
-        isConfiguredTeam(match.home) ||
-        isConfiguredTeam(match.away)
-    );
-
+  return (Array.isArray(list)?list:[]).filter(
+    match=>
+      isConfiguredTeam(match.home) ||
+      isConfiguredTeam(match.away)
+  );
 }
 
 /* =====================================================
@@ -2208,40 +1907,25 @@ function filterMatchesForConfiguredTeam(list){
 ===================================================== */
 
 function normalizeDateText(date){
-
-  if(!date){
-    return '';
-  }
+  if(!date)return '';
 
   return String(date)
     .replace(/\s+/g,' ')
     .trim();
-
 }
 
 function getSeasonStartYear(){
-
-  const season=
-    String(
-      data.settings.season ||
-      ''
-    );
-
-  const match=
-    season.match(
-      /(\d{4})/
-    );
+  const season=String(data.settings.season||'');
+  const match=season.match(/(\d{4})/);
 
   if(match){
     return Number(match[1]);
   }
 
   return new Date().getFullYear();
-
 }
 
 function dateToISO(day,month,explicitYear=null){
-
   const d=Number(day);
   const m=Number(month);
 
@@ -2253,34 +1937,24 @@ function dateToISO(day,month,explicitYear=null){
     m<1 ||
     m>12
   ){
-
     return '';
-
   }
 
-  let year=
-    explicitYear
-      ?Number(explicitYear)
-      :getSeasonStartYear();
+  let year=explicitYear
+    ?Number(explicitYear)
+    :getSeasonStartYear();
 
   if(!explicitYear && m<=7){
     year++;
   }
 
-  const date=
-    new Date(
-      year,
-      m-1,
-      d
-    );
+  const date=new Date(year,m-1,d);
 
   if(
     date.getDate()!==d ||
     date.getMonth()!==m-1
   ){
-
     return '';
-
   }
 
   return [
@@ -2288,21 +1962,14 @@ function dateToISO(day,month,explicitYear=null){
     String(m).padStart(2,'0'),
     String(d).padStart(2,'0')
   ].join('-');
-
 }
 
 function displayDateFromISO(iso){
+  if(!iso)return '';
 
-  if(!iso){
-    return '';
-  }
+  const parts=String(iso).split('-');
 
-  const parts=
-    String(iso).split('-');
-
-  if(parts.length!==3){
-    return '';
-  }
+  if(parts.length!==3)return '';
 
   const d=Number(parts[2]);
   const m=Number(parts[1]);
@@ -2312,49 +1979,85 @@ function displayDateFromISO(iso){
     'JUL','AGO','SEP','OCT','NOV','DIC'
   ];
 
-  if(
-    !d ||
-    !m ||
-    !months[m-1]
-  ){
-
+  if(!d||!m||!months[m-1]){
     return '';
-
   }
 
   return `${d} ${months[m-1]}`;
+}
 
+/* =====================================================
+   JORNADAS
+===================================================== */
+
+/*
+  IMPORTANTE:
+  Guardamos también roundNumber.
+
+  Así:
+  Jornada 1
+  Jornada 2
+  Jornada 3
+  ...
+  Jornada 10
+
+  nunca se ordenan como:
+  1,10,11,12,2,20...
+*/
+
+function extractRoundNumber(round){
+  const match=String(round||'').match(
+    /(?:jornada|jornad[ao])\s*([0-9oOiIl]{1,2})/i
+  );
+
+  if(!match){
+    return null;
+  }
+
+  const value=String(match[1])
+    .replace(/[oO]/g,'0')
+    .replace(/[iIl]/g,'1');
+
+  const number=Number(value);
+
+  return Number.isFinite(number)
+    ?number
+    :null;
 }
 
 function sortMatches(list){
+  return [...list].sort((a,b)=>{
+    const ra=Number.isFinite(Number(a.roundNumber))
+      ?Number(a.roundNumber)
+      :extractRoundNumber(a.round);
 
-  return [...list].sort(
-    (a,b)=>{
+    const rb=Number.isFinite(Number(b.roundNumber))
+      ?Number(b.roundNumber)
+      :extractRoundNumber(b.round);
 
-      const da=a.dateISO||'';
-      const db=b.dateISO||'';
-
-      if(
-        da &&
-        db &&
-        da!==db
-      ){
-
-        return da.localeCompare(db);
-
-      }
-
-      return String(
-        a.date||''
-      ).localeCompare(
-        String(
-          b.date||''
-        )
-      );
-
+    if(
+      ra!==null &&
+      rb!==null &&
+      ra!==rb
+    ){
+      return ra-rb;
     }
-  );
 
+    const da=a.dateISO||'';
+    const db=b.dateISO||'';
+
+    if(
+      da &&
+      db &&
+      da!==db
+    ){
+      return da.localeCompare(db);
+    }
+
+    return String(a.date||'').localeCompare(
+      String(b.date||'')
+    );
+  });
 }
 
 /* =====================================================
@@ -2362,63 +2065,39 @@ function sortMatches(list){
 ===================================================== */
 
 function getMatchCountdown(){
+  const nextMatch=getNextUpcomingMatch();
 
-  const nextMatch=
-    getNextUpcomingMatch();
-
-  if(
-    nextMatch &&
-    nextMatch.dateISO
-  ){
-
-    const target=
-      new Date(
-        `${nextMatch.dateISO}T${
-          nextMatch.time||'12:00'
-        }:00`
-      );
+  if(nextMatch&&nextMatch.dateISO){
+    const target=new Date(
+      `${nextMatch.dateISO}T${nextMatch.time||'12:00'}:00`
+    );
 
     const now=new Date();
 
-    const today=
-      new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
-      );
+    const today=new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
+    );
 
-    const targetDay=
-      new Date(
-        target.getFullYear(),
-        target.getMonth(),
-        target.getDate()
-      );
+    const targetDay=new Date(
+      target.getFullYear(),
+      target.getMonth(),
+      target.getDate()
+    );
 
-    const days=
-      Math.round(
-        (
-          targetDay-today
-        )/86400000
-      );
+    const days=Math.round(
+      (targetDay-today)/86400000
+    );
 
-    if(days===0){
-      return '🔴 Partido hoy';
-    }
-
-    if(days===1){
-      return '🟠 Partido mañana';
-    }
-
-    if(days>1){
-      return `⏱ Faltan <strong>${days} días</strong>`;
-    }
+    if(days===0)return '🔴 Partido hoy';
+    if(days===1)return '🟠 Partido mañana';
+    if(days>1)return `⏱ Faltan <strong>${days} días</strong>`;
 
     return '';
-
   }
 
   return '';
-
 }
 
 /* =====================================================
@@ -2426,77 +2105,51 @@ function getMatchCountdown(){
 ===================================================== */
 
 function isPlayedMatch(match){
-
   return !!(
     match &&
-    String(
-      match.score||''
-    ).trim()
+    String(match.score||'').trim()
   );
-
 }
 
 function getNextUpcomingMatch(){
-
   const now=new Date();
 
   const todayISO=[
     now.getFullYear(),
-    String(
-      now.getMonth()+1
-    ).padStart(2,'0'),
-    String(
-      now.getDate()
-    ).padStart(2,'0')
+    String(now.getMonth()+1).padStart(2,'0'),
+    String(now.getDate()).padStart(2,'0')
   ].join('-');
 
-  const upcoming=
-    getTeamMatches()
-      .filter(
-        m=>
-          !isPlayedMatch(m) &&
-          m.dateISO &&
-          m.dateISO>=todayISO
-      );
+  const upcoming=getTeamMatches().filter(
+    m=>
+      !isPlayedMatch(m) &&
+      m.dateISO &&
+      m.dateISO>=todayISO
+  );
 
-  const sorted=
-    sortMatches(upcoming);
-
-  return sorted[0]||null;
-
+  return sortMatches(upcoming)[0]||null;
 }
 
 function syncNextMatch(){
-
-  const next=
-    getNextUpcomingMatch();
+  const next=getNextUpcomingMatch();
 
   if(!next){
     return;
   }
 
-  const isHome=
-    isConfiguredTeam(
-      next.home
-    );
+  const isHome=isConfiguredTeam(next.home);
 
-  const opponent=
-    isHome
-      ?next.away
-      :next.home;
+  const opponent=isHome
+    ?next.away
+    :next.home;
 
-  data.next.opponent=
-    opponent;
+  data.next.opponent=opponent;
 
   data.next.date=
     next.date||
-    displayDateFromISO(
-      next.dateISO
-    );
+    displayDateFromISO(next.dateISO);
 
-  data.next.time=
-    next.time||
-    '12:00';
+  data.next.time=next.time||'12:00';
 
   data.next.place=
     next.place||
@@ -2507,7 +2160,6 @@ function syncNextMatch(){
     );
 
   save();
-
 }
 
 /* =====================================================
@@ -2515,32 +2167,22 @@ function syncNextMatch(){
 ===================================================== */
 
 function go(s){
-
   section=s;
-
   selectedPlayerId=null;
 
-  window.scrollTo(
-    0,
-    0
-  );
+  window.scrollTo(0,0);
 
   render();
-
 }
 
 function navItems(){
-
-  return [
-
+  return[
     ['home','⌂','Inicio'],
     ['team','♟','Plantilla'],
     ['tactic','⚽','Táctica'],
     ['matches','🏆','Partidos'],
     ['more','☰','Más']
-
   ];
-
 }
 
 /* =====================================================
@@ -2548,24 +2190,12 @@ function navItems(){
 ===================================================== */
 
 function render(){
-
-  document
-    .getElementById('nav')
-    .innerHTML=
-
-    navItems()
-      .map(
-        x=>`
-
+  document.getElementById('nav').innerHTML=
+    navItems().map(
+      x=>`
         <button
-          class="${
-            section===x[0]
-              ?'active'
-              :''
-          }"
-          onclick="
-            go('${x[0]}')
-          ">
+          class="${section===x[0]?'active':''}"
+          onclick="go('${x[0]}')">
 
           <div class="nav-icon">
             ${x[1]}
@@ -2574,41 +2204,27 @@ function render(){
           ${x[2]}
 
         </button>
+      `
+    ).join('');
 
-        `
-      )
-      .join('');
-
-  const c=
-    document.getElementById(
-      'content'
-    );
+  const c=document.getElementById('content');
 
   c.innerHTML=
-
     section==='home'
       ?home()
-
     :section==='team'
       ?team()
-
     :section==='player'
       ?playerProfile()
-
     :section==='tactic'
       ?tactic()
-
     :section==='matches'
       ?matches()
-
     :section==='more'
       ?more()
-
     :section==='stats'
       ?stats()
-
     :settings();
-
 }
 
 /* =====================================================
@@ -2616,291 +2232,216 @@ function render(){
 ===================================================== */
 
 function home(){
+  const available=data.players.filter(p=>p.available).length;
+  const countdown=getMatchCountdown();
 
-  const available=
-    data.players.filter(
-      p=>p.available
-    ).length;
+  const activities=Array.isArray(data.activity)
+    ?data.activity.slice(0,4)
+    :[];
 
-  const countdown=
-    getMatchCountdown();
+  const teamMatches=getTeamMatches();
 
-  const activities=
-    Array.isArray(data.activity)
-      ?data.activity.slice(0,4)
-      :[];
+  return`
+    <div class="title-row home-title-row">
+      <div>
+        <div class="title">¡Buenos días!</div>
 
-  const teamMatches=
-    getTeamMatches();
+        <div class="subtitle">
+          ${esc(data.settings.team||'KNATT FC')}
+        </div>
+      </div>
+    </div>
 
-  return `
+    <div class="card home-match-card">
 
-  <div class="title-row home-title-row">
-
-    <div>
-
-      <div class="title">
-        ¡Buenos días!
+      <div class="section-label">
+        PRÓXIMO PARTIDO
       </div>
 
-      <div class="subtitle">
-        ${esc(
-          data.settings.team||
-          'KNATT FC'
-        )}
+      <div class="big">
+        ${esc(data.next.date||'Sin partido programado')}
       </div>
 
-    </div>
+      <div class="muted small">
+        ${esc(data.next.time||'')}
+        ${
+          data.next.place
+            ?` · ${esc(data.next.place)}`
+            :''
+        }
+      </div>
 
-  </div>
+      <div class="versus">
 
-  <div class="card home-match-card">
+        <div class="club">
+          <div class="club-logo">⚽</div>
 
-    <div class="section-label">
-      PRÓXIMO PARTIDO
-    </div>
+          ${esc(data.settings.team||'KNATT FC')}
+        </div>
 
-    <div class="big">
-      ${esc(
-        data.next.date||
-        'Sin partido programado'
-      )}
-    </div>
+        <div class="vs">
+          VS
+        </div>
 
-    <div class="muted small">
+        <div class="club">
+          <div class="club-logo">🛡️</div>
 
-      ${esc(data.next.time||'')}
+          ${esc(data.next.opponent||'—')}
+        </div>
+
+      </div>
 
       ${
-        data.next.place
-          ?` · ${esc(data.next.place)}`
+        countdown
+          ?`
+            <div class="match-countdown">
+              ${countdown}
+            </div>
+          `
           :''
       }
 
+      <button
+        class="btn full"
+        onclick="go('tactic')">
+
+        Abrir Táctica
+
+      </button>
+
     </div>
 
-    <div class="versus">
+    <div class="card card-dark">
 
-      <div class="club">
+      <div class="section-label">
+        ESTADO DEL EQUIPO
+      </div>
 
-        <div class="club-logo">
-          ⚽
+      <div class="stat-grid">
+
+        <div class="stat">
+          <b>${data.players.length}</b>
+          <span>Jugadores</span>
         </div>
 
-        ${esc(
-          data.settings.team||
-          'KNATT FC'
-        )}
-
-      </div>
-
-      <div class="vs">
-        VS
-      </div>
-
-      <div class="club">
-
-        <div class="club-logo">
-          🛡️
+        <div class="stat">
+          <b>${available}</b>
+          <span>Disponibles</span>
         </div>
 
-        ${esc(
-          data.next.opponent||
-          '—'
-        )}
+        <div class="stat">
+          <b>${data.players.length-available}</b>
+          <span>Ausentes</span>
+        </div>
+
+        <div class="stat">
+          <b>${teamMatches.length}</b>
+          <span>Partidos</span>
+        </div>
 
       </div>
 
     </div>
 
-    ${
-      countdown
-        ?`
-          <div class="match-countdown">
-            ${countdown}
-          </div>
-        `
-        :''
-    }
+    <div
+      class="card home-quick-card"
+      onclick="go('team')">
 
-    <button
-      class="btn full"
-      onclick="go('tactic')">
-
-      Abrir Táctica
-
-    </button>
-
-  </div>
-
-  <div class="card card-dark">
-
-    <div class="section-label">
-      ESTADO DEL EQUIPO
-    </div>
-
-    <div class="stat-grid">
-
-      <div class="stat">
-        <b>${data.players.length}</b>
-        <span>Jugadores</span>
+      <div class="home-quick-icon">
+        ♟
       </div>
 
-      <div class="stat">
-        <b>${available}</b>
-        <span>Disponibles</span>
+      <div class="home-quick-content">
+
+        <div class="home-quick-title">
+          Plantilla
+        </div>
+
+        <div class="home-quick-subtitle">
+          ${data.players.length}
+          ${data.players.length===1?'jugador':'jugadores'}
+          ·
+          ${available}
+          disponibles
+        </div>
+
       </div>
 
-      <div class="stat">
-        <b>${data.players.length-available}</b>
-        <span>Ausentes</span>
-      </div>
-
-      <div class="stat">
-        <b>${teamMatches.length}</b>
-        <span>Partidos</span>
+      <div class="home-quick-arrow">
+        ›
       </div>
 
     </div>
 
-  </div>
+    <div class="card home-activity-card">
 
-  <div
-    class="card home-quick-card"
-    onclick="go('team')">
-
-    <div class="home-quick-icon">
-      ♟
-    </div>
-
-    <div class="home-quick-content">
-
-      <div class="home-quick-title">
-        Plantilla
+      <div class="section-label">
+        ÚLTIMA ACTIVIDAD
       </div>
 
-      <div class="home-quick-subtitle">
+      ${
+        activities.length
+          ?activities.map(
+            a=>`
+              <div class="activity-item">
 
-        ${data.players.length}
-        ${
-          data.players.length===1
-            ?'jugador'
-            :'jugadores'
-        }
+                <div class="activity-icon">
+                  ${esc(a.icon||'•')}
+                </div>
 
-        ·
+                <div class="activity-content">
 
-        ${available}
-        disponibles
+                  <div class="activity-title">
+                    ${esc(a.title)}
+                  </div>
 
-      </div>
+                  <div class="activity-time">
+                    ${activityTime(a.time)}
+                  </div>
 
-    </div>
+                </div>
 
-    <div class="home-quick-arrow">
-      ›
-    </div>
-
-  </div>
-
-  <div class="card home-activity-card">
-
-    <div class="section-label">
-      ÚLTIMA ACTIVIDAD
-    </div>
-
-    ${
-      activities.length
-
-      ?
-
-      activities.map(
-        a=>`
-
-        <div class="activity-item">
-
-          <div class="activity-icon">
-            ${esc(a.icon||'•')}
-          </div>
-
-          <div class="activity-content">
-
-            <div class="activity-title">
-              ${esc(a.title)}
+              </div>
+            `
+          ).join('')
+          :`
+            <div class="activity-empty">
+              Todavía no hay actividad reciente.
             </div>
+          `
+      }
 
-            <div class="activity-time">
-              ${activityTime(a.time)}
-            </div>
-
-          </div>
-
-        </div>
-
-        `
-      ).join('')
-
-      :
-
-      `
-      <div class="activity-empty">
-        Todavía no hay actividad reciente.
-      </div>
-      `
-    }
-
-  </div>
-
+    </div>
   `;
-
 }
 
 function activityTime(timestamp){
+  if(!timestamp)return '';
 
-  if(!timestamp){
-    return '';
-  }
-
-  const diff=
-    Date.now()-Number(timestamp);
-
+  const diff=Date.now()-Number(timestamp);
   const minute=60000;
   const hour=60*minute;
   const day=24*hour;
 
-  if(diff<minute){
-    return 'Ahora';
-  }
+  if(diff<minute)return 'Ahora';
 
   if(diff<hour){
-
-    return `Hace ${
-      Math.floor(diff/minute)
-    } min`;
-
+    return`Hace ${Math.floor(diff/minute)} min`;
   }
 
   if(diff<day){
-
-    return `Hace ${
-      Math.floor(diff/hour)
-    } h`;
-
+    return`Hace ${Math.floor(diff/hour)} h`;
   }
 
-  if(diff<2*day){
-    return 'Ayer';
-  }
+  if(diff<2*day)return'Ayer';
 
-  return new Date(timestamp)
-    .toLocaleDateString(
-      'es-ES',
-      {
-        day:'numeric',
-        month:'short'
-      }
-    );
-
+  return new Date(timestamp).toLocaleDateString(
+    'es-ES',
+    {
+      day:'numeric',
+      month:'short'
+    }
+  );
 }
 
 /* =====================================================
@@ -2908,154 +2449,115 @@ function activityTime(timestamp){
 ===================================================== */
 
 function team(){
+  const list=data.players.filter(
+    p=>
+      filter==='all'||
+      (
+        filter==='available'
+          ?p.available
+          :!p.available
+      )
+  );
 
-  const list=
-    data.players.filter(
-      p=>
-        filter==='all'||
-        (
-          filter==='available'
-            ?p.available
-            :!p.available
-        )
-    );
+  return`
+    <div class="title-row">
 
-  return `
+      <div>
 
-  <div class="title-row">
+        <div class="title">
+          Plantilla
+        </div>
 
-    <div>
+        <div class="subtitle">
+          ${data.players.length}
+          jugadores
+        </div>
 
-      <div class="title">
-        Plantilla
       </div>
 
-      <div class="subtitle">
-        ${data.players.length}
-        jugadores
-      </div>
+      <button
+        class="btn red-soft"
+        onclick="addPlayer()">
+
+        ＋
+
+      </button>
 
     </div>
 
-    <button
-      class="btn red-soft"
-      onclick="addPlayer()">
+    <div class="tabs">
 
-      ＋
+      <button
+        class="tab ${filter==='all'?'active':''}"
+        onclick="filter='all';render()">
 
-    </button>
+        Todos
 
-  </div>
+      </button>
 
-  <div class="tabs">
+      <button
+        class="tab ${filter==='available'?'active':''}"
+        onclick="filter='available';render()">
 
-    <button
-      class="tab ${
-        filter==='all'?'active':''
-      }"
-      onclick="
-        filter='all';
-        render()
-      ">
+        Disponibles
 
-      Todos
+      </button>
 
-    </button>
+      <button
+        class="tab ${filter==='absent'?'active':''}"
+        onclick="filter='absent';render()">
 
-    <button
-      class="tab ${
-        filter==='available'?'active':''
-      }"
-      onclick="
-        filter='available';
-        render()
-      ">
+        Ausentes
 
-      Disponibles
+      </button>
 
-    </button>
+    </div>
 
-    <button
-      class="tab ${
-        filter==='absent'?'active':''
-      }"
-      onclick="
-        filter='absent';
-        render()
-      ">
+    <div class="card">
 
-      Ausentes
+      ${
+        list.map(
+          p=>`
+            <div
+              class="item"
+              onclick="openPlayer(${p.id})">
 
-    </button>
+              <div class="avatar">
+                ${p.pos==='POR'?'🧤':'⚽'}
+              </div>
 
-  </div>
+              <div class="grow">
 
-  <div class="card">
+                <b>
+                  ${esc(p.name)}
+                </b>
 
-    ${
-      list.map(
-        p=>`
+                <div class="muted">
 
-        <div
-          class="item"
-          onclick="
-            openPlayer(${p.id})
-          ">
+                  ${esc(p.pos)}
 
-          <div class="avatar">
+                  ·
 
-            ${
-              p.pos==='POR'
-                ?'🧤'
-                :'⚽'
-            }
+                  ${
+                    p.available
+                      ?'Disponible'
+                      :esc(p.reason||'No disponible')
+                  }
 
-          </div>
+                </div>
 
-          <div class="grow">
+              </div>
 
-            <b>
-              ${esc(p.name)}
-            </b>
-
-            <div class="muted">
-
-              ${esc(p.pos)}
-
-              ·
-
-              ${
-                p.available
-                  ?'Disponible'
-                  :esc(
-                    p.reason||
-                    'No disponible'
-                  )
-              }
+              <span>›</span>
 
             </div>
+          `
+        ).join('')||
+        '<div class="muted">No hay jugadores.</div>'
+      }
 
-          </div>
-
-          <span>
-            ›
-          </span>
-
-        </div>
-
-        `
-      ).join('')
-
-      ||
-
-      '<div class="muted">No hay jugadores.</div>'
-
-    }
-
-  </div>
-
+    </div>
   `;
-
 }
 
 /* =====================================================
@@ -3063,116 +2565,99 @@ function team(){
 ===================================================== */
 
 function openPlayer(id){
-
   selectedPlayerId=id;
-
   section='player';
-
   render();
-
 }
 
 function playerProfile(){
-
-  const p=
-    data.players.find(
-      x=>
-        String(x.id)===
-        String(selectedPlayerId)
-    );
+  const p=data.players.find(
+    x=>String(x.id)===String(selectedPlayerId)
+  );
 
   if(!p){
-
-    return `
-    <div class="card">
-      Jugador no encontrado
-    </div>
+    return`
+      <div class="card">
+        Jugador no encontrado
+      </div>
     `;
-
   }
 
-  return `
-
-  <button
-    class="btn light"
-    onclick="go('team')">
-
-    ← Plantilla
-
-  </button>
-
-  <div
-    class="card"
-    style="margin-top:12px">
-
-    <div class="section-label">
-      JUGADOR
-    </div>
-
-    <div class="big">
-      ${esc(p.name)}
-    </div>
-
-    <div class="muted">
-
-      ${esc(p.pos)}
-      ·
-      #${esc(p.num)}
-
-    </div>
-
-  </div>
-
-  <div class="stat-grid">
-
-    <div class="stat">
-      <b>${p.min||0}</b>
-      <span>Minutos</span>
-    </div>
-
-    <div class="stat red">
-      <b>${p.g||0}</b>
-      <span>Goles</span>
-    </div>
-
-    <div class="stat">
-      <b>${p.a||0}</b>
-      <span>Asistencias</span>
-    </div>
-
-    <div class="stat">
-      <b>#${esc(p.num)}</b>
-      <span>Dorsal</span>
-    </div>
-
-  </div>
-
-  <div class="card">
-
+  return`
     <button
-      class="btn full"
-      onclick="editPlayer()">
+      class="btn light"
+      onclick="go('team')">
 
-      ✏️ Editar jugador
+      ← Plantilla
 
     </button>
 
-    <br><br>
+    <div
+      class="card"
+      style="margin-top:12px">
 
-    <button
-      class="btn light full"
-      onclick="
-        deletePlayer(${p.id})
-      ">
+      <div class="section-label">
+        JUGADOR
+      </div>
 
-      🗑️ Eliminar jugador
+      <div class="big">
+        ${esc(p.name)}
+      </div>
 
-    </button>
+      <div class="muted">
+        ${esc(p.pos)}
+        ·
+        #${esc(p.num)}
+      </div>
 
-  </div>
+    </div>
 
+    <div class="stat-grid">
+
+      <div class="stat">
+        <b>${p.min||0}</b>
+        <span>Minutos</span>
+      </div>
+
+      <div class="stat red">
+        <b>${p.g||0}</b>
+        <span>Goles</span>
+      </div>
+
+      <div class="stat">
+        <b>${p.a||0}</b>
+        <span>Asistencias</span>
+      </div>
+
+      <div class="stat">
+        <b>#${esc(p.num)}</b>
+        <span>Dorsal</span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <button
+        class="btn full"
+        onclick="editPlayer()">
+
+        ✏️ Editar jugador
+
+      </button>
+
+      <br><br>
+
+      <button
+        class="btn light full"
+        onclick="deletePlayer(${p.id})">
+
+        🗑️ Eliminar jugador
+
+      </button>
+
+    </div>
   `;
-
 }
 
 /* =====================================================
@@ -3180,18 +2665,15 @@ function playerProfile(){
 ===================================================== */
 
 function addPlayer(){
-
   closeEditModal();
   closeAddModal();
 
-  const modal=
-    document.createElement('div');
+  const modal=document.createElement('div');
 
   modal.className='edit-modal';
   modal.id='add-player-modal';
 
   modal.innerHTML=`
-
     <div
       class="edit-modal-card"
       onclick="event.stopPropagation()">
@@ -3223,6 +2705,7 @@ function addPlayer(){
 
       <div class="form-group">
         <label>Nombre</label>
+
         <input
           id="add-name"
           class="form-input"
@@ -3233,6 +2716,7 @@ function addPlayer(){
 
       <div class="form-group">
         <label>Dorsal</label>
+
         <input
           id="add-num"
           class="form-input"
@@ -3244,6 +2728,7 @@ function addPlayer(){
 
       <div class="form-group">
         <label>Posición</label>
+
         <input
           id="add-pos"
           class="form-input"
@@ -3314,6 +2799,7 @@ function addPlayer(){
 
         <div class="form-group">
           <label>Minutos</label>
+
           <input
             id="add-min"
             class="form-input"
@@ -3325,6 +2811,7 @@ function addPlayer(){
 
         <div class="form-group">
           <label>Goles</label>
+
           <input
             id="add-goals"
             class="form-input"
@@ -3336,6 +2823,7 @@ function addPlayer(){
 
         <div class="form-group">
           <label>Asistencias</label>
+
           <input
             id="add-assists"
             class="form-input"
@@ -3370,69 +2858,34 @@ function addPlayer(){
       </div>
 
     </div>
-
   `;
 
-  modal.addEventListener(
-    'click',
-    function(event){
-
-      if(event.target===modal){
-        closeAddModal();
-      }
-
+  modal.addEventListener('click',function(event){
+    if(event.target===modal){
+      closeAddModal();
     }
-  );
+  });
 
   document.body.appendChild(modal);
-
   document.body.style.overflow='hidden';
 
-  const nameInput=
-    document.getElementById(
-      'add-name'
-    );
+  const nameInput=document.getElementById('add-name');
 
   if(nameInput){
-
-    setTimeout(
-      ()=>{
-        nameInput.focus();
-      },
-      50
-    );
-
+    setTimeout(()=>{
+      nameInput.focus();
+    },50);
   }
-
 }
 
 function toggleAddReason(){
+  const available=document.querySelector('#add-available-yes');
+  const reason=document.getElementById('add-reason');
+  const group=document.getElementById('add-reason-group');
 
-  const available=
-    document.querySelector(
-      '#add-available-yes'
-    );
+  if(!available||!reason||!group)return;
 
-  const reason=
-    document.getElementById(
-      'add-reason'
-    );
-
-  const group=
-    document.getElementById(
-      'add-reason-group'
-    );
-
-  if(
-    !available||
-    !reason||
-    !group
-  ){
-    return;
-  }
-
-  const isAvailable=
-    available.checked;
+  const isAvailable=available.checked;
 
   reason.disabled=isAvailable;
 
@@ -3444,109 +2897,58 @@ function toggleAddReason(){
   if(isAvailable){
     reason.value='';
   }
-
 }
 
 function saveNewPlayer(){
-
   const name=document.getElementById('add-name');
   const num=document.getElementById('add-num');
   const pos=document.getElementById('add-pos');
 
-  const available=
-    document.querySelector(
-      'input[name="add-available"]:checked'
-    );
+  const available=document.querySelector(
+    'input[name="add-available"]:checked'
+  );
 
   const reason=document.getElementById('add-reason');
   const min=document.getElementById('add-min');
   const goals=document.getElementById('add-goals');
   const assists=document.getElementById('add-assists');
 
-  const newName=
-    name?name.value.trim():'';
-
-  const newNum=
-    num?num.value.trim():'';
-
-  const newPos=
-    pos?pos.value.trim():'';
+  const newName=name?name.value.trim():'';
+  const newNum=num?num.value.trim():'';
+  const newPos=pos?pos.value.trim():'';
 
   if(!newName){
-
-    alert(
-      'El nombre del jugador es obligatorio.'
-    );
-
+    alert('El nombre del jugador es obligatorio.');
     name?.focus();
-
     return;
-
   }
 
   if(!newNum){
-
-    alert(
-      'El dorsal es obligatorio.'
-    );
-
+    alert('El dorsal es obligatorio.');
     num?.focus();
-
     return;
-
   }
 
   if(!newPos){
-
-    alert(
-      'La posición es obligatoria.'
-    );
-
+    alert('La posición es obligatoria.');
     pos?.focus();
-
     return;
-
   }
 
-  const isAvailable=
-    available
-      ?available.value==='true'
-      :true;
+  const isAvailable=available
+    ?available.value==='true'
+    :true;
 
   const newPlayer={
-
     id:Date.now(),
-
     name:newName,
-
     num:newNum,
-
     pos:newPos,
-
     available:isAvailable,
-
-    reason:
-      isAvailable
-        ?''
-        :(reason
-          ?reason.value.trim()
-          :''),
-
-    min:Math.max(
-      0,
-      Number(min?.value)||0
-    ),
-
-    g:Math.max(
-      0,
-      Number(goals?.value)||0
-    ),
-
-    a:Math.max(
-      0,
-      Number(assists?.value)||0
-    )
-
+    reason:isAvailable?'':(reason?reason.value.trim():''),
+    min:Math.max(0,Number(min?.value)||0),
+    g:Math.max(0,Number(goals?.value)||0),
+    a:Math.max(0,Number(assists?.value)||0)
   };
 
   data.players.push(newPlayer);
@@ -3557,11 +2959,8 @@ function saveNewPlayer(){
   );
 
   save();
-
   closeAddModal();
-
   render();
-
 }
 
 /* =====================================================
@@ -3569,26 +2968,18 @@ function saveNewPlayer(){
 ===================================================== */
 
 function editPlayer(){
+  const p=data.players.find(
+    x=>String(x.id)===String(selectedPlayerId)
+  );
 
-  const p=
-    data.players.find(
-      x=>
-        String(x.id)===
-        String(selectedPlayerId)
-    );
+  if(!p)return;
 
-  if(!p){
-    return;
-  }
-
-  const modal=
-    document.createElement('div');
+  const modal=document.createElement('div');
 
   modal.className='edit-modal';
   modal.id='edit-player-modal';
 
   modal.innerHTML=`
-
     <div
       class="edit-modal-card"
       onclick="event.stopPropagation()">
@@ -3619,7 +3010,6 @@ function editPlayer(){
       </div>
 
       <div class="form-group">
-
         <label>Nombre</label>
 
         <input
@@ -3628,11 +3018,9 @@ function editPlayer(){
           type="text"
           value="${esc(p.name)}"
           autocomplete="off">
-
       </div>
 
       <div class="form-group">
-
         <label>Dorsal</label>
 
         <input
@@ -3641,11 +3029,9 @@ function editPlayer(){
           type="number"
           inputmode="numeric"
           value="${esc(p.num)}">
-
       </div>
 
       <div class="form-group">
-
         <label>Posición</label>
 
         <input
@@ -3654,7 +3040,6 @@ function editPlayer(){
           type="text"
           value="${esc(p.pos)}"
           autocomplete="off">
-
       </div>
 
       <div class="form-group">
@@ -3670,9 +3055,7 @@ function editPlayer(){
               id="edit-available-yes"
               name="edit-available"
               value="true"
-              ${
-                p.available?'checked':''
-              }
+              ${p.available?'checked':''}
               onchange="toggleEditReason()">
 
             <label for="edit-available-yes">
@@ -3688,9 +3071,7 @@ function editPlayer(){
               id="edit-available-no"
               name="edit-available"
               value="false"
-              ${
-                !p.available?'checked':''
-              }
+              ${!p.available?'checked':''}
               onchange="toggleEditReason()">
 
             <label for="edit-available-no">
@@ -3705,9 +3086,7 @@ function editPlayer(){
 
       <div
         id="edit-reason-group"
-        class="form-group ${
-          p.available?'edit-disabled':''
-        }">
+        class="form-group ${p.available?'edit-disabled':''}">
 
         <label>
           Motivo de ausencia
@@ -3719,16 +3098,13 @@ function editPlayer(){
           type="text"
           value="${esc(p.reason||'')}"
           placeholder="Ej. Lesión, trabajo, vacaciones..."
-          ${
-            p.available?'disabled':''
-          }>
+          ${p.available?'disabled':''}>
 
       </div>
 
       <div class="edit-stats-grid">
 
         <div class="form-group">
-
           <label>Minutos</label>
 
           <input
@@ -3738,11 +3114,9 @@ function editPlayer(){
             inputmode="numeric"
             min="0"
             value="${Number(p.min)||0}">
-
         </div>
 
         <div class="form-group">
-
           <label>Goles</label>
 
           <input
@@ -3752,11 +3126,9 @@ function editPlayer(){
             inputmode="numeric"
             min="0"
             value="${Number(p.g)||0}">
-
         </div>
 
         <div class="form-group">
-
           <label>Asistencias</label>
 
           <input
@@ -3766,7 +3138,6 @@ function editPlayer(){
             inputmode="numeric"
             min="0"
             value="${Number(p.a)||0}">
-
         </div>
 
       </div>
@@ -3794,72 +3165,35 @@ function editPlayer(){
       </div>
 
     </div>
-
   `;
 
-  modal.addEventListener(
-    'click',
-    function(event){
-
-      if(event.target===modal){
-        closeEditModal();
-      }
-
+  modal.addEventListener('click',function(event){
+    if(event.target===modal){
+      closeEditModal();
     }
-  );
+  });
 
   document.body.appendChild(modal);
-
   document.body.style.overflow='hidden';
 
-  const nameInput=
-    document.getElementById(
-      'edit-name'
-    );
+  const nameInput=document.getElementById('edit-name');
 
   if(nameInput){
-
-    setTimeout(
-      ()=>{
-
-        nameInput.focus();
-        nameInput.select();
-
-      },
-      50
-    );
-
+    setTimeout(()=>{
+      nameInput.focus();
+      nameInput.select();
+    },50);
   }
-
 }
 
 function toggleEditReason(){
+  const available=document.querySelector('#edit-available-yes');
+  const reason=document.getElementById('edit-reason');
+  const group=document.getElementById('edit-reason-group');
 
-  const available=
-    document.querySelector(
-      '#edit-available-yes'
-    );
+  if(!available||!reason||!group)return;
 
-  const reason=
-    document.getElementById(
-      'edit-reason'
-    );
-
-  const group=
-    document.getElementById(
-      'edit-reason-group'
-    );
-
-  if(
-    !available||
-    !reason||
-    !group
-  ){
-    return;
-  }
-
-  const isAvailable=
-    available.checked;
+  const isAvailable=available.checked;
 
   reason.disabled=isAvailable;
 
@@ -3871,118 +3205,68 @@ function toggleEditReason(){
   if(isAvailable){
     reason.value='';
   }
-
 }
 
 function saveEditedPlayer(){
-
-  const p=
-    data.players.find(
-      x=>
-        String(x.id)===
-        String(selectedPlayerId)
-    );
+  const p=data.players.find(
+    x=>String(x.id)===String(selectedPlayerId)
+  );
 
   if(!p){
-
     closeEditModal();
-
     return;
-
   }
 
   const name=document.getElementById('edit-name');
   const num=document.getElementById('edit-num');
   const pos=document.getElementById('edit-pos');
 
-  const available=
-    document.querySelector(
-      'input[name="edit-available"]:checked'
-    );
+  const available=document.querySelector(
+    'input[name="edit-available"]:checked'
+  );
 
   const reason=document.getElementById('edit-reason');
   const min=document.getElementById('edit-min');
   const goals=document.getElementById('edit-goals');
   const assists=document.getElementById('edit-assists');
 
-  const newName=
-    name?name.value.trim():p.name;
-
-  const newNum=
-    num?num.value.trim():p.num;
-
-  const newPos=
-    pos?pos.value.trim():p.pos;
+  const newName=name?name.value.trim():p.name;
+  const newNum=num?num.value.trim():p.num;
+  const newPos=pos?pos.value.trim():p.pos;
 
   if(!newName){
-
-    alert(
-      'El nombre del jugador es obligatorio.'
-    );
-
+    alert('El nombre del jugador es obligatorio.');
     name?.focus();
-
     return;
-
   }
 
   if(!newNum){
-
-    alert(
-      'El dorsal es obligatorio.'
-    );
-
+    alert('El dorsal es obligatorio.');
     num?.focus();
-
     return;
-
   }
 
   if(!newPos){
-
-    alert(
-      'La posición es obligatoria.'
-    );
-
+    alert('La posición es obligatoria.');
     pos?.focus();
-
     return;
-
   }
 
   p.name=newName;
   p.num=newNum;
   p.pos=newPos;
 
-  p.available=
-    available
-      ?available.value==='true'
-      :p.available;
+  p.available=available
+    ?available.value==='true'
+    :p.available;
 
-  p.reason=
-    p.available
-      ?''
-      :(reason
-        ?reason.value.trim()
-        :p.reason);
+  p.reason=p.available
+    ?''
+    :(reason?reason.value.trim():p.reason);
 
-  p.min=
-    Math.max(
-      0,
-      Number(min?.value)||0
-    );
-
-  p.g=
-    Math.max(
-      0,
-      Number(goals?.value)||0
-    );
-
-  p.a=
-    Math.max(
-      0,
-      Number(assists?.value)||0
-    );
+  p.min=Math.max(0,Number(min?.value)||0);
+  p.g=Math.max(0,Number(goals?.value)||0);
+  p.a=Math.max(0,Number(assists?.value)||0);
 
   addActivity(
     '✏️',
@@ -3990,11 +3274,8 @@ function saveEditedPlayer(){
   );
 
   save();
-
   closeEditModal();
-
   render();
-
 }
 
 /* =====================================================
@@ -4002,55 +3283,33 @@ function saveEditedPlayer(){
 ===================================================== */
 
 function closeEditModal(){
-
-  const modal=
-    document.getElementById(
-      'edit-player-modal'
-    );
+  const modal=document.getElementById('edit-player-modal');
 
   if(modal){
     modal.remove();
   }
 
   if(
-    !document.getElementById(
-      'add-player-modal'
-    ) &&
-    !document.getElementById(
-      'calendar-import-modal'
-    )
+    !document.getElementById('add-player-modal') &&
+    !document.getElementById('calendar-import-modal')
   ){
-
     document.body.style.overflow='';
-
   }
-
 }
 
 function closeAddModal(){
-
-  const modal=
-    document.getElementById(
-      'add-player-modal'
-    );
+  const modal=document.getElementById('add-player-modal');
 
   if(modal){
     modal.remove();
   }
 
   if(
-    !document.getElementById(
-      'edit-player-modal'
-    ) &&
-    !document.getElementById(
-      'calendar-import-modal'
-    )
+    !document.getElementById('edit-player-modal') &&
+    !document.getElementById('calendar-import-modal')
   ){
-
     document.body.style.overflow='';
-
   }
-
 }
 
 /* =====================================================
@@ -4058,45 +3317,27 @@ function closeAddModal(){
 ===================================================== */
 
 function deletePlayer(id){
+  const player=data.players.find(
+    p=>String(p.id)===String(id)
+  );
 
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===
-        String(id)
-    );
-
-  if(
-    !confirm(
-      '¿Eliminar este jugador?'
-    )
-  ){
+  if(!confirm('¿Eliminar este jugador?')){
     return;
   }
 
-  data.players=
-    data.players.filter(
-      p=>
-        String(p.id)!==
-        String(id)
-    );
-
-  removePlayerFromTactic(
-    id,
-    true
+  data.players=data.players.filter(
+    p=>String(p.id)!==String(id)
   );
+
+  removePlayerFromTactic(id,true);
 
   addActivity(
     '🗑️',
-    `Jugador eliminado: ${
-      player?player.name:'Jugador'
-    }`
+    `Jugador eliminado: ${player?player.name:'Jugador'}`
   );
 
   save();
-
   go('team');
-
 }
 
 /* =====================================================
@@ -4104,163 +3345,225 @@ function deletePlayer(id){
 ===================================================== */
 
 function matches(){
+  const teamMatches=getTeamMatches();
+  const sorted=sortMatches(teamMatches);
 
-  const teamMatches=
-    getTeamMatches();
+  const played=sorted.filter(
+    m=>isPlayedMatch(m)
+  ).length;
 
-  const sorted=
-    sortMatches(
-      teamMatches
-    );
+  const upcoming=sorted.filter(
+    m=>!isPlayedMatch(m)
+  ).length;
 
-  const played=
-    sorted.filter(
-      m=>isPlayedMatch(m)
-    ).length;
+  const next=getNextUpcomingMatch();
 
-  const upcoming=
-    sorted.filter(
-      m=>!isPlayedMatch(m)
-    ).length;
+  return`
+    <div class="title-row">
 
-  const next=
-    getNextUpcomingMatch();
+      <div>
 
-  return `
+        <div class="title">
+          Partidos
+        </div>
 
-  <div class="title-row">
+        <div class="subtitle">
+          ${data.settings.season||'2026/27'}
+        </div>
 
-    <div>
-
-      <div class="title">
-        Partidos
       </div>
 
-      <div class="subtitle">
-        ${data.settings.season||'2026/27'}
+      <div class="matches-header-actions">
+
+        <button
+          class="btn red-soft"
+          onclick="openCalendarImport()">
+
+          📅 Importar
+
+        </button>
+
       </div>
 
     </div>
 
-    <div class="matches-header-actions">
+    <div class="calendar-import-card">
+
+      <div class="calendar-import-row">
+
+        <div class="calendar-import-icon">
+          📅
+        </div>
+
+        <div class="calendar-import-content">
+
+          <div class="calendar-import-title">
+            Calendario de temporada
+          </div>
+
+          <div class="calendar-import-subtitle">
+
+            Selecciona las páginas del calendario
+            y KNATT leerá las jornadas y únicamente
+            los partidos de tu equipo.
+
+          </div>
+
+        </div>
+
+      </div>
 
       <button
-        class="btn red-soft"
+        class="btn full calendar-import-button"
         onclick="openCalendarImport()">
 
-        📅 Importar
+        🖼️ Cargar calendario
 
       </button>
 
     </div>
 
-  </div>
+    ${
+      sorted.length
+        ?`
+          <div class="season-summary">
 
-  <div class="calendar-import-card">
+            <div class="season-summary-card">
+              <b>${sorted.length}</b>
+              <span>Total</span>
+            </div>
 
-    <div class="calendar-import-row">
+            <div class="season-summary-card">
+              <b>${upcoming}</b>
+              <span>Pendientes</span>
+            </div>
 
-      <div class="calendar-import-icon">
-        📅
-      </div>
+            <div class="season-summary-card">
+              <b>${played}</b>
+              <span>Jugados</span>
+            </div>
 
-      <div class="calendar-import-content">
+          </div>
+        `
+        :''
+    }
 
-        <div class="calendar-import-title">
-          Calendario de temporada
-        </div>
+    ${
+      next
+        ?`
+          <div class="card match-card match-upcoming">
 
-        <div class="calendar-import-subtitle">
+            <div class="section-label">
+              PRÓXIMO PARTIDO
+            </div>
 
-          Selecciona las páginas del calendario
-          y KNATT leerá las jornadas y únicamente
-          los partidos de tu equipo.
+            <div class="match-round">
+              ${
+                next.round
+                  ?esc(next.round)
+                  :'Próxima jornada'
+              }
+            </div>
 
-        </div>
+            <div class="match-date">
 
-      </div>
+              ${esc(
+                next.date||
+                displayDateFromISO(next.dateISO)
+              )}
 
-    </div>
+              ${
+                next.time
+                  ?` · ${esc(next.time)}`
+                  :''
+              }
 
-    <button
-      class="btn full calendar-import-button"
-      onclick="openCalendarImport()">
+            </div>
 
-      🖼️ Cargar calendario
+            <div class="match-teams">
 
-    </button>
+              <div class="match-team home">
+                ${esc(next.home)}
+              </div>
 
-  </div>
+              <div class="match-score">
+                VS
+              </div>
 
-  ${
-    sorted.length
+              <div class="match-team away">
+                ${esc(next.away)}
+              </div>
 
-    ?
+            </div>
 
-    `
+            <div class="match-status">
 
-    <div class="season-summary">
+              <div class="match-location">
+                ${esc(next.place||'')}
+              </div>
 
-      <div class="season-summary-card">
-        <b>${sorted.length}</b>
-        <span>Total</span>
-      </div>
+            </div>
 
-      <div class="season-summary-card">
-        <b>${upcoming}</b>
-        <span>Pendientes</span>
-      </div>
+          </div>
+        `
+        :''
+    }
 
-      <div class="season-summary-card">
-        <b>${played}</b>
-        <span>Jugados</span>
-      </div>
+    ${
+      sorted.length
+        ?sorted.map(
+          m=>matchCardHtml(
+            m,
+            next
+              ?String(m.id)===String(next.id)
+              :false
+          )
+        ).join('')
+        :`
+          <div class="card">
 
-    </div>
+            <div class="matches-empty">
 
-    `
+              ${
+                getConfiguredTeam()
+                  ?`No hay partidos registrados de <strong>${esc(getConfiguredTeam())}</strong>.`
+                  :'Configura primero el nombre de tu equipo.'
+              }
 
-    :
+              <br><br>
 
-    ''
+              Pulsa
+              <strong>“Cargar calendario”</strong>
+              para importar el calendario.
 
-  }
+            </div>
 
-  ${
-    next
+          </div>
+        `
+    }
+  `;
+}
 
-    ?
+function matchCardHtml(match,isNext){
+  const played=isPlayedMatch(match);
 
-    `
-
-    <div class="card match-card match-upcoming">
-
-      <div class="section-label">
-        PRÓXIMO PARTIDO
-      </div>
+  return`
+    <div class="card ${isNext?'match-upcoming':'match-past'}">
 
       <div class="match-round">
-        ${
-          next.round
-            ?esc(next.round)
-            :'Próxima jornada'
-        }
+        ${match.round?esc(match.round):'PARTIDO'}
       </div>
 
       <div class="match-date">
 
-        ${
-          esc(
-            next.date||
-            displayDateFromISO(
-              next.dateISO
-            )
-          )
-        }
+        ${esc(
+          match.date||
+          displayDateFromISO(match.dateISO)
+        )}
 
         ${
-          next.time
-            ?` · ${esc(next.time)}`
+          match.time
+            ?` · ${esc(match.time)}`
             :''
         }
 
@@ -4269,15 +3572,15 @@ function matches(){
       <div class="match-teams">
 
         <div class="match-team home">
-          ${esc(next.home)}
+          ${esc(match.home)}
         </div>
 
-        <div class="match-score">
-          VS
+        <div class="match-score ${played?'played':''}">
+          ${played?esc(match.score):'VS'}
         </div>
 
         <div class="match-team away">
-          ${esc(next.away)}
+          ${esc(match.away)}
         </div>
 
       </div>
@@ -4285,168 +3588,24 @@ function matches(){
       <div class="match-status">
 
         <div class="match-location">
-          ${esc(next.place||'')}
+          ${esc(match.place||'')}
         </div>
 
-      </div>
+        <button
+          class="match-result-button"
+          onclick="
+            event.stopPropagation();
+            editMatchResult('${esc(match.id)}')
+          ">
 
-    </div>
+          ${played?'✏️ Resultado':'📝 Añadir resultado'}
 
-    `
-
-    :
-
-    ''
-
-  }
-
-  ${
-    sorted.length
-
-    ?
-
-    sorted
-      .map(
-        m=>
-          matchCardHtml(
-            m,
-            next
-              ?String(m.id)===String(next.id)
-              :false
-          )
-      )
-      .join('')
-
-    :
-
-    `
-
-    <div class="card">
-
-      <div class="matches-empty">
-
-        ${
-          getConfiguredTeam()
-
-            ?`No hay partidos registrados de <strong>${esc(getConfiguredTeam())}</strong>.`
-
-            :'Configura primero el nombre de tu equipo.'
-        }
-
-        <br><br>
-
-        Pulsa
-        <strong>“Cargar calendario”</strong>
-        para importar el calendario.
+        </button>
 
       </div>
 
     </div>
-
-    `
-
-  }
-
   `;
-
-}
-
-function matchCardHtml(
-  match,
-  isNext
-){
-
-  const played=
-    isPlayedMatch(match);
-
-  return `
-
-  <div class="card ${
-    isNext
-      ?'match-upcoming'
-      :'match-past'
-  }">
-
-    <div class="match-round">
-
-      ${
-        match.round
-          ?esc(match.round)
-          :'PARTIDO'
-      }
-
-    </div>
-
-    <div class="match-date">
-
-      ${
-        esc(
-          match.date||
-          displayDateFromISO(
-            match.dateISO
-          )
-        )
-      }
-
-      ${
-        match.time
-          ?` · ${esc(match.time)}`
-          :''
-      }
-
-    </div>
-
-    <div class="match-teams">
-
-      <div class="match-team home">
-        ${esc(match.home)}
-      </div>
-
-      <div class="match-score ${
-        played?'played':''
-      }">
-
-        ${
-          played
-            ?esc(match.score)
-            :'VS'
-        }
-
-      </div>
-
-      <div class="match-team away">
-        ${esc(match.away)}
-      </div>
-
-    </div>
-
-    <div class="match-status">
-
-      <div class="match-location">
-        ${esc(match.place||'')}
-      </div>
-
-      <button
-        class="match-result-button"
-        onclick="
-          event.stopPropagation();
-          editMatchResult('${esc(match.id)}')
-        ">
-
-        ${
-          played
-            ?'✏️ Resultado'
-            :'📝 Añadir resultado'
-        }
-
-      </button>
-
-    </div>
-
-  </div>
-
-  `;
-
 }
 
 /* =====================================================
@@ -4454,71 +3613,48 @@ function matchCardHtml(
 ===================================================== */
 
 function editMatchResult(id){
+  const match=data.matches.find(
+    m=>String(m.id)===String(id)
+  );
 
-  const match=
-    data.matches.find(
-      m=>
-        String(m.id)===
-        String(id)
-    );
-
-  if(!match){
-    return;
-  }
+  if(!match)return;
 
   if(
     !isConfiguredTeam(match.home) &&
     !isConfiguredTeam(match.away)
   ){
-
     alert(
       'Este partido no pertenece al equipo configurado.'
     );
-
-    return;
-
-  }
-
-  const current=
-    String(
-      match.score||''
-    );
-
-  const result=
-    prompt(
-      `Resultado de ${match.home} - ${match.away}\n\nEjemplo: 2 - 1\n\nDeja vacío para borrar el resultado.`,
-      current
-    );
-
-  if(result===null){
     return;
   }
 
-  match.score=
-    result.trim();
+  const current=String(match.score||'');
+
+  const result=prompt(
+    `Resultado de ${match.home} - ${match.away}\n\nEjemplo: 2 - 1\n\nDeja vacío para borrar el resultado.`,
+    current
+  );
+
+  if(result===null)return;
+
+  match.score=result.trim();
 
   if(match.score){
-
     addActivity(
       '🏆',
       `Resultado añadido: ${match.home} ${match.score} ${match.away}`
     );
-
   }else{
-
     addActivity(
       '↩️',
       `Resultado eliminado: ${match.home} - ${match.away}`
     );
-
   }
 
   save();
-
   syncNextMatch();
-
   render();
-
 }
 
 /* =====================================================
@@ -4526,30 +3662,25 @@ function editMatchResult(id){
 ===================================================== */
 
 function openCalendarImport(){
-
   closeEditModal();
   closeAddModal();
 
   importedMatches=[];
 
-  calendarPreviewUrls.forEach(
-    url=>{
-      try{
-        URL.revokeObjectURL(url);
-      }catch(error){}
-    }
-  );
+  calendarPreviewUrls.forEach(url=>{
+    try{
+      URL.revokeObjectURL(url);
+    }catch(error){}
+  });
 
   calendarPreviewUrls=[];
 
-  const modal=
-    document.createElement('div');
+  const modal=document.createElement('div');
 
   modal.className='edit-modal';
   modal.id='calendar-import-modal';
 
   modal.innerHTML=`
-
     <div
       class="edit-modal-card"
       onclick="event.stopPropagation()">
@@ -4566,10 +3697,7 @@ function openCalendarImport(){
 
             Solo se guardarán los partidos de
             <strong>
-              ${esc(
-                getConfiguredTeam()||
-                'tu equipo'
-              )}
+              ${esc(getConfiguredTeam()||'tu equipo')}
             </strong>
 
           </div>
@@ -4599,8 +3727,8 @@ function openCalendarImport(){
 
         Cada cabecera
         <strong>Jornada + fecha</strong>
-        se asignará a los partidos que aparecen
-        debajo.
+        se asignará a todos los partidos que
+        aparecen debajo hasta la siguiente jornada.
 
         <br><br>
 
@@ -4611,10 +3739,7 @@ function openCalendarImport(){
 
         Equipo configurado:
         <strong>
-          ${esc(
-            getConfiguredTeam()||
-            'No configurado'
-          )}
+          ${esc(getConfiguredTeam()||'No configurado')}
         </strong>
 
       </div>
@@ -4695,24 +3820,16 @@ function openCalendarImport(){
       </div>
 
     </div>
-
   `;
 
-  modal.addEventListener(
-    'click',
-    function(event){
-
-      if(event.target===modal){
-        closeCalendarImport();
-      }
-
+  modal.addEventListener('click',function(event){
+    if(event.target===modal){
+      closeCalendarImport();
     }
-  );
+  });
 
   document.body.appendChild(modal);
-
   document.body.style.overflow='hidden';
-
 }
 
 /* =====================================================
@@ -4720,201 +3837,120 @@ function openCalendarImport(){
 ===================================================== */
 
 function closeCalendarImport(){
-
-  const modal=
-    document.getElementById(
-      'calendar-import-modal'
-    );
+  const modal=document.getElementById(
+    'calendar-import-modal'
+  );
 
   if(modal){
     modal.remove();
   }
 
-  calendarPreviewUrls.forEach(
-    url=>{
-      try{
-        URL.revokeObjectURL(url);
-      }catch(error){}
-    }
-  );
+  calendarPreviewUrls.forEach(url=>{
+    try{
+      URL.revokeObjectURL(url);
+    }catch(error){}
+  });
 
   calendarPreviewUrls=[];
 
   if(
-    !document.getElementById(
-      'edit-player-modal'
-    ) &&
-    !document.getElementById(
-      'add-player-modal'
-    )
+    !document.getElementById('edit-player-modal') &&
+    !document.getElementById('add-player-modal')
   ){
-
     document.body.style.overflow='';
-
   }
-
 }
 
 /* =====================================================
-   CARGA DE IMAGEN Y OCR
+   CARGA DE IMAGEN
 ===================================================== */
 
-/*
-  El calendario de la Federación tiene dos columnas.
-  Por eso NO hacemos OCR de la página completa.
-
-  Dividimos cada página en:
-
-  ┌───────────────┬───────────────┐
-  │   columna 1   │   columna 2   │
-  │   jornadas    │   jornadas    │
-  └───────────────┴───────────────┘
-
-  Esto evita que Tesseract mezcle jornadas.
-*/
-
 function loadImageForOCR(file){
+  return new Promise((resolve,reject)=>{
+    const url=URL.createObjectURL(file);
+    const img=new Image();
 
-  return new Promise(
-    (resolve,reject)=>{
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
 
-      const url=
-        URL.createObjectURL(file);
+    img.onerror=()=>{
+      URL.revokeObjectURL(url);
+      reject(new Error('No se pudo cargar la imagen.'));
+    };
 
-      const img=
-        new Image();
-
-      img.onload=()=>{
-
-        URL.revokeObjectURL(url);
-
-        resolve(img);
-
-      };
-
-      img.onerror=()=>{
-
-        URL.revokeObjectURL(url);
-
-        reject(
-          new Error(
-            'No se pudo cargar la imagen.'
-          )
-        );
-
-      };
-
-      img.src=url;
-
-    }
-  );
-
+    img.src=url;
+  });
 }
 
 function canvasToBlob(canvas){
-
-  return new Promise(
-    (resolve,reject)=>{
-
-      canvas.toBlob(
-        blob=>{
-
-          if(blob){
-            resolve(blob);
-          }else{
-            reject(
-              new Error(
-                'No se pudo preparar la imagen.'
-              )
-            );
-          }
-
-        },
-        'image/png',
-        1
-      );
-
-    }
-  );
-
+  return new Promise((resolve,reject)=>{
+    canvas.toBlob(
+      blob=>{
+        if(blob){
+          resolve(blob);
+        }else{
+          reject(new Error('No se pudo preparar la imagen.'));
+        }
+      },
+      'image/png',
+      1
+    );
+  });
 }
 
-async function createOCRColumn(
-  img,
-  columnIndex
-){
+/*
+  Cada página del calendario tiene DOS columnas.
+  Se procesa cada columna independientemente.
+*/
 
-  const originalWidth=
-    img.naturalWidth||
-    img.width;
-
-  const originalHeight=
-    img.naturalHeight||
-    img.height;
-
-  /*
-    Si la imagen ya parece ser una sola columna,
-    no la dividimos.
-  */
+async function createOCRColumn(img,columnIndex){
+  const originalWidth=img.naturalWidth||img.width;
+  const originalHeight=img.naturalHeight||img.height;
 
   const isSingleColumn=
-    (
-      originalWidth/
-      originalHeight
-    )<0.62;
+    originalWidth/originalHeight<0.62;
 
   let sx=0;
   let sw=originalWidth;
 
   if(!isSingleColumn){
-
     if(columnIndex===0){
-
       sx=0;
-      sw=Math.floor(
-        originalWidth/2
-      );
-
+      sw=Math.floor(originalWidth/2);
     }else{
-
-      sx=Math.floor(
-        originalWidth/2
-      );
-
-      sw=
-        originalWidth-sx;
-
+      sx=Math.floor(originalWidth/2);
+      sw=originalWidth-sx;
     }
-
   }
 
-  /*
-    Ampliamos la columna para mejorar
-    la lectura de los textos pequeños.
-  */
+  const scale=1.8;
 
-  const scale=1.5;
+  const canvas=document.createElement('canvas');
 
-  const canvas=
-    document.createElement('canvas');
+  canvas.width=Math.max(
+    1,
+    Math.round(sw*scale)
+  );
 
-  canvas.width=
-    Math.max(
-      1,
-      Math.round(sw*scale)
-    );
+  canvas.height=Math.max(
+    1,
+    Math.round(originalHeight*scale)
+  );
 
-  canvas.height=
-    Math.max(
-      1,
-      Math.round(originalHeight*scale)
-    );
-
-  const ctx=
-    canvas.getContext('2d');
+  const ctx=canvas.getContext('2d');
 
   ctx.imageSmoothingEnabled=true;
   ctx.imageSmoothingQuality='high';
+
+  ctx.fillStyle='#fff';
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
   ctx.drawImage(
     img,
@@ -4929,49 +3965,36 @@ async function createOCRColumn(
   );
 
   return canvasToBlob(canvas);
-
 }
 
 async function recognizeOCRImage(
   imageBlob,
   progressCallback
 ){
+  const result=await Tesseract.recognize(
+    imageBlob,
+    'spa',
+    {
+      logger:message=>{
+        if(message.status==='recognizing text'){
+          const progress=Math.round(
+            (Number(message.progress)||0)*100
+          );
 
-  const result=
-    await Tesseract.recognize(
-      imageBlob,
-      'spa',
-      {
-        logger:message=>{
-
-          if(
-            message.status===
-            'recognizing text'
-          ){
-
-            const progress=
-              Math.round(
-                (
-                  Number(
-                    message.progress
-                  )||0
-                )*100
-              );
-
-            if(progressCallback){
-              progressCallback(
-                progress
-              );
-            }
-
+          if(progressCallback){
+            progressCallback(progress);
           }
-
         }
+      },
+
+      config:{
+        tessedit_pageseg_mode:'6',
+        preserve_interword_spaces:'1'
       }
-    );
+    }
+  );
 
   return result?.data?.text||'';
-
 }
 
 async function readCalendarPage(
@@ -4980,27 +4003,13 @@ async function readCalendarPage(
   totalPages,
   globalProgress
 ){
+  const img=await loadImageForOCR(file);
 
-  const img=
-    await loadImageForOCR(file);
+  const width=img.naturalWidth||img.width;
+  const height=img.naturalHeight||img.height;
 
-  const width=
-    img.naturalWidth||
-    img.width;
-
-  const height=
-    img.naturalHeight||
-    img.height;
-
-  const isSingleColumn=
-    (
-      width/height
-    )<0.62;
-
-  const columnCount=
-    isSingleColumn
-      ?1
-      :2;
+  const isSingleColumn=width/height<0.62;
+  const columnCount=isSingleColumn?1:2;
 
   const texts=[];
 
@@ -5009,109 +4018,82 @@ async function readCalendarPage(
     column<columnCount;
     column++
   ){
-
-    const status=
-      document.getElementById(
-        'ocr-status'
-      );
+    const status=document.getElementById('ocr-status');
 
     if(status){
-
       status.textContent=
-        `Leyendo página ${
-          pageIndex+1
-        } de ${
-          totalPages
-        } · columna ${
-          column+1
-        } de ${
-          columnCount
-        }...`;
-
+        `Leyendo página ${pageIndex+1} de ${totalPages} · columna ${column+1} de ${columnCount}...`;
     }
 
-    const blob=
-      await createOCRColumn(
-        img,
-        column
-      );
+    const blob=await createOCRColumn(
+      img,
+      column
+    );
 
-    const text=
-      await recognizeOCRImage(
-        blob,
-        percent=>{
+    const text=await recognizeOCRImage(
+      blob,
+      percent=>{
+        const completedSegments=
+          pageIndex*columnCount+
+          column;
 
-          const completedSegments=
-            pageIndex*2+
-            column;
+        const totalSegments=
+          totalPages*columnCount;
 
-          const segmentProgress=
-            (
-              completedSegments+
-              percent/100
-            )/
-            (totalPages*2);
+        const segmentProgress=
+          (
+            completedSegments+
+            percent/100
+          )/
+          totalSegments;
 
-          globalProgress(
-            Math.min(
-              99,
-              Math.round(
-                segmentProgress*100
-              )
-            )
-          );
-
-        }
-      );
+        globalProgress(
+          Math.min(
+            99,
+            Math.round(segmentProgress*100)
+          )
+        );
+      }
+    );
 
     texts.push(text);
-
   }
 
   return texts;
-
 }
 
 async function handleCalendarImage(event){
-
-  const files=
-    Array.from(
-      event.target.files||[]
-    );
+  const files=Array.from(
+    event.target.files||[]
+  );
 
   if(!files.length){
     return;
   }
 
-  const previewContainer=
-    document.getElementById(
-      'calendar-image-previews'
-    );
+  const previewContainer=document.getElementById(
+    'calendar-image-previews'
+  );
 
-  const status=
-    document.getElementById(
-      'ocr-status'
-    );
+  const status=document.getElementById(
+    'ocr-status'
+  );
 
-  const progress=
-    document.getElementById(
-      'ocr-progress'
-    );
+  const progress=document.getElementById(
+    'ocr-progress'
+  );
 
-  const bar=
-    document.getElementById(
-      'ocr-progress-bar'
-    );
+  const bar=document.getElementById(
+    'ocr-progress-bar'
+  );
 
-  const results=
-    document.getElementById(
-      'ocr-results'
-    );
+  const results=document.getElementById(
+    'ocr-results'
+  );
 
-  const actions=
-    document.getElementById(
-      'calendar-import-actions'
-    );
+  const actions=document.getElementById(
+    'calendar-import-actions'
+  );
 
   if(
     !previewContainer||
@@ -5119,69 +4101,45 @@ async function handleCalendarImage(event){
     !progress||
     !bar
   ){
-
     return;
-
   }
 
   importedMatches=[];
 
   if(results){
-
     results.style.display='none';
     results.innerHTML='';
-
   }
 
   if(actions){
-
     actions.style.display='none';
-
   }
 
   previewContainer.innerHTML='';
-
   calendarPreviewUrls=[];
 
-  files.forEach(
-    file=>{
+  files.forEach(file=>{
+    const url=URL.createObjectURL(file);
 
-      const url=
-        URL.createObjectURL(file);
+    calendarPreviewUrls.push(url);
 
-      calendarPreviewUrls.push(url);
+    const img=document.createElement('img');
 
-      const img=
-        document.createElement('img');
+    img.className='calendar-image-preview';
+    img.src=url;
+    img.alt='Página del calendario';
 
-      img.className=
-        'calendar-image-preview';
-
-      img.src=url;
-
-      img.alt=
-        'Página del calendario';
-
-      previewContainer.appendChild(img);
-
-    }
-  );
+    previewContainer.appendChild(img);
+  });
 
   status.style.display='block';
-
   progress.style.display='block';
-
   bar.style.width='0%';
 
   status.textContent=
-    `Preparando ${
-      files.length
-    } página${
-      files.length===1?'':'s'
-    }...`;
+    `Preparando ${files.length} página${files.length===1?'':'s'}...`;
 
   try{
-
     await loadTesseract();
 
     const allTexts=[];
@@ -5191,24 +4149,16 @@ async function handleCalendarImage(event){
       i<files.length;
       i++
     ){
-
-      const texts=
-        await readCalendarPage(
-          files[i],
-          i,
-          files.length,
-          percent=>{
-
-            bar.style.width=
-              `${percent}%`;
-
-          }
-        );
-
-      allTexts.push(
-        ...texts
+      const texts=await readCalendarPage(
+        files[i],
+        i,
+        files.length,
+        percent=>{
+          bar.style.width=`${percent}%`;
+        }
       );
 
+      allTexts.push(...texts);
     }
 
     bar.style.width='100%';
@@ -5216,27 +4166,14 @@ async function handleCalendarImage(event){
     status.textContent=
       'Analizando jornadas y partidos...';
 
-    /*
-      PARSEAMOS CADA COLUMNA POR SEPARADO.
-    */
-
-    const parsed=
-      parseCalendarTexts(
-        allTexts
-      );
+    const parsed=parseCalendarTexts(allTexts);
 
     importedMatches=
-      filterMatchesForConfiguredTeam(
-        parsed
-      );
+      filterMatchesForConfiguredTeam(parsed);
 
     if(!importedMatches.length){
-
       status.textContent=
-        `No se han detectado partidos de ${
-          getConfiguredTeam()||
-          'tu equipo'
-        }.`;
+        `No se han detectado partidos de ${getConfiguredTeam()||'tu equipo'}.`;
 
       showOCRFallback(
         allTexts.join(
@@ -5245,19 +4182,14 @@ async function handleCalendarImage(event){
       );
 
       return;
-
     }
 
     status.textContent=
-      `${importedMatches.length} partidos de ${
-        getConfiguredTeam()||
-        'tu equipo'
-      } detectados.`;
+      `${importedMatches.length} partidos de ${getConfiguredTeam()||'tu equipo'} detectados.`;
 
     showImportedPreview();
 
   }catch(error){
-
     console.error(
       'Error OCR calendario:',
       error
@@ -5267,16 +4199,9 @@ async function handleCalendarImage(event){
       'No se pudo leer automáticamente el calendario.';
 
     showOCRFallback('');
-
   }
 
-  /*
-    Permite volver a seleccionar las mismas
-    imágenes posteriormente.
-  */
-
   event.target.value='';
-
 }
 
 /* =====================================================
@@ -5284,10 +4209,7 @@ async function handleCalendarImage(event){
 ===================================================== */
 
 function cleanOCRText(text){
-
-  return String(
-    text||''
-  )
+  return String(text||'')
     .replace(/\r/g,'\n')
     .replace(/\u00a0/g,' ')
     .replace(/[|]/g,' ')
@@ -5295,259 +4217,204 @@ function cleanOCRText(text){
     .replace(/[‘’]/g,"'")
     .replace(/\t+/g,' ')
     .split('\n')
-    .map(
-      line=>
-        line
-          .replace(/[ ]{2,}/g,' ')
-          .trim()
+    .map(line=>
+      line
+        .replace(/[ ]{2,}/g,' ')
+        .trim()
     )
     .filter(Boolean);
-
 }
 
 /* =====================================================
    DETECTAR JORNADA Y FECHA
 ===================================================== */
 
-function parseRoundHeader(line){
+function normalizeRoundHeaderOCR(line){
+  return String(line||'')
+    .replace(
+      /\b(jornad[ao])\s*([0-9oOiIl]{1,2})/gi,
+      (full,word,number)=>{
+        const fixed=String(number)
+          .replace(/[oO]/g,'0')
+          .replace(/[iIl]/g,'1');
 
-  const value=
-    String(
-      line||''
-    ).trim();
+        return `${word} ${fixed}`;
+      }
+    );
+}
+
+function parseRoundHeader(line){
+  let value=normalizeRoundHeaderOCR(line)
+    .replace(/\s+/g,' ')
+    .trim();
 
   /*
     Formato normal:
-
-    Jornada 1 (20-09-2026)
     Jornada 10 (22-11-2026)
   */
 
-  let match=
-    value.match(
-      /jornada\s*(\d{1,2})\s*\(\s*(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})\s*\)/i
-    );
+  let match=value.match(
+    /jornada\s*([0-9]{1,2})\s*\(\s*(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})\s*\)/i
+  );
 
   if(match){
+    const roundNumber=Number(match[1]);
 
-    return {
-
-      round:
-        `Jornada ${Number(match[1])}`,
-
-      dateISO:
-        dateToISO(
-          Number(match[2]),
-          Number(match[3]),
-          Number(match[4])
-        )
-
+    return{
+      round:`Jornada ${roundNumber}`,
+      roundNumber,
+      dateISO:dateToISO(
+        Number(match[2]),
+        Number(match[3]),
+        Number(match[4])
+      )
     };
-
   }
 
   /*
-    Fallback si OCR elimina los paréntesis.
+    Fallback sin paréntesis.
   */
 
-  match=
-    value.match(
-      /jornada\s*(\d{1,2}).*?(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})/i
-    );
+  match=value.match(
+    /jornada\s*([0-9]{1,2}).*?(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})/i
+  );
 
   if(match){
+    const roundNumber=Number(match[1]);
 
-    return {
-
-      round:
-        `Jornada ${Number(match[1])}`,
-
-      dateISO:
-        dateToISO(
-          Number(match[2]),
-          Number(match[3]),
-          Number(match[4])
-        )
-
+    return{
+      round:`Jornada ${roundNumber}`,
+      roundNumber,
+      dateISO:dateToISO(
+        Number(match[2]),
+        Number(match[3]),
+        Number(match[4])
+      )
     };
-
   }
 
   /*
-    Fallback para cuando OCR separa la fecha.
+    Jornada sin fecha.
   */
 
-  match=
-    value.match(
-      /jornada\s*(\d{1,2})/i
-    );
+  match=value.match(
+    /jornada\s*([0-9]{1,2})/i
+  );
 
   if(match){
+    const roundNumber=Number(match[1]);
 
-    return {
-
-      round:
-        `Jornada ${Number(match[1])}`,
-
+    return{
+      round:`Jornada ${roundNumber}`,
+      roundNumber,
       dateISO:''
-
     };
-
   }
 
   return null;
-
 }
 
 function extractStandaloneDate(line){
+  const value=String(line||'');
 
-  const value=
-    String(
-      line||''
-    );
-
-  let match=
-    value.match(
-      /(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})/
-    );
+  let match=value.match(
+    /(\d{1,2})\s*[-\/.]\s*(\d{1,2})\s*[-\/.]\s*(\d{4})/
+  );
 
   if(match){
-
     return dateToISO(
       Number(match[1]),
       Number(match[2]),
       Number(match[3])
     );
-
   }
 
-  match=
-    value.match(
-      /(\d{1,2})\s*[-\/.]\s*(\d{1,2})/
-    );
+  match=value.match(
+    /(\d{1,2})\s*[-\/.]\s*(\d{1,2})/
+  );
 
   if(match){
-
     return dateToISO(
       Number(match[1]),
       Number(match[2])
     );
-
   }
 
   return '';
-
 }
 
 /* =====================================================
-   IDENTIFICAR TEXTO DE PARTIDO
+   IDENTIFICAR PARTIDO
 ===================================================== */
 
 function containsMatchSeparator(text){
-
-  return /(?:\s+vs\.?\s+|\s+v\s+|\s+-\s+|\s+–\s+|\s+—\s+|\s+x\s+)/i
-    .test(
-      String(text||'')
-    );
-
+  return /(?:\s+(?:vs\.?|v|x)\s+|\s+[-–—]\s+)/i.test(
+    String(text||'')
+  );
 }
 
 function splitTeams(text){
-
-  const value=
-    String(
-      text||''
-    )
-      .replace(
-        /\s{2,}/g,
-        ' '
-      )
-      .trim();
+  const value=String(text||'')
+    .replace(/\s+/g,' ')
+    .trim();
 
   const separators=[
-
     /\s+vs\.?\s+/i,
-
     /\s+v\s+/i,
-
     /\s+–\s+/,
-
     /\s+—\s+/,
-
     /\s+x\s+/i,
-
     /\s+-\s+/
-
   ];
 
-  for(
-    const regex of separators
-  ){
-
-    const parts=
-      value.split(regex);
+  for(const regex of separators){
+    const parts=value.split(regex);
 
     if(parts.length>=2){
+      const home=parts[0].trim();
 
-      const home=
-        parts[0].trim();
+      const away=parts
+        .slice(1)
+        .join(' ')
+        .trim();
 
-      const away=
-        parts
-          .slice(1)
-          .join(' ')
-          .trim();
-
-      if(
-        home &&
-        away
-      ){
-
-        return {
+      if(home&&away){
+        return{
           home,
           away
         };
-
       }
-
     }
-
   }
 
   return null;
-
 }
 
 function normalizeTeamName(name){
+  let result=String(name||'')
 
-  let result=
-    String(
-      name||''
+    .replace(
+      /\b(jornada|fecha|campo|hora|domingo|lunes|martes|miércoles|miercoles|jueves|viernes|sábado|sabado)\b/gi,
+      ''
     )
-      .replace(
-        /\b(jornada|fecha|campo|hora|domingo|lunes|martes|miércoles|jueves|viernes|sábado)\b/gi,
-        ''
-      )
-      .replace(
-        /^\d{1,2}[:.)-]?\s*/,
-        ''
-      )
-      .replace(
-        /\s{2,}/g,
-        ' '
-      )
-      .trim();
+
+    .replace(
+      /^\d{1,2}[:.)-]?\s*/,
+      ''
+    )
+
+    .replace(
+      /\s{2,}/g,
+      ' '
+    )
+
+    .trim();
 
   return result;
-
 }
 
 function isNoiseLine(line){
-
-  const value=
-    normalizeTeamForComparison(
-      line
-    );
+  const value=normalizeTeamForComparison(line);
 
   if(!value){
     return true;
@@ -5556,35 +4423,44 @@ function isNoiseLine(line){
   const noiseWords=[
     'federacio catalana de futbol',
     'calendari de competicions',
+    'calendari',
     'primera volta',
     'segona volta',
     'temporada',
     'primera catalana',
-    'grup'
+    'grup',
+    'classificacio',
+    'clasificacion',
+    'categoria',
+    'competicio'
   ];
 
-  return noiseWords.some(
-    word=>
-      value.includes(word)
-  );
+  if(
+    noiseWords.some(
+      word=>value.includes(word)
+    )
+  ){
+    return true;
+  }
 
+  if(
+    /jornada\s*[0-9]/i.test(
+      normalizeRoundHeaderOCR(line)
+    )
+  ){
+    return true;
+  }
+
+  return false;
 }
 
 function isValidTeamPair(teams){
-
   if(!teams){
     return false;
   }
 
-  const home=
-    normalizeTeamName(
-      teams.home
-    );
-
-  const away=
-    normalizeTeamName(
-      teams.away
-    );
+  const home=normalizeTeamName(teams.home);
+  const away=normalizeTeamName(teams.away);
 
   if(
     !home||
@@ -5592,31 +4468,95 @@ function isValidTeamPair(teams){
     home.length<3||
     away.length<3
   ){
-
     return false;
-
   }
 
   if(
-    /jornada|calendari|federacio|temporada/i
-      .test(home)
+    /jornada|calendari|federacio|temporada|clasificacio|classificacio/i.test(home)
   ){
-
     return false;
-
   }
 
   if(
-    /jornada|calendari|federacio|temporada/i
-      .test(away)
+    /jornada|calendari|federacio|temporada|clasificacio|classificacio/i.test(away)
   ){
-
     return false;
-
   }
 
   return true;
+}
 
+function isLikelyTeamLine(line){
+  const value=String(line||'')
+    .replace(/\s+/g,' ')
+    .trim();
+
+  if(!value||value.length<3){
+    return false;
+  }
+
+  if(isNoiseLine(value)){
+    return false;
+  }
+
+  if(
+    /\d{1,2}\s*[-\/.]\s*\d{1,2}(?:\s*[-\/.]\s*\d{2,4})?/.test(value)
+  ){
+    return false;
+  }
+
+  return true;
+}
+
+/* =====================================================
+   CREAR PARTIDO
+===================================================== */
+
+function createParsedMatch(
+  teams,
+  currentRound,
+  currentRoundNumber,
+  currentDateISO
+){
+  if(!isValidTeamPair(teams)){
+    return null;
+  }
+
+  return{
+    id:
+      `import-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2,10)}`,
+
+    date:
+      displayDateFromISO(
+        currentDateISO
+      ),
+
+    dateISO:
+      currentDateISO,
+
+    round:
+      currentRound,
+
+    roundNumber:
+      currentRoundNumber,
+
+    home:
+      normalizeTeamName(
+        teams.home
+      ),
+
+    away:
+      normalizeTeamName(
+        teams.away
+      ),
+
+    score:'',
+    time:'',
+    place:'',
+    imported:true
+  };
 }
 
 /* =====================================================
@@ -5624,39 +4564,30 @@ function isValidTeamPair(teams){
 ===================================================== */
 
 /*
-  ESTA ES LA PARTE MÁS IMPORTANTE DEL CAMBIO.
+  ESTA ES LA PARTE PRINCIPAL CORREGIDA.
 
-  El calendario funciona así:
+  Cada columna puede contener:
 
-  Jornada 1 (20-09-2026)
-  partido
-  partido
-  partido
-  partido
-  partido
-  partido
-  partido
-  partido
-
-  Jornada 2 (27-09-2026)
-  partido
+  Jornada 10 (22-11-2026)
+  EQUIPO A - EQUIPO B
+  EQUIPO C - EQUIPO D
   ...
 
-  Por tanto la fecha se guarda al detectar
-  la cabecera y se reutiliza para los partidos
-  siguientes hasta la siguiente jornada.
+  Jornada 11 (29-11-2026)
+  EQUIPO A - EQUIPO B
+  ...
+
+  La jornada activa permanece hasta encontrar
+  la siguiente cabecera.
 */
 
 function parseCalendarColumnText(text){
-
-  const lines=
-    cleanOCRText(
-      text
-    );
+  const lines=cleanOCRText(text);
 
   const results=[];
 
   let currentRound='';
+  let currentRoundNumber=null;
   let currentDateISO='';
 
   let pendingTeamLine='';
@@ -5666,59 +4597,52 @@ function parseCalendarColumnText(text){
     i<lines.length;
     i++
   ){
+    const originalLine=lines[i];
+    const line=originalLine
+      .replace(/\s+/g,' ')
+      .trim();
 
-    const line=
-      lines[i];
+    if(!line){
+      continue;
+    }
 
-    const header=
-      parseRoundHeader(
-        line
-      );
+    /* 1. CABECERA DE JORNADA */
+
+    const header=parseRoundHeader(line);
 
     if(header){
-
-      currentRound=
-        header.round;
-
-      currentDateISO=
-        header.dateISO||'';
+      currentRound=header.round;
+      currentRoundNumber=header.roundNumber;
+      currentDateISO=header.dateISO||'';
 
       pendingTeamLine='';
 
       /*
-        Si el OCR ha detectado solo "Jornada X"
-        y la fecha aparece en la línea siguiente,
-        la buscamos.
+        Si la fecha aparece en la línea siguiente,
+        la asociamos a esta jornada.
       */
 
       if(
         !currentDateISO &&
         lines[i+1]
       ){
-
         const possibleDate=
           extractStandaloneDate(
             lines[i+1]
           );
 
         if(possibleDate){
-
-          currentDateISO=
-            possibleDate;
-
+          currentDateISO=possibleDate;
           i++;
-
         }
-
       }
 
       continue;
-
     }
 
     /*
-      Si todavía no estamos dentro de una jornada,
-      ignoramos la línea.
+      2. No procesamos partidos antes de encontrar
+         una jornada real.
     */
 
     if(!currentRound){
@@ -5726,185 +4650,109 @@ function parseCalendarColumnText(text){
     }
 
     /*
-      Si aparece otra fecha aislada después de la
-      cabecera, la usamos como fecha de la jornada.
+      3. Fecha aislada.
     */
 
+    const possibleDate=
+      extractStandaloneDate(line);
+
     if(
-      !currentDateISO
+      possibleDate &&
+      (
+        /^\s*\d{1,2}\s*[-\/.]\s*\d{1,2}(?:\s*[-\/.]\s*\d{4})?\s*$/.test(line)
+      )
     ){
-
-      const possibleDate=
-        extractStandaloneDate(
-          line
-        );
-
-      if(possibleDate){
-
-        currentDateISO=
-          possibleDate;
-
-        continue;
-
-      }
-
+      currentDateISO=possibleDate;
+      pendingTeamLine='';
+      continue;
     }
 
     /*
-      Ignoramos textos generales.
+      4. Si aparece otra cabecera de texto o ruido,
+         no lo convertimos en equipo.
     */
 
     if(isNoiseLine(line)){
+      pendingTeamLine='';
       continue;
     }
 
     /*
-      Caso normal: una línea contiene los dos equipos.
+      5. CASO IDEAL:
+         los dos equipos están en la misma línea.
     */
 
     if(containsMatchSeparator(line)){
+      const teams=splitTeams(line);
 
-      const teams=
-        splitTeams(line);
+      if(isValidTeamPair(teams)){
+        const match=createParsedMatch(
+          teams,
+          currentRound,
+          currentRoundNumber,
+          currentDateISO
+        );
 
-      if(
-        isValidTeamPair(
-          teams
-        )
-      ){
-
-        results.push({
-
-          id:
-            `import-${Date.now()}-${results.length}-${Math.random()
-              .toString(36)
-              .slice(2,7)}`,
-
-          date:
-            displayDateFromISO(
-              currentDateISO
-            ),
-
-          dateISO:
-            currentDateISO,
-
-          round:
-            currentRound,
-
-          home:
-            normalizeTeamName(
-              teams.home
-            ),
-
-          away:
-            normalizeTeamName(
-              teams.away
-            ),
-
-          score:'',
-
-          time:'',
-          place:'',
-          imported:true
-
-        });
+        if(match){
+          results.push(match);
+        }
 
         pendingTeamLine='';
-
         continue;
-
       }
-
     }
 
     /*
-      Fallback para OCR que haya separado un partido
-      en dos líneas:
+      6. CASO OCR:
+         un partido aparece en dos líneas.
 
-      JOANENC, F.C. "A"
-      NATACIO TERRASSA, C "A"
-
-      Guardamos temporalmente la primera línea
-      y la combinamos con la siguiente.
+         EQUIPO LOCAL
+         EQUIPO VISITANTE
     */
 
-    if(!pendingTeamLine){
-
-      pendingTeamLine=
-        line;
-
+    if(!isLikelyTeamLine(line)){
+      pendingTeamLine='';
       continue;
-
     }
+
+    if(!pendingTeamLine){
+      pendingTeamLine=line;
+      continue;
+    }
+
+    /*
+      Si ya teníamos una línea pendiente,
+      intentamos formar un partido con las dos.
+    */
 
     const combined=
       `${pendingTeamLine} - ${line}`;
 
-    const teams=
-      splitTeams(
-        combined
+    const teams=splitTeams(combined);
+
+    if(isValidTeamPair(teams)){
+      const match=createParsedMatch(
+        teams,
+        currentRound,
+        currentRoundNumber,
+        currentDateISO
       );
 
-    if(
-      isValidTeamPair(
-        teams
-      )
-    ){
-
-      results.push({
-
-        id:
-          `import-${Date.now()}-${results.length}-${Math.random()
-            .toString(36)
-            .slice(2,7)}`,
-
-        date:
-          displayDateFromISO(
-            currentDateISO
-          ),
-
-        dateISO:
-          currentDateISO,
-
-        round:
-          currentRound,
-
-        home:
-          normalizeTeamName(
-            teams.home
-          ),
-
-        away:
-          normalizeTeamName(
-            teams.away
-          ),
-
-        score:'',
-
-        time:'',
-        place:'',
-        imported:true
-
-      });
+      if(match){
+        results.push(match);
+      }
 
       pendingTeamLine='';
-
     }else{
-
       /*
-        Si no era una pareja válida, usamos la línea
-        actual como nuevo candidato.
+        Si no forman pareja, la línea actual
+        pasa a ser el nuevo candidato.
       */
-
-      pendingTeamLine=
-        line;
-
+      pendingTeamLine=line;
     }
-
   }
 
   return results;
-
 }
 
 /* =====================================================
@@ -5912,80 +4760,46 @@ function parseCalendarColumnText(text){
 ===================================================== */
 
 function parseCalendarTexts(texts){
-
-  const list=
-    Array.isArray(texts)
-      ?texts
-      :[];
+  const list=Array.isArray(texts)
+    ?texts
+    :[];
 
   const results=[];
 
-  list.forEach(
-    text=>{
-
-      results.push(
-        ...parseCalendarColumnText(
-          text
-        )
-      );
-
-    }
-  );
-
-  /*
-    Eliminamos duplicados.
-  */
+  list.forEach(text=>{
+    results.push(
+      ...parseCalendarColumnText(text)
+    );
+  });
 
   const unique=[];
   const seen=new Set();
 
-  results.forEach(
-    match=>{
+  results.forEach(match=>{
+    const key=[
+      match.dateISO||'',
+      Number.isFinite(Number(match.roundNumber))
+        ?Number(match.roundNumber)
+        :'',
+      normalizeTeamForComparison(match.home),
+      normalizeTeamForComparison(match.away)
+    ].join('|');
 
-      const key=
-        [
-          match.dateISO||'',
-          normalizeTeamForComparison(
-            match.home
-          ),
-          normalizeTeamForComparison(
-            match.away
-          )
-        ].join('|');
-
-      if(
-        !seen.has(key) &&
-        match.home &&
-        match.away
-      ){
-
-        seen.add(key);
-
-        unique.push(match);
-
-      }
-
+    if(
+      !seen.has(key) &&
+      match.home &&
+      match.away
+    ){
+      seen.add(key);
+      unique.push(match);
     }
-  );
+  });
 
-  return sortMatches(
-    unique
-  );
-
+  return sortMatches(unique);
 }
 
-/*
-  Compatibilidad con el sistema anterior.
-  Si alguna parte de KNATT llama a parseCalendarText()
-  seguimos teniendo una función válida.
-*/
-
 function parseCalendarText(text){
-
-  return parseCalendarColumnText(
-    text
-  );
-
+  return parseCalendarColumnText(text);
 }
 
 /* =====================================================
@@ -5993,20 +4807,15 @@ function parseCalendarText(text){
 ===================================================== */
 
 function showOCRFallback(text){
+  const container=document.getElementById(
+    'ocr-results'
+  );
 
-  const container=
-    document.getElementById(
-      'ocr-results'
-    );
-
-  if(!container){
-    return;
-  }
+  if(!container)return;
 
   container.style.display='block';
 
   container.innerHTML=`
-
     <div class="form-group">
 
       <label>
@@ -6027,9 +4836,7 @@ function showOCRFallback(text){
       🔎 Intentar detectar partidos
 
     </button>
-
   `;
-
 }
 
 /* =====================================================
@@ -6037,15 +4844,11 @@ function showOCRFallback(text){
 ===================================================== */
 
 function parseManualOCRText(){
+  const textarea=document.getElementById(
+    'ocr-manual-text'
+  );
 
-  const textarea=
-    document.getElementById(
-      'ocr-manual-text'
-    );
-
-  if(!textarea){
-    return;
-  }
+  if(!textarea)return;
 
   importedMatches=
     filterMatchesForConfiguredTeam(
@@ -6055,37 +4858,25 @@ function parseManualOCRText(){
     );
 
   if(!importedMatches.length){
-
     alert(
-      `No se han podido detectar partidos de ${
-        getConfiguredTeam()||
-        'tu equipo'
-      }.
+      `No se han podido detectar partidos de ${getConfiguredTeam()||'tu equipo'}.
 
 Comprueba que el nombre del equipo en Configuración coincide con el calendario.`
     );
 
     return;
-
   }
 
   showImportedPreview();
 
-  const status=
-    document.getElementById(
-      'ocr-status'
-    );
+  const status=document.getElementById(
+    'ocr-status'
+  );
 
   if(status){
-
     status.textContent=
-      `${importedMatches.length} partidos de ${
-        getConfiguredTeam()||
-        'tu equipo'
-      } detectados.`;
-
+      `${importedMatches.length} partidos de ${getConfiguredTeam()||'tu equipo'} detectados.`;
   }
-
 }
 
 /* =====================================================
@@ -6093,25 +4884,19 @@ Comprueba que el nombre del equipo en Configuración coincide con el calendario.
 ===================================================== */
 
 function showImportedPreview(){
+  const container=document.getElementById(
+    'ocr-results'
+  );
 
-  const container=
-    document.getElementById(
-      'ocr-results'
-    );
+  const actions=document.getElementById(
+    'calendar-import-actions'
+  );
 
-  const actions=
-    document.getElementById(
-      'calendar-import-actions'
-    );
-
-  if(!container){
-    return;
-  }
+  if(!container)return;
 
   container.style.display='block';
 
   container.innerHTML=`
-
     <div
       style="
         font-size:12px;
@@ -6120,10 +4905,7 @@ function showImportedPreview(){
       ">
 
       Partidos de
-      ${esc(
-        getConfiguredTeam()||
-        'tu equipo'
-      )}
+      ${esc(getConfiguredTeam()||'tu equipo')}
 
     </div>
 
@@ -6148,125 +4930,108 @@ function showImportedPreview(){
     <div class="calendar-preview-list">
 
       ${
-        importedMatches
-          .map(
-            (m,index)=>
-              importedPreviewRow(
-                m,
-                index
-              )
-          )
-          .join('')
+        importedMatches.map(
+          (m,index)=>
+            importedPreviewRow(m,index)
+        ).join('')
       }
 
     </div>
-
   `;
 
   if(actions){
-
     actions.style.display=
       importedMatches.length
         ?'block'
         :'none';
-
   }
-
 }
 
-function importedPreviewRow(
-  match,
-  index
-){
+function importedPreviewRow(match,index){
+  return`
+    <div class="calendar-preview-row">
 
-  return `
+      <div class="calendar-preview-grid">
 
-  <div class="calendar-preview-row">
+        <div>
 
-    <div
-      class="calendar-preview-grid">
+          <div class="calendar-preview-label">
+            Jornada
+          </div>
 
-      <div>
+          <input
+            id="preview-round-${index}"
+            value="${esc(match.round||'')}"
+            placeholder="J1">
 
-        <div class="calendar-preview-label">
-          Jornada
         </div>
 
-        <input
-          id="preview-round-${index}"
-          value="${esc(match.round||'')}"
-          placeholder="J1">
+        <div>
+
+          <div class="calendar-preview-label">
+            Local
+          </div>
+
+          <input
+            id="preview-home-${index}"
+            value="${esc(match.home)}"
+            placeholder="Equipo local">
+
+        </div>
+
+        <div>
+
+          <div class="calendar-preview-label">
+            Visitante
+          </div>
+
+          <input
+            id="preview-away-${index}"
+            value="${esc(match.away)}"
+            placeholder="Equipo visitante">
+
+        </div>
 
       </div>
 
-      <div>
+      <div
+        style="
+          margin-top:7px;
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:7px;
+        ">
 
-        <div class="calendar-preview-label">
-          Local
+        <div>
+
+          <div class="calendar-preview-label">
+            Fecha
+          </div>
+
+          <input
+            id="preview-date-${index}"
+            value="${esc(match.date)}"
+            placeholder="24 AGO">
+
         </div>
 
-        <input
-          id="preview-home-${index}"
-          value="${esc(match.home)}"
-          placeholder="Equipo local">
+        <div>
 
-      </div>
+          <div class="calendar-preview-label">
+            Hora
+          </div>
 
-      <div>
+          <input
+            id="preview-time-${index}"
+            value="${esc(match.time||'')}"
+            placeholder="12:00">
 
-        <div class="calendar-preview-label">
-          Visitante
         </div>
-
-        <input
-          id="preview-away-${index}"
-          value="${esc(match.away)}"
-          placeholder="Equipo visitante">
-
-      </div>
-
-    </div>
-
-    <div
-      style="
-        margin-top:7px;
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:7px;
-      ">
-
-      <div>
-
-        <div class="calendar-preview-label">
-          Fecha
-        </div>
-
-        <input
-          id="preview-date-${index}"
-          value="${esc(match.date)}"
-          placeholder="24 AGO">
-
-      </div>
-
-      <div>
-
-        <div class="calendar-preview-label">
-          Hora
-        </div>
-
-        <input
-          id="preview-time-${index}"
-          value="${esc(match.time||'')}"
-          placeholder="12:00">
 
       </div>
 
     </div>
-
-  </div>
-
   `;
-
 }
 
 /* =====================================================
@@ -6274,233 +5039,186 @@ function importedPreviewRow(
 ===================================================== */
 
 function saveImportedCalendar(){
-
   if(
     !Array.isArray(importedMatches)||
     !importedMatches.length
   ){
-
-    alert(
-      'No hay partidos para guardar.'
-    );
-
+    alert('No hay partidos para guardar.');
     return;
-
   }
 
   const finalMatches=[];
 
-  importedMatches.forEach(
-    (match,index)=>{
+  importedMatches.forEach((match,index)=>{
+    const round=document.getElementById(
+      `preview-round-${index}`
+    );
 
-      const round=
-        document.getElementById(
-          `preview-round-${index}`
-        );
+    const home=document.getElementById(
+      `preview-home-${index}`
+    );
 
-      const home=
-        document.getElementById(
-          `preview-home-${index}`
-        );
+    const away=document.getElementById(
+      `preview-away-${index}`
+    );
 
-      const away=
-        document.getElementById(
-          `preview-away-${index}`
-        );
+    const date=document.getElementById(
+      `preview-date-${index}`
+    );
 
-      const date=
-        document.getElementById(
-          `preview-date-${index}`
-        );
+    const time=document.getElementById(
+      `preview-time-${index}`
+    );
 
-      const time=
-        document.getElementById(
-          `preview-time-${index}`
-        );
+    const updated={
+      ...match,
 
-      const updated={
+      round:
+        round
+          ?round.value.trim()
+          :match.round,
 
-        ...match,
-
-        round:
+      roundNumber:
+        extractRoundNumber(
           round
             ?round.value.trim()
-            :match.round,
+            :match.round
+        ),
 
-        home:
-          home
-            ?home.value.trim()
-            :match.home,
+      home:
+        home
+          ?home.value.trim()
+          :match.home,
 
-        away:
-          away
-            ?away.value.trim()
-            :match.away,
+      away:
+        away
+          ?away.value.trim()
+          :match.away,
 
-        date:
-          date
-            ?date.value.trim()
-            :match.date,
+      date:
+        date
+          ?date.value.trim()
+          :match.date,
 
-        time:
-          time
-            ?time.value.trim()
-            :match.time,
+      time:
+        time
+          ?time.value.trim()
+          :match.time,
 
-        score:'',
+      score:'',
+      imported:true
+    };
 
-        imported:true
-
-      };
-
-      if(
-        !updated.home||
-        !updated.away
-      ){
-        return;
-      }
-
-      /*
-        SEGURIDAD FINAL.
-      */
-
-      if(
-        !isConfiguredTeam(updated.home)&&
-        !isConfiguredTeam(updated.away)
-      ){
-
-        return;
-
-      }
-
-      finalMatches.push(
-        updated
-      );
-
+    if(
+      !updated.home||
+      !updated.away
+    ){
+      return;
     }
-  );
+
+    if(
+      !isConfiguredTeam(updated.home)&&
+      !isConfiguredTeam(updated.away)
+    ){
+      return;
+    }
+
+    finalMatches.push(updated);
+  });
 
   if(!finalMatches.length){
-
     alert(
-      `No hay partidos válidos de ${
-        getConfiguredTeam()||
-        'tu equipo'
-      } para guardar.`
+      `No hay partidos válidos de ${getConfiguredTeam()||'tu equipo'} para guardar.`
     );
 
     return;
-
   }
 
   /*
     Conservamos únicamente los partidos manuales.
   */
 
-  const manualMatches=
-    data.matches.filter(
-      m=>!m.imported
-    );
+  const manualMatches=data.matches.filter(
+    m=>!m.imported
+  );
 
   /*
     Conservamos resultados existentes.
   */
 
-  finalMatches.forEach(
-    imported=>{
+  finalMatches.forEach(imported=>{
+    const importedHome=normalizeClubCore(
+      imported.home
+    );
 
-      const importedHome=
-        normalizeClubCore(
-          imported.home
-        );
+    const importedAway=normalizeClubCore(
+      imported.away
+    );
 
-      const importedAway=
-        normalizeClubCore(
-          imported.away
-        );
+    const existing=data.matches.find(old=>{
+      const oldHome=normalizeClubCore(
+        old.home
+      );
 
-      const existing=
-        data.matches.find(
-          old=>{
+      const oldAway=normalizeClubCore(
+        old.away
+      );
 
-            const oldHome=
-              normalizeClubCore(
-                old.home
-              );
+      return(
+        oldHome===importedHome&&
+        oldAway===importedAway&&
+        (
+          !imported.dateISO||
+          !old.dateISO||
+          imported.dateISO===old.dateISO
+        )
+      );
+    });
 
-            const oldAway=
-              normalizeClubCore(
-                old.away
-              );
+    if(existing){
+      imported.id=
+        existing.id||
+        imported.id;
 
-            return(
+      imported.score=
+        existing.score||
+        '';
 
-              oldHome===
-              importedHome
+      imported.place=
+        existing.place||
+        imported.place||
+        '';
 
-              &&
-
-              oldAway===
-              importedAway
-
-              &&
-
-              (
-                !imported.dateISO||
-                !old.dateISO||
-                imported.dateISO===
-                old.dateISO
-              )
-
-            );
-
-          }
-        );
-
-      if(existing){
-
-        imported.id=
-          existing.id||
-          imported.id;
-
-        imported.score=
-          existing.score||
-          '';
-
-        imported.place=
-          existing.place||
-          imported.place||
-          '';
-
+      if(
+        !Number.isFinite(Number(imported.roundNumber)) &&
+        Number.isFinite(Number(existing.roundNumber))
+      ){
+        imported.roundNumber=
+          Number(existing.roundNumber);
       }
-
     }
-  );
-
-  /*
-    Guardamos manuales + calendario nuevo.
-  */
+  });
 
   data.matches=[
     ...manualMatches,
     ...finalMatches
   ];
 
-  /*
-    Segunda protección.
-  */
+  data.matches=data.matches.filter(
+    m=>
+      isConfiguredTeam(m.home)||
+      isConfiguredTeam(m.away)
+  );
 
-  data.matches=
-    data.matches.filter(
-      m=>
-        isConfiguredTeam(m.home)||
-        isConfiguredTeam(m.away)
-    );
+  data.matches=data.matches.map(m=>({
+    ...m,
+    roundNumber:
+      Number.isFinite(Number(m.roundNumber))
+        ?Number(m.roundNumber)
+        :extractRoundNumber(m.round)
+  }));
 
-  data.matches=
-    sortMatches(
-      data.matches
-    );
+  data.matches=sortMatches(data.matches);
 
   addActivity(
     '📅',
@@ -6520,7 +5238,6 @@ function saveImportedCalendar(){
   alert(
     `Calendario guardado correctamente.\n\n${finalMatches.length} partidos de ${getConfiguredTeam()} añadidos a KNATT.`
   );
-
 }
 
 /* =====================================================
@@ -6528,83 +5245,73 @@ function saveImportedCalendar(){
 ===================================================== */
 
 function more(){
+  return`
+    <div class="more-screen">
 
-  return `
+      <div class="title">
+        Más
+      </div>
 
-  <div class="more-screen">
+      <div class="more-menu">
 
-    <div class="title">
-      Más
-    </div>
+        <button
+          class="more-row"
+          onclick="go('stats')">
 
-    <div class="more-menu">
+          <div class="more-icon">
+            📊
+          </div>
 
-      <button
-        class="more-row"
-        onclick="
-          go('stats')
-        ">
+          <div class="more-text">
+            Estadísticas
+          </div>
 
-        <div class="more-icon">
-          📊
-        </div>
+          <div class="more-arrow">
+            ›
+          </div>
 
-        <div class="more-text">
-          Estadísticas
-        </div>
+        </button>
 
-        <div class="more-arrow">
-          ›
-        </div>
+        <button
+          class="more-row"
+          onclick="go('tactic')">
 
-      </button>
+          <div class="more-icon">
+            ⚽
+          </div>
 
-      <button
-        class="more-row"
-        onclick="
-          go('tactic')
-        ">
+          <div class="more-text">
+            Táctica
+          </div>
 
-        <div class="more-icon">
-          ⚽
-        </div>
+          <div class="more-arrow">
+            ›
+          </div>
 
-        <div class="more-text">
-          Táctica
-        </div>
+        </button>
 
-        <div class="more-arrow">
-          ›
-        </div>
+        <button
+          class="more-row"
+          onclick="go('settings')">
 
-      </button>
+          <div class="more-icon">
+            ⚙️
+          </div>
 
-      <button
-        class="more-row"
-        onclick="
-          go('settings')
-        ">
+          <div class="more-text">
+            Configuración
+          </div>
 
-        <div class="more-icon">
-          ⚙️
-        </div>
+          <div class="more-arrow">
+            ›
+          </div>
 
-        <div class="more-text">
-          Configuración
-        </div>
+        </button>
 
-        <div class="more-arrow">
-          ›
-        </div>
-
-      </button>
+      </div>
 
     </div>
-
-  </div>
-
   `;
-
 }
 
 /* =====================================================
@@ -6612,102 +5319,89 @@ function more(){
 ===================================================== */
 
 function stats(){
+  const goals=data.players.reduce(
+    (sum,p)=>sum+(Number(p.g)||0),
+    0
+  );
 
-  const goals=
-    data.players.reduce(
-      (sum,p)=>
-        sum+(Number(p.g)||0),
-      0
-    );
+  const assists=data.players.reduce(
+    (sum,p)=>sum+(Number(p.a)||0),
+    0
+  );
 
-  const assists=
-    data.players.reduce(
-      (sum,p)=>
-        sum+(Number(p.a)||0),
-      0
-    );
+  const teamMatches=getTeamMatches();
 
-  const teamMatches=
-    getTeamMatches();
-
-  return `
-
-  <div class="title">
-    Estadísticas
-  </div>
-
-  <div class="stat-grid">
-
-    <div class="stat red">
-      <b>${goals}</b>
-      <span>Goles</span>
+  return`
+    <div class="title">
+      Estadísticas
     </div>
 
-    <div class="stat">
-      <b>${assists}</b>
-      <span>Asistencias</span>
+    <div class="stat-grid">
+
+      <div class="stat red">
+        <b>${goals}</b>
+        <span>Goles</span>
+      </div>
+
+      <div class="stat">
+        <b>${assists}</b>
+        <span>Asistencias</span>
+      </div>
+
+      <div class="stat">
+        <b>${data.players.length}</b>
+        <span>Jugadores</span>
+      </div>
+
+      <div class="stat">
+        <b>${teamMatches.length}</b>
+        <span>Partidos</span>
+      </div>
+
     </div>
 
-    <div class="stat">
-      <b>${data.players.length}</b>
-      <span>Jugadores</span>
-    </div>
+    <div class="card">
 
-    <div class="stat">
-      <b>${teamMatches.length}</b>
-      <span>Partidos</span>
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    ${
-      data.players
-        .map(
+      ${
+        data.players.map(
           p=>`
+            <div class="item">
 
-          <div class="item">
+              <div class="avatar">
+                ⚽
+              </div>
 
-            <div class="avatar">
-              ⚽
-            </div>
+              <div class="grow">
 
-            <div class="grow">
+                <b>
+                  ${esc(p.name)}
+                </b>
 
-              <b>
-                ${esc(p.name)}
-              </b>
+                <div class="muted">
+                  ${esc(p.pos)}
+                </div>
 
-              <div class="muted">
-                ${esc(p.pos)}
+              </div>
+
+              <div>
+
+                <b>
+                  ${p.g||0} ⚽
+                </b>
+
+                <div class="muted">
+                  ${p.a||0} 🎯
+                </div>
+
               </div>
 
             </div>
-
-            <div>
-
-              <b>
-                ${p.g||0} ⚽
-              </b>
-
-              <div class="muted">
-                ${p.a||0} 🎯
-              </div>
-
-            </div>
-
-          </div>
-
           `
-        )
-        .join('')
-    }
+        ).join('')
+      }
 
-  </div>
-
+    </div>
   `;
-
 }
 
 /* =====================================================
@@ -6715,96 +5409,71 @@ function stats(){
 ===================================================== */
 
 function settings(){
-
-  return `
-
-  <div class="title">
-    Configuración
-  </div>
-
-  <div class="card">
-
-    <div class="form-group">
-
-      <label>
-        Entrenador
-      </label>
-
-      <input
-        id="coach"
-        class="form-input"
-        value="${esc(
-          data.settings.coach||''
-        )}">
-
+  return`
+    <div class="title">
+      Configuración
     </div>
 
-    <div class="form-group">
+    <div class="card">
 
-      <label>
-        Equipo
-      </label>
+      <div class="form-group">
 
-      <input
-        id="team"
-        class="form-input"
-        value="${esc(
-          data.settings.team||
-          'KNATT FC'
-        )}">
+        <label>
+          Entrenador
+        </label>
+
+        <input
+          id="coach"
+          class="form-input"
+          value="${esc(data.settings.coach||'')}">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Equipo
+        </label>
+
+        <input
+          id="team"
+          class="form-input"
+          value="${esc(data.settings.team||'KNATT FC')}">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Temporada
+        </label>
+
+        <input
+          id="season"
+          class="form-input"
+          value="${esc(data.settings.season||'2026/27')}">
+
+      </div>
+
+      <button
+        class="btn full"
+        onclick="saveSettings()">
+
+        💾 Guardar
+
+      </button>
 
     </div>
-
-    <div class="form-group">
-
-      <label>
-        Temporada
-      </label>
-
-      <input
-        id="season"
-        class="form-input"
-        value="${esc(
-          data.settings.season||
-          '2026/27'
-        )}">
-
-    </div>
-
-    <button
-      class="btn full"
-      onclick="saveSettings()">
-
-      💾 Guardar
-
-    </button>
-
-  </div>
-
   `;
-
 }
 
 function saveSettings(){
-
-  const coach=
-    document.getElementById(
-      'coach'
-    );
-
-  const team=
-    document.getElementById(
-      'team'
-    );
-
-  const season=
-    document.getElementById(
-      'season'
-    );
+  const coach=document.getElementById('coach');
+  const team=document.getElementById('team');
+  const season=document.getElementById('season');
 
   if(coach){
-    data.settings.coach=
-      coach.value.trim();
+    data.settings.coach=coach.value.trim();
   }
 
   if(team){
@@ -6825,11 +5494,8 @@ function saveSettings(){
   );
 
   save();
-
   syncNextMatch();
-
   go('home');
-
 }
 
 /* =====================================================
@@ -6837,245 +5503,189 @@ function saveSettings(){
 ===================================================== */
 
 function tactic(){
+  const view=data.tactics.view==='half'
+    ?'half'
+    :'full';
 
-  const view=
-    data.tactics.view==='half'
-      ?'half'
-      :'full';
+  const positions=data.tactics.positions||{};
 
-  const positions=
-    data.tactics.positions||{};
-
-  const placedIds=
-    new Set(
-      Object
-        .values(positions)
-        .map(
-          p=>
-            String(
-              p?.playerId||
-              ''
-            )
+  const placedIds=new Set(
+    Object.values(positions)
+      .map(
+        p=>String(
+          p?.playerId||
+          ''
         )
-        .filter(Boolean)
-    );
+      )
+      .filter(Boolean)
+  );
 
-  const availablePlayers=
-    data.players.filter(
-      p=>
-        p.available!==false&&
-        !placedIds.has(
-          String(p.id)
-        )
-    );
+  const availablePlayers=data.players.filter(
+    p=>
+      p.available!==false&&
+      !placedIds.has(String(p.id))
+  );
 
-  return `
+  return`
+    <div class="title-row">
 
-  <div class="title-row">
+      <div>
 
-    <div>
-
-      <div class="title">
-        Táctica
-      </div>
-
-      <div class="subtitle">
-        Arrastra los jugadores al campo
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="tactic-toolbar">
-
-    <button
-      type="button"
-      class="tactic-view-btn ${
-        view==='full'?'active':''
-      }"
-      onclick="
-        changeTacticView('full')
-      ">
-
-      🟢 Campo entero
-
-    </button>
-
-    <button
-      type="button"
-      class="tactic-view-btn ${
-        view==='half'?'active':''
-      }"
-      onclick="
-        changeTacticView('half')
-      ">
-
-      🟢 Medio campo
-
-    </button>
-
-  </div>
-
-  <div class="tactic-help">
-
-    Arrastra un jugador desde abajo y colócalo donde quieras.
-
-  </div>
-
-  <div class="pitch-wrap">
-
-    <div
-      id="tactic-pitch"
-      class="pitch ${
-        view==='half'?'half-mode':''
-      }">
-
-      <div class="pitch-line"></div>
-      <div class="pitch-circle"></div>
-      <div class="pitch-center"></div>
-      <div class="box top"></div>
-      <div class="box bottom"></div>
-      <div class="goal top"></div>
-      <div class="goal bottom"></div>
-
-      ${
-        Object
-          .entries(positions)
-          .map(
-            ([key,value])=>
-              boardPlayerHtml(
-                key,
-                value
-              )
-          )
-          .join('')
-      }
-
-    </div>
-
-  </div>
-
-  <div class="player-tray">
-
-    <div class="player-tray-title">
-
-      <strong>
-        Jugadores
-      </strong>
-
-      <span class="player-tray-count">
-
-        ${availablePlayers.length}
-        disponibles para colocar
-
-      </span>
-
-    </div>
-
-    <div class="player-tray-list">
-
-      ${
-        availablePlayers.length
-
-        ?
-
-        availablePlayers
-          .map(
-            p=>
-              trayPlayerHtml(p)
-          )
-          .join('')
-
-        :
-
-        `
-        <div class="tray-empty">
-          Todos los jugadores disponibles están en el campo.
+        <div class="title">
+          Táctica
         </div>
-        `
-      }
+
+        <div class="subtitle">
+          Arrastra los jugadores al campo
+        </div>
+
+      </div>
 
     </div>
 
-  </div>
+    <div class="tactic-toolbar">
 
-  <div class="tactic-actions">
+      <button
+        type="button"
+        class="tactic-view-btn ${view==='full'?'active':''}"
+        onclick="changeTacticView('full')">
 
-    <button
-      class="btn"
-      onclick="
-        saveTactic()
-      ">
+        🟢 Campo entero
 
-      💾 Guardar
+      </button>
 
-    </button>
+      <button
+        type="button"
+        class="tactic-view-btn ${view==='half'?'active':''}"
+        onclick="changeTacticView('half')">
 
-    <button
-      class="btn light"
-      onclick="
-        clearTactic()
-      ">
+        🟢 Medio campo
 
-      🧹 Vaciar
+      </button>
 
-    </button>
+    </div>
 
-  </div>
+    <div class="tactic-help">
+      Arrastra un jugador desde abajo y colócalo donde quieras.
+    </div>
 
+    <div class="pitch-wrap">
+
+      <div
+        id="tactic-pitch"
+        class="pitch ${view==='half'?'half-mode':''}">
+
+        <div class="pitch-line"></div>
+        <div class="pitch-circle"></div>
+        <div class="pitch-center"></div>
+        <div class="box top"></div>
+        <div class="box bottom"></div>
+        <div class="goal top"></div>
+        <div class="goal bottom"></div>
+
+        ${
+          Object.entries(positions)
+            .map(
+              ([key,value])=>
+                boardPlayerHtml(
+                  key,
+                  value
+                )
+            )
+            .join('')
+        }
+
+      </div>
+
+    </div>
+
+    <div class="player-tray">
+
+      <div class="player-tray-title">
+
+        <strong>
+          Jugadores
+        </strong>
+
+        <span class="player-tray-count">
+          ${availablePlayers.length}
+          disponibles para colocar
+        </span>
+
+      </div>
+
+      <div class="player-tray-list">
+
+        ${
+          availablePlayers.length
+            ?availablePlayers.map(
+              p=>trayPlayerHtml(p)
+            ).join('')
+            :`
+              <div class="tray-empty">
+                Todos los jugadores disponibles están en el campo.
+              </div>
+            `
+        }
+
+      </div>
+
+    </div>
+
+    <div class="tactic-actions">
+
+      <button
+        class="btn"
+        onclick="saveTactic()">
+
+        💾 Guardar
+
+      </button>
+
+      <button
+        class="btn light"
+        onclick="clearTactic()">
+
+        🧹 Vaciar
+
+      </button>
+
+    </div>
   `;
-
 }
 
 function trayPlayerHtml(player){
+  return`
+    <div
+      class="tray-player"
+      data-player-id="${esc(player.id)}"
+      data-drag-source="tray"
+      onpointerdown="startTrayDrag(event,${player.id})">
 
-  return `
+      <div class="tray-player-top">
 
-  <div
-    class="tray-player"
-    data-player-id="${esc(player.id)}"
-    data-drag-source="tray"
-    onpointerdown="
-      startTrayDrag(event, ${player.id})
-    ">
+        <div class="tray-number">
+          ${esc(player.num)}
+        </div>
 
-    <div class="tray-player-top">
+        <div class="tray-name">
+          ${esc(player.name)}
+        </div>
 
-      <div class="tray-number">
-        ${esc(player.num)}
       </div>
 
-      <div class="tray-name">
-        ${esc(player.name)}
+      <div class="tray-pos">
+        ${esc(player.pos||'Jugador')}
       </div>
 
     </div>
-
-    <div class="tray-pos">
-      ${esc(player.pos||'Jugador')}
-    </div>
-
-  </div>
-
   `;
-
 }
 
-function boardPlayerHtml(
-  key,
-  value
-){
-
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===
-        String(
-          value?.playerId||
-          ''
-        )
-    );
+function boardPlayerHtml(key,value){
+  const player=data.players.find(
+    p=>String(p.id)===String(value?.playerId||'')
+  );
 
   if(!player){
     return '';
@@ -7084,97 +5694,74 @@ function boardPlayerHtml(
   let x=Number(value.x);
   let y=Number(value.y);
 
-  if(!Number.isFinite(x)){
-    x=50;
-  }
+  if(!Number.isFinite(x))x=50;
+  if(!Number.isFinite(y))y=50;
 
-  if(!Number.isFinite(y)){
-    y=50;
-  }
+  x=Math.max(4,Math.min(96,x));
+  y=Math.max(3,Math.min(97,y));
 
-  x=
-    Math.max(
-      4,
-      Math.min(96,x)
-    );
+  return`
+    <div
+      class="board-player"
+      id="board-player-${esc(player.id)}"
+      data-player-id="${esc(player.id)}"
+      data-position-key="${esc(key)}"
+      style="
+        left:${x}%;
+        top:${y}%;
+      "
+      onpointerdown="
+        startBoardDrag(
+          event,
+          '${esc(player.id)}'
+        )
+      ">
 
-  y=
-    Math.max(
-      3,
-      Math.min(97,y)
-    );
+      <div class="board-player-card">
 
-  return `
-
-  <div
-    class="board-player"
-    id="board-player-${esc(player.id)}"
-    data-player-id="${esc(player.id)}"
-    data-position-key="${esc(key)}"
-    style="
-      left:${x}%;
-      top:${y}%;
-    "
-    onpointerdown="
-      startBoardDrag(
-        event,
-        '${esc(player.id)}'
-      )
-    ">
-
-    <div class="board-player-card">
-
-      <div class="board-player-ball">
-        👤
-      </div>
-
-      <div class="board-player-info">
-
-        <div class="board-player-name">
-          ${esc(player.name)}
+        <div class="board-player-ball">
+          👤
         </div>
 
-        <div class="board-player-pos">
-          ${esc(player.pos||'Jugador')}
+        <div class="board-player-info">
+
+          <div class="board-player-name">
+            ${esc(player.name)}
+          </div>
+
+          <div class="board-player-pos">
+            ${esc(player.pos||'Jugador')}
+          </div>
+
         </div>
 
+        <button
+          type="button"
+          class="board-player-remove"
+          onclick="
+            event.stopPropagation();
+            removePlayerFromTactic('${esc(player.id)}')
+          ">
+
+          ×
+
+        </button>
+
       </div>
-
-      <button
-        type="button"
-        class="board-player-remove"
-        onclick="
-          event.stopPropagation();
-          removePlayerFromTactic('${esc(player.id)}')
-        ">
-
-        ×
-
-      </button>
 
     </div>
-
-  </div>
-
   `;
-
 }
 
 function changeTacticView(view){
-
-  if(
-    view!=='full'&&
-    view!=='half'
-  ){
+  if(view!=='full'&&view!=='half'){
     return;
   }
 
   data.tactics.view=view;
 
   save();
-
   render();
-
 }
 
 /* =====================================================
@@ -7186,47 +5773,30 @@ function addPlayerToTactic(
   x,
   y
 ){
-
   const id=String(playerId);
 
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===id
-    );
+  const player=data.players.find(
+    p=>String(p.id)===id
+  );
 
-  if(!player){
-    return;
-  }
+  if(!player)return;
 
-  const positions=
-    data.tactics.positions||{};
+  const positions=data.tactics.positions||{};
 
-  const already=
-    Object
-      .entries(positions)
-      .find(
-        ([key,value])=>
-          String(
-            value?.playerId||
-            ''
-          )===id
-      );
+  const already=Object.entries(positions).find(
+    ([key,value])=>
+      String(value?.playerId||'')===id
+  );
 
-  if(already){
-    return;
-  }
+  if(already)return;
 
   const key=
     'p_'+
     Date.now()+
     '_'+
-    Math.floor(
-      Math.random()*10000
-    );
+    Math.floor(Math.random()*10000);
 
   positions[key]={
-
     playerId:id,
 
     x:Math.max(
@@ -7244,7 +5814,6 @@ function addPlayerToTactic(
         Number(y)
       )
     )
-
   };
 
   data.tactics.positions=positions;
@@ -7255,9 +5824,7 @@ function addPlayerToTactic(
   );
 
   save();
-
   render();
-
 }
 
 /* =====================================================
@@ -7268,54 +5835,36 @@ function removePlayerFromTactic(
   playerId,
   silent=false
 ){
-
   const id=String(playerId);
 
-  const positions=
-    data.tactics.positions||{};
+  const positions=data.tactics.positions||{};
 
   let removed=false;
 
-  Object
-    .entries(positions)
-    .forEach(
-      ([key,value])=>{
-
-        if(
-          String(
-            value?.playerId||
-            ''
-          )===id
-        ){
-
-          delete positions[key];
-
-          removed=true;
-
-        }
-
+  Object.entries(positions).forEach(
+    ([key,value])=>{
+      if(
+        String(value?.playerId||'')===id
+      ){
+        delete positions[key];
+        removed=true;
       }
-    );
+    }
+  );
 
-  if(!removed){
-    return;
-  }
+  if(!removed)return;
 
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===id
-    );
+  const player=data.players.find(
+    p=>String(p.id)===id
+  );
 
   if(!silent){
-
     addActivity(
       '↩️',
       player
         ?`${player.name} retirado de la pizarra`
         :'Jugador retirado de la pizarra'
     );
-
   }
 
   data.tactics.positions=positions;
@@ -7325,7 +5874,6 @@ function removePlayerFromTactic(
   if(!silent){
     render();
   }
-
 }
 
 /* =====================================================
@@ -7333,22 +5881,18 @@ function removePlayerFromTactic(
 ===================================================== */
 
 let dragState=null;
-
 let dragGhost=null;
 
 function createDragGhost(player){
-
   if(dragGhost){
     dragGhost.remove();
   }
 
-  dragGhost=
-    document.createElement('div');
+  dragGhost=document.createElement('div');
 
   dragGhost.className='drag-ghost';
 
   dragGhost.innerHTML=`
-
     <div class="board-player-card">
 
       <div class="board-player-ball">
@@ -7368,49 +5912,34 @@ function createDragGhost(player){
       </div>
 
     </div>
-
   `;
 
   document.body.appendChild(dragGhost);
 
   dragGhost.style.display='block';
-
 }
 
 function updateDragGhost(event){
-
-  if(
-    !dragGhost||
-    !dragState
-  ){
-    return;
-  }
+  if(!dragGhost||!dragState)return;
 
   dragGhost.style.left=
     `${event.clientX}px`;
 
   dragGhost.style.top=
     `${event.clientY}px`;
-
 }
 
 function destroyDragGhost(){
-
   if(dragGhost){
-
     dragGhost.remove();
-
     dragGhost=null;
-
   }
-
 }
 
 function startTrayDrag(
   event,
   playerId
 ){
-
   if(
     event.pointerType==='mouse'&&
     event.button!==0
@@ -7421,79 +5950,55 @@ function startTrayDrag(
   event.preventDefault();
   event.stopPropagation();
 
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===
-        String(playerId)
-    );
+  const player=data.players.find(
+    p=>String(p.id)===String(playerId)
+  );
 
-  if(!player){
-    return;
-  }
+  if(!player)return;
 
-  const source=
-    event.currentTarget;
+  const source=event.currentTarget;
 
   dragState={
-
     type:'tray',
-
     playerId:String(playerId),
-
-    source:source,
-
+    source,
     moved:false,
-
     startX:event.clientX,
-
     startY:event.clientY
-
   };
 
   source.classList.add('dragging');
 
   createDragGhost(player);
-
   updateDragGhost(event);
 
   try{
-    source.setPointerCapture(
-      event.pointerId
-    );
+    source.setPointerCapture(event.pointerId);
   }catch(error){}
 
   document.addEventListener(
     'pointermove',
     handleGlobalPointerMove,
-    {
-      passive:false
-    }
+    {passive:false}
   );
 
   document.addEventListener(
     'pointerup',
     handleGlobalPointerUp,
-    {
-      once:true
-    }
+    {once:true}
   );
 
   document.addEventListener(
     'pointercancel',
     handleGlobalPointerCancel,
-    {
-      once:true
-    }
+    {once:true}
   );
-
 }
 
 function startBoardDrag(
   event,
   playerId
 ){
-
   if(
     event.target.closest(
       '.board-player-remove'
@@ -7514,109 +6019,70 @@ function startBoardDrag(
 
   const id=String(playerId);
 
-  const entry=
-    Object
-      .entries(
-        data.tactics.positions||{}
-      )
-      .find(
-        ([key,value])=>
-          String(
-            value?.playerId||
-            ''
-          )===id
-      );
+  const entry=Object.entries(
+    data.tactics.positions||{}
+  ).find(
+    ([key,value])=>
+      String(value?.playerId||'')===id
+  );
 
-  if(!entry){
-    return;
-  }
+  if(!entry)return;
 
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===id
-    );
+  const player=data.players.find(
+    p=>String(p.id)===id
+  );
 
-  if(!player){
-    return;
-  }
+  if(!player)return;
 
-  const source=
-    event.currentTarget;
+  const source=event.currentTarget;
 
   dragState={
-
     type:'board',
-
     playerId:id,
-
     key:entry[0],
-
-    source:source,
-
+    source,
     moved:false,
-
     startX:event.clientX,
-
     startY:event.clientY
-
   };
 
   source.classList.add('dragging');
 
   try{
-    source.setPointerCapture(
-      event.pointerId
-    );
+    source.setPointerCapture(event.pointerId);
   }catch(error){}
 
   document.addEventListener(
     'pointermove',
     handleGlobalPointerMove,
-    {
-      passive:false
-    }
+    {passive:false}
   );
 
   document.addEventListener(
     'pointerup',
     handleGlobalPointerUp,
-    {
-      once:true
-    }
+    {once:true}
   );
 
   document.addEventListener(
     'pointercancel',
     handleGlobalPointerCancel,
-    {
-      once:true
-    }
+    {once:true}
   );
-
 }
 
 function handleGlobalPointerMove(event){
-
-  if(!dragState){
-    return;
-  }
+  if(!dragState)return;
 
   event.preventDefault();
 
   const dx=
     event.clientX-
-    (
-      dragState.startX||
-      event.clientX
-    );
+    (dragState.startX||event.clientX);
 
   const dy=
     event.clientY-
-    (
-      dragState.startY||
-      event.clientY
-    );
+    (dragState.startY||event.clientY);
 
   if(
     Math.abs(dx)>4||
@@ -7625,23 +6091,17 @@ function handleGlobalPointerMove(event){
     dragState.moved=true;
   }
 
-  if(
-    dragState.type==='tray'
-  ){
+  if(dragState.type==='tray'){
     updateDragGhost(event);
   }
 
-  const pitch=
-    document.getElementById(
-      'tactic-pitch'
-    );
+  const pitch=document.getElementById(
+    'tactic-pitch'
+  );
 
-  if(!pitch){
-    return;
-  }
+  if(!pitch)return;
 
-  const rect=
-    pitch.getBoundingClientRect();
+  const rect=pitch.getBoundingClientRect();
 
   const inside=
     event.clientX>=rect.left&&
@@ -7658,71 +6118,48 @@ function handleGlobalPointerMove(event){
     dragState.type==='board'&&
     inside
   ){
-
-    const x=
+    const x=(
       (
-        (
-          event.clientX-
-          rect.left
-        )/
-        rect.width
-      )*100;
+        event.clientX-
+        rect.left
+      )/
+      rect.width
+    )*100;
 
-    const y=
+    const y=(
       (
-        (
-          event.clientY-
-          rect.top
-        )/
-        rect.height
-      )*100;
+        event.clientY-
+        rect.top
+      )/
+      rect.height
+    )*100;
 
     const playerElement=
       dragState.source;
 
     playerElement.style.left=
-      `${Math.max(
-        4,
-        Math.min(
-          96,
-          x
-        )
-      )}%`;
+      `${Math.max(4,Math.min(96,x))}%`;
 
     playerElement.style.top=
-      `${Math.max(
-        3,
-        Math.min(
-          97,
-          y
-        )
-      )}%`;
-
+      `${Math.max(3,Math.min(97,y))}%`;
   }
-
 }
 
 function handleGlobalPointerUp(event){
-
-  if(!dragState){
-    return;
-  }
+  if(!dragState)return;
 
   event.preventDefault();
 
   const state=dragState;
 
-  const pitch=
-    document.getElementById(
-      'tactic-pitch'
-    );
+  const pitch=document.getElementById(
+    'tactic-pitch'
+  );
 
   let dropped=false;
 
   if(pitch){
-
-    const rect=
-      pitch.getBoundingClientRect();
+    const rect=pitch.getBoundingClientRect();
 
     const inside=
       event.clientX>=rect.left&&
@@ -7735,24 +6172,21 @@ function handleGlobalPointerUp(event){
       inside&&
       state.moved
     ){
-
-      const x=
+      const x=(
         (
-          (
-            event.clientX-
-            rect.left
-          )/
-          rect.width
-        )*100;
+          event.clientX-
+          rect.left
+        )/
+        rect.width
+      )*100;
 
-      const y=
+      const y=(
         (
-          (
-            event.clientY-
-            rect.top
-          )/
-          rect.height
-        )*100;
+          event.clientY-
+          rect.top
+        )/
+        rect.height
+      )*100;
 
       destroyDragGhost();
 
@@ -7763,7 +6197,6 @@ function handleGlobalPointerUp(event){
       );
 
       dropped=true;
-
     }
 
     if(
@@ -7771,24 +6204,21 @@ function handleGlobalPointerUp(event){
       inside&&
       state.moved
     ){
-
-      const x=
+      const x=(
         (
-          (
-            event.clientX-
-            rect.left
-          )/
-          rect.width
-        )*100;
+          event.clientX-
+          rect.left
+        )/
+        rect.width
+      )*100;
 
-      const y=
+      const y=(
         (
-          (
-            event.clientY-
-            rect.top
-          )/
-          rect.height
-        )*100;
+          event.clientY-
+          rect.top
+        )/
+        rect.height
+      )*100;
 
       updateBoardPlayerPosition(
         state.key,
@@ -7797,9 +6227,7 @@ function handleGlobalPointerUp(event){
       );
 
       dropped=true;
-
     }
-
   }
 
   cleanupDrag();
@@ -7807,15 +6235,11 @@ function handleGlobalPointerUp(event){
   if(!dropped){
     render();
   }
-
 }
 
 function handleGlobalPointerCancel(){
-
   cleanupDrag();
-
   render();
-
 }
 
 function updateBoardPlayerPosition(
@@ -7823,38 +6247,30 @@ function updateBoardPlayerPosition(
   x,
   y
 ){
-
   const position=
     data.tactics.positions[key];
 
-  if(!position){
-    return;
-  }
+  if(!position)return;
 
-  position.x=
-    Math.max(
-      4,
-      Math.min(
-        96,
-        Number(x)
-      )
-    );
+  position.x=Math.max(
+    4,
+    Math.min(
+      96,
+      Number(x)
+    )
+  );
 
-  position.y=
-    Math.max(
-      3,
-      Math.min(
-        97,
-        Number(y)
-      )
-    );
+  position.y=Math.max(
+    3,
+    Math.min(
+      97,
+      Number(y)
+    )
+  );
 
-  const player=
-    data.players.find(
-      p=>
-        String(p.id)===
-        String(position.playerId)
-    );
+  const player=data.players.find(
+    p=>String(p.id)===String(position.playerId)
+  );
 
   addActivity(
     '📍',
@@ -7864,43 +6280,26 @@ function updateBoardPlayerPosition(
   );
 
   save();
-
 }
 
 function cleanupDrag(){
+  document.querySelectorAll(
+    '.tray-player.dragging'
+  ).forEach(
+    el=>el.classList.remove('dragging')
+  );
 
-  document
-    .querySelectorAll(
-      '.tray-player.dragging'
-    )
-    .forEach(
-      el=>
-        el.classList.remove(
-          'dragging'
-        )
-    );
+  document.querySelectorAll(
+    '.board-player.dragging'
+  ).forEach(
+    el=>el.classList.remove('dragging')
+  );
 
-  document
-    .querySelectorAll(
-      '.board-player.dragging'
-    )
-    .forEach(
-      el=>
-        el.classList.remove(
-          'dragging'
-        )
-    );
-
-  document
-    .querySelectorAll(
-      '.pitch.drop-active'
-    )
-    .forEach(
-      el=>
-        el.classList.remove(
-          'drop-active'
-        )
-    );
+  document.querySelectorAll(
+    '.pitch.drop-active'
+  ).forEach(
+    el=>el.classList.remove('drop-active')
+  );
 
   destroyDragGhost();
 
@@ -7910,7 +6309,6 @@ function cleanupDrag(){
   );
 
   dragState=null;
-
 }
 
 /* =====================================================
@@ -7918,7 +6316,6 @@ function cleanupDrag(){
 ===================================================== */
 
 function clearTactic(){
-
   data.tactics.positions={};
 
   addActivity(
@@ -7927,33 +6324,20 @@ function clearTactic(){
   );
 
   save();
-
   render();
-
 }
 
 function saveTactic(){
-
   data.tactics.savedLineup=
-
-    Object
-      .values(
-        data.tactics.positions||{}
-      )
-      .map(
-        v=>({
-
-          playerId:
-            String(v.playerId),
-
-          x:
-            Number(v.x),
-
-          y:
-            Number(v.y)
-
-        })
-      );
+    Object.values(
+      data.tactics.positions||{}
+    ).map(
+      v=>({
+        playerId:String(v.playerId),
+        x:Number(v.x),
+        y:Number(v.y)
+      })
+    );
 
   addActivity(
     '💾',
@@ -7965,7 +6349,6 @@ function saveTactic(){
   alert(
     'Pizarra táctica guardada correctamente.'
   );
-
 }
 
 /* =====================================================
@@ -7973,9 +6356,7 @@ function saveTactic(){
 ===================================================== */
 
 syncNextMatch();
-
 save();
-
 render();
 
 </script>
