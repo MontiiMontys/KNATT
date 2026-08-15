@@ -243,6 +243,57 @@ main{
   margin-top:3px;
 }
 
+.home-team-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.home-team-logo{
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  box-shadow:0 5px 15px #14141912;
+}
+
+.home-team-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.home-team-logo-placeholder{
+  font-size:26px;
+  color:#b5b5ba;
+}
+
+.home-team-info{
+  min-width:0;
+}
+
+.home-team-name{
+  font-size:15px;
+  font-weight:950;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.home-team-season{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+  margin-top:3px;
+}
+
 .home-quick-card{
   display:flex;
   align-items:center;
@@ -338,6 +389,79 @@ main{
   font-size:11px;
   color:var(--muted);
   font-weight:700;
+}
+
+/* =====================================================
+   ESCUDO
+===================================================== */
+
+.team-logo-settings{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#fafafa;
+  margin-bottom:12px;
+}
+
+.team-logo-preview{
+  width:76px;
+  height:76px;
+  flex:0 0 76px;
+  border-radius:17px;
+  background:#fff;
+  border:1px solid #dedee2;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  box-shadow:0 4px 14px #1414190d;
+}
+
+.team-logo-preview img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.team-logo-placeholder{
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
+  color:#b5b5ba;
+  font-size:30px;
+}
+
+.team-logo-info{
+  flex:1;
+  min-width:0;
+}
+
+.team-logo-title{
+  font-size:13px;
+  font-weight:950;
+}
+
+.team-logo-subtitle{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:700;
+  line-height:1.35;
+  margin-top:3px;
+}
+
+.team-logo-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:10px;
+}
+
+.logo-file-input{
+  display:none;
 }
 
 /* =====================================================
@@ -1256,6 +1380,16 @@ nav .nav-icon{
     padding-right:11px;
   }
 
+  .home-team-logo{
+    width:52px;
+    height:52px;
+    flex-basis:52px;
+  }
+
+  .home-team-name{
+    font-size:14px;
+  }
+
   .board-player{
     width:72px;
     min-height:62px;
@@ -1315,6 +1449,16 @@ nav .nav-icon{
 
   .note-modal-textarea{
     min-height:150px;
+  }
+
+  .team-logo-settings{
+    align-items:flex-start;
+  }
+
+  .team-logo-preview{
+    width:66px;
+    height:66px;
+    flex-basis:66px;
   }
 }
 </style>
@@ -1442,7 +1586,8 @@ if(!data || typeof data!=='object'){
       coach:'',
       team:'KNATT FC',
       season:'2026/27',
-      category:'Primer Equipo'
+      category:'Primer Equipo',
+      logo:''
     },
 
     notes:[],
@@ -1496,8 +1641,9 @@ if(!data.settings.team)
 if(!data.settings.season)
   data.settings.season='2026/27';
 
-if(!data.settings.category)
-  data.settings.category='Primer Equipo';
+if(typeof data.settings.logo!=='string'){
+  data.settings.logo='';
+}
 
 if(!Array.isArray(data.notes)){
   data.notes=[];
@@ -1551,10 +1697,25 @@ function addActivity(icon,title){
 
 function save(){
 
-  localStorage.setItem(
-    KEY,
-    JSON.stringify(data)
-  );
+  try{
+
+    localStorage.setItem(
+      KEY,
+      JSON.stringify(data)
+    );
+
+  }catch(error){
+
+    console.error(
+      'No se pudieron guardar los datos:',
+      error
+    );
+
+    alert(
+      'No se ha podido guardar el escudo porque el almacenamiento del dispositivo está lleno.'
+    );
+
+  }
 
 }
 
@@ -1681,6 +1842,74 @@ function render(){
 }
 
 /* =====================================================
+   LOGO DEL EQUIPO — HTML
+===================================================== */
+
+function homeTeamLogoHtml(){
+
+  if(data.settings.logo){
+
+    return`
+
+      <div class="home-team-logo">
+
+        <img
+          src="${data.settings.logo}"
+          alt="Escudo del equipo">
+
+      </div>
+
+    `;
+
+  }
+
+  return`
+
+    <div class="home-team-logo">
+
+      <div class="home-team-logo-placeholder">
+        🛡️
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+function settingsLogoHtml(){
+
+  if(data.settings.logo){
+
+    return`
+
+      <div class="team-logo-preview">
+
+        <img
+          src="${data.settings.logo}"
+          alt="Escudo del equipo">
+
+      </div>
+
+    `;
+
+  }
+
+  return`
+
+    <div class="team-logo-preview">
+
+      <div class="team-logo-placeholder">
+        🛡️
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+/* =====================================================
    INICIO
 ===================================================== */
 
@@ -1705,19 +1934,51 @@ function home(){
 
     <div class="title-row home-title-row">
 
-      <div>
+      <div class="home-team-heading">
 
-        <div class="title">
-          ¡Buenos días!
+        ${homeTeamLogoHtml()}
+
+        <div class="home-team-info">
+
+          <div class="home-team-name">
+
+            ${esc(
+              data.settings.team||
+              'KNATT FC'
+            )}
+
+          </div>
+
+          <div class="home-team-season">
+
+            ${esc(
+              data.settings.season||
+              '2026/27'
+            )}
+
+            ·
+
+            ${esc(
+              data.settings.category||
+              'Primer Equipo'
+            )}
+
+          </div>
+
         </div>
 
-        <div class="subtitle">
-          ${esc(
-            data.settings.team||
-            'KNATT FC'
-          )}
-        </div>
+      </div>
 
+    </div>
+
+    <div class="card">
+
+      <div class="title">
+        ¡Buenos días!
+      </div>
+
+      <div class="subtitle">
+        Tu equipo, en una sola app
       </div>
 
     </div>
@@ -4240,6 +4501,74 @@ function settings(){
 
       </div>
 
+      <div class="form-group">
+
+        <label>
+          Escudo del equipo
+        </label>
+
+        <div class="team-logo-settings">
+
+          ${settingsLogoHtml()}
+
+          <div class="team-logo-info">
+
+            <div class="team-logo-title">
+              Escudo
+            </div>
+
+            <div class="team-logo-subtitle">
+
+              Sube el escudo de tu equipo.
+              Se guardará en este dispositivo
+              y aparecerá automáticamente en Inicio.
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <input
+          id="team-logo-input"
+          class="logo-file-input"
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/*"
+          onchange="handleTeamLogoUpload(event)">
+
+        <div class="team-logo-actions">
+
+          <button
+            type="button"
+            class="btn"
+            onclick="document.getElementById('team-logo-input').click()">
+
+            ${
+              data.settings.logo
+                ?'🔄 Cambiar escudo'
+                :'🛡️ Subir escudo'
+            }
+
+          </button>
+
+          <button
+            type="button"
+            class="btn light"
+            onclick="removeTeamLogo()"
+            ${
+              data.settings.logo
+                ?''
+                :'disabled'
+            }>
+
+            🗑️ Eliminar
+
+          </button>
+
+        </div>
+
+      </div>
+
       <button
         class="btn full"
         onclick="saveSettings()">
@@ -4253,6 +4582,227 @@ function settings(){
   `;
 
 }
+
+/* =====================================================
+   ESCUDO — SUBIR
+===================================================== */
+
+function handleTeamLogoUpload(event){
+
+  const input=
+    event.target;
+
+  if(
+    !input||
+    !input.files||
+    !input.files.length
+  ){
+    return;
+  }
+
+  const file=
+    input.files[0];
+
+  if(!file.type.startsWith('image/')){
+
+    alert(
+      'Selecciona una imagen válida.'
+    );
+
+    input.value='';
+
+    return;
+
+  }
+
+  const reader=
+    new FileReader();
+
+  reader.onload=function(){
+
+    const image=
+      new Image();
+
+    image.onload=function(){
+
+      const maxSize=500;
+
+      let width=
+        image.naturalWidth;
+
+      let height=
+        image.naturalHeight;
+
+      if(
+        width<=0||
+        height<=0
+      ){
+
+        alert(
+          'No se ha podido leer la imagen.'
+        );
+
+        input.value='';
+
+        return;
+
+      }
+
+      const scale=
+        Math.min(
+          1,
+          maxSize/
+            Math.max(
+              width,
+              height
+            )
+        );
+
+      width=
+        Math.round(
+          width*scale
+        );
+
+      height=
+        Math.round(
+          height*scale
+        );
+
+      const canvas=
+        document.createElement('canvas');
+
+      canvas.width=width;
+
+      canvas.height=height;
+
+      const ctx=
+        canvas.getContext('2d');
+
+      if(!ctx){
+
+        alert(
+          'No se ha podido procesar la imagen.'
+        );
+
+        input.value='';
+
+        return;
+
+      }
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      ctx.drawImage(
+        image,
+        0,
+        0,
+        width,
+        height
+      );
+
+      let logoData;
+
+      try{
+
+        logoData=
+          canvas.toDataURL(
+            'image/webp',
+            .82
+          );
+
+      }catch(error){
+
+        logoData=
+          canvas.toDataURL(
+            'image/jpeg',
+            .85
+          );
+
+      }
+
+      data.settings.logo=
+        logoData;
+
+      addActivity(
+        '🛡️',
+        'Escudo del equipo actualizado'
+      );
+
+      save();
+
+      render();
+
+    };
+
+    image.onerror=function(){
+
+      alert(
+        'No se ha podido cargar la imagen.'
+      );
+
+      input.value='';
+
+    };
+
+    image.src=
+      reader.result;
+
+  };
+
+  reader.onerror=function(){
+
+    alert(
+      'No se ha podido leer el archivo.'
+    );
+
+    input.value='';
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+/* =====================================================
+   ESCUDO — ELIMINAR
+===================================================== */
+
+function removeTeamLogo(){
+
+  if(!data.settings.logo){
+    return;
+  }
+
+  const confirmed=
+    confirm(
+      '¿Eliminar el escudo del equipo?'
+    );
+
+  if(!confirmed){
+    return;
+  }
+
+  data.settings.logo='';
+
+  addActivity(
+    '🗑️',
+    'Escudo del equipo eliminado'
+  );
+
+  save();
+
+  render();
+
+}
+
+/* =====================================================
+   GUARDAR CONFIGURACIÓN
+===================================================== */
 
 function saveSettings(){
 
