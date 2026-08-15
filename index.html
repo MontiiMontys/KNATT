@@ -514,7 +514,7 @@ main{
 
 
 /* =====================================================
-   MODAL EDITAR JUGADOR
+   MODAL JUGADOR
 ===================================================== */
 
 .edit-modal{
@@ -1765,6 +1765,8 @@ function go(s){
 
   closeEditModal();
 
+  closeAddModal();
+
   window.scrollTo(
     0,
     0
@@ -2493,15 +2495,317 @@ function playerProfile(){
 
 function addPlayer(){
 
-  const name =
-    prompt(
-      'Nombre del jugador:'
+  closeEditModal();
+  closeAddModal();
+
+
+  const modal =
+    document.createElement('div');
+
+  modal.className='edit-modal';
+
+  modal.id='add-player-modal';
+
+
+  modal.innerHTML = `
+
+    <div
+      class="edit-modal-card"
+      onclick="event.stopPropagation()">
+
+      <div class="edit-modal-header">
+
+        <div>
+
+          <div class="edit-modal-title">
+            Añadir jugador
+          </div>
+
+          <div class="edit-modal-subtitle">
+            Introduce todos los datos del jugador
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="edit-modal-close"
+          onclick="closeAddModal()">
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Nombre
+        </label>
+
+        <input
+          id="add-name"
+          class="form-input"
+          type="text"
+          placeholder="Nombre del jugador"
+          autocomplete="off">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Dorsal
+        </label>
+
+        <input
+          id="add-num"
+          class="form-input"
+          type="number"
+          inputmode="numeric"
+          min="0"
+          placeholder="Número de camiseta">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Posición
+        </label>
+
+        <input
+          id="add-pos"
+          class="form-input"
+          type="text"
+          placeholder="Ej. DC, MC, DFC, POR..."
+          autocomplete="off">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Disponibilidad
+        </label>
+
+        <div class="edit-status-grid">
+
+          <div class="edit-status-option">
+
+            <input
+              type="radio"
+              id="add-available-yes"
+              name="add-available"
+              value="true"
+              checked
+              onchange="toggleAddReason()">
+
+            <label for="add-available-yes">
+              ✓ Disponible
+            </label>
+
+          </div>
+
+
+          <div class="edit-status-option">
+
+            <input
+              type="radio"
+              id="add-available-no"
+              name="add-available"
+              value="false"
+              onchange="toggleAddReason()">
+
+            <label for="add-available-no">
+              ✕ No disponible
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="add-reason-group"
+        class="form-group edit-disabled">
+
+        <label>
+          Motivo de ausencia
+        </label>
+
+        <input
+          id="add-reason"
+          class="form-input"
+          type="text"
+          placeholder="Ej. Lesión, trabajo, vacaciones..."
+          disabled>
+
+      </div>
+
+
+      <div class="edit-stats-grid">
+
+        <div class="form-group">
+
+          <label>
+            Minutos
+          </label>
+
+          <input
+            id="add-min"
+            class="form-input"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            value="0">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Goles
+          </label>
+
+          <input
+            id="add-goals"
+            class="form-input"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            value="0">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Asistencias
+          </label>
+
+          <input
+            id="add-assists"
+            class="form-input"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            value="0">
+
+        </div>
+
+      </div>
+
+
+      <div class="edit-modal-actions">
+
+        <button
+          type="button"
+          class="btn light"
+          onclick="closeAddModal()">
+
+          Cancelar
+
+        </button>
+
+
+        <button
+          type="button"
+          class="btn"
+          onclick="saveNewPlayer()">
+
+          Añadir jugador
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(
+        event.target === modal
+      ){
+
+        closeAddModal();
+
+      }
+
+    }
+  );
+
+
+  document.body.appendChild(
+    modal
+  );
+
+
+  document.body.style.overflow='hidden';
+
+
+  const nameInput =
+    document.getElementById(
+      'add-name'
+    );
+
+
+  if(nameInput){
+
+    setTimeout(
+      ()=>{
+
+        nameInput.focus();
+
+      },
+      50
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   ACTIVAR / DESACTIVAR MOTIVO AÑADIR
+===================================================== */
+
+function toggleAddReason(){
+
+  const available =
+    document.querySelector(
+      '#add-available-yes'
+    );
+
+  const reason =
+    document.getElementById(
+      'add-reason'
+    );
+
+  const group =
+    document.getElementById(
+      'add-reason-group'
     );
 
 
   if(
-    !name ||
-    !name.trim()
+    !available ||
+    !reason ||
+    !group
   ){
 
     return;
@@ -2509,59 +2813,208 @@ function addPlayer(){
   }
 
 
-  const num =
-    prompt(
-      'Número de camiseta:',
-      ''
-    );
+  const isAvailable =
+    available.checked;
 
 
-  if(num===null){
-    return;
+  reason.disabled =
+    isAvailable;
+
+
+  group.classList.toggle(
+    'edit-disabled',
+    isAvailable
+  );
+
+
+  if(isAvailable){
+
+    reason.value='';
+
   }
 
+}
+
+
+/* =====================================================
+   GUARDAR NUEVO JUGADOR
+===================================================== */
+
+function saveNewPlayer(){
+
+  const name =
+    document.getElementById(
+      'add-name'
+    );
+
+  const num =
+    document.getElementById(
+      'add-num'
+    );
 
   const pos =
-    prompt(
-      'Posición:',
-      ''
+    document.getElementById(
+      'add-pos'
+    );
+
+  const available =
+    document.querySelector(
+      'input[name="add-available"]:checked'
+    );
+
+  const reason =
+    document.getElementById(
+      'add-reason'
+    );
+
+  const min =
+    document.getElementById(
+      'add-min'
+    );
+
+  const goals =
+    document.getElementById(
+      'add-goals'
+    );
+
+  const assists =
+    document.getElementById(
+      'add-assists'
     );
 
 
-  if(pos===null){
+  const newName =
+    name
+      ?name.value.trim()
+      :'';
+
+
+  const newNum =
+    num
+      ?num.value.trim()
+      :'';
+
+
+  const newPos =
+    pos
+      ?pos.value.trim()
+      :'';
+
+
+  if(!newName){
+
+    alert(
+      'El nombre del jugador es obligatorio.'
+    );
+
+    if(name){
+      name.focus();
+    }
+
     return;
+
   }
 
 
-  data.players.push({
+  if(!newNum){
+
+    alert(
+      'El dorsal es obligatorio.'
+    );
+
+    if(num){
+      num.focus();
+    }
+
+    return;
+
+  }
+
+
+  if(!newPos){
+
+    alert(
+      'La posición es obligatoria.'
+    );
+
+    if(pos){
+      pos.focus();
+    }
+
+    return;
+
+  }
+
+
+  const isAvailable =
+    available
+      ?available.value === 'true'
+      :true;
+
+
+  const newPlayer={
 
     id:Date.now(),
 
-    name:name.trim(),
+    name:newName,
 
-    num:num.trim() || '-',
+    num:newNum,
 
-    pos:pos.trim() || 'Jugador',
+    pos:newPos,
 
-    available:true,
+    available:isAvailable,
 
-    reason:'',
+    reason:
+      isAvailable
+        ?''
+        :(reason
+          ?reason.value.trim()
+          :''),
 
-    min:0,
+    min:Math.max(
+      0,
+      Number(
+        min
+          ?min.value
+          :0
+      ) || 0
+    ),
 
-    g:0,
+    g:Math.max(
+      0,
+      Number(
+        goals
+          ?goals.value
+          :0
+      ) || 0
+    ),
 
-    a:0
+    a:Math.max(
+      0,
+      Number(
+        assists
+          ?assists.value
+          :0
+      ) || 0
+    )
 
-  });
+  };
+
+
+  data.players.push(
+    newPlayer
+  );
 
 
   addActivity(
     '👤',
-    `Jugador añadido: ${name.trim()}`
+    `Jugador añadido: ${newPlayer.name}`
   );
 
+
   save();
+
+  closeAddModal();
 
   render();
 
@@ -2872,8 +3325,10 @@ function editPlayer(){
 
     setTimeout(
       ()=>{
+
         nameInput.focus();
         nameInput.select();
+
       },
       50
     );
@@ -2884,7 +3339,7 @@ function editPlayer(){
 
 
 /* =====================================================
-   ACTIVAR / DESACTIVAR MOTIVO
+   ACTIVAR / DESACTIVAR MOTIVO EDICIÓN
 ===================================================== */
 
 function toggleEditReason(){
@@ -3157,7 +3612,47 @@ function closeEditModal(){
   }
 
 
-  document.body.style.overflow='';
+  if(
+    !document.getElementById(
+      'add-player-modal'
+    )
+  ){
+
+    document.body.style.overflow='';
+
+  }
+
+}
+
+
+/* =====================================================
+   CERRAR MODAL AÑADIR
+===================================================== */
+
+function closeAddModal(){
+
+  const modal =
+    document.getElementById(
+      'add-player-modal'
+    );
+
+
+  if(modal){
+
+    modal.remove();
+
+  }
+
+
+  if(
+    !document.getElementById(
+      'edit-player-modal'
+    )
+  ){
+
+    document.body.style.overflow='';
+
+  }
 
 }
 
