@@ -392,6 +392,138 @@ main{
 }
 
 /* =====================================================
+   PARTIDOS
+===================================================== */
+
+.match-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:10px;
+  box-shadow:0 5px 18px #1414190d;
+}
+
+.match-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.match-teams{
+  flex:1;
+  min-width:0;
+}
+
+.match-home,
+.match-away{
+  font-size:13px;
+  font-weight:950;
+  line-height:1.2;
+}
+
+.match-away{
+  margin-top:4px;
+}
+
+.match-vs{
+  color:#aaa;
+  font-size:10px;
+  font-weight:800;
+  margin:0 3px;
+}
+
+.match-result{
+  min-width:62px;
+  padding:9px 8px;
+  border-radius:12px;
+  background:#fff0f2;
+  color:var(--red);
+  text-align:center;
+  font-size:18px;
+  font-weight:950;
+}
+
+.match-details{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid #ededf0;
+  display:grid;
+  gap:7px;
+}
+
+.match-detail{
+  font-size:10px;
+  color:#555;
+  line-height:1.4;
+}
+
+.match-detail b{
+  color:#222;
+  font-weight:950;
+}
+
+.match-date{
+  margin-top:10px;
+  font-size:9px;
+  color:var(--muted);
+  font-weight:750;
+}
+
+.match-actions{
+  display:flex;
+  gap:6px;
+  margin-top:11px;
+}
+
+.match-action{
+  width:32px;
+  height:32px;
+  border:0;
+  border-radius:9px;
+  background:#f0f0f2;
+  color:#666;
+  display:grid;
+  place-items:center;
+}
+
+.match-action.delete{
+  color:var(--red);
+  background:#fff0f2;
+}
+
+.matches-empty{
+  text-align:center;
+  padding:38px 15px;
+}
+
+.matches-empty-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 11px;
+  border-radius:17px;
+  background:#fff0f2;
+  color:var(--red);
+  display:grid;
+  place-items:center;
+  font-size:27px;
+}
+
+.matches-empty-title{
+  font-size:14px;
+  font-weight:950;
+}
+
+.matches-empty-text{
+  margin-top:5px;
+  font-size:10px;
+  color:var(--muted);
+  font-weight:700;
+  line-height:1.4;
+}
+
+/* =====================================================
    ESCUDO
 ===================================================== */
 
@@ -1460,6 +1592,12 @@ nav .nav-icon{
     height:66px;
     flex-basis:66px;
   }
+
+  .match-result{
+    min-width:55px;
+    font-size:16px;
+  }
+
 }
 </style>
 </head>
@@ -1592,6 +1730,8 @@ if(!data || typeof data!=='object'){
 
     notes:[],
 
+    matches:[],
+
     activity:[]
   };
 }
@@ -1641,12 +1781,20 @@ if(!data.settings.team)
 if(!data.settings.season)
   data.settings.season='2026/27';
 
+if(!typeof data.settings.category==='string'){
+  data.settings.category='Primer Equipo';
+}
+
 if(typeof data.settings.logo!=='string'){
   data.settings.logo='';
 }
 
 if(!Array.isArray(data.notes)){
   data.notes=[];
+}
+
+if(!Array.isArray(data.matches)){
+  data.matches=[];
 }
 
 if(!Array.isArray(data.activity)){
@@ -1666,6 +1814,8 @@ let noteFilter='all';
 let selectedPlayerId=null;
 
 let selectedNoteId=null;
+
+let selectedMatchId=null;
 
 /* =====================================================
    ACTIVIDAD
@@ -1752,6 +1902,8 @@ function go(s){
 
   selectedNoteId=null;
 
+  selectedMatchId=null;
+
   window.scrollTo(0,0);
 
   render();
@@ -1768,7 +1920,7 @@ function navItems(){
 
     ['tactic','⚽','Táctica'],
 
-    ['notes','📝','Notas'],
+    ['matches','🏟️','Partidos'],
 
     ['more','☰','Más']
 
@@ -1824,6 +1976,10 @@ function render(){
     :section==='tactic'
 
       ?tactic()
+
+    :section==='matches'
+
+      ?matches()
 
     :section==='notes'
 
@@ -1930,6 +2086,11 @@ function home(){
       ?data.notes.length
       :0;
 
+  const matchesCount=
+    Array.isArray(data.matches)
+      ?data.matches.length
+      :0;
+
   return`
 
     <div class="title-row home-title-row">
@@ -1974,11 +2135,13 @@ function home(){
     <div class="card">
 
       <div class="title">
+
         ${
           data.settings.coach
             ?`¡Buenos días ${esc(data.settings.coach)}!`
             :'¡Buenos días!'
         }
+
       </div>
 
       <div class="subtitle">
@@ -2064,6 +2227,42 @@ function home(){
           ${available}
 
           disponibles
+
+        </div>
+
+      </div>
+
+      <div class="home-quick-arrow">
+        ›
+      </div>
+
+    </div>
+
+    <div
+      class="card home-quick-card"
+      onclick="go('matches')">
+
+      <div class="home-quick-icon">
+        🏟️
+      </div>
+
+      <div class="home-quick-content">
+
+        <div class="home-quick-title">
+          Partidos
+        </div>
+
+        <div class="home-quick-subtitle">
+
+          ${
+            matchesCount
+              ?`${matchesCount} ${
+                  matchesCount===1
+                    ?'partido registrado'
+                    :'partidos registrados'
+                }`
+              :'Añade resultados y estadísticas'
+          }
 
         </div>
 
@@ -3479,6 +3678,9 @@ function closeEditModal(){
     )&&
     !document.getElementById(
       'note-modal'
+    )&&
+    !document.getElementById(
+      'match-modal'
     )
   ){
 
@@ -3505,6 +3707,9 @@ function closeAddModal(){
     )&&
     !document.getElementById(
       'note-modal'
+    )&&
+    !document.getElementById(
+      'match-modal'
     )
   ){
 
@@ -3556,6 +3761,713 @@ function deletePlayer(id){
   save();
 
   go('team');
+
+}
+
+/* =====================================================
+   PARTIDOS
+===================================================== */
+
+function matches(){
+
+  const list=
+    Array.isArray(data.matches)
+      ?data.matches
+      :[];
+
+  return`
+
+    <div class="title-row">
+
+      <div>
+
+        <div class="title">
+          Partidos
+        </div>
+
+        <div class="subtitle">
+
+          ${list.length}
+
+          ${
+            list.length===1
+              ?'partido registrado'
+              :'partidos registrados'
+          }
+
+        </div>
+
+      </div>
+
+      <button
+        class="btn red-soft"
+        onclick="openMatchModal()">
+
+        ＋
+
+      </button>
+
+    </div>
+
+    ${
+      list.length
+
+        ?list.map(
+          match=>matchCard(match)
+        ).join('')
+
+        :`
+
+          <div class="card matches-empty">
+
+            <div class="matches-empty-icon">
+              🏟️
+            </div>
+
+            <div class="matches-empty-title">
+              No hay partidos todavía
+            </div>
+
+            <div class="matches-empty-text">
+
+              Añade tu primer partido y guarda
+              el resultado, goleadores y tarjetas.
+
+            </div>
+
+            <br>
+
+            <button
+              class="btn"
+              onclick="openMatchModal()">
+
+              ＋ Añadir partido
+
+            </button>
+
+          </div>
+
+        `
+
+    }
+
+  `;
+
+}
+
+function matchCard(match){
+
+  return`
+
+    <div class="match-card">
+
+      <div class="match-card-header">
+
+        <div class="match-teams">
+
+          <div class="match-home">
+            ${esc(match.home)}
+          </div>
+
+          <div class="match-away">
+
+            <span class="match-vs">
+              vs
+            </span>
+
+            ${esc(match.rival)}
+
+          </div>
+
+        </div>
+
+        <div class="match-result">
+          ${esc(match.result)}
+        </div>
+
+      </div>
+
+      ${
+        match.scorers||
+        match.cards
+          ?`
+
+            <div class="match-details">
+
+              ${
+                match.scorers
+                  ?`
+
+                    <div class="match-detail">
+
+                      <b>⚽ Goleadores:</b>
+
+                      ${esc(match.scorers)}
+
+                    </div>
+
+                  `
+                  :''
+              }
+
+              ${
+                match.cards
+                  ?`
+
+                    <div class="match-detail">
+
+                      <b>🟨 Tarjetas:</b>
+
+                      ${esc(match.cards)}
+
+                    </div>
+
+                  `
+                  :''
+              }
+
+            </div>
+
+          `
+          :''
+      }
+
+      <div class="match-date">
+
+        ${formatMatchDate(match.createdAt)}
+
+      </div>
+
+      <div class="match-actions">
+
+        <button
+          class="match-action"
+          onclick="
+            openMatchModal('${esc(match.id)}')
+          ">
+
+          ✏️
+
+        </button>
+
+        <button
+          class="match-action delete"
+          onclick="
+            deleteMatch('${esc(match.id)}')
+          ">
+
+          🗑️
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+function formatMatchDate(timestamp){
+
+  if(!timestamp){
+    return '';
+  }
+
+  return new Date(
+    timestamp
+  ).toLocaleDateString(
+    'es-ES',
+    {
+      day:'numeric',
+      month:'short',
+      year:'numeric'
+    }
+  );
+
+}
+
+function openMatchModal(id=null){
+
+  const existing=
+    id!==null
+      ?data.matches.find(
+        match=>
+          String(match.id)===
+          String(id)
+      )
+      :null;
+
+  const modal=
+    document.createElement('div');
+
+  modal.className='edit-modal';
+
+  modal.id='match-modal';
+
+  modal.innerHTML=`
+
+    <div
+      class="edit-modal-card"
+      onclick="event.stopPropagation()">
+
+      <div class="edit-modal-header">
+
+        <div>
+
+          <div class="edit-modal-title">
+
+            ${
+              existing
+                ?'Editar partido'
+                :'Añadir partido'
+            }
+
+          </div>
+
+          <div class="edit-modal-subtitle">
+
+            Registra el resultado y los datos
+            principales del encuentro.
+
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="edit-modal-close"
+          onclick="closeMatchModal()">
+
+          ×
+
+        </button>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Equipo local
+        </label>
+
+        <input
+          id="match-home"
+          class="form-input"
+          type="text"
+          value="${
+            existing
+              ?esc(existing.home)
+              :esc(
+                data.settings.team||
+                'KNATT FC'
+              )
+          }"
+          autocomplete="off">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Equipo rival
+        </label>
+
+        <input
+          id="match-rival"
+          class="form-input"
+          type="text"
+          value="${
+            existing
+              ?esc(existing.rival)
+              :''
+          }"
+          placeholder="Nombre del rival"
+          autocomplete="off">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Resultado final
+        </label>
+
+        <input
+          id="match-result"
+          class="form-input"
+          type="text"
+          value="${
+            existing
+              ?esc(existing.result)
+              :''
+          }"
+          placeholder="Ej. 3 - 1"
+          autocomplete="off">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Goleadores
+        </label>
+
+        <textarea
+          id="match-scorers"
+          class="form-textarea"
+          placeholder="Ej. Montiimontys 2, Marc 1...">${
+            existing
+              ?esc(existing.scorers||'')
+              :''
+          }</textarea>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>
+          Tarjetas
+        </label>
+
+        <textarea
+          id="match-cards"
+          class="form-textarea"
+          placeholder="Ej. Juan 🟨, Marc 🟨, Pedro 🟥...">${
+            existing
+              ?esc(existing.cards||'')
+              :''
+          }</textarea>
+
+      </div>
+
+      <div class="edit-modal-actions">
+
+        <button
+          type="button"
+          class="btn light"
+          onclick="closeMatchModal()">
+
+          Cancelar
+
+        </button>
+
+        <button
+          type="button"
+          class="btn"
+          onclick="
+            saveMatch(
+              ${existing?`'${esc(existing.id)}'`:'null'}
+            )
+          ">
+
+          ${
+            existing
+              ?'Guardar cambios'
+              :'Guardar partido'
+          }
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+  modal.addEventListener(
+    'click',
+    function(event){
+
+      if(event.target===modal){
+        closeMatchModal();
+      }
+
+    }
+  );
+
+  document.body.appendChild(modal);
+
+  document.body.style.overflow='hidden';
+
+  const rivalInput=
+    document.getElementById(
+      'match-rival'
+    );
+
+  if(rivalInput){
+
+    setTimeout(()=>{
+
+      rivalInput.focus();
+
+      if(existing){
+        rivalInput.select();
+      }
+
+    },50);
+
+  }
+
+}
+
+function saveMatch(id=null){
+
+  const home=
+    document.getElementById(
+      'match-home'
+    );
+
+  const rival=
+    document.getElementById(
+      'match-rival'
+    );
+
+  const result=
+    document.getElementById(
+      'match-result'
+    );
+
+  const scorers=
+    document.getElementById(
+      'match-scorers'
+    );
+
+  const cards=
+    document.getElementById(
+      'match-cards'
+    );
+
+  const matchHome=
+    home
+      ?home.value.trim()
+      :'';
+
+  const matchRival=
+    rival
+      ?rival.value.trim()
+      :'';
+
+  const matchResult=
+    result
+      ?result.value.trim()
+      :'';
+
+  const matchScorers=
+    scorers
+      ?scorers.value.trim()
+      :'';
+
+  const matchCards=
+    cards
+      ?cards.value.trim()
+      :'';
+
+  if(!matchHome){
+
+    alert(
+      'El equipo local es obligatorio.'
+    );
+
+    home?.focus();
+
+    return;
+
+  }
+
+  if(!matchRival){
+
+    alert(
+      'El equipo rival es obligatorio.'
+    );
+
+    rival?.focus();
+
+    return;
+
+  }
+
+  if(!matchResult){
+
+    alert(
+      'El resultado final es obligatorio.'
+    );
+
+    result?.focus();
+
+    return;
+
+  }
+
+  if(id!==null){
+
+    const match=
+      data.matches.find(
+        m=>
+          String(m.id)===
+          String(id)
+      );
+
+    if(!match){
+
+      closeMatchModal();
+
+      return;
+
+    }
+
+    match.home=
+      matchHome;
+
+    match.rival=
+      matchRival;
+
+    match.result=
+      matchResult;
+
+    match.scorers=
+      matchScorers;
+
+    match.cards=
+      matchCards;
+
+    match.updatedAt=
+      Date.now();
+
+    addActivity(
+      '🏟️',
+      `Partido actualizado: ${matchHome} ${matchResult} ${matchRival}`
+    );
+
+  }else{
+
+    const now=
+      Date.now();
+
+    const newMatch={
+
+      id:
+        `match-${now}-${Math.random()
+          .toString(36)
+          .slice(2,8)}`,
+
+      home:
+        matchHome,
+
+      rival:
+        matchRival,
+
+      result:
+        matchResult,
+
+      scorers:
+        matchScorers,
+
+      cards:
+        matchCards,
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now
+
+    };
+
+    data.matches.unshift(
+      newMatch
+    );
+
+    /*
+      Guardamos el equipo local como
+      equipo principal para los siguientes
+      partidos.
+    */
+
+    data.settings.team=
+      matchHome;
+
+    addActivity(
+      '🏟️',
+      `Partido añadido: ${matchHome} ${matchResult} ${matchRival}`
+    );
+
+  }
+
+  save();
+
+  closeMatchModal();
+
+  render();
+
+}
+
+function closeMatchModal(){
+
+  const modal=
+    document.getElementById(
+      'match-modal'
+    );
+
+  if(modal){
+    modal.remove();
+  }
+
+  if(
+    !document.getElementById(
+      'edit-player-modal'
+    )&&
+    !document.getElementById(
+      'add-player-modal'
+    )&&
+    !document.getElementById(
+      'note-modal'
+    )
+  ){
+
+    document.body.style.overflow='';
+
+  }
+
+}
+
+function deleteMatch(id){
+
+  const match=
+    data.matches.find(
+      m=>
+        String(m.id)===
+        String(id)
+    );
+
+  if(!match){
+    return;
+  }
+
+  const confirmed=
+    confirm(
+      `¿Eliminar el partido "${match.home} vs ${match.rival}"?`
+    );
+
+  if(!confirmed){
+    return;
+  }
+
+  data.matches=
+    data.matches.filter(
+      m=>
+        String(m.id)!==
+        String(id)
+    );
+
+  addActivity(
+    '🗑️',
+    `Partido eliminado: ${match.home} vs ${match.rival}`
+  );
+
+  save();
+
+  render();
 
 }
 
@@ -4184,6 +5096,9 @@ function closeNoteModal(){
     )&&
     !document.getElementById(
       'add-player-modal'
+    )&&
+    !document.getElementById(
+      'match-modal'
     )
   ){
 
