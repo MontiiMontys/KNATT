@@ -59,10 +59,18 @@ button{
   padding-bottom:82px;
 }
 
+/* =====================================================
+   CABECERA
+===================================================== */
+
 header{
   background:var(--dark);
   color:#fff;
-  padding:17px 18px;
+
+  padding:
+    calc(12px + env(safe-area-inset-top))
+    18px
+    14px;
 }
 
 .header-row,
@@ -100,7 +108,7 @@ header{
 }
 
 main{
-  padding:16px 14px 28px;
+  padding:14px 14px 24px;
 }
 
 .title{
@@ -124,6 +132,24 @@ main{
   margin:3px 2px 13px;
 }
 
+/* =====================================================
+   INICIO
+===================================================== */
+
+.home-title-row{
+  margin-top:0;
+  margin-bottom:12px;
+}
+
+.home-title-row .title{
+  font-size:26px;
+}
+
+.home-title-row .subtitle{
+  font-size:13px;
+  margin-top:3px;
+}
+
 .card{
   background:var(--card);
   border:1px solid var(--line);
@@ -131,6 +157,24 @@ main{
   padding:16px;
   margin-bottom:12px;
   box-shadow:0 7px 24px #14141914;
+}
+
+.home-match-card{
+  padding:17px;
+  border-radius:20px;
+}
+
+.home-match-card .section-label{
+  margin-bottom:8px;
+}
+
+.home-match-card .big{
+  font-size:22px;
+  line-height:1.15;
+}
+
+.home-match-card .versus{
+  margin:15px 0 16px;
 }
 
 .card-dark{
@@ -1296,7 +1340,7 @@ function home(){
 
   return `
 
-  <div class="title-row">
+  <div class="title-row home-title-row">
 
     <div>
 
@@ -1316,7 +1360,7 @@ function home(){
   </div>
 
 
-  <div class="card">
+  <div class="card home-match-card">
 
     <div class="section-label">
       PRÓXIMO PARTIDO
@@ -2900,10 +2944,6 @@ function togglePlayerMenu(
     );
 
 
-  /*
-     Cerramos todos los demás.
-  */
-
   document
     .querySelectorAll(
       '.player-selector.open'
@@ -2945,18 +2985,10 @@ function togglePlayerMenu(
   }
 
 
-  /*
-     Elevamos la posición seleccionada.
-  */
-
   slot.classList.add(
     'menu-active'
   );
 
-
-  /*
-     Calculamos el espacio.
-  */
 
   const rect =
     selector.getBoundingClientRect();
@@ -2970,11 +3002,6 @@ function togglePlayerMenu(
   const spaceAbove =
     rect.top;
 
-
-  /*
-     Si no hay espacio abajo,
-     abrimos hacia arriba.
-  */
 
   if(
     spaceBelow < 175 &&
@@ -3052,10 +3079,6 @@ function assignPosition(
     );
 
 
-  /*
-     Quitar jugador.
-  */
-
   if(!id){
 
     delete
@@ -3075,10 +3098,6 @@ function assignPosition(
 
   }
 
-
-  /*
-     Evitar duplicados.
-  */
 
   const duplicate =
     Object
@@ -3109,10 +3128,6 @@ function assignPosition(
 
   }
 
-
-  /*
-     Guardamos el ID.
-  */
 
   data.tactics
     .positions[
@@ -3205,11 +3220,6 @@ function changeFormation(
   const used =
     new Set();
 
-
-  /*
-     Intentamos mantener jugadores
-     en posiciones equivalentes.
-  */
 
   newSpots.forEach(
     (newSpot,newIndex) => {
@@ -3333,11 +3343,6 @@ function resetTactic(){
   const used =
     new Set();
 
-
-  /*
-     Primero buscamos coincidencia
-     exacta de posición.
-  */
 
   spots.forEach(
     (spot,index) => {
