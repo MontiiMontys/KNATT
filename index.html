@@ -953,16 +953,16 @@ main{
 }
 
 .board-player-name{
-  font-size:10px;
+  font-size:9px;
   line-height:1.15;
   font-weight:950;
   white-space:normal;
-  overflow:hidden;
+  overflow-wrap:anywhere;
+  word-break:break-word;
   display:-webkit-box;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2;
-  line-clamp:2;
-  overflow-wrap:anywhere;
+  overflow:hidden;
 }
 
 .board-player-pos{
@@ -1237,7 +1237,7 @@ nav .nav-icon{
   }
 
   .board-player-name{
-    font-size:9px;
+    font-size:8px;
   }
 
   .tray-player{
@@ -1496,13 +1496,6 @@ if(
   data.tactics.view='full';
 
 }
-
-
-/*
-   Migración de la versión antigua:
-   eliminamos la formación porque la nueva
-   pizarra ya no trabaja con posiciones fijas.
-*/
 
 data.tactics.formation='';
 
@@ -4926,6 +4919,19 @@ function updateDragGhost(
 }
 
 
+function destroyDragGhost(){
+
+  if(dragGhost){
+
+    dragGhost.remove();
+
+    dragGhost=null;
+
+  }
+
+}
+
+
 /* =====================================================
    INICIAR ARRASTRE DESDE BANDEJA
 ===================================================== */
@@ -4976,7 +4982,11 @@ function startTrayDrag(
 
     source:source,
 
-    moved:false
+    moved:false,
+
+    startX:event.clientX,
+
+    startY:event.clientY
 
   };
 
@@ -5118,7 +5128,11 @@ function startBoardDrag(
 
     source:source,
 
-    moved:false
+    moved:false,
+
+    startX:event.clientX,
+
+    startY:event.clientY
 
   };
 
@@ -5185,7 +5199,7 @@ function handleGlobalPointerMove(
   const dx =
     event.clientX -
     (
-      dragState.startX ||
+      dragState.startX ??
       event.clientX
     );
 
@@ -5193,22 +5207,9 @@ function handleGlobalPointerMove(
   const dy =
     event.clientY -
     (
-      dragState.startY ||
+      dragState.startY ??
       event.clientY
     );
-
-
-  if(
-    !dragState.startX
-  ){
-
-    dragState.startX =
-      event.clientX;
-
-    dragState.startY =
-      event.clientY;
-
-  }
 
 
   if(
@@ -5383,6 +5384,16 @@ function handleGlobalPointerUp(
           rect.height
         ) *
         100;
+
+
+      /*
+        FIX:
+        Eliminamos el clon visual ANTES de renderizar.
+        Así el drag-ghost no puede quedarse visible
+        junto al jugador real.
+      */
+
+      destroyDragGhost();
 
 
       addPlayerToTactic(
