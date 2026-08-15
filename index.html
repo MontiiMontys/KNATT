@@ -736,16 +736,35 @@ main{
 
 
 /* =====================================================
-   TÁCTICA
+   TÁCTICA — PIZARRA
 ===================================================== */
 
 .tactic-toolbar{
   display:grid;
-  grid-template-columns:1fr auto;
+  grid-template-columns:1fr 1fr;
   gap:8px;
-  align-items:end;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
+
+.tactic-view-btn{
+  border:0;
+  border-radius:12px;
+  min-height:44px;
+  background:#e9e9ec;
+  color:#666;
+  font-size:12px;
+  font-weight:900;
+}
+
+.tactic-view-btn.active{
+  background:var(--red);
+  color:#fff;
+}
+
+
+/* =====================================================
+   PIZARRA
+===================================================== */
 
 .pitch-wrap{
   position:relative;
@@ -768,7 +787,9 @@ main{
       #278247 0 9%,
       #2d8b4f 9% 18%
     );
-  touch-action:manipulation;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
 }
 
 .pitch:before{
@@ -777,6 +798,7 @@ main{
   inset:2.5%;
   border:2px solid #fff9;
   border-radius:8px;
+  pointer-events:none;
 }
 
 .pitch-line{
@@ -785,6 +807,7 @@ main{
   right:2.5%;
   top:50%;
   border-top:2px solid #fff9;
+  pointer-events:none;
 }
 
 .pitch-circle{
@@ -795,6 +818,7 @@ main{
   border-radius:50%;
   left:36.5%;
   top:36.5%;
+  pointer-events:none;
 }
 
 .pitch-center{
@@ -805,6 +829,7 @@ main{
   border-radius:50%;
   left:calc(50% - 4px);
   top:calc(50% - 4px);
+  pointer-events:none;
 }
 
 .box{
@@ -813,6 +838,7 @@ main{
   width:60%;
   height:16%;
   border:2px solid #fff9;
+  pointer-events:none;
 }
 
 .box.top{
@@ -830,6 +856,7 @@ main{
   height:2.5%;
   border:2px solid #fff;
   background:#ffffff18;
+  pointer-events:none;
 }
 
 .goal.top{
@@ -842,124 +869,294 @@ main{
 
 
 /* =====================================================
-   POSICIONES
+   MEDIO CAMPO
 ===================================================== */
 
-.tactic-slot{
+.pitch.half-mode{
+  aspect-ratio:68/70;
+}
+
+.pitch.half-mode .pitch-line{
+  display:none;
+}
+
+.pitch.half-mode .pitch-circle{
+  top:58%;
+}
+
+.pitch.half-mode .box.bottom,
+.pitch.half-mode .goal.bottom{
+  display:none;
+}
+
+.pitch.half-mode .box.top{
+  top:2.5%;
+}
+
+.pitch.half-mode .goal.top{
+  top:0;
+}
+
+
+/* =====================================================
+   JUGADORES EN LA PIZARRA
+===================================================== */
+
+.board-player{
   position:absolute;
   transform:translate(-50%,-50%);
-  width:clamp(68px,22vw,105px);
-  z-index:20;
-  text-align:center;
+  z-index:30;
+  width:clamp(66px,22vw,94px);
+  min-height:46px;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  cursor:grab;
 }
 
-.tactic-slot.menu-active{
-  z-index:9999;
+.board-player.dragging{
+  z-index:1000;
+  cursor:grabbing;
+  transform:translate(-50%,-50%) scale(1.08);
 }
 
-.tactic-role{
-  display:inline-block;
-  background:var(--dark);
-  color:#fff;
-  border-radius:999px;
-  padding:4px 7px;
-  font-size:9px;
-  font-weight:900;
-  margin-bottom:3px;
-}
-
-.player-selector{
+.board-player-card{
   position:relative;
   width:100%;
-}
-
-.player-selector-button{
+  min-height:46px;
+  padding:6px 22px 6px 7px;
+  border-radius:12px;
+  border:2px solid #fff;
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:4px;
-  width:100%;
-  height:36px;
-  border:3px solid var(--red);
-  border-radius:10px;
-  background:#fff;
-  color:var(--text);
-  padding:0 6px;
-  font-size:9px;
-  font-weight:900;
-  outline:none;
-  text-align:left;
+  gap:6px;
 }
 
-.player-selector-button .player-name{
-  min-width:0;
-  flex:1;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.player-selector-button .arrow{
-  flex:0 0 auto;
-  font-size:11px;
-}
-
-.player-selector-menu{
-  display:none;
-  position:absolute;
-  left:0;
-  right:0;
-  top:40px;
-  max-height:160px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:9px;
-  box-shadow:0 7px 18px rgba(0,0,0,.22);
-  z-index:99999;
-}
-
-.player-selector.open .player-selector-menu{
-  display:block;
-}
-
-.player-selector.menu-up .player-selector-menu{
-  top:auto;
-  bottom:40px;
-}
-
-.player-option{
-  display:block;
-  width:100%;
-  border:0;
-  border-bottom:1px solid #eee;
-  background:#fff;
-  color:var(--text);
-  padding:8px 7px;
-  font-size:9px;
-  font-weight:800;
-  text-align:left;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.player-option:last-child{
-  border-bottom:0;
-}
-
-.player-option.selected{
-  background:#fff0f2;
-  color:var(--red);
+.board-player-ball{
+  width:27px;
+  height:27px;
+  flex:0 0 27px;
+  border-radius:50%;
+  background:var(--red);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:12px;
   font-weight:950;
 }
 
-.player-option:disabled{
-  color:#bbb;
-  background:#fafafa;
+.board-player-info{
+  min-width:0;
+  flex:1;
 }
+
+.board-player-name{
+  font-size:9px;
+  line-height:1.1;
+  font-weight:950;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.board-player-pos{
+  margin-top:2px;
+  font-size:7px;
+  color:#777;
+  font-weight:800;
+}
+
+.board-player-remove{
+  position:absolute;
+  top:-7px;
+  right:-7px;
+  width:21px;
+  height:21px;
+  border:2px solid #fff;
+  border-radius:50%;
+  background:var(--dark);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  line-height:1;
+  padding:0;
+  z-index:5;
+}
+
+
+/* =====================================================
+   BANDEJA DE JUGADORES
+===================================================== */
+
+.tactic-help{
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:750;
+  margin:-2px 0 10px;
+}
+
+.player-tray{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:0 5px 18px #14141910;
+}
+
+.player-tray-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:9px;
+}
+
+.player-tray-title strong{
+  font-size:12px;
+  font-weight:950;
+}
+
+.player-tray-count{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.player-tray-list{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:2px 2px 5px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+
+.player-tray-list::-webkit-scrollbar{
+  display:none;
+}
+
+.tray-player{
+  position:relative;
+  flex:0 0 auto;
+  width:86px;
+  min-height:54px;
+  border:1px solid #dedee2;
+  border-radius:12px;
+  background:#fafafa;
+  padding:7px 6px;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  cursor:grab;
+}
+
+.tray-player:active{
+  background:#fff0f2;
+  border-color:#ffb5bd;
+}
+
+.tray-player.dragging{
+  opacity:.45;
+}
+
+.tray-player-top{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.tray-number{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#ececef;
+  display:grid;
+  place-items:center;
+  font-size:8px;
+  font-weight:950;
+  flex:0 0 22px;
+}
+
+.tray-name{
+  min-width:0;
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.tray-pos{
+  margin-top:4px;
+  font-size:7px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.tray-empty{
+  width:100%;
+  padding:8px 2px;
+  text-align:center;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+}
+
+
+/* =====================================================
+   INDICADOR DE ARRASTRE
+===================================================== */
+
+.drag-ghost{
+  position:fixed;
+  z-index:10000;
+  pointer-events:none;
+  transform:translate(-50%,-50%) scale(1.08);
+  width:88px;
+  opacity:.94;
+  display:none;
+}
+
+.drag-ghost .board-player-card{
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+
+/* =====================================================
+   ZONA DE CAMPO AL ARRASTRAR
+===================================================== */
+
+.pitch.drop-active{
+  box-shadow:
+    0 0 0 4px #fff,
+    0 0 0 7px #e21d2f88;
+}
+
+.pitch.drop-active:after{
+  content:"Suelta aquí";
+  position:absolute;
+  inset:12px;
+  border:2px dashed #ffffffaa;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:14px;
+  font-weight:950;
+  background:#00000012;
+  pointer-events:none;
+}
+
+
+/* =====================================================
+   ACCIONES TÁCTICA
+===================================================== */
 
 .tactic-actions{
   display:grid;
@@ -1027,25 +1224,20 @@ nav .nav-icon{
     padding-right:11px;
   }
 
-  .tactic-slot{
-    width:clamp(62px,20vw,90px);
+  .board-player{
+    width:clamp(62px,20vw,88px);
   }
 
-  .player-selector-button{
-    font-size:8px;
-    height:34px;
-    padding-left:5px;
-    padding-right:5px;
+  .board-player-card{
+    min-height:43px;
   }
 
-  .player-option{
+  .board-player-name{
     font-size:8px;
-    padding:8px 6px;
   }
 
-  .tactic-role{
-    font-size:8px;
-    padding:4px 6px;
+  .tray-player{
+    width:82px;
   }
 
   .edit-modal{
@@ -1236,9 +1428,10 @@ if(
     ],
 
     tactics:{
-      formation:'4-3-3',
+      formation:'',
       positions:{},
-      savedLineup:[]
+      savedLineup:[],
+      view:'full'
     },
 
     settings:{
@@ -1263,19 +1456,12 @@ if(!Array.isArray(data.players)){
   data.players=[];
 }
 
-if(!data.tactics ||
-   typeof data.tactics!=='object'){
-
-  data.tactics={};
-
-}
-
 if(
-  !data.tactics.formation ||
-  !formationsHasFormation(data.tactics.formation)
+  !data.tactics ||
+  typeof data.tactics!=='object'
 ){
 
-  data.tactics.formation='4-3-3';
+  data.tactics={};
 
 }
 
@@ -1297,6 +1483,25 @@ if(
   data.tactics.savedLineup=[];
 
 }
+
+if(
+  data.tactics.view!=='full' &&
+  data.tactics.view!=='half'
+){
+
+  data.tactics.view='full';
+
+}
+
+
+/*
+   Migración de la versión antigua:
+   eliminamos la formación porque la nueva
+   pizarra ya no trabaja con posiciones fijas.
+*/
+
+data.tactics.formation='';
+
 
 if(
   !data.settings ||
@@ -1358,134 +1563,6 @@ let section='home';
 let filter='all';
 
 let selectedPlayerId=null;
-
-
-/* =====================================================
-   FORMACIONES
-===================================================== */
-
-const formations={
-
-  '4-3-3':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MC',28,60],
-    ['MC',50,58],
-    ['MC',72,60],
-    ['EI',18,35],
-    ['DC',50,24],
-    ['ED',82,35]
-  ],
-
-  '4-4-2':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MI',18,57],
-    ['MC',40,57],
-    ['MC',60,57],
-    ['MD',82,57],
-    ['DC',38,27],
-    ['DC',62,27]
-  ],
-
-  '4-2-3-1':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MCD',38,63],
-    ['MCD',62,63],
-    ['EI',18,43],
-    ['MCO',50,45],
-    ['ED',82,43],
-    ['DC',50,24]
-  ],
-
-  '3-5-2':[
-    ['POR',50,92],
-    ['DFC',27,78],
-    ['DFC',50,82],
-    ['DFC',73,78],
-    ['MI',12,57],
-    ['MC',32,58],
-    ['MCO',50,50],
-    ['MC',68,58],
-    ['MD',88,57],
-    ['DC',38,27],
-    ['DC',62,27]
-  ],
-
-  '3-4-3':[
-    ['POR',50,92],
-    ['DFC',27,80],
-    ['DFC',50,83],
-    ['DFC',73,80],
-    ['MI',18,59],
-    ['MC',40,59],
-    ['MC',60,59],
-    ['MD',82,59],
-    ['EI',18,33],
-    ['DC',50,24],
-    ['ED',82,33]
-  ],
-
-  '5-3-2':[
-    ['POR',50,92],
-    ['LI',10,73],
-    ['DFC',30,79],
-    ['DFC',50,82],
-    ['DFC',70,79],
-    ['LD',90,73],
-    ['MC',30,58],
-    ['MC',50,55],
-    ['MC',70,58],
-    ['DC',38,27],
-    ['DC',62,27]
-  ],
-
-  '4-5-1':[
-    ['POR',50,92],
-    ['LI',18,76],
-    ['DFC',40,80],
-    ['DFC',60,80],
-    ['LD',82,76],
-    ['MI',12,57],
-    ['MC',31,57],
-    ['MCO',50,53],
-    ['MC',69,57],
-    ['MD',88,57],
-    ['DC',50,24]
-  ]
-
-};
-
-
-/* =====================================================
-   FUNCIÓN AUXILIAR
-===================================================== */
-
-function formationsHasFormation(
-  formation
-){
-
-  return [
-    '4-3-3',
-    '4-4-2',
-    '4-2-3-1',
-    '3-5-2',
-    '3-4-3',
-    '5-3-2',
-    '4-5-1'
-  ].includes(formation);
-
-}
 
 
 /* =====================================================
@@ -1760,12 +1837,6 @@ function go(s){
   section=s;
 
   selectedPlayerId=null;
-
-  closePlayerMenus();
-
-  closeEditModal();
-
-  closeAddModal();
 
   window.scrollTo(
     0,
@@ -3594,7 +3665,7 @@ function saveEditedPlayer(){
 
 
 /* =====================================================
-   CERRAR MODAL EDICIÓN
+   CERRAR MODALES
 ===================================================== */
 
 function closeEditModal(){
@@ -3624,10 +3695,6 @@ function closeEditModal(){
 
 }
 
-
-/* =====================================================
-   CERRAR MODAL AÑADIR
-===================================================== */
 
 function closeAddModal(){
 
@@ -3690,30 +3757,7 @@ function deletePlayer(id){
     );
 
 
-  Object
-    .keys(
-      data.tactics.positions
-    )
-    .forEach(
-      k => {
-
-        if(
-          String(
-            data.tactics
-              .positions[k]
-              ?.playerId
-          ) ===
-          String(id)
-        ){
-
-          delete
-            data.tactics
-              .positions[k];
-
-        }
-
-      }
-    );
+  removePlayerFromTactic(id);
 
 
   addActivity(
@@ -4217,24 +4261,44 @@ function saveSettings(){
 
 
 /* =====================================================
-   TÁCTICA
+   TÁCTICA — NUEVA PIZARRA
 ===================================================== */
 
 function tactic(){
 
-  const formation =
-    data.tactics.formation ||
-    '4-3-3';
-
-
-  const spots =
-    formations[formation] ||
-    formations['4-3-3'];
+  const view =
+    data.tactics.view==='half'
+      ?'half'
+      :'full';
 
 
   const positions =
     data.tactics.positions ||
     {};
+
+
+  const placedIds =
+    new Set(
+      Object
+        .values(positions)
+        .map(
+          p =>
+            String(
+              p?.playerId || ''
+            )
+        )
+        .filter(Boolean)
+    );
+
+
+  const availablePlayers =
+    data.players.filter(
+      p =>
+        p.available !== false &&
+        !placedIds.has(
+          String(p.id)
+        )
+    );
 
 
   return `
@@ -4247,6 +4311,10 @@ function tactic(){
         Táctica
       </div>
 
+      <div class="subtitle">
+        Arrastra los jugadores al campo
+      </div>
+
     </div>
 
   </div>
@@ -4254,57 +4322,56 @@ function tactic(){
 
   <div class="tactic-toolbar">
 
-
-    <select
-      class="select"
-      onchange="
-        changeFormation(this.value)
-      ">
-
-      ${
-        Object.keys(
-          formations
-        )
-        .map(
-          f => `
-
-          <option
-            value="${f}"
-            ${
-              f===formation
-                ?'selected'
-                :''
-            }>
-
-            ${f}
-
-          </option>
-
-          `
-        )
-        .join('')
-      }
-
-    </select>
-
-
     <button
-      class="btn light"
+      type="button"
+      class="tactic-view-btn ${
+        view==='full'
+          ?'active'
+          :''
+      }"
       onclick="
-        clearTactic()
+        changeTacticView('full')
       ">
 
-      Vaciar
+      🟢 Campo entero
 
     </button>
 
+
+    <button
+      type="button"
+      class="tactic-view-btn ${
+        view==='half'
+          ?'active'
+          :''
+      }"
+      onclick="
+        changeTacticView('half')
+      ">
+
+      🟢 Medio campo
+
+    </button>
+
+  </div>
+
+
+  <div class="tactic-help">
+
+    Arrastra un jugador desde abajo y colócalo donde quieras.
 
   </div>
 
 
   <div class="pitch-wrap">
 
-    <div class="pitch">
+    <div
+      id="tactic-pitch"
+      class="pitch ${
+        view==='half'
+          ?'half-mode'
+          :''
+      }">
 
       <div class="pitch-line"></div>
 
@@ -4322,16 +4389,62 @@ function tactic(){
 
 
       ${
-        spots
+        Object
+          .entries(positions)
           .map(
-            (s,i) =>
-              slotHtml(
-                s,
-                i,
-                positions
+            ([key,value]) =>
+              boardPlayerHtml(
+                key,
+                value
               )
           )
           .join('')
+      }
+
+    </div>
+
+  </div>
+
+
+  <div class="player-tray">
+
+    <div class="player-tray-title">
+
+      <strong>
+        Jugadores
+      </strong>
+
+      <span class="player-tray-count">
+
+        ${availablePlayers.length}
+        disponibles para colocar
+
+      </span>
+
+    </div>
+
+
+    <div class="player-tray-list">
+
+      ${
+        availablePlayers.length
+
+        ?
+
+        availablePlayers
+          .map(
+            p =>
+              trayPlayerHtml(p)
+          )
+          .join('')
+
+        :
+
+        `
+        <div class="tray-empty">
+          Todos los jugadores disponibles están en el campo.
+        </div>
+        `
       }
 
     </div>
@@ -4355,10 +4468,10 @@ function tactic(){
     <button
       class="btn light"
       onclick="
-        resetTactic()
+        clearTactic()
       ">
 
-      ↺ Reset
+      🧹 Vaciar
 
     </button>
 
@@ -4370,109 +4483,150 @@ function tactic(){
 
 
 /* =====================================================
-   SLOT
+   JUGADOR DE LA BANDEJA
 ===================================================== */
 
-function slotHtml(
-  spot,
-  index,
-  positions
+function trayPlayerHtml(player){
+
+  return `
+
+  <div
+    class="tray-player"
+    data-player-id="${esc(player.id)}"
+    data-drag-source="tray"
+    onpointerdown="
+      startTrayDrag(event, ${player.id})
+    ">
+
+    <div class="tray-player-top">
+
+      <div class="tray-number">
+        ${esc(player.num)}
+      </div>
+
+      <div class="tray-name">
+        ${esc(player.name)}
+      </div>
+
+    </div>
+
+    <div class="tray-pos">
+      ${esc(player.pos || 'Jugador')}
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   JUGADOR EN EL CAMPO
+===================================================== */
+
+function boardPlayerHtml(
+  key,
+  value
 ){
-
-  const role =
-    spot[0];
-
-  const x =
-    spot[1];
-
-  const y =
-    spot[2];
-
-
-  const selected =
-    String(
-      positions[
-        String(index)
-      ]?.playerId || ''
-    );
-
 
   const player =
     data.players.find(
       p =>
         String(p.id) ===
-        selected
+        String(value?.playerId || '')
     );
 
 
-  const name =
-    player
-      ? esc(player.name)
-      : 'Seleccionar jugador';
+  if(!player){
+    return '';
+  }
+
+
+  let x =
+    Number(value.x);
+
+  let y =
+    Number(value.y);
+
+
+  if(!Number.isFinite(x)){
+    x=50;
+  }
+
+  if(!Number.isFinite(y)){
+    y=50;
+  }
+
+
+  x =
+    Math.max(
+      4,
+      Math.min(
+        96,
+        x
+      )
+    );
+
+
+  y =
+    Math.max(
+      3,
+      Math.min(
+        97,
+        y
+      )
+    );
 
 
   return `
 
   <div
-    class="tactic-slot"
-    id="tactic-slot-${index}"
+    class="board-player"
+    id="board-player-${esc(player.id)}"
+    data-player-id="${esc(player.id)}"
+    data-position-key="${esc(key)}"
     style="
       left:${x}%;
       top:${y}%;
+    "
+    onpointerdown="
+      startBoardDrag(
+        event,
+        '${esc(player.id)}'
+      )
     ">
 
+    <div class="board-player-card">
 
-    <div class="tactic-role">
-      ${role}
-    </div>
+      <div class="board-player-ball">
+        ⚽
+      </div>
 
+      <div class="board-player-info">
 
-    <div
-      class="player-selector"
-      id="player-selector-${index}">
+        <div class="board-player-name">
+          ${esc(player.name)}
+        </div>
+
+        <div class="board-player-pos">
+          ${esc(player.pos || 'Jugador')}
+        </div>
+
+      </div>
 
 
       <button
         type="button"
-        class="player-selector-button"
-
+        class="board-player-remove"
         onclick="
-          togglePlayerMenu(
-            ${index},
-            event
-          )
+          event.stopPropagation();
+          removePlayerFromTactic('${esc(player.id)}')
         ">
 
-
-        <span class="player-name">
-
-          ${name}
-
-        </span>
-
-
-        <span class="arrow">
-
-          ⌄
-
-        </span>
-
+        ×
 
       </button>
-
-
-      <div
-        class="player-selector-menu">
-
-        ${
-          playerOptions(
-            selected,
-            index
-          )
-        }
-
-      </div>
-
 
     </div>
 
@@ -4484,148 +4638,16 @@ function slotHtml(
 
 
 /* =====================================================
-   OPCIONES DE JUGADORES
+   CAMBIAR VISTA
 ===================================================== */
 
-function playerOptions(
-  selected,
-  index
+function changeTacticView(
+  view
 ){
-
-  const used =
-    new Set(
-
-      Object
-        .values(
-          data.tactics.positions ||
-          {}
-        )
-
-        .map(
-          v =>
-            String(
-              v?.playerId || ''
-            )
-        )
-
-        .filter(Boolean)
-
-    );
-
-
-  return `
-
-  <button
-    type="button"
-
-    class="
-      player-option
-      ${
-        selected===''
-          ?'selected'
-          :''
-      }
-    "
-
-    onclick="
-      assignPosition(
-        ${index},
-        ''
-      )
-    ">
-
-    Seleccionar jugador
-
-  </button>
-
-  ` +
-
-  data.players
-    .map(
-      p => {
-
-        const id =
-          String(p.id);
-
-
-        const disabled =
-          used.has(id) &&
-          id!==selected;
-
-
-        return `
-
-        <button
-          type="button"
-
-          class="
-            player-option
-            ${
-              id===selected
-                ?'selected'
-                :''
-            }
-          "
-
-          ${
-            disabled
-              ?'disabled'
-              :''
-          }
-
-          onclick="
-            assignPosition(
-              ${index},
-              '${id}'
-            )
-          ">
-
-          ${esc(p.name)}
-
-        </button>
-
-        `;
-
-      }
-    )
-    .join('');
-
-}
-
-
-/* =====================================================
-   ABRIR DESPLEGABLE
-===================================================== */
-
-function togglePlayerMenu(
-  index,
-  event
-){
-
-  if(event){
-
-    event.stopPropagation();
-
-  }
-
-
-  const selector =
-    document.getElementById(
-      'player-selector-' +
-      index
-    );
-
-
-  const slot =
-    document.getElementById(
-      'tactic-slot-' +
-      index
-    );
-
 
   if(
-    !selector ||
-    !slot
+    view!=='full' &&
+    view!=='half'
   ){
 
     return;
@@ -4633,210 +4655,158 @@ function togglePlayerMenu(
   }
 
 
-  const wasOpen =
-    selector.classList.contains(
-      'open'
-    );
+  data.tactics.view =
+    view;
 
 
-  document
-    .querySelectorAll(
-      '.player-selector.open'
-    )
-    .forEach(
-      el => {
+  save();
 
-        el.classList.remove(
-          'open'
-        );
-
-        el.classList.remove(
-          'menu-up'
-        );
-
-      }
-    );
-
-
-  document
-    .querySelectorAll(
-      '.tactic-slot.menu-active'
-    )
-    .forEach(
-      el => {
-
-        el.classList.remove(
-          'menu-active'
-        );
-
-      }
-    );
-
-
-  if(wasOpen){
-
-    return;
-
-  }
-
-
-  slot.classList.add(
-    'menu-active'
-  );
-
-
-  const rect =
-    selector.getBoundingClientRect();
-
-
-  const spaceBelow =
-    window.innerHeight -
-    rect.bottom;
-
-
-  const spaceAbove =
-    rect.top;
-
-
-  if(
-    spaceBelow < 175 &&
-    spaceAbove > spaceBelow
-  ){
-
-    selector.classList.add(
-      'menu-up'
-    );
-
-  }
-
-
-  selector.classList.add(
-    'open'
-  );
+  render();
 
 }
 
 
 /* =====================================================
-   CERRAR MENÚS
+   CREAR POSICIÓN
 ===================================================== */
 
-function closePlayerMenus(){
-
-  document
-    .querySelectorAll(
-      '.player-selector.open'
-    )
-    .forEach(
-      el => {
-
-        el.classList.remove(
-          'open'
-        );
-
-        el.classList.remove(
-          'menu-up'
-        );
-
-      }
-    );
-
-
-  document
-    .querySelectorAll(
-      '.tactic-slot.menu-active'
-    )
-    .forEach(
-      el => {
-
-        el.classList.remove(
-          'menu-active'
-        );
-
-      }
-    );
-
-}
-
-
-/* =====================================================
-   ASIGNAR JUGADOR
-===================================================== */
-
-function assignPosition(
-  index,
-  id
+function addPlayerToTactic(
+  playerId,
+  x,
+  y
 ){
 
-  id =
-    String(
-      id || ''
+  const id =
+    String(playerId);
+
+
+  const player =
+    data.players.find(
+      p =>
+        String(p.id) === id
     );
 
 
-  if(!id){
-
-    delete
-      data.tactics
-        .positions[
-          String(index)
-        ];
-
-
-    addActivity(
-      '⚽',
-      'Jugador retirado de la táctica'
-    );
-
-    save();
-
-    closePlayerMenus();
-
-    render();
-
+  if(!player){
     return;
-
   }
 
 
-  const duplicate =
+  const positions =
+    data.tactics.positions ||
+    {};
+
+
+  const already =
     Object
-      .entries(
-        data.tactics.positions
-      )
-      .some(
+      .entries(positions)
+      .find(
         ([key,value]) =>
-
-          key !== String(index)
-
-          &&
-
           String(
             value?.playerId || ''
           ) === id
-
       );
 
 
-  if(duplicate){
-
-    alert(
-      'Ese jugador ya está colocado en otra posición.'
-    );
+  if(already){
 
     return;
 
   }
 
 
-  data.tactics
-    .positions[
-      String(index)
-    ] = {
+  const key =
+    'p_' +
+    Date.now() +
+    '_' +
+    Math.floor(
+      Math.random()*10000
+    );
 
-      playerId:id
 
-    };
+  positions[key]={
+
+    playerId:id,
+
+    x:Math.max(
+      4,
+      Math.min(
+        96,
+        Number(x)
+      )
+    ),
+
+    y:Math.max(
+      3,
+      Math.min(
+        97,
+        Number(y)
+      )
+    )
+
+  };
+
+
+  data.tactics.positions =
+    positions;
+
+
+  addActivity(
+    '⚽',
+    `Jugador colocado: ${player.name}`
+  );
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =====================================================
+   ELIMINAR JUGADOR DE LA PIZARRA
+===================================================== */
+
+function removePlayerFromTactic(
+  playerId
+){
+
+  const id =
+    String(playerId);
+
+
+  const positions =
+    data.tactics.positions ||
+    {};
+
+
+  let removed=false;
+
+  Object
+    .entries(positions)
+    .forEach(
+      ([key,value]) => {
+
+        if(
+          String(
+            value?.playerId || ''
+          ) === id
+        ){
+
+          delete positions[key];
+
+          removed=true;
+
+        }
+
+      }
+    );
+
+
+  if(!removed){
+    return;
+  }
 
 
   const player =
@@ -4847,15 +4817,18 @@ function assignPosition(
 
 
   addActivity(
-    '⚽',
+    '↩️',
     player
-      ?`Táctica actualizada: ${player.name}`
-      :'Táctica actualizada'
+      ?`${player.name} retirado de la pizarra`
+      :'Jugador retirado de la pizarra'
   );
 
-  save();
 
-  closePlayerMenus();
+  data.tactics.positions =
+    positions;
+
+
+  save();
 
   render();
 
@@ -4863,41 +4836,76 @@ function assignPosition(
 
 
 /* =====================================================
-   CLIC FUERA
+   ARRASTRAR DESDE BANDEJA
 ===================================================== */
 
-document.addEventListener(
-  'click',
+let dragState=null;
 
-  function(event){
+let dragGhost=null;
 
-    if(
-      !event.target.closest(
-        '.player-selector'
-      )
-    ){
 
-      closePlayerMenus();
+function createDragGhost(
+  player
+){
 
-    }
+  if(dragGhost){
+
+    dragGhost.remove();
 
   }
 
-);
+
+  dragGhost =
+    document.createElement(
+      'div'
+    );
 
 
-/* =====================================================
-   CAMBIAR FORMACIÓN
-===================================================== */
+  dragGhost.className='drag-ghost';
 
-function changeFormation(
-  formation
+
+  dragGhost.innerHTML = `
+
+    <div class="board-player-card">
+
+      <div class="board-player-ball">
+        ⚽
+      </div>
+
+      <div class="board-player-info">
+
+        <div class="board-player-name">
+          ${esc(player.name)}
+        </div>
+
+        <div class="board-player-pos">
+          ${esc(player.pos || 'Jugador')}
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.body.appendChild(
+    dragGhost
+  );
+
+
+  dragGhost.style.display='block';
+
+}
+
+
+function updateDragGhost(
+  event
 ){
 
   if(
-    !formations[
-      formation
-    ]
+    !dragGhost ||
+    !dragState
   ){
 
     return;
@@ -4905,134 +4913,560 @@ function changeFormation(
   }
 
 
-  const oldFormation =
-    data.tactics.formation ||
-    '4-3-3';
+  dragGhost.style.left =
+    `${event.clientX}px`;
+
+  dragGhost.style.top =
+    `${event.clientY}px`;
+
+}
 
 
-  const oldPositions =
-    data.tactics.positions ||
-    {};
+function destroyDragGhost(){
+
+  if(dragGhost){
+
+    dragGhost.remove();
+
+    dragGhost=null;
+
+  }
+
+}
 
 
-  const oldSpots =
-    formations[
-      oldFormation
-    ] ||
-    [];
+/* =====================================================
+   INICIAR ARRASTRE DESDE BANDEJA
+===================================================== */
+
+function startTrayDrag(
+  event,
+  playerId
+){
+
+  if(
+    event.pointerType==='mouse' &&
+    event.button!==0
+  ){
+
+    return;
+
+  }
 
 
-  const newSpots =
-    formations[
-      formation
-    ] ||
-    [];
+  event.preventDefault();
+
+  event.stopPropagation();
 
 
-  const next = {};
-
-  const used =
-    new Set();
-
-
-  newSpots.forEach(
-    (newSpot,newIndex) => {
-
-      const newRole =
-        String(
-          newSpot[0]
-        )
-        .trim()
-        .toUpperCase();
+  const player =
+    data.players.find(
+      p =>
+        String(p.id) ===
+        String(playerId)
+    );
 
 
-      for(
-        let oldIndex=0;
-        oldIndex<oldSpots.length;
-        oldIndex++
-      ){
-
-        if(
-          used.has(oldIndex)
-        ){
-
-          continue;
-
-        }
+  if(!player){
+    return;
+  }
 
 
-        const oldRole =
-          String(
-            oldSpots[
-              oldIndex
-            ][0]
-          )
-          .trim()
-          .toUpperCase();
+  const source =
+    event.currentTarget;
 
 
-        const playerId =
-          oldPositions[
-            String(oldIndex)
-          ]?.playerId;
+  dragState={
+
+    type:'tray',
+
+    playerId:
+      String(playerId),
+
+    source:source,
+
+    moved:false
+
+  };
 
 
-        if(
-          playerId &&
-
-          oldRole ===
-          newRole &&
-
-          !Object
-            .values(next)
-            .some(
-              p =>
-                String(
-                  p.playerId
-                ) ===
-                String(playerId)
-            )
-        ){
-
-          next[
-            String(newIndex)
-          ] = {
-
-            playerId:
-              String(playerId)
-
-          };
+  source.classList.add(
+    'dragging'
+  );
 
 
-          used.add(
-            oldIndex
-          );
+  createDragGhost(
+    player
+  );
 
 
-          break;
+  updateDragGhost(
+    event
+  );
 
-        }
 
-      }
+  try{
 
+    source.setPointerCapture(
+      event.pointerId
+    );
+
+  }catch(error){}
+
+
+  document.addEventListener(
+    'pointermove',
+    handleGlobalPointerMove,
+    {
+      passive:false
     }
   );
 
 
-  data.tactics.formation =
-    formation;
-
-
-  data.tactics.positions =
-    next;
-
-
-  addActivity(
-    '📐',
-    `Formación cambiada a ${formation}`
+  document.addEventListener(
+    'pointerup',
+    handleGlobalPointerUp,
+    {
+      once:true
+    }
   );
 
-  save();
+
+  document.addEventListener(
+    'pointercancel',
+    handleGlobalPointerCancel,
+    {
+      once:true
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ARRASTRAR JUGADOR YA COLOCADO
+===================================================== */
+
+function startBoardDrag(
+  event,
+  playerId
+){
+
+  if(
+    event.target.closest(
+      '.board-player-remove'
+    )
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    event.pointerType==='mouse' &&
+    event.button!==0
+  ){
+
+    return;
+
+  }
+
+
+  event.preventDefault();
+
+  event.stopPropagation();
+
+
+  const id =
+    String(playerId);
+
+
+  const entry =
+    Object
+      .entries(
+        data.tactics.positions ||
+        {}
+      )
+      .find(
+        ([key,value]) =>
+          String(
+            value?.playerId || ''
+          ) === id
+      );
+
+
+  if(!entry){
+    return;
+  }
+
+
+  const player =
+    data.players.find(
+      p =>
+        String(p.id) === id
+    );
+
+
+  if(!player){
+    return;
+  }
+
+
+  const source =
+    event.currentTarget;
+
+
+  dragState={
+
+    type:'board',
+
+    playerId:id,
+
+    key:entry[0],
+
+    source:source,
+
+    moved:false
+
+  };
+
+
+  source.classList.add(
+    'dragging'
+  );
+
+
+  try{
+
+    source.setPointerCapture(
+      event.pointerId
+    );
+
+  }catch(error){}
+
+
+  document.addEventListener(
+    'pointermove',
+    handleGlobalPointerMove,
+    {
+      passive:false
+    }
+  );
+
+
+  document.addEventListener(
+    'pointerup',
+    handleGlobalPointerUp,
+    {
+      once:true
+    }
+  );
+
+
+  document.addEventListener(
+    'pointercancel',
+    handleGlobalPointerCancel,
+    {
+      once:true
+    }
+  );
+
+}
+
+
+/* =====================================================
+   MOVIMIENTO GLOBAL
+===================================================== */
+
+function handleGlobalPointerMove(
+  event
+){
+
+  if(!dragState){
+    return;
+  }
+
+
+  event.preventDefault();
+
+
+  const dx =
+    event.clientX -
+    (
+      dragState.startX ||
+      event.clientX
+    );
+
+
+  const dy =
+    event.clientY -
+    (
+      dragState.startY ||
+      event.clientY
+    );
+
+
+  if(
+    !dragState.startX
+  ){
+
+    dragState.startX =
+      event.clientX;
+
+    dragState.startY =
+      event.clientY;
+
+  }
+
+
+  if(
+    Math.abs(dx)>4 ||
+    Math.abs(dy)>4
+  ){
+
+    dragState.moved=true;
+
+  }
+
+
+  if(
+    dragState.type==='tray'
+  ){
+
+    updateDragGhost(
+      event
+    );
+
+  }
+
+
+  const pitch =
+    document.getElementById(
+      'tactic-pitch'
+    );
+
+
+  if(!pitch){
+    return;
+  }
+
+
+  const rect =
+    pitch.getBoundingClientRect();
+
+
+  const inside =
+    event.clientX >= rect.left &&
+    event.clientX <= rect.right &&
+    event.clientY >= rect.top &&
+    event.clientY <= rect.bottom;
+
+
+  pitch.classList.toggle(
+    'drop-active',
+    inside
+  );
+
+
+  if(
+    dragState.type==='board' &&
+    inside
+  ){
+
+    const x =
+      (
+        (
+          event.clientX -
+          rect.left
+        ) /
+        rect.width
+      ) *
+      100;
+
+
+    const y =
+      (
+        (
+          event.clientY -
+          rect.top
+        ) /
+        rect.height
+      ) *
+      100;
+
+
+    const playerElement =
+      dragState.source;
+
+
+    playerElement.style.left =
+      `${Math.max(
+        4,
+        Math.min(
+          96,
+          x
+        )
+      )}%`;
+
+
+    playerElement.style.top =
+      `${Math.max(
+        3,
+        Math.min(
+          97,
+          y
+        )
+      )}%`;
+
+  }
+
+}
+
+
+/* =====================================================
+   FIN DEL ARRASTRE
+===================================================== */
+
+function handleGlobalPointerUp(
+  event
+){
+
+  if(!dragState){
+    return;
+  }
+
+
+  event.preventDefault();
+
+
+  const state =
+    dragState;
+
+
+  const pitch =
+    document.getElementById(
+      'tactic-pitch'
+    );
+
+
+  let dropped=false;
+
+
+  if(pitch){
+
+    const rect =
+      pitch.getBoundingClientRect();
+
+
+    const inside =
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom;
+
+
+    if(
+      state.type==='tray' &&
+      inside &&
+      state.moved
+    ){
+
+      const x =
+        (
+          (
+            event.clientX -
+            rect.left
+          ) /
+          rect.width
+        ) *
+        100;
+
+
+      const y =
+        (
+          (
+            event.clientY -
+            rect.top
+          ) /
+          rect.height
+        ) *
+        100;
+
+
+      addPlayerToTactic(
+        state.playerId,
+        x,
+        y
+      );
+
+
+      dropped=true;
+
+    }
+
+
+    if(
+      state.type==='board' &&
+      inside &&
+      state.moved
+    ){
+
+      const x =
+        (
+          (
+            event.clientX -
+            rect.left
+          ) /
+          rect.width
+        ) *
+        100;
+
+
+      const y =
+        (
+          (
+            event.clientY -
+            rect.top
+          ) /
+          rect.height
+        ) *
+        100;
+
+
+      updateBoardPlayerPosition(
+        state.key,
+        x,
+        y
+      );
+
+
+      dropped=true;
+
+    }
+
+  }
+
+
+  cleanupDrag();
+
+
+  if(!dropped){
+
+    render();
+
+  }
+
+}
+
+
+/* =====================================================
+   CANCELAR ARRASTRE
+===================================================== */
+
+function handleGlobalPointerCancel(){
+
+  cleanupDrag();
 
   render();
 
@@ -5040,94 +5474,119 @@ function changeFormation(
 
 
 /* =====================================================
-   RESET TÁCTICA
+   ACTUALIZAR POSICIÓN
 ===================================================== */
 
-function resetTactic(){
+function updateBoardPlayerPosition(
+  key,
+  x,
+  y
+){
 
-  const formation =
-    data.tactics.formation ||
-    '4-3-3';
-
-
-  const spots =
-    formations[
-      formation
-    ] ||
-    [];
+  const position =
+    data.tactics.positions[
+      key
+    ];
 
 
-  const next = {};
-
-  const used =
-    new Set();
-
-
-  spots.forEach(
-    (spot,index) => {
-
-      const role =
-        String(
-          spot[0]
-        )
-        .trim()
-        .toUpperCase();
+  if(!position){
+    return;
+  }
 
 
-      const player =
-        data.players.find(
-          p =>
-
-            !used.has(
-              String(p.id)
-            )
-
-            &&
-
-            String(
-              p.pos || ''
-            )
-            .trim()
-            .toUpperCase() ===
-            role
-
-        );
+  position.x =
+    Math.max(
+      4,
+      Math.min(
+        96,
+        Number(x)
+      )
+    );
 
 
-      if(player){
-
-        next[
-          String(index)
-        ] = {
-
-          playerId:
-            String(player.id)
-
-        };
+  position.y =
+    Math.max(
+      3,
+      Math.min(
+        97,
+        Number(y)
+      )
+    );
 
 
-        used.add(
-          String(player.id)
-        );
-
-      }
-
-    }
-  );
-
-
-  data.tactics.positions =
-    next;
+  const player =
+    data.players.find(
+      p =>
+        String(p.id) ===
+        String(position.playerId)
+    );
 
 
   addActivity(
-    '↺',
-    'Alineación restablecida'
+    '📍',
+    player
+      ?`Posición actualizada: ${player.name}`
+      :'Posición actualizada'
   );
+
 
   save();
 
-  render();
+}
+
+
+/* =====================================================
+   LIMPIAR ARRASTRE
+===================================================== */
+
+function cleanupDrag(){
+
+  document
+    .querySelectorAll(
+      '.tray-player.dragging'
+    )
+    .forEach(
+      el =>
+        el.classList.remove(
+          'dragging'
+        )
+    );
+
+
+  document
+    .querySelectorAll(
+      '.board-player.dragging'
+    )
+    .forEach(
+      el =>
+        el.classList.remove(
+          'dragging'
+        )
+    );
+
+
+  document
+    .querySelectorAll(
+      '.pitch.drop-active'
+    )
+    .forEach(
+      el =>
+        el.classList.remove(
+          'drop-active'
+        )
+    );
+
+
+  destroyDragGhost();
+
+
+  document.removeEventListener(
+    'pointermove',
+    handleGlobalPointerMove
+  );
+
+
+  dragState=null;
 
 }
 
@@ -5138,11 +5597,11 @@ function resetTactic(){
 
 function clearTactic(){
 
-  data.tactics.positions = {};
+  data.tactics.positions={};
 
   addActivity(
     '🧹',
-    'Táctica vaciada'
+    'Pizarra táctica vaciada'
   );
 
   save();
@@ -5166,52 +5625,33 @@ function saveTactic(){
         {}
       )
       .map(
-        v =>
-          v.playerId
+        v => ({
+          playerId:
+            String(v.playerId),
+
+          x:
+            Number(v.x),
+
+          y:
+            Number(v.y)
+
+        })
       );
 
 
   addActivity(
     '💾',
-    'Alineación guardada'
+    'Pizarra táctica guardada'
   );
 
   save();
 
 
   alert(
-    'Alineación guardada correctamente.'
+    'Pizarra táctica guardada correctamente.'
   );
 
 }
-
-
-/* =====================================================
-   CERRAR MENÚ AL HACER SCROLL
-===================================================== */
-
-window.addEventListener(
-  'scroll',
-
-  function(){
-
-    if(
-      document.querySelector(
-        '.player-selector.open'
-      )
-    ){
-
-      closePlayerMenus();
-
-    }
-
-  },
-
-  {
-    passive:true
-  }
-
-);
 
 
 /* =====================================================
