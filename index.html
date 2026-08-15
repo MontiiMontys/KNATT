@@ -302,6 +302,13 @@ main{
   margin-top:1px;
 }
 
+.home-team-category{
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+  margin-top:3px;
+}
+
 .home-quick-card{
   display:flex;
   align-items:center;
@@ -2592,11 +2599,7 @@ function home(){
 
           </div>
 
-          <div class="home-team-season">
-
-            ${esc(season)}
-
-            ·
+          <div class="home-team-category">
 
             ${esc(category)}
 
@@ -2610,10 +2613,26 @@ function home(){
 
                   ${esc(division)}
 
+                  ${
+                    season
+                      ?` ${esc(season)}`
+                      :''
+                  }
+
                 </div>
 
               `
-              :''
+              :season
+                ?`
+
+                  <div class="home-team-division">
+
+                    ${esc(season)}
+
+                  </div>
+
+                `
+                :''
           }
 
         </div>
