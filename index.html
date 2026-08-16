@@ -2106,6 +2106,22 @@ main{
   font-weight:800;
 }
 
+/*
+  CORRECCIÓN:
+  Faltaba esta clase; se usa en renderMatchCards()
+  para el mensaje de "sin tarjetas todavía" y antes
+  se mostraba sin ningún estilo.
+*/
+
+.cards-empty{
+  width:100%;
+  padding:8px 2px;
+  text-align:center;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:800;
+}
+
 .drag-ghost{
   position:fixed;
   z-index:10000;
@@ -5739,9 +5755,6 @@ function saveMatch(id=null){
     data.matches.unshift(
       newMatch
     );
-
-    data.settings.team=
-      matchHome;
 
     addActivity(
       'match',
